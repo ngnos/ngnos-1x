@@ -16,21 +16,21 @@
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import WireGuardIf
-from vyos.util import check_kmod
-from vyos.util import check_port_availability
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import WireGuardIf
+from ngnos.util import check_kmod
+from ngnos.util import check_port_availability
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

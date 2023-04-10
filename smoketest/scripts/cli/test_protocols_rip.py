@@ -16,10 +16,10 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'ripd'
 acl_in = '198'
@@ -30,7 +30,7 @@ route_map = 'FooBar123'
 
 base_path = ['protocols', 'rip']
 
-class TestProtocolsRIP(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsRIP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsRIP, cls).setUpClass()

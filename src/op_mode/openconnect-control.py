@@ -18,10 +18,10 @@ import sys
 import argparse
 import json
 
-from vyos.config import Config
-from vyos.util import popen
-from vyos.util import run
-from vyos.util import DEVNULL
+from ngnos.config import Config
+from ngnos.util import popen
+from ngnos.util import run
+from ngnos.util import DEVNULL
 from tabulate import tabulate
 
 occtl        = '/usr/bin/occtl'

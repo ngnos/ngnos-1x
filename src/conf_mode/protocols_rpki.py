@@ -18,14 +18,14 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render_to_string
-from vyos.util import dict_search
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render_to_string
+from ngnos.util import dict_search
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

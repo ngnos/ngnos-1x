@@ -19,10 +19,10 @@ import sys
 
 from tabulate import tabulate
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import cmd
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import cmd
 
-import vyos.opmode
+import ngnos.opmode
 
 
 def _get_raw_sflow():
@@ -88,7 +88,7 @@ def show(raw: bool):
 
     config = ConfigTreeQuery()
     if not config.exists('system sflow'):
-        raise vyos.opmode.UnconfiguredSubsystem(
+        raise ngnos.opmode.UnconfiguredSubsystem(
             '"system sflow" is not configured!')
 
     sflow_data = _get_raw_sflow()
@@ -100,9 +100,9 @@ def show(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

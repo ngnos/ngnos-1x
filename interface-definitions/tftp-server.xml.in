@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="tftp-server" owner="${vyos_conf_scripts_dir}/tftp_server.py">
+      <node name="tftp-server" owner="${ngnos_conf_scripts_dir}/tftp_server.py">
         <properties>
           <help>Trivial File Transfer Protocol (TFTP) server</help>
           <priority>990</priority>

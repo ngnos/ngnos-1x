@@ -19,7 +19,7 @@
 # T4105: flow-accounting: drop "sflow agent-address auto"
 
 from sys import argv
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")

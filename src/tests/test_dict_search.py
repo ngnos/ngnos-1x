@@ -15,15 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from unittest import TestCase
-from vyos.util import dict_search
-from vyos.util import dict_search_recursive
+from ngnos.util import dict_search
+from ngnos.util import dict_search_recursive
 
 data = {
     'string': 'fooo',
     'nested': {'string': 'bar', 'empty': '', 'list': ['foo', 'bar']},
     'non': {},
     'list': ['bar', 'baz'],
-    'dict': {'key_1': {}, 'key_2': 'vyos'},
+    'dict': {'key_1': {}, 'key_2': 'ngnos'},
     'interfaces': {'dummy': {'dum0': {'address': ['192.0.2.17/29']}},
                 'ethernet': {'eth0': {'address': ['2001:db8::1/64', '192.0.2.1/29'],
                                       'description': 'Test123',

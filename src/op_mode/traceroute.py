@@ -18,8 +18,8 @@ import os
 import sys
 import socket
 import ipaddress
-from vyos.util import get_all_vrfs
-from vyos.ifconfig import Section
+from ngnos.util import get_all_vrfs
+from ngnos.ifconfig import Section
 
 
 def interface_list() -> list:

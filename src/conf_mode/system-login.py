@@ -23,24 +23,24 @@ from pwd import getpwnam
 from sys import exit
 from time import sleep
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_vrf
-from vyos.defaults import directories
-from vyos.template import render
-from vyos.template import is_ipv4
-from vyos.util import cmd
-from vyos.util import call, rc_cmd
-from vyos.util import run
-from vyos.util import DEVNULL
-from vyos.util import dict_search
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_vrf
+from ngnos.defaults import directories
+from ngnos.template import render
+from ngnos.template import is_ipv4
+from ngnos.util import cmd
+from ngnos.util import call, rc_cmd
+from ngnos.util import run
+from ngnos.util import DEVNULL
+from ngnos.util import dict_search
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 autologout_file = "/etc/profile.d/autologout.sh"
-limits_file = "/etc/security/limits.d/10-vyos.conf"
+limits_file = "/etc/security/limits.d/10-ngnos.conf"
 radius_config_file = "/etc/pam_radius_auth.conf"
 
 # LOGIN_TIMEOUT from /etc/loign.defs minus 10 sec
@@ -115,7 +115,7 @@ def verify(login):
         system_users = getpwall()
         for user, user_config in login['user'].items():
             # Linux system users range up until UID 1000, we can not create a
-            # VyOS CLI user which already exists as system user
+            # ngNOS CLI user which already exists as system user
             for s_user in system_users:
                 if s_user.pw_name == user and s_user.pw_uid < 1000:
                     raise ConfigError(f'User "{user}" can not be created, conflict with local system account!')
@@ -183,7 +183,7 @@ def generate(login):
 
                 # remove old plaintext password and set new encrypted password
                 env = os.environ.copy()
-                env['vyos_libexec_dir'] = directories['base']
+                env['ngnos_libexec_dir'] = directories['base']
 
                 # Set default commands for re-adding user with encrypted password
                 del_user_plain = f"system login user '{user}' authentication plaintext-password"
@@ -230,7 +230,7 @@ def generate(login):
         if os.path.isfile(radius_config_file):
             os.unlink(radius_config_file)
 
-    # /etc/security/limits.d/10-vyos.conf
+    # /etc/security/limits.d/10-ngnos.conf
     if 'max_login_session' in login:
         render(limits_file, 'login/limits.j2', login,
                    permission=0o644, user='root', group='root')

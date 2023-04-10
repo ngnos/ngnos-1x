@@ -16,8 +16,8 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
 
 base_path = ['pki']
 
@@ -149,7 +149,7 @@ dyLIT09LqLOrUN6zbAecfukiiiyhRANCAAQMe0h/3CdD8mEgy+klk55QfJ8R3Zyc
 efxCn4abWjzTXz/TuCIxqb4wpRT8DZtIn4NRimFTmODYdEDOYxFtZm37
 """
 
-class TestPKI(VyOSUnitTestSHIM.TestCase):
+class TestPKI(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestPKI, cls).setUpClass()

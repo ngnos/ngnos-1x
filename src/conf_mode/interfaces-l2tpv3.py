@@ -19,19 +19,19 @@ import os
 from sys import exit
 from netifaces import interfaces
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import leaf_node_changed
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import L2TPv3If
-from vyos.util import check_kmod
-from vyos.validate import is_addr_assigned
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import leaf_node_changed
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import L2TPv3If
+from ngnos.util import check_kmod
+from ngnos.validate import is_addr_assigned
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 k_mod = ['l2tp_eth', 'l2tp_netlink', 'l2tp_ip', 'l2tp_ip6']

@@ -32,7 +32,7 @@ def auth_token_resolver(obj: Any, info: GraphQLResolveInfo, data: Dict):
     passwd = data['password']
 
     secret = state.settings['secret']
-    exp_interval = int(state.settings['app'].state.vyos_token_exp)
+    exp_interval = int(state.settings['app'].state.ngnos_token_exp)
     expiration = (datetime.datetime.now(tz=datetime.timezone.utc) +
                   datetime.timedelta(seconds=exp_interval))
 

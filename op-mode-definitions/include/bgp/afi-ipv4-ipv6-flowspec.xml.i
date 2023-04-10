@@ -9,7 +9,7 @@
   <children>
     #include <include/bgp/prefix-bestpath-multipath.xml.i>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <node name="flowspec">
   <properties>
@@ -20,6 +20,6 @@
     #include <include/bgp/afi-ipv4-ipv6-common.xml.i>
     #include <include/vtysh-generic-detail.xml.i>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <!-- included end -->

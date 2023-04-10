@@ -20,10 +20,10 @@ import re
 
 from datetime import datetime
 
-from vyos.util import ask_yes_no
-from vyos.util import call
-from vyos.util import cmd
-from vyos.util import DEVNULL
+from ngnos.util import ask_yes_no
+from ngnos.util import call
+from ngnos.util import cmd
+from ngnos.util import DEVNULL
 
 def list_disks():
     disks = set()

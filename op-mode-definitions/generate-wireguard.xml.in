@@ -19,7 +19,7 @@
                 <properties>
                   <help>Local interface used for connection</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces --type wireguard</script>
+                    <script>${ngnos_completion_dir}/list_interfaces --type wireguard</script>
                   </completionHelp>
                 </properties>
                 <children>
@@ -27,11 +27,11 @@
                     <properties>
                       <help>IP address/FQDN used for client connection</help>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                        <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                         <list>&lt;hostname&gt;</list>
                       </completionHelp>
                     </properties>
-                    <command>sudo ${vyos_op_scripts_dir}/wireguard_client.py --name "$4" --interface "$6" --server "$8"</command>
+                    <command>sudo ${ngnos_op_scripts_dir}/wireguard_client.py --name "$4" --interface "$6" --server "$8"</command>
                     <children>
                       <tagNode name="address">
                         <properties>
@@ -40,7 +40,7 @@
                             <list>&lt;x.x.x.x&gt; &lt;h:h:h:h:h:h:h:h&gt;</list>
                           </completionHelp>
                         </properties>
-                        <command>sudo ${vyos_op_scripts_dir}/wireguard_client.py --name "$4" --interface "$6" --server "$8" --address "${10}"</command>
+                        <command>sudo ${ngnos_op_scripts_dir}/wireguard_client.py --name "$4" --interface "$6" --server "$8" --address "${10}"</command>
                         <children>
                           <tagNode name="address">
                             <properties>
@@ -49,7 +49,7 @@
                                 <list>&lt;x.x.x.x&gt; &lt;h:h:h:h:h:h:h:h&gt;</list>
                               </completionHelp>
                             </properties>
-                            <command>sudo ${vyos_op_scripts_dir}/wireguard_client.py --name "$4" --interface "$6" --server "$8" --address "${10}" --address "${12}"</command>
+                            <command>sudo ${ngnos_op_scripts_dir}/wireguard_client.py --name "$4" --interface "$6" --server "$8" --address "${10}" --address "${12}"</command>
                           </tagNode>
                         </children>
                       </tagNode>

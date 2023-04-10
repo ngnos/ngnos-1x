@@ -21,11 +21,11 @@ import argparse
 import json
 import tabulate
 
-import vyos.util
+import ngnos.util
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.ifconfig.vrrp import VRRP
-from vyos.ifconfig.vrrp import VRRPError, VRRPNoData
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.ifconfig.vrrp import VRRP
+from ngnos.ifconfig.vrrp import VRRPError, VRRPNoData
 
 
 parser = argparse.ArgumentParser()

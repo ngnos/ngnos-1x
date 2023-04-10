@@ -4,9 +4,9 @@
     <children>
       <node name="root-partition-auto-resize">
         <properties>
-          <help>Resize the VyOS partition</help>
+          <help>Resize the ngNOS partition</help>
         </properties>
-        <command>sudo ${vyos_op_scripts_dir}/force_root-partition-auto-resize.sh</command>
+        <command>sudo ${ngnos_op_scripts_dir}/force_root-partition-auto-resize.sh</command>
       </node>
     </children>
   </node>

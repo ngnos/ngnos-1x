@@ -4,7 +4,7 @@ Documentation=man:dhcrelay(8)
 Wants=network-online.target
 RequiresMountsFor=/run
 ConditionPathExists=/run/dhcp-relay/dhcrelay6.conf
-After=vyos-router.service
+After=ngnos-router.service
 
 [Service]
 Type=forking

@@ -17,22 +17,22 @@
 import os
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.pki import wrap_certificate
-from vyos.pki import wrap_private_key
-from vyos.template import render
-from vyos.util import call
-from vyos.util import check_port_availability
-from vyos.util import is_systemd_service_running
-from vyos.util import is_listen_port_bind_service
-from vyos.util import dict_search
-from vyos.xml import defaults
-from vyos import ConfigError
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.pki import wrap_certificate
+from ngnos.pki import wrap_private_key
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import check_port_availability
+from ngnos.util import is_systemd_service_running
+from ngnos.util import is_listen_port_bind_service
+from ngnos.util import dict_search
+from ngnos.xml import defaults
+from ngnos import ConfigError
 from crypt import crypt, mksalt, METHOD_SHA512
 from time import sleep
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 cfg_dir        = '/run/ocserv'
@@ -49,7 +49,7 @@ def get_hash(password):
 
 def _default_dict_cleanup(origin: dict, default_values: dict) -> dict:
     """
-    https://vyos.dev/T2665
+    https://ngnos.dev/T2665
     Clear unnecessary key values in merged config by dict_merge function
     :param origin: config
     :type origin: dict
@@ -119,7 +119,7 @@ def get_config(config=None):
     # options which we need to update into the dictionary retrived.
     default_values = defaults(base)
     ocserv = dict_merge(default_values, ocserv)
-    # workaround a "know limitation" - https://vyos.dev/T2665
+    # workaround a "know limitation" - https://ngnos.dev/T2665
     ocserv = _default_dict_cleanup(ocserv, default_values)
     if ocserv:
         ocserv['pki'] = conf.get_config_dict(['pki'], key_mangling=('-', '_'),

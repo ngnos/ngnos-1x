@@ -17,23 +17,23 @@
 from sys import exit
 from netifaces import interfaces
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configdict import is_source_interface
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_source_interface
-from vyos.configverify import verify_vlan_config
-from vyos.configverify import verify_mtu_parent
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import MACVLANIf
-from vyos import ConfigError
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configdict import is_source_interface
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_source_interface
+from ngnos.configverify import verify_vlan_config
+from ngnos.configverify import verify_mtu_parent
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import MACVLANIf
+from ngnos import ConfigError
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

@@ -20,7 +20,7 @@ import socket
 import urllib.parse
 import argparse
 
-from vyos.util import popen
+from ngnos.util import popen
 
 otp_file = '/config/auth/openvpn/{interface}-otp-secrets'
 

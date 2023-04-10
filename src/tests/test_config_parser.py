@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import vyos.configtree
+import ngnos.configtree
 
 from unittest import TestCase
 
@@ -23,7 +23,7 @@ class TestConfigParser(TestCase):
     def setUp(self):
         with open('tests/data/config.valid', 'r') as f:
             config_string = f.read()
-            self.config = vyos.configtree.ConfigTree(config_string)
+            self.config = ngnos.configtree.ConfigTree(config_string)
 
     def test_top_level_valueless(self):
         self.assertTrue(self.config.exists(["top-level-valueless-node"]))
@@ -43,7 +43,7 @@ class TestConfigParser(TestCase):
         self.assertTrue(self.config.exists(["top-level-tag-node", "baz"]))
 
     def test_copy_duplicate(self):
-        with self.assertRaises(vyos.configtree.ConfigTreeError):
+        with self.assertRaises(ngnos.configtree.ConfigTreeError):
             self.config.copy(["top-level-tag-node", "foo"], ["top-level-tag-node", "bar"])
 
     def test_rename(self):
@@ -52,5 +52,5 @@ class TestConfigParser(TestCase):
         self.assertTrue(self.config.exists(["top-level-tag-node", "quux"]))
 
     def test_rename_duplicate(self):
-        with self.assertRaises(vyos.configtree.ConfigTreeError):
+        with self.assertRaises(ngnos.configtree.ConfigTreeError):
             self.config.rename(["top-level-tag-node", "foo"], "bar")

@@ -19,7 +19,7 @@
 
 import sys
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 
 if (len(sys.argv) < 2):

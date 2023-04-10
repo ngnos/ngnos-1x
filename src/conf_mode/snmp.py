@@ -18,22 +18,22 @@ import os
 
 from sys import exit
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_vrf
-from vyos.snmpv3_hashgen import plaintext_to_md5
-from vyos.snmpv3_hashgen import plaintext_to_sha1
-from vyos.snmpv3_hashgen import random
-from vyos.template import render
-from vyos.util import call
-from vyos.util import chmod_755
-from vyos.util import dict_search
-from vyos.validate import is_addr_assigned
-from vyos.version import get_version_data
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_vrf
+from ngnos.snmpv3_hashgen import plaintext_to_md5
+from ngnos.snmpv3_hashgen import plaintext_to_sha1
+from ngnos.snmpv3_hashgen import random
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import chmod_755
+from ngnos.util import dict_search
+from ngnos.validate import is_addr_assigned
+from ngnos.version import get_version_data
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file_client  = r'/etc/snmp/snmp.conf'
@@ -64,9 +64,9 @@ def get_config(config=None):
     version_data = get_version_data()
     snmp['version'] = version_data['version']
 
-    # create an internal snmpv3 user of the form 'vyosxxxxxxxxxxxxxxxx'
-    snmp['vyos_user'] = 'vyos' + random(8)
-    snmp['vyos_user_pass'] = random(16)
+    # create an internal snmpv3 user of the form 'ngnosxxxxxxxxxxxxxxxx'
+    snmp['ngnos_user'] = 'ngnos' + random(8)
+    snmp['ngnos_user_pass'] = random(16)
 
     # We have gathered the dict representation of the CLI, but there are default
     # options which we need to update into the dictionary retrived.
@@ -92,7 +92,7 @@ def get_config(config=None):
 
         # Always listen on localhost if an explicit address has been configured
         # This is a safety measure to not end up with invalid listen addresses
-        # that are not configured on this system. See https://vyos.dev/T850
+        # that are not configured on this system. See https://ngnos.dev/T850
         if '127.0.0.1' not in snmp['listen_address']:
             tmp = {'127.0.0.1': {'port': '161'}}
             snmp['listen_address'] = dict_merge(tmp, snmp['listen_address'])
@@ -247,7 +247,7 @@ def generate(snmp):
         # thus we need to re-open and re-read the file as the content changed.
         # After that we can no read the encrypted password from the config and
         # replace the CLI plaintext password with its encrypted version.
-        os.environ['vyos_libexec_dir'] = '/usr/libexec/vyos'
+        os.environ['ngnos_libexec_dir'] = '/usr/libexec/ngnos'
 
         if 'user' in snmp['v3']:
             for user, user_config in snmp['v3']['user'].items():

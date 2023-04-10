@@ -20,8 +20,8 @@ import sys
 import argparse
 import datetime
 
-from vyos.util import cmd
-from vyos.migrator import Migrator, VirtualMigrator
+from ngnos.util import cmd
+from ngnos.migrator import Migrator, VirtualMigrator
 
 def main():
     argparser = argparse.ArgumentParser(
@@ -31,16 +31,16 @@ def main():
     argparser.add_argument('--force', action='store_true',
             help="Force calling of all migration scripts.")
     argparser.add_argument('--set-vintage', type=str,
-            choices=['vyatta', 'vyos'],
+            choices=['vyatta', 'ngnos'],
             help="Set the format for the config version footer in config"
             " file:\n"
             "set to 'vyatta':\n"
             "(for '/* === vyatta-config-version ... */' format)\n"
-            "or 'vyos':\n"
-            "(for '// vyos-config-version ...' format).")
+            "or 'ngnos':\n"
+            "(for '// ngnos-config-version ...' format).")
     argparser.add_argument('--virtual', action='store_true',
             help="Update the format of the trailing comments in"
-                 " config file,\nfrom 'vyatta' to 'vyos'; no migration"
+                 " config file,\nfrom 'vyatta' to 'ngnos'; no migration"
                  " scripts are run.")
     args = argparser.parse_args()
 

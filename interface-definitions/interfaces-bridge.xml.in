@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="bridge" owner="${vyos_conf_scripts_dir}/interfaces-bridge.py">
+      <tagNode name="bridge" owner="${ngnos_conf_scripts_dir}/interfaces-bridge.py">
         <properties>
           <help>Bridge Interface</help>
           <priority>310</priority>
@@ -121,7 +121,7 @@
                 <properties>
                   <help>Member interface name</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces --bridgeable</script>
+                    <script>${ngnos_completion_dir}/list_interfaces --bridgeable</script>
                   </completionHelp>
                 </properties>
                 <children>

@@ -21,25 +21,25 @@ from glob import glob
 from json import loads
 from sys import exit
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import node_changed
-from vyos.configdiff import get_config_diff, Diff
-from vyos.configdep import set_dependents, call_dependents
-# from vyos.configverify import verify_interface_exists
-from vyos.firewall import fqdn_config_parse
-from vyos.firewall import geoip_update
-from vyos.template import render
-from vyos.util import call
-from vyos.util import cmd
-from vyos.util import dict_search_args
-from vyos.util import dict_search_recursive
-from vyos.util import process_named_running
-from vyos.util import rc_cmd
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import node_changed
+from ngnos.configdiff import get_config_diff, Diff
+from ngnos.configdep import set_dependents, call_dependents
+# from ngnos.configverify import verify_interface_exists
+from ngnos.firewall import fqdn_config_parse
+from ngnos.firewall import geoip_update
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import cmd
+from ngnos.util import dict_search_args
+from ngnos.util import dict_search_recursive
+from ngnos.util import process_named_running
+from ngnos.util import rc_cmd
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 nat_conf_script = 'nat.py'
@@ -504,7 +504,7 @@ def apply(firewall):
     domain_action = 'stop'
     if dict_search_args(firewall, 'group', 'domain_group') or firewall['ip_fqdn'] or firewall['ip6_fqdn']:
         domain_action = 'restart'
-    call(f'systemctl {domain_action} vyos-domain-resolver.service')
+    call(f'systemctl {domain_action} ngnos-domain-resolver.service')
 
     if firewall['geoip_updated']:
         # Call helper script to Update set contents

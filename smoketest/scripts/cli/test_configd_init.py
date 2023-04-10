@@ -17,22 +17,22 @@
 import unittest
 from time import sleep
 
-from vyos.util import cmd, is_systemd_service_running
+from ngnos.util import cmd, is_systemd_service_running
 
 class TestConfigdInit(unittest.TestCase):
     def setUp(self):
-        self.running_state = is_systemd_service_running('vyos-configd.service')
+        self.running_state = is_systemd_service_running('ngnos-configd.service')
 
     def test_configd_init(self):
         if not self.running_state:
-            cmd('sudo systemctl start vyos-configd.service')
+            cmd('sudo systemctl start ngnos-configd.service')
             # allow time for init to succeed/fail
             sleep(2)
-            self.assertTrue(is_systemd_service_running('vyos-configd.service'))
+            self.assertTrue(is_systemd_service_running('ngnos-configd.service'))
 
     def tearDown(self):
         if not self.running_state:
-            cmd('sudo systemctl stop vyos-configd.service')
+            cmd('sudo systemctl stop ngnos-configd.service')
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

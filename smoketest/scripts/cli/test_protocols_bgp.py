@@ -16,11 +16,11 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.template import is_ipv6
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import is_ipv6
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'bgpd'
 ASN = '64512'
@@ -46,7 +46,7 @@ neighbor_config = {
         'remote_as'        : '100',
         'adv_interv'       : '400',
         'passive'          : '',
-        'password'         : 'VyOS-Secure123',
+        'password'         : 'ngNOS-Secure123',
         'shutdown'         : '',
         'cap_over'         : '',
         'ttl_security'     : '5',
@@ -89,7 +89,7 @@ neighbor_config = {
         'remote_as'        : '123',
         'adv_interv'       : '400',
         'passive'          : '',
-        'password'         : 'VyOS-Secure123',
+        'password'         : 'ngNOS-Secure123',
         'shutdown'         : '',
         'cap_over'         : '',
         'ttl_security'     : '5',
@@ -125,7 +125,7 @@ peer_group_config = {
         'bfd'              : '',
         'remote_as'        : '100',
         'passive'          : '',
-        'password'         : 'VyOS-Secure123',
+        'password'         : 'ngNOS-Secure123',
         'shutdown'         : '',
         'cap_over'         : '',
         'ttl_security'     : '5',
@@ -165,7 +165,7 @@ peer_group_config = {
         },
 }
 
-class TestProtocolsBGP(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsBGP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsBGP, cls).setUpClass()
@@ -665,7 +665,7 @@ class TestProtocolsBGP(VyOSUnitTestSHIM.TestCase):
         frrconfig = self.getFRRconfig(f'router bgp {ASN}')
         self.assertIn(f'router bgp {ASN}', frrconfig)
         self.assertIn(f' address-family ipv6 unicast', frrconfig)
-        # T2100: By default ebgp-requires-policy is disabled to keep VyOS
+        # T2100: By default ebgp-requires-policy is disabled to keep ngNOS
         # 1.3 and 1.2 backwards compatibility
         self.assertIn(f' no bgp ebgp-requires-policy', frrconfig)
 
@@ -984,7 +984,7 @@ class TestProtocolsBGP(VyOSUnitTestSHIM.TestCase):
         self.assertIn(f' neighbor {peer_group} remote-as {remote_asn}', frrconfig)
 
     def test_bgp_15_local_as_ebgp(self):
-        # https://vyos.dev/T4560
+        # https://ngnos.dev/T4560
         # local-as allowed only for ebgp peers
 
         neighbor = '192.0.2.99'

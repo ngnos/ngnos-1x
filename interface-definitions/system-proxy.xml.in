@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="proxy" owner="${vyos_conf_scripts_dir}/system-proxy.py">
+      <node name="proxy" owner="${ngnos_conf_scripts_dir}/system-proxy.py">
         <properties>
           <help>Sets a proxy for system wide use</help>
         </properties>

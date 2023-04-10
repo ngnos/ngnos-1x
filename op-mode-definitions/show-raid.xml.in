@@ -6,10 +6,10 @@
         <properties>
           <help>Show status of RAID set</help>
           <completionHelp>
-            <script>${vyos_completion_dir}/list_raidset.sh</script>
+            <script>${ngnos_completion_dir}/list_raidset.sh</script>
           </completionHelp>
         </properties>
-        <command>sudo ${vyos_op_scripts_dir}/show_raid.sh $3</command>
+        <command>sudo ${ngnos_op_scripts_dir}/show_raid.sh $3</command>
       </tagNode>
     </children>
   </node>

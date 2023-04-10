@@ -2,7 +2,7 @@
 
 {% import 'firewall/nftables-defines.j2' as group_tmpl %}
 
-{% if helper_functions is vyos_defined('remove') %}
+{% if helper_functions is ngnos_defined('remove') %}
 {# NAT if going to be disabled - remove rules and targets from nftables #}
 {%     set base_command = 'delete rule ip raw' %}
 {{ base_command }} PREROUTING handle {{ pre_ct_ignore }}
@@ -12,30 +12,30 @@
 
 delete chain ip raw NAT_CONNTRACK
 
-{% elif helper_functions is vyos_defined('add') %}
+{% elif helper_functions is ngnos_defined('add') %}
 {# NAT if enabled - add targets to nftables #}
 add chain ip raw NAT_CONNTRACK
 add rule ip raw NAT_CONNTRACK counter accept
 {%     set base_command = 'add rule ip raw' %}
-{{ base_command }} PREROUTING position {{ pre_ct_ignore }}    counter jump VYOS_CT_HELPER
-{{ base_command }} OUTPUT     position {{ out_ct_ignore }}    counter jump VYOS_CT_HELPER
+{{ base_command }} PREROUTING position {{ pre_ct_ignore }}    counter jump NGNOS_CT_HELPER
+{{ base_command }} OUTPUT     position {{ out_ct_ignore }}    counter jump NGNOS_CT_HELPER
 {{ base_command }} PREROUTING position {{ pre_ct_conntrack }} counter jump NAT_CONNTRACK
 {{ base_command }} OUTPUT     position {{ out_ct_conntrack }} counter jump NAT_CONNTRACK
 {% endif %}
 
-{% if first_install is not vyos_defined %}
-delete table ip vyos_nat
+{% if first_install is not ngnos_defined %}
+delete table ip ngnos_nat
 {% endif %}
-{% if deleted is not vyos_defined %}
-table ip vyos_nat {
+{% if deleted is not ngnos_defined %}
+table ip ngnos_nat {
     #
     # Destination NAT rules build up here
     #
     chain PREROUTING {
         type nat hook prerouting priority -100; policy accept;
-        counter jump VYOS_PRE_DNAT_HOOK
-{%     if destination.rule is vyos_defined %}
-{%         for rule, config in destination.rule.items() if config.disable is not vyos_defined %}
+        counter jump NGNOS_PRE_DNAT_HOOK
+{%     if destination.rule is ngnos_defined %}
+{%         for rule, config in destination.rule.items() if config.disable is not ngnos_defined %}
         {{ config | nat_rule(rule, 'destination') }}
 {%         endfor %}
 {%     endif %}
@@ -46,19 +46,19 @@ table ip vyos_nat {
     #
     chain POSTROUTING {
         type nat hook postrouting priority 100; policy accept;
-        counter jump VYOS_PRE_SNAT_HOOK
-{%     if source.rule is vyos_defined %}
-{%         for rule, config in source.rule.items() if config.disable is not vyos_defined %}
+        counter jump NGNOS_PRE_SNAT_HOOK
+{%     if source.rule is ngnos_defined %}
+{%         for rule, config in source.rule.items() if config.disable is not ngnos_defined %}
         {{ config | nat_rule(rule, 'source') }}
 {%         endfor %}
 {%     endif %}
     }
 
-    chain VYOS_PRE_DNAT_HOOK {
+    chain NGNOS_PRE_DNAT_HOOK {
         return
     }
 
-    chain VYOS_PRE_SNAT_HOOK {
+    chain NGNOS_PRE_SNAT_HOOK {
         return
     }
 

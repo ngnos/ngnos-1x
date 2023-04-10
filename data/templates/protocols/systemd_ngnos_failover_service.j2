@@ -1,0 +1,11 @@
+[Unit]
+Description=Failover route service
+After=ngnos-router.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /usr/libexec/ngnos/ngnos-failover.py --config /run/ngnos-failover.conf
+
+[Install]
+WantedBy=multi-user.target

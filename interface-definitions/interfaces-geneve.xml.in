@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="geneve" owner="${vyos_conf_scripts_dir}/interfaces-geneve.py">
+      <tagNode name="geneve" owner="${ngnos_conf_scripts_dir}/interfaces-geneve.py">
         <properties>
           <help>Generic Network Virtualization Encapsulation (GENEVE) Interface</help>
           <priority>460</priority>

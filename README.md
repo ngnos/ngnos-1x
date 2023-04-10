@@ -1,16 +1,16 @@
-# vyos-1x: VyOS command definitions, configuration scripts, and data
+# ngnos-1x: ngNOS command definitions, configuration scripts, and data
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=vyos_vyos-1x&metric=coverage)](https://sonarcloud.io/component_measures?id=vyos_vyos-1x&metric=coverage)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvyos%2Fvyos-1x.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvyos%2Fvyos-1x?ref=badge_shield)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ngnos_ngnos-1x&metric=coverage)](https://sonarcloud.io/component_measures?id=ngnos_ngnos-1x&metric=coverage)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fngnos%2Fngnos-1x.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fngnos%2Fngnos-1x?ref=badge_shield)
 
-VyOS 1.1.x had its codebase split into way too many submodules for no good
+ngNOS 1.1.x had its codebase split into way too many submodules for no good
 reason, which made it hard to navigate or write meaningful changelogs. As the
-code undergoes rewrite in the new style in VyOS 1.2.0+, we consolidate the
+code undergoes rewrite in the new style in ngNOS 1.2.0+, we consolidate the
 rewritten code in this package.
 
-If you just want to build a VyOS image, the repository you want is
-[vyos-build](https://github.com/vyos/vyos-build). If you also want to contribute
-to VyOS, read on.
+If you just want to build a ngNOS image, the repository you want is
+[ngnos-build](https://github.com/ngnos/ngnos-build). If you also want to contribute
+to ngNOS, read on.
 
 ## Package layout
 
@@ -52,7 +52,7 @@ The guidelines in a nutshell:
 
 * Use separate functions for retrieving configuration data, validating it, and
   generating taret config, see our
-  [documentation](https://docs.vyos.io/en/latest/contributing/development.html#python)
+  [documentation](https://docs.ngnos.io/en/latest/contributing/development.html#python)
   for the common structure
 * Use the `get_config_dict()` API as much as possible when retrieving values from the CLI
 * Use a template processor when the format is more complex than just one line
@@ -70,9 +70,9 @@ make test
 
 ### Runtime (Smoke Tests)
 
-Runtime tests are executed by the CI system on a running VyOS instance inside
+Runtime tests are executed by the CI system on a running ngNOS instance inside
 QEMU. The testcases can be found inside the smoketest subdirectory which will
-be placed into the vyos-1x-smoketest package.
+be placed into the ngnos-1x-smoketest package.
 
 ## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvyos%2Fvyos-1x.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvyos%2Fvyos-1x?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fngnos%2Fngnos-1x.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fngnos%2Fngnos-1x?ref=badge_large)

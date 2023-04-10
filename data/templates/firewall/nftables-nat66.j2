@@ -1,6 +1,6 @@
 #!/usr/sbin/nft -f
 
-{% if helper_functions is vyos_defined('remove') %}
+{% if helper_functions is ngnos_defined('remove') %}
 {# NAT if going to be disabled - remove rules and targets from nftables #}
 {%     set base_command = 'delete rule ip6 raw' %}
 {{ base_command }} PREROUTING handle {{ pre_ct_conntrack }}
@@ -8,7 +8,7 @@
 
 delete chain ip6 raw NAT_CONNTRACK
 
-{% elif helper_functions is vyos_defined('add') %}
+{% elif helper_functions is ngnos_defined('add') %}
 {# NAT if enabled - add targets to nftables #}
 add chain ip6 raw NAT_CONNTRACK
 add rule ip6 raw NAT_CONNTRACK counter accept
@@ -17,18 +17,18 @@ add rule ip6 raw NAT_CONNTRACK counter accept
 {{ base_command }} OUTPUT     position {{ out_ct_conntrack }} counter jump NAT_CONNTRACK
 {% endif %}
 
-{% if first_install is not vyos_defined %}
-delete table ip6 vyos_nat
+{% if first_install is not ngnos_defined %}
+delete table ip6 ngnos_nat
 {% endif %}
-table ip6 vyos_nat {
+table ip6 ngnos_nat {
     #
     # Destination NAT66 rules build up here
     #
     chain PREROUTING {
         type nat hook prerouting priority -100; policy accept;
-        counter jump VYOS_DNPT_HOOK
-{% if destination.rule is vyos_defined %}
-{%     for rule, config in destination.rule.items() if config.disable is not vyos_defined %}
+        counter jump NGNOS_DNPT_HOOK
+{% if destination.rule is ngnos_defined %}
+{%     for rule, config in destination.rule.items() if config.disable is not ngnos_defined %}
         {{ config | nat_rule(rule, 'destination', ipv6=True) }}
 {%     endfor %}
 {% endif %}
@@ -39,19 +39,19 @@ table ip6 vyos_nat {
     #
     chain POSTROUTING {
         type nat hook postrouting priority 100; policy accept;
-        counter jump VYOS_SNPT_HOOK
-{% if source.rule is vyos_defined %}
-{%     for rule, config in source.rule.items() if config.disable is not vyos_defined %}
+        counter jump NGNOS_SNPT_HOOK
+{% if source.rule is ngnos_defined %}
+{%     for rule, config in source.rule.items() if config.disable is not ngnos_defined %}
         {{ config | nat_rule(rule, 'source', ipv6=True) }}
 {%     endfor %}
 {% endif %}
     }
 
-    chain VYOS_DNPT_HOOK {
+    chain NGNOS_DNPT_HOOK {
         return
     }
 
-    chain VYOS_SNPT_HOOK {
+    chain NGNOS_SNPT_HOOK {
         return
     }
 }

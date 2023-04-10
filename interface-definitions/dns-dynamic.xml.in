@@ -7,7 +7,7 @@
           <help>Domain Name System related services</help>
         </properties>
         <children>
-          <node name="dynamic" owner="${vyos_conf_scripts_dir}/dynamic_dns.py">
+          <node name="dynamic" owner="${ngnos_conf_scripts_dir}/dynamic_dns.py">
             <properties>
               <help>Dynamic DNS</help>
             </properties>
@@ -16,7 +16,7 @@
                 <properties>
                   <help>Interface to send DDNS updates for</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
                 <children>

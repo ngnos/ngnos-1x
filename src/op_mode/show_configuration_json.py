@@ -17,7 +17,7 @@
 import argparse
 import json
 
-from vyos.configquery import ConfigTreeQuery
+from ngnos.configquery import ConfigTreeQuery
 
 
 config = ConfigTreeQuery()

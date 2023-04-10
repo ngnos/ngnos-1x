@@ -17,7 +17,7 @@
 # Migrate system syslog global archive to system logs logrotate messages
 
 from sys import exit, argv
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")

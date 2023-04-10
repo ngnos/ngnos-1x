@@ -17,11 +17,11 @@
 import re
 import unittest
 
-from vyos.configsession import ConfigSessionError
-from base_vyostest_shim import VyOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.util import read_file
-from vyos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'radvd'
 RADVD_CONF = '/run/radvd/radvd.conf'
@@ -36,7 +36,7 @@ def get_config_value(key):
     tmp = re.findall(r'\n?{}\s+(.*)'.format(key), tmp)
     return tmp[0].split()[0].replace(';','')
 
-class TestServiceRADVD(VyOSUnitTestSHIM.TestCase):
+class TestServiceRADVD(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceRADVD, cls).setUpClass()
@@ -115,7 +115,7 @@ class TestServiceRADVD(VyOSUnitTestSHIM.TestCase):
 
     def test_dns(self):
         nameserver = ['2001:db8::1', '2001:db8::2']
-        dnssl = ['vyos.net', 'vyos.io']
+        dnssl = ['ngnos.net', 'ngnos.com']
         ns_lifetime = '599'
 
         self.cli_set(base_path + ['prefix', prefix, 'valid-lifetime', 'infinity'])

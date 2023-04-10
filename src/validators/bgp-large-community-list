@@ -17,7 +17,7 @@
 import re
 import sys
 
-from vyos.template import is_ipv4
+from ngnos.template import is_ipv4
 
 pattern = '(.*):(.*):(.*)'
 

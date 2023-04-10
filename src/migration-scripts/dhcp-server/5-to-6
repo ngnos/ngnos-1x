@@ -18,7 +18,7 @@
 # T3838: rename dns-server -> name-server
 
 import sys
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(sys.argv) < 1):
     print("Must specify file name!")

@@ -40540,8 +40540,8 @@ protocols {
                     weight 150
                 }
             }
-            description RouteServer1-vyos
-            password VyOS123
+            description RouteServer1-ngnos
+            password ngNOS123
             remote-as 8560
             timers {
                 holdtime 5
@@ -40559,7 +40559,7 @@ protocols {
                 }
             }
             description RouteServer2-quagga
-            password VyOS123
+            password ngNOS123
             remote-as 8560
         }
         neighbor 109.228.63.136 {
@@ -40573,7 +40573,7 @@ protocols {
                 }
             }
             description RouteServer3-bird
-            password VyOS123
+            password ngNOS123
             remote-as 8560
         }
         parameters {
@@ -43389,7 +43389,7 @@ system {
         disable
     }
     login {
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
                 plaintext-password ""

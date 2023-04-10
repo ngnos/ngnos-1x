@@ -16,12 +16,12 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.template import inc_ip
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import inc_ip
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'dhcpd'
 DHCPD_CONF = '/run/dhcp-server/dhcpdv6.conf'
@@ -30,12 +30,12 @@ base_path = ['service', 'dhcpv6-server']
 subnet = '2001:db8:f00::/64'
 dns_1 = '2001:db8::1'
 dns_2 = '2001:db8::2'
-domain = 'vyos.net'
+domain = 'ngnos.net'
 nis_servers = ['2001:db8:ffff::1', '2001:db8:ffff::2']
 interface = 'eth0'
 interface_addr = inc_ip(subnet, 1) + '/64'
 
-class TestServiceDHCPv6Server(VyOSUnitTestSHIM.TestCase):
+class TestServiceDHCPv6Server(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceDHCPv6Server, cls).setUpClass()
@@ -54,12 +54,12 @@ class TestServiceDHCPv6Server(VyOSUnitTestSHIM.TestCase):
 
     def test_single_pool(self):
         shared_net_name = 'SMOKE-1'
-        search_domains  = ['foo.vyos.net', 'bar.vyos.net']
+        search_domains  = ['foo.ngnos.com', 'bar.ngnos.com']
         lease_time = '1200'
         max_lease_time = '72000'
         min_lease_time = '600'
         preference = '10'
-        sip_server = 'sip.vyos.net'
+        sip_server = 'sip.ngnos.com'
         sntp_server = inc_ip(subnet, 100)
         range_start = inc_ip(subnet, 256)  # ::100
         range_stop = inc_ip(subnet, 65535) # ::ffff

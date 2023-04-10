@@ -20,9 +20,9 @@ import os
 from jinja2 import Template
 from textwrap import fill
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.ifconfig import Section
-from vyos.util import cmd
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
 
 
 client_config = """

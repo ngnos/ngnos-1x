@@ -1,7 +1,7 @@
-Source: vyos-1x
+Source: ngnos-1x
 Section: contrib/net
 Priority: extra
-Maintainer: VyOS Package Maintainers <maintainers@vyos.net>
+Maintainer: ngNOS Package Maintainers <maintainers@ngnos.com>
 Build-Depends:
   debhelper (>= 9),
   dh-python,
@@ -14,7 +14,7 @@ Build-Depends:
   libelf-dev (>= 0.2) [amd64],
   libpcap-dev [amd64],
   build-essential,
-  libvyosconfig0 (>= 0.0.7),
+  libngnosconfig0 (>= 0.0.7),
   libzmq3-dev,
   python3,
   python3-coverage,
@@ -30,7 +30,7 @@ Build-Depends:
   whois
 Standards-Version: 3.9.6
 
-Package: vyos-1x
+Package: ngnos-1x
 Architecture: amd64 arm64
 Depends:
   ${python3:Depends},
@@ -92,7 +92,7 @@ Depends:
   libqmi-utils,
   libstrongswan-extra-plugins (>=5.9),
   libstrongswan-standard-plugins (>=5.9),
-  libvyosconfig0,
+  libngnosconfig0,
   lldpd,
   lm-sensors,
   lsscsi,
@@ -180,29 +180,29 @@ Depends:
   usbutils,
   vyatta-bash,
   vyatta-cfg,
-  vyos-http-api-tools,
-  vyos-utils,
+  ngnos-http-api-tools,
+  ngnos-utils,
   wide-dhcpv6-client,
   wireguard-tools,
   wireless-regdb,
   wpasupplicant (>= 0.6.7),
   ndppd,
   miniupnpd-nftables
-Description: VyOS configuration scripts and data
- VyOS configuration scripts, interface definitions, and everything
+Description: ngNOS configuration scripts and data
+ ngNOS configuration scripts, interface definitions, and everything
 
-Package: vyos-1x-vmware
+Package: ngnos-1x-vmware
 Architecture: amd64
 Depends:
- vyos-1x,
+ ngnos-1x,
  open-vm-tools
-Description: VyOS configuration scripts and data for VMware
- Adds configuration files required for VyOS running on VMware hosts.
+Description: ngNOS configuration scripts and data for VMware
+ Adds configuration files required for ngNOS running on VMware hosts.
 
-Package: vyos-1x-smoketest
+Package: ngnos-1x-smoketest
 Architecture: all
 Depends:
  skopeo,
  snmp,
- vyos-1x
-Description: VyOS build sanity checking toolkit
+ ngnos-1x
+Description: ngNOS build sanity checking toolkit

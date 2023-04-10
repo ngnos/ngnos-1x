@@ -24,7 +24,7 @@ from sys import exit
 from random import randrange
 from random import choice
 from string import ascii_lowercase
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 import re
 
 

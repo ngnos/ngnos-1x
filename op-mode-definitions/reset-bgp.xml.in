@@ -22,7 +22,7 @@
                 <list>&lt;x.x.x.x/x&gt;</list>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </tagNode>
           <node name="ipv4">
             <properties>
@@ -43,10 +43,10 @@
             <properties>
               <help>IPv4 neighbor to clear</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_bgp_neighbors.sh --ipv4</script>
+                <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --ipv4</script>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/bgp/reset-bgp-neighbor-options.xml.i>
             </children>
@@ -70,10 +70,10 @@
             <properties>
               <help>IPv6 neighbor to clear</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_bgp_neighbors.sh --ipv6</script>
+                <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --ipv6</script>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/bgp/reset-bgp-neighbor-options.xml.i>
             </children>
@@ -102,10 +102,10 @@
                 <properties>
                   <help>BGP IPv4/IPv6 neighbor to clear</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_bgp_neighbors.sh --both</script>
+                    <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --both</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/bgp/reset-bgp-neighbor-options.xml.i>
                 </children>
@@ -124,10 +124,10 @@
                 <properties>
                   <help>IPv4/IPv6 neighbor to clear</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_bgp_neighbors.sh --both --vrf ${COMP_WORDS[3]}</script>
+                    <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --both --vrf ${COMP_WORDS[3]}</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/bgp/reset-bgp-neighbor-options.xml.i>
                 </children>
@@ -147,7 +147,7 @@
                     <list>&lt;x.x.x.x/x&gt;</list>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </tagNode>
               <node name="ipv4">
                 <properties>
@@ -168,10 +168,10 @@
                 <properties>
                   <help>IPv4 neighbor to clear</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_bgp_neighbors.sh --ipv4 --vrf ${COMP_WORDS[3]}</script>
+                    <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --ipv4 --vrf ${COMP_WORDS[3]}</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/bgp/reset-bgp-neighbor-options.xml.i>
                 </children>
@@ -195,10 +195,10 @@
                 <properties>
                   <help>IPv6 neighbor to clear</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_bgp_neighbors.sh --ipv6 --vrf ${COMP_WORDS[3]}</script>
+                    <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --ipv6 --vrf ${COMP_WORDS[3]}</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/bgp/reset-bgp-neighbor-options.xml.i>
                 </children>
@@ -227,10 +227,10 @@
                     <properties>
                       <help>BGP IPv4/IPv6 neighbor to clear</help>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_bgp_neighbors.sh --both --vrf ${COMP_WORDS[3]}</script>
+                        <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --both --vrf ${COMP_WORDS[3]}</script>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                    <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                     <children>
                       #include <include/bgp/reset-bgp-neighbor-options.xml.i>
                     </children>
@@ -245,10 +245,10 @@
         <properties>
           <help>BGP IPv4/IPv6 neighbor to clear</help>
           <completionHelp>
-            <script>${vyos_completion_dir}/list_bgp_neighbors.sh --both</script>
+            <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --both</script>
           </completionHelp>
         </properties>
-        <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+        <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         <children>
           #include <include/bgp/reset-bgp-neighbor-options.xml.i>
         </children>

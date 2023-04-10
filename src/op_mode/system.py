@@ -22,10 +22,10 @@ import typing
 
 from sys import exit
 
-from vyos.configquery import ConfigTreeQuery
+from ngnos.configquery import ConfigTreeQuery
 
-import vyos.opmode
-import vyos.version
+import ngnos.opmode
+import ngnos.version
 
 config = ConfigTreeQuery()
 base = ['system', 'update-check']
@@ -33,8 +33,8 @@ base = ['system', 'update-check']
 
 def _compare_version_raw():
     url = config.value(base + ['url'])
-    local_data = vyos.version.get_full_version_data()
-    remote_data = vyos.version.get_remote_version(url)
+    local_data = ngnos.version.get_full_version_data()
+    remote_data = ngnos.version.get_remote_version(url)
     if not remote_data:
         return {"error": True,
                 "reason": "Unable to get remote version"}
@@ -74,7 +74,7 @@ def _verify():
 
 def show_update(raw: bool):
     if not _verify():
-        raise vyos.opmode.UnconfiguredSubsystem("system update-check not configured")
+        raise ngnos.opmode.UnconfiguredSubsystem("system update-check not configured")
     data = _compare_version_raw()
     if raw:
         return data
@@ -84,9 +84,9 @@ def show_update(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

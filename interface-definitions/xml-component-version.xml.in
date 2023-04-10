@@ -41,7 +41,7 @@
   #include <include/version/system-version.xml.i>
   #include <include/version/vrf-version.xml.i>
   #include <include/version/vrrp-version.xml.i>
-  #include <include/version/vyos-accel-ppp-version.xml.i>
+  #include <include/version/ngnos-accel-ppp-version.xml.i>
   #include <include/version/wanloadbalance-version.xml.i>
   #include <include/version/webproxy-version.xml.i>
 </interfaceDefinition>

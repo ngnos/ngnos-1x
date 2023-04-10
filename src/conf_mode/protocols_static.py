@@ -19,20 +19,20 @@ import os
 from sys import exit
 from sys import argv
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import get_dhcp_interfaces
-from vyos.configdict import get_pppoe_interfaces
-from vyos.configverify import verify_common_route_maps
-from vyos.configverify import verify_vrf
-from vyos.template import render
-from vyos.template import render_to_string
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import get_dhcp_interfaces
+from ngnos.configdict import get_pppoe_interfaces
+from ngnos.configverify import verify_common_route_maps
+from ngnos.configverify import verify_vrf
+from ngnos.template import render
+from ngnos.template import render_to_string
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
-config_file = '/etc/iproute2/rt_tables.d/vyos-static.conf'
+config_file = '/etc/iproute2/rt_tables.d/ngnos-static.conf'
 
 def get_config(config=None):
     if config:
@@ -56,7 +56,7 @@ def get_config(config=None):
     # and route-maps for instance. They will be used in verify().
     #
     # XXX: one MUST always call this without the key_mangling() option! See
-    # vyos.configverify.verify_common_route_maps() for more information.
+    # ngnos.configverify.verify_common_route_maps() for more information.
     tmp = conf.get_config_dict(['policy'])
     # Merge policy dict into "regular" config dict
     static = dict_merge(tmp, static)

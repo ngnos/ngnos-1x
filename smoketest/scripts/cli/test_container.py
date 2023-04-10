@@ -18,21 +18,21 @@ import unittest
 import glob
 import json
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 base_path = ['container']
-cont_image = 'busybox:stable' # busybox is included in vyos-build
+cont_image = 'busybox:stable' # busybox is included in ngnos-build
 prefix = '192.168.205.0/24'
 net_name = 'NET01'
 PROCESS_NAME = 'conmon'
-PROCESS_PIDFILE = '/run/vyos-container-{0}.service.pid'
+PROCESS_PIDFILE = '/run/ngnos-container-{0}.service.pid'
 
-busybox_image_path = '/usr/share/vyos/busybox-stable.tar'
+busybox_image_path = '/usr/share/ngnos/busybox-stable.tar'
 
 def cmd_to_json(command):
     c = cmd(command + ' --format=json')
@@ -41,12 +41,12 @@ def cmd_to_json(command):
     return data
 
 
-class TestContainer(VyOSUnitTestSHIM.TestCase):
+class TestContainer(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestContainer, cls).setUpClass()
 
-        # Load image for smoketest provided in vyos-build
+        # Load image for smoketest provided in ngnos-build
         try:
             cmd(f'cat {busybox_image_path} | sudo podman load')
         except:
@@ -67,7 +67,7 @@ class TestContainer(VyOSUnitTestSHIM.TestCase):
         self.assertIsNone(process_named_running(PROCESS_NAME))
 
         # Ensure systemd units are removed
-        units = glob.glob('/run/systemd/system/vyos-container-*')
+        units = glob.glob('/run/systemd/system/ngnos-container-*')
         self.assertEqual(units, [])
 
     def test_01_basic_container(self):

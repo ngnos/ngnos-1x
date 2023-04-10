@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="upnp" owner="${vyos_conf_scripts_dir}/service_upnp.py">
+      <node name="upnp" owner="${ngnos_conf_scripts_dir}/service_upnp.py">
         <properties>
           <help>Universal Plug and Play (UPnP) service</help>
           <priority>900</priority>
@@ -21,7 +21,7 @@
             <properties>
               <help>WAN network interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
               <constraint>
                 #include <include/constraint/interface-name.xml.i>
@@ -94,8 +94,8 @@
             <properties>
               <help>Local IP addresses for service to listen on</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
               <valueHelp>
                 <format>&lt;interface&gt;</format>

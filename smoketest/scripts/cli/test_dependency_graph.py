@@ -18,7 +18,7 @@ import json
 import unittest
 from graphlib import TopologicalSorter, CycleError
 
-DEP_FILE = '/usr/share/vyos/config-mode-dependencies.json'
+DEP_FILE = '/usr/share/ngnos/config-mode-dependencies.json'
 
 def graph_from_dict(d):
     g = {}

@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="config-management" owner="${vyos_conf_scripts_dir}/config_mgmt.py">
+      <node name="config-management" owner="${ngnos_conf_scripts_dir}/config_mgmt.py">
         <properties>
           <help>Configuration management settings</help>
           <priority>400</priority>

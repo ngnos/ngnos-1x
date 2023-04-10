@@ -22,19 +22,19 @@ from netifaces import AF_INET6
 from netifaces import ifaddresses
 from netifaces import interfaces
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSession
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Interface
-from vyos.ifconfig import Section
-from vyos.util import read_file
-from vyos.util import cmd
-from vyos.util import dict_search
-from vyos.util import process_named_running
-from vyos.util import get_interface_config
-from vyos.validate import is_intf_addr_assigned
-from vyos.validate import is_ipv6_link_local
+from ngnos.configsession import ConfigSession
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Interface
+from ngnos.ifconfig import Section
+from ngnos.util import read_file
+from ngnos.util import cmd
+from ngnos.util import dict_search
+from ngnos.util import process_named_running
+from ngnos.util import get_interface_config
+from ngnos.validate import is_intf_addr_assigned
+from ngnos.validate import is_ipv6_link_local
 
 def is_mirrored_to(interface, mirror_if, qdisc):
     """
@@ -55,7 +55,7 @@ def is_mirrored_to(interface, mirror_if, qdisc):
     return ret_val
 
 class BasicInterfaceTest:
-    class TestCase(VyOSUnitTestSHIM.TestCase):
+    class TestCase(ngNOSUnitTestSHIM.TestCase):
         _test_dhcp = False
         _test_ip = False
         _test_mtu = False
@@ -123,7 +123,7 @@ class BasicInterfaceTest:
 
                 # Also enable DHCP (ISC DHCP always places interface in admin up
                 # state so we check that we do not start DHCP client.
-                # https://vyos.dev/T2767
+                # https://ngnos.dev/T2767
                 self.cli_set(self._base_path + [interface, 'address', 'dhcp'])
 
             self.cli_commit()
@@ -476,7 +476,7 @@ class BasicInterfaceTest:
                         self.assertEqual(to_key, new_egress_qos_to)
 
         def test_vif_8021q_lower_up_down(self):
-            # Testcase for https://vyos.dev/T3349
+            # Testcase for https://ngnos.dev/T3349
             if not self._test_vlan:
                 self.skipTest('not supported')
 
@@ -650,7 +650,7 @@ class BasicInterfaceTest:
 
             for interface in self._interfaces:
                 base_options = f'oifname "{interface}"'
-                out = cmd('sudo nft list chain raw VYOS_TCP_MSS')
+                out = cmd('sudo nft list chain raw NGNOS_TCP_MSS')
                 for line in out.splitlines():
                     if line.startswith(base_options):
                         self.assertIn(f'tcp option maxseg size set {mss}', line)
@@ -708,7 +708,7 @@ class BasicInterfaceTest:
 
             for interface in self._interfaces:
                 base_options = f'oifname "{interface}"'
-                out = cmd('sudo nft list chain ip6 raw VYOS_TCP_MSS')
+                out = cmd('sudo nft list chain ip6 raw NGNOS_TCP_MSS')
                 for line in out.splitlines():
                     if line.startswith(base_options):
                         self.assertIn(f'tcp option maxseg size set {mss}', line)

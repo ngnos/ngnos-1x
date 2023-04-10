@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# File: vyos-show-version
+# File: ngnos-show-version
 # Purpose:
 #    Displays image version and system information.
 #    Used by the "run show version" command.
@@ -24,8 +24,8 @@ import os
 import argparse
 
 from sys import exit
-from vyos.config import Config
-from vyos.util import call
+from ngnos.config import Config
+from ngnos.util import call
 
 PDNS_CMD='/usr/bin/rec_control --socket-dir=/run/powerdns'
 

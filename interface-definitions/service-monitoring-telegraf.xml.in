@@ -8,7 +8,7 @@
           <priority>1280</priority>
         </properties>
         <children>
-          <node name="telegraf" owner="${vyos_conf_scripts_dir}/service_monitoring_telegraf.py">
+          <node name="telegraf" owner="${ngnos_conf_scripts_dir}/service_monitoring_telegraf.py">
             <properties>
               <help>Telegraf metric collector</help>
             </properties>

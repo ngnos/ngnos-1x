@@ -19,27 +19,27 @@ import os
 from sys import exit
 from netifaces import interfaces
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configdict import leaf_node_changed
-from vyos.configdict import is_member
-from vyos.configdict import is_source_interface
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_dhcpv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_source_interface
-from vyos.configverify import verify_vlan_config
-from vyos.configverify import verify_vrf
-from vyos.ifconfig import BondIf
-from vyos.ifconfig import Section
-from vyos.util import dict_search
-from vyos.validate import has_address_configured
-from vyos.validate import has_vrf_configured
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configdict import leaf_node_changed
+from ngnos.configdict import is_member
+from ngnos.configdict import is_source_interface
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_dhcpv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_source_interface
+from ngnos.configverify import verify_vlan_config
+from ngnos.configverify import verify_vrf
+from ngnos.ifconfig import BondIf
+from ngnos.ifconfig import Section
+from ngnos.util import dict_search
+from ngnos.validate import has_address_configured
+from ngnos.validate import has_vrf_configured
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_bond_mode(mode):

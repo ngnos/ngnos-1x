@@ -6,7 +6,7 @@
         <properties>
           <help>Show Zebra routing information</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+        <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         <children>
           <node name="client">
             <properties>
@@ -17,7 +17,7 @@
                 <properties>
                   <help>Brief Summary</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </node>
             </children>
           </node>
@@ -25,7 +25,7 @@
             <properties>
               <help>Zebra dataplane information</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </node>
           <node name="router">
             <properties>
@@ -41,7 +41,7 @@
                     <properties>
                       <help>Summary Information</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                    <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                   </node>
                 </children>
               </node>

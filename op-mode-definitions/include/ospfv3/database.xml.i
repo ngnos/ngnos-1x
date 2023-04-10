@@ -3,7 +3,7 @@
   <properties>
     <help>Show OSPFv3 Link state database information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     <tagNode name="adv-router">
       <properties>
@@ -55,7 +55,7 @@
       <properties>
         <help>Show AS-External LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         <tagNode name="any">
@@ -102,7 +102,7 @@
       <properties>
         <help>Show Group-Membership LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -117,7 +117,7 @@
       <properties>
         <help>Show Inter-Area-Prefix LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -132,7 +132,7 @@
       <properties>
         <help>Show Inter-Area-Router LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -147,7 +147,7 @@
       <properties>
         <help>Show Intra-Area-Prefix LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -162,7 +162,7 @@
       <properties>
         <help>Show Link LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -177,7 +177,7 @@
       <properties>
         <help>Show Network LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -192,7 +192,7 @@
       <properties>
         <help>Show LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -207,7 +207,7 @@
       <properties>
         <help>Show router LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>
@@ -222,7 +222,7 @@
       <properties>
         <help>Show Type-7 LSAs</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         #include <include/ospfv3/adv-router.xml.i>
         #include <include/ospfv3/detail.xml.i>

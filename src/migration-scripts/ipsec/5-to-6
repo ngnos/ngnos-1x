@@ -14,14 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Remove deprecated strongSwan options from VyOS CLI
+# Remove deprecated strongSwan options from ngNOS CLI
 # - vpn ipsec nat-traversal enable
 # - vpn ipsec nat-networks allowed-network
 
 from sys import argv
 from sys import exit
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")

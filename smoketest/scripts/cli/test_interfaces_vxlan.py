@@ -16,11 +16,11 @@
 
 import unittest
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Interface
-from vyos.util import get_bridge_fdb
-from vyos.util import get_interface_config
-from vyos.template import is_ipv6
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Interface
+from ngnos.util import get_bridge_fdb
+from ngnos.util import get_interface_config
+from ngnos.template import is_ipv6
 from base_interfaces_test import BasicInterfaceTest
 
 class VXLANInterfaceTest(BasicInterfaceTest.TestCase):

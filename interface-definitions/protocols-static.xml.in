@@ -5,7 +5,7 @@
       <help>Routing protocols</help>
     </properties>
     <children>
-       <node name="static" owner="${vyos_conf_scripts_dir}/protocols_static.py">
+       <node name="static" owner="${ngnos_conf_scripts_dir}/protocols_static.py">
         <properties>
           <help>Static Routing</help>
           <priority>480</priority>

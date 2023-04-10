@@ -19,8 +19,8 @@
 
 from sys import argv
 
-from vyos.ethtool import Ethtool
-from vyos.configtree import ConfigTree
+from ngnos.ethtool import Ethtool
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")

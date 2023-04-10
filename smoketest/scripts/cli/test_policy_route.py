@@ -16,9 +16,9 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.util import cmd
+from ngnos.util import cmd
 
 mark = '100'
 conn_mark = '555'
@@ -29,7 +29,7 @@ interface = 'eth0'
 interface_wc = 'ppp*'
 interface_ip = '172.16.10.1/24'
 
-class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
+class TestPolicyRoute(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestPolicyRoute, cls).setUpClass()
@@ -53,10 +53,10 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
         nftables_search = [
             ['set N_smoketest_network'],
             ['set N_smoketest_network1'],
-            ['chain VYOS_PBR_smoketest']
+            ['chain NGNOS_PBR_smoketest']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_mangle', inverse=True)
+        self.verify_nftables(nftables_search, 'ip ngnos_mangle', inverse=True)
 
         # Verify ip rule cleanup
         ip_rule_search = [
@@ -100,11 +100,11 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
         self.cli_commit()
 
         nftables_search = [
-            [f'iifname "{interface}"','jump VYOS_PBR_smoketest'],
+            [f'iifname "{interface}"','jump NGNOS_PBR_smoketest'],
             ['ip daddr @N_smoketest_network1', 'ip saddr @N_smoketest_network'],
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_mangle')
+        self.verify_nftables(nftables_search, 'ip ngnos_mangle')
 
         self.cli_delete(['firewall'])
 
@@ -119,11 +119,11 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
         mark_hex = "{0:#010x}".format(int(mark))
 
         nftables_search = [
-            [f'iifname "{interface}"','jump VYOS_PBR_smoketest'],
+            [f'iifname "{interface}"','jump NGNOS_PBR_smoketest'],
             ['ip daddr 172.16.10.10', 'ip saddr 172.16.20.10', 'meta mark set ' + mark_hex],
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_mangle')
+        self.verify_nftables(nftables_search, 'ip ngnos_mangle')
 
     def test_pbr_mark_connection(self):
         self.cli_set(['policy', 'route', 'smoketest', 'rule', '1', 'source', 'address', '172.16.20.10'])
@@ -138,11 +138,11 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
         mark_hex_set = "{0:#010x}".format(int(conn_mark_set))
 
         nftables_search = [
-            [f'iifname "{interface}"','jump VYOS_PBR_smoketest'],
+            [f'iifname "{interface}"','jump NGNOS_PBR_smoketest'],
             ['ip daddr 172.16.10.10', 'ip saddr 172.16.20.10', 'ct mark ' + mark_hex, 'ct mark set ' + mark_hex_set],
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_mangle')
+        self.verify_nftables(nftables_search, 'ip ngnos_mangle')
 
     def test_pbr_table(self):
         self.cli_set(['policy', 'route', 'smoketest', 'rule', '1', 'protocol', 'tcp'])
@@ -164,20 +164,20 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
         # IPv4
 
         nftables_search = [
-            [f'iifname "{interface}"', 'jump VYOS_PBR_smoketest'],
+            [f'iifname "{interface}"', 'jump NGNOS_PBR_smoketest'],
             ['tcp flags syn / syn,ack', 'tcp dport 8888', 'meta mark set ' + mark_hex]
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_mangle')
+        self.verify_nftables(nftables_search, 'ip ngnos_mangle')
 
         # IPv6
 
         nftables6_search = [
-            [f'iifname "{interface}"', 'jump VYOS_PBR6_smoketest'],
+            [f'iifname "{interface}"', 'jump NGNOS_PBR6_smoketest'],
             ['meta l4proto { tcp, udp }', 'th dport 8888', 'meta mark set ' + mark_hex]
         ]
 
-        self.verify_nftables(nftables6_search, 'ip6 vyos_mangle')
+        self.verify_nftables(nftables6_search, 'ip6 ngnos_mangle')
 
         # IP rule fwmark -> table
 
@@ -246,7 +246,7 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
 
         # IPv4
         nftables_search = [
-            ['iifname { "' + interface + '", "' + interface_wc + '" }', 'jump VYOS_PBR_smoketest'],
+            ['iifname { "' + interface + '", "' + interface_wc + '" }', 'jump NGNOS_PBR_smoketest'],
             ['meta l4proto udp', 'drop'],
             ['tcp flags syn / syn,ack', 'meta mark set ' + mark_hex],
             ['ct state new', 'tcp dport 22', 'ip saddr 198.51.100.0/24', 'ip ttl > 2', 'meta mark set ' + mark_hex],
@@ -254,11 +254,11 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
             ['ip dscp { 0x29, 0x39-0x3b }', 'meta mark set ' + mark_hex]
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_mangle')
+        self.verify_nftables(nftables_search, 'ip ngnos_mangle')
 
         # IPv6
         nftables6_search = [
-            [f'iifname "{interface_wc}"', 'jump VYOS_PBR6_smoketest'],
+            [f'iifname "{interface_wc}"', 'jump NGNOS_PBR6_smoketest'],
             ['meta l4proto udp', 'drop'],
             ['tcp flags syn / syn,ack', 'meta mark set ' + mark_hex],
             ['ct state new', 'tcp dport 22', 'ip6 saddr 2001:db8::/64', 'ip6 hoplimit > 2', 'meta mark set ' + mark_hex],
@@ -266,7 +266,7 @@ class TestPolicyRoute(VyOSUnitTestSHIM.TestCase):
             ['ip6 dscp != { 0x0e-0x13, 0x3d }', 'meta mark set ' + mark_hex]
         ]
 
-        self.verify_nftables(nftables6_search, 'ip6 vyos_mangle')
+        self.verify_nftables(nftables6_search, 'ip6 ngnos_mangle')
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

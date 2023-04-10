@@ -1,31 +1,31 @@
-# Genereated by /usr/libexec/vyos/conf_mode/system_sflow.py
+# Genereated by /usr/libexec/ngnos/conf_mode/system_sflow.py
 # Parameters http://sflow.net/host-sflow-linux-config.php
 
 sflow {
-{% if polling is vyos_defined %}
+{% if polling is ngnos_defined %}
   polling={{ polling }}
 {% endif %}
-{% if sampling_rate is vyos_defined %}
+{% if sampling_rate is ngnos_defined %}
   sampling={{ sampling_rate }}
   sampling.bps_ratio=0
 {% endif %}
-{% if agent_address is vyos_defined %}
+{% if agent_address is ngnos_defined %}
   agentIP={{ agent_address }}
 {% endif %}
-{% if agent_interface is vyos_defined %}
+{% if agent_interface is ngnos_defined %}
   agent={{ agent_interface }}
 {% endif %}
-{% if server is vyos_defined %}
+{% if server is ngnos_defined %}
 {%     for server, server_config in server.items() %}
   collector { ip = {{ server }} udpport = {{ server_config.port }} }
 {%     endfor %}
 {% endif %}
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for iface in interface %}
   pcap { dev={{ iface }} }
 {%     endfor %}
 {% endif %}
-{% if drop_monitor_limit is vyos_defined %}
+{% if drop_monitor_limit is ngnos_defined %}
   dropmon { limit={{ drop_monitor_limit }} start=on sw=on hw=off }
 {% endif %}
   dbus { }

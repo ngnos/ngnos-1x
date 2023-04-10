@@ -5,7 +5,7 @@
       <help>System parameters</help>
     </properties>
     <children>
-      <node name="sysctl" owner="${vyos_conf_scripts_dir}/system_sysctl.py">
+      <node name="sysctl" owner="${ngnos_conf_scripts_dir}/system_sysctl.py">
         <properties>
           <help>Configure kernel parameters at runtime</help>
           <priority>318</priority>
@@ -15,7 +15,7 @@
             <properties>
               <help>Sysctl key name</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_sysctl_parameters.sh</script>
+                <script>${ngnos_completion_dir}/list_sysctl_parameters.sh</script>
               </completionHelp>
               <valueHelp>
                 <format>txt</format>

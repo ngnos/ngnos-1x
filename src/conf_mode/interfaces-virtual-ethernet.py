@@ -17,14 +17,14 @@
 from sys import exit
 
 from netifaces import interfaces
-from vyos import ConfigError
-from vyos import airbag
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_vrf
-from vyos.ifconfig import VethIf
+from ngnos import ConfigError
+from ngnos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_vrf
+from ngnos.ifconfig import VethIf
 
 airbag.enable()
 
@@ -42,7 +42,7 @@ def get_config(config=None):
 
     # We need to know all other veth related interfaces as veth requires a 1:1
     # mapping for the peer-names. The Linux kernel automatically creates both
-    # interfaces, the local one and the peer-name, but VyOS also needs a peer
+    # interfaces, the local one and the peer-name, but ngNOS also needs a peer
     # interfaces configrued on the CLI so we can assign proper IP addresses etc.
     veth['other_interfaces'] = conf.get_config_dict(base, key_mangling=('-', '_'),
                                      get_first_key=True, no_tag_node_value_mangle=True)

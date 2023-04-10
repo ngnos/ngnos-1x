@@ -31,8 +31,8 @@ from textwrap import fill
 
 # Defaults
 
-#validator_dir = "/usr/libexec/vyos/validators"
-validator_dir = "${vyos_validators_dir}"
+#validator_dir = "/usr/libexec/ngnos/validators"
+validator_dir = "${ngnos_validators_dir}"
 default_constraint_err_msg = "Invalid value"
 
 
@@ -176,7 +176,7 @@ def get_properties(p, default=None):
             group_validator_string = group_validator_string + " --grp " + collect_validators(vcg)
 
     if vce is not None or len(vcge):
-        validator_script = '${vyos_libexec_dir}/validate-value'
+        validator_script = '${ngnos_libexec_dir}/validate-value'
         validator_string = "exec \"{0} {1} {2} --value \\\'$VAR(@)\\\'\"; \"{3}\"".format(validator_script, distinct_validator_string, group_validator_string, error_msg)
 
         props["constraint"] = validator_string
@@ -256,7 +256,7 @@ def make_node_def(props):
 
     if "owner" in props:
         if "tag" in props:
-            node_def += "end: sudo sh -c \"{1} VYOS_TAGNODE_VALUE='$VAR(@)' {0}\"\n".format(props["owner"], shim)
+            node_def += "end: sudo sh -c \"{1} NGNOS_TAGNODE_VALUE='$VAR(@)' {0}\"\n".format(props["owner"], shim)
         else:
             node_def += "end: sudo sh -c \"{1} {0}\"\n".format(props["owner"], shim)
 

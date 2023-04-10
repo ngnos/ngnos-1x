@@ -29,9 +29,9 @@ import datetime
 import importlib.util
 from inspect import signature, getsource
 
-from vyos.defaults import directories
-from vyos.version import get_version
-from vyos.util import cmd
+from ngnos.defaults import directories
+from ngnos.version import get_version
+from ngnos.util import cmd
 
 # Defaults
 
@@ -80,7 +80,7 @@ else:
 # Utilities for checking function signature and body
 def import_script(s: str):
     """
-    A compact form of the import code in vyos-configd
+    A compact form of the import code in ngnos-configd
     """
     path = os.path.join(conf_dir, s)
     if not os.path.exists(path):

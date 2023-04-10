@@ -22,11 +22,11 @@ import typing
 
 from tabulate import tabulate
 
-import vyos.opmode
+import ngnos.opmode
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import cmd
-from vyos.util import dict_search
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import cmd
+from ngnos.util import dict_search
 
 base = 'nat'
 unconf_message = 'NAT is not configured'
@@ -69,7 +69,7 @@ def _get_json_data(direction, family):
     if direction == 'destination':
         chain = 'PREROUTING'
     family = 'ip6' if family == 'inet6' else 'ip'
-    return cmd(f'nft --json list chain {family} vyos_nat {chain}')
+    return cmd(f'nft --json list chain {family} ngnos_nat {chain}')
 
 
 def _get_raw_data_rules(direction, family):
@@ -294,7 +294,7 @@ def _verify(func):
     def _wrapper(*args, **kwargs):
         config = ConfigTreeQuery()
         if not config.exists(base):
-            raise vyos.opmode.UnconfiguredSubsystem(unconf_message)
+            raise ngnos.opmode.UnconfiguredSubsystem(unconf_message)
         return func(*args, **kwargs)
     return _wrapper
 
@@ -336,9 +336,9 @@ def show_translations(raw: bool, direction: ArgDirection,
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

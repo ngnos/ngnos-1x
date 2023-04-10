@@ -16,15 +16,15 @@
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import sysctl_write
-from vyos.util import write_file
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import sysctl_write
+from ngnos.util import write_file
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

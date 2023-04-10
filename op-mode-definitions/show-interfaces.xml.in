@@ -6,19 +6,19 @@
         <properties>
           <help>Show network interface information</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/interfaces.py show_summary</command>
+        <command>${ngnos_op_scripts_dir}/interfaces.py show_summary</command>
         <children>
           <leafNode name="counters">
             <properties>
               <help>Show network interface counters</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/interfaces.py show_counters</command>
+            <command>${ngnos_op_scripts_dir}/interfaces.py show_counters</command>
           </leafNode>
           <leafNode name="detail">
             <properties>
               <help>Show detailed information of all interfaces</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/interfaces.py show</command>
+            <command>${ngnos_op_scripts_dir}/interfaces.py show</command>
           </leafNode>
         </children>
       </node>

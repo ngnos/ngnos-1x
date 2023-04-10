@@ -20,8 +20,8 @@ import re
 from sys import exit
 from copy import deepcopy
 
-from vyos.config import Config
-from vyos.util import popen
+from ngnos.config import Config
+from ngnos.util import popen
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "--scan", help="Scan for Wireless APs on given interface, e.g. 'wlan0'")

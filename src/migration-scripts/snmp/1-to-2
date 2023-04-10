@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from sys import argv, exit
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 def migrate_keys(config, path):
     # authentication: rename node 'encrypted-key' -> 'encrypted-password'

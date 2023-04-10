@@ -21,13 +21,13 @@ import unittest
 
 from pwd import getpwall
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import is_systemd_service_running
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import is_systemd_service_running
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'sshd'
 SSHD_CONF = '/run/sshd/sshd_config'
@@ -43,7 +43,7 @@ def get_config_value(key):
     tmp = re.findall(f'\n?{key}\s+(.*)', tmp)
     return tmp
 
-class TestServiceSSH(VyOSUnitTestSHIM.TestCase):
+class TestServiceSSH(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceSSH, cls).setUpClass()

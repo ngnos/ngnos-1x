@@ -16,17 +16,17 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'chronyd'
 NTP_CONF = '/run/chrony/chrony.conf'
 base_path = ['service', 'ntp']
 
-class TestSystemNTP(VyOSUnitTestSHIM.TestCase):
+class TestSystemNTP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestSystemNTP, cls).setUpClass()
@@ -47,7 +47,7 @@ class TestSystemNTP(VyOSUnitTestSHIM.TestCase):
         # Test basic NTP support with multiple servers and their options
         servers = ['192.0.2.1', '192.0.2.2']
         options = ['nts', 'noselect', 'prefer']
-        pools = ['pool.vyos.io']
+        pools = ['pool.ngnos.com']
 
         for server in servers:
             for option in options:
@@ -112,7 +112,7 @@ class TestSystemNTP(VyOSUnitTestSHIM.TestCase):
         for interface in interfaces:
             self.cli_set(base_path + ['interface', interface])
 
-        servers = ['time1.vyos.net', 'time2.vyos.net']
+        servers = ['time1.ngnos.com', 'time2.ngnos.com']
         for server in servers:
             self.cli_set(base_path + ['server', server])
 
@@ -125,12 +125,12 @@ class TestSystemNTP(VyOSUnitTestSHIM.TestCase):
             self.assertIn(f'binddevice {interface}', config)
 
     def test_04_ntp_vrf(self):
-        vrf_name = 'vyos-mgmt'
+        vrf_name = 'ngnos-mgmt'
 
         self.cli_set(['vrf', 'name', vrf_name, 'table', '12345'])
         self.cli_set(base_path + ['vrf', vrf_name])
 
-        servers = ['time1.vyos.net', 'time2.vyos.net']
+        servers = ['time1.ngnos.com', 'time2.ngnos.com']
         for server in servers:
             self.cli_set(base_path + ['server', server])
 

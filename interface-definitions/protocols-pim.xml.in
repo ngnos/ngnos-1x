@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="pim" owner="${vyos_conf_scripts_dir}/protocols_pim.py">
+      <node name="pim" owner="${ngnos_conf_scripts_dir}/protocols_pim.py">
         <properties>
           <help>Protocol Independent Multicast (PIM)</help>
           <priority>400</priority>
@@ -13,7 +13,7 @@
             <properties>
               <help>PIM interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>

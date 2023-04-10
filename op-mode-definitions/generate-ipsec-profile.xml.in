@@ -25,10 +25,10 @@
                       <help>Remote address where the client will connect to</help>
                       <completionHelp>
                         <list>&lt;fqdn&gt;</list>
-                        <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                        <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7"</command>
+                    <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7"</command>
                     <children>
                       <tagNode name="name">
                         <properties>
@@ -37,7 +37,7 @@
                             <list>&lt;name&gt;</list>
                           </completionHelp>
                         </properties>
-                        <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --name "$9"</command>
+                        <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --name "$9"</command>
                         <children>
                           <tagNode name="profile">
                             <properties>
@@ -46,7 +46,7 @@
                                 <list>&lt;name&gt;</list>
                               </completionHelp>
                             </properties>
-                            <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --name "$9" --profile "${11}"</command>
+                            <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --name "$9" --profile "${11}"</command>
                           </tagNode>
                         </children>
                       </tagNode>
@@ -57,7 +57,7 @@
                             <list>&lt;name&gt;</list>
                           </completionHelp>
                         </properties>
-                        <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --profile "$9"</command>
+                        <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --profile "$9"</command>
                         <children>
                           <tagNode name="name">
                             <properties>
@@ -66,7 +66,7 @@
                                 <list>&lt;name&gt;</list>
                               </completionHelp>
                             </properties>
-                            <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --profile "$9" --name "${11}"</command>
+                            <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os ios --connection "$5" --remote "$7" --profile "$9" --name "${11}"</command>
                           </tagNode>
                         </children>
                       </tagNode>
@@ -87,10 +87,10 @@
                       <help>Remote address where the client will connect to</help>
                       <completionHelp>
                         <list>&lt;fqdn&gt;</list>
-                        <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                        <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os windows --connection "$5" --remote "$7"</command>
+                    <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os windows --connection "$5" --remote "$7"</command>
                     <children>
                       <tagNode name="name">
                         <properties>
@@ -99,7 +99,7 @@
                             <list>&lt;name&gt;</list>
                           </completionHelp>
                         </properties>
-                        <command>${vyos_op_scripts_dir}/ikev2_profile_generator.py --os windows --connection "$5" --remote "$7" --name "$9"</command>
+                        <command>${ngnos_op_scripts_dir}/ikev2_profile_generator.py --os windows --connection "$5" --remote "$7" --name "$9"</command>
                       </tagNode>
                     </children>
                   </tagNode>

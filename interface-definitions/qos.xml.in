@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="qos" owner="${vyos_conf_scripts_dir}/qos.py">
+  <node name="qos" owner="${ngnos_conf_scripts_dir}/qos.py">
     <properties>
       <help>Quality of Service (QoS)</help>
       <priority>900</priority>
@@ -10,7 +10,7 @@
         <properties>
           <help>Interface to apply QoS policy</help>
           <completionHelp>
-            <script>${vyos_completion_dir}/list_interfaces</script>
+            <script>${ngnos_completion_dir}/list_interfaces</script>
           </completionHelp>
           <valueHelp>
             <format>txt</format>

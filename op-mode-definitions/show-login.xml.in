@@ -6,7 +6,7 @@
         <properties>
           <help>Show current login credentials</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/show_current_user.sh</command>
+        <command>${ngnos_op_scripts_dir}/show_current_user.sh</command>
         <children>
           <leafNode name="groups">
             <properties>

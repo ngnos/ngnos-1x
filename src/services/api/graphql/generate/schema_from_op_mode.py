@@ -24,10 +24,10 @@ import json
 from inspect import signature, getmembers, isfunction, isclass, getmro
 from jinja2 import Template
 
-from vyos.defaults import directories
-from vyos.opmode import _is_op_mode_function_name as is_op_mode_function_name
-from vyos.opmode import _get_literal_values as get_literal_values
-from vyos.util import load_as_module
+from ngnos.defaults import directories
+from ngnos.opmode import _is_op_mode_function_name as is_op_mode_function_name
+from ngnos.opmode import _get_literal_values as get_literal_values
+from ngnos.util import load_as_module
 if __package__ is None or __package__ == '':
     sys.path.append(os.path.join(directories['services'], 'api'))
     from graphql.libs.op_mode import is_show_function_name
@@ -108,13 +108,13 @@ error_template = """
 interface OpModeError {
     name: String!
     message: String!
-    vyos_code: Int!
+    ngnos_code: Int!
 }
 {% for name in error_names %}
 type {{ name }} implements OpModeError {
     name: String!
     message: String!
-    vyos_code: Int!
+    ngnos_code: Int!
 }
 {%- endfor %}
 """
@@ -127,7 +127,7 @@ query {{ op_name }} ({{ op_sig }}) {
     op_mode_error {
       name
       message
-      vyos_code
+      ngnos_code
     }
     data {
       result
@@ -144,7 +144,7 @@ mutation {{ op_name }} ({{ op_sig }}) {
     op_mode_error {
       name
       message
-      vyos_code
+      ngnos_code
     }
     data {
       result
@@ -240,7 +240,7 @@ def create_enums(enums: dict) -> str:
     return out
 
 def create_error_schema():
-    from vyos import opmode
+    from ngnos import opmode
 
     e = Exception
     err_types = getmembers(opmode, isclass)

@@ -17,14 +17,14 @@
 from sys import exit
 from copy import deepcopy
 
-from vyos.config import Config
-from vyos.util import write_file
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.util import write_file
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 try:
-    with open('/usr/share/vyos/default_motd') as f:
+    with open('/usr/share/ngnos/default_motd') as f:
         motd = f.read()
 except:
     # Use an empty banner if the default banner file cannot be read
@@ -35,7 +35,7 @@ PRELOGIN_NET_FILE = r'/etc/issue.net'
 POSTLOGIN_FILE = r'/etc/motd'
 
 default_config_data = {
-    'issue': 'Welcome to VyOS - \\n \\l\n\n',
+    'issue': 'Welcome to ngNOS - \\n \\l\n\n',
     'issue_net': '',
     'motd': motd
 }

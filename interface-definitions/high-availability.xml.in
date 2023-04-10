@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="high-availability" owner="${vyos_conf_scripts_dir}/high-availability.py">
+  <node name="high-availability" owner="${ngnos_conf_scripts_dir}/high-availability.py">
     <properties>
       <priority>800</priority> <!-- after all interfaces and conntrack-sync -->
       <help>High availability settings</help>
@@ -213,7 +213,7 @@
                     <properties>
                       <help>Interface name state check</help>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_interfaces --broadcast</script>
+                        <script>${ngnos_completion_dir}/list_interfaces --broadcast</script>
                       </completionHelp>
                       <valueHelp>
                         <format>txt</format>

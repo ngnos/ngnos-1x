@@ -18,8 +18,8 @@ import re
 import unittest
 
 from base_accel_ppp_test import BasicAccelPPPTest
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
 
 from configparser import ConfigParser
 
@@ -94,10 +94,10 @@ class TestServiceIPoEServer(BasicAccelPPPTest.TestCase):
         self.assertTrue(tmp)
 
     def test_accel_named_pool(self):
-        first_pool = 'VyOS-pool1'
+        first_pool = 'ngNOS-pool1'
         first_subnet = '192.0.2.0/25'
         first_gateway = '192.0.2.1'
-        second_pool = 'Vyos-pool2'
+        second_pool = 'ngNOS-pool2'
         second_subnet = '203.0.113.0/25'
         second_gateway = '203.0.113.1'
 
@@ -132,13 +132,13 @@ gw-ip-address={first_gateway}/25'''
 
 
     def test_accel_next_pool(self):
-        first_pool = 'VyOS-pool1'
+        first_pool = 'ngNOS-pool1'
         first_subnet = '192.0.2.0/25'
         first_gateway = '192.0.2.1'
-        second_pool = 'Vyos-pool2'
+        second_pool = 'ngNOS-pool2'
         second_subnet = '203.0.113.0/25'
         second_gateway = '203.0.113.1'
-        third_pool = 'Vyos-pool3'
+        third_pool = 'ngNOS-pool3'
         third_subnet = '198.51.100.0/24'
         third_gateway = '198.51.100.1'
 

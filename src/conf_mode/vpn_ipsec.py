@@ -23,30 +23,30 @@ from sys import exit
 from time import sleep
 from time import time
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import leaf_node_changed
-from vyos.configverify import verify_interface_exists
-from vyos.configdict import dict_merge
-from vyos.ifconfig import Interface
-from vyos.pki import encode_public_key
-from vyos.pki import load_private_key
-from vyos.pki import wrap_certificate
-from vyos.pki import wrap_crl
-from vyos.pki import wrap_public_key
-from vyos.pki import wrap_private_key
-from vyos.template import ip_from_cidr
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.template import render
-from vyos.validate import is_ipv6_link_local
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import dict_search_args
-from vyos.util import run
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import leaf_node_changed
+from ngnos.configverify import verify_interface_exists
+from ngnos.configdict import dict_merge
+from ngnos.ifconfig import Interface
+from ngnos.pki import encode_public_key
+from ngnos.pki import load_private_key
+from ngnos.pki import wrap_certificate
+from ngnos.pki import wrap_crl
+from ngnos.pki import wrap_public_key
+from ngnos.pki import wrap_private_key
+from ngnos.template import ip_from_cidr
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.template import render
+from ngnos.validate import is_ipv6_link_local
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import dict_search_args
+from ngnos.util import run
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 dhcp_wait_attempts = 2
@@ -627,7 +627,7 @@ def resync_nhrp(ipsec):
     if ipsec and not ipsec['nhrp_exists']:
         return
 
-    tmp = run('/usr/libexec/vyos/conf_mode/protocols_nhrp.py')
+    tmp = run('/usr/libexec/ngnos/conf_mode/protocols_nhrp.py')
     if tmp > 0:
         print('ERROR: failed to reapply NHRP settings!')
 

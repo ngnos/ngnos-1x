@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="pppoe-server" owner="${vyos_conf_scripts_dir}/service_pppoe-server.py">
+      <node name="pppoe-server" owner="${ngnos_conf_scripts_dir}/service_pppoe-server.py">
         <properties>
           <help>Point to Point over Ethernet (PPPoE) Server</help>
           <priority>900</priority>
@@ -10,7 +10,7 @@
         <children>
           #include <include/pppoe-access-concentrator.xml.i>
           <leafNode name="access-concentrator">
-            <defaultValue>vyos-ac</defaultValue>
+            <defaultValue>ngnos-ac</defaultValue>
           </leafNode>
           <node name="authentication">
             <properties>
@@ -65,7 +65,7 @@
             <properties>
               <help>interface(s) to listen on</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>

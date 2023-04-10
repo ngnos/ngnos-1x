@@ -16,28 +16,28 @@
                 <properties>
                   <help>Clear IPoE server session by username</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_ipoe.py --selector="username"</script>
+                    <script>${ngnos_completion_dir}/list_ipoe.py --selector="username"</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/ipoe-control.py --action="terminate" --selector="username" --target="$5"</command>
+                <command>${ngnos_op_scripts_dir}/ipoe-control.py --action="terminate" --selector="username" --target="$5"</command>
               </tagNode>
               <tagNode name="sid">
                 <properties>
                   <help>Clear IPoE server session by Session ID</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_ipoe.py --selector="sid"</script>
+                    <script>${ngnos_completion_dir}/list_ipoe.py --selector="sid"</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/ipoe-control.py --action="terminate" --selector="sid" --target="$5"</command>
+                <command>${ngnos_op_scripts_dir}/ipoe-control.py --action="terminate" --selector="sid" --target="$5"</command>
               </tagNode>
               <tagNode name="interface">
                 <properties>
                   <help>Clear IPoE server session by interface</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_ipoe.py --selector="ifname"</script>
+                    <script>${ngnos_completion_dir}/list_ipoe.py --selector="ifname"</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/ipoe-control.py --action="terminate" --selector="if"  --target="$5"</command>
+                <command>${ngnos_op_scripts_dir}/ipoe-control.py --action="terminate" --selector="if"  --target="$5"</command>
               </tagNode>
             </children>
           </node>
@@ -56,13 +56,13 @@
             <properties>
               <help>Show active IPoE server sessions</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/ipoe-control.py --action="show_sessions"</command>
+            <command>${ngnos_op_scripts_dir}/ipoe-control.py --action="show_sessions"</command>
           </leafNode>
           <leafNode name="statistics">
             <properties>
               <help>Show IPoE server statistics</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/ipoe-control.py --action="show_stat"</command>
+            <command>${ngnos_op_scripts_dir}/ipoe-control.py --action="show_stat"</command>
           </leafNode>
         </children>
       </node>
@@ -74,7 +74,7 @@
         <properties>
           <help>Restart IPoE (Internet Protocol over Ethernet) server process</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/ipoe-control.py --action="restart"</command>
+        <command>${ngnos_op_scripts_dir}/ipoe-control.py --action="restart"</command>
       </leafNode>
     </children>
   </node>

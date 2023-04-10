@@ -11,8 +11,8 @@
 import re
 import sys
 
-from vyos.configtree import ConfigTree
-from vyos.util import cmd
+from ngnos.configtree import ConfigTree
+from ngnos.util import cmd
 
 
 if (len(sys.argv) < 1):

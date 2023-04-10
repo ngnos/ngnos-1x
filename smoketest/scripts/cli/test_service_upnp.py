@@ -17,13 +17,13 @@
 import re
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSession
-from vyos.configsession import ConfigSessionError
-from vyos.template import ip_from_cidr
-from vyos.util import read_file
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSession
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import ip_from_cidr
+from ngnos.util import read_file
+from ngnos.util import process_named_running
 
 UPNP_CONF = '/run/upnp/miniupnp.conf'
 DAEMON = 'miniupnpd'
@@ -34,7 +34,7 @@ address_base = ['interfaces', 'ethernet', interface, 'address']
 ipv4_addr = '100.64.0.1/24'
 ipv6_addr = '2001:db8::1/64'
 
-class TestServiceUPnP(VyOSUnitTestSHIM.TestCase):
+class TestServiceUPnP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceUPnP, cls).setUpClass()

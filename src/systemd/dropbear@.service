@@ -3,7 +3,7 @@ Description=Dropbear SSH per-connection server
 Requires=dropbearkey.service
 Wants=conserver-server.service
 ConditionPathExists=/run/conserver/conserver.cf
-After=dropbearkey.service vyos-router.service conserver-server.service
+After=dropbearkey.service ngnos-router.service conserver-server.service
 StartLimitIntervalSec=0
 
 [Service]

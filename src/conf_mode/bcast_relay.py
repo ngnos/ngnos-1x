@@ -20,11 +20,11 @@ from glob import glob
 from netifaces import interfaces
 from sys import exit
 
-from vyos.config import Config
-from vyos.util import call
-from vyos.template import render
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.util import call
+from ngnos.template import render
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file_base = r'/etc/default/udp-broadcast-relay'

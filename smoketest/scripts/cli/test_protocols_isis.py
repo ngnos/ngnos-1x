@@ -16,18 +16,18 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'isisd'
 base_path = ['protocols', 'isis']
 
-domain = 'VyOS'
+domain = 'ngNOS'
 net = '49.0001.1921.6800.1002.00'
 
-class TestProtocolsISIS(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsISIS(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         cls._interfaces = Section.interfaces('ethernet')

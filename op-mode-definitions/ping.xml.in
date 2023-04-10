@@ -7,16 +7,16 @@
         <list>&lt;hostname&gt; &lt;x.x.x.x&gt; &lt;h:h:h:h:h:h:h:h&gt;</list>
       </completionHelp>
     </properties>
-    <command>${vyos_op_scripts_dir}/ping.py ${@:2}</command>
+    <command>${ngnos_op_scripts_dir}/ping.py ${@:2}</command>
     <children>
       <leafNode name="node.tag">
         <properties>
           <help>Ping options</help>
           <completionHelp>
-            <script>${vyos_op_scripts_dir}/ping.py --get-options "${COMP_WORDS[@]}"</script>
+            <script>${ngnos_op_scripts_dir}/ping.py --get-options "${COMP_WORDS[@]}"</script>
           </completionHelp>
         </properties>
-        <command>${vyos_op_scripts_dir}/ping.py ${@:2}</command>
+        <command>${ngnos_op_scripts_dir}/ping.py ${@:2}</command>
       </leafNode>
     </children>
   </tagNode>

@@ -18,11 +18,11 @@ import json
 
 from ariadne import convert_camel_case_to_snake
 
-from vyos.config import Config
-from vyos.configtree import ConfigTree
-from vyos.defaults import directories
-from vyos.template import render
-from vyos.opmode import Error as OpModeError
+from ngnos.config import Config
+from ngnos.configtree import ConfigTree
+from ngnos.defaults import directories
+from ngnos.template import render
+from ngnos.opmode import Error as OpModeError
 
 from api.graphql.libs.op_mode import load_op_mode_as_module, split_compound_op_mode_name
 from api.graphql.libs.op_mode import normalize_output

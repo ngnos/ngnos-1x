@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="sflow" owner="${vyos_conf_scripts_dir}/system_sflow.py">
+      <node name="sflow" owner="${ngnos_conf_scripts_dir}/system_sflow.py">
         <properties>
           <help>sFlow settings</help>
           <priority>990</priority>
@@ -14,7 +14,7 @@
               <help>sFlow agent IPv4 or IPv6 address</help>
               <completionHelp>
                 <list>auto</list>
-                <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
               </completionHelp>
               <valueHelp>
                 <format>ipv4</format>
@@ -35,7 +35,7 @@
             <properties>
               <help>IP address associated with this interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
               <valueHelp>
                 <format>txt</format>

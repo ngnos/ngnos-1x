@@ -2,7 +2,7 @@
 
 acl net src all
 acl SSL_ports port 443
-{% if ssl_safe_ports is vyos_defined %}
+{% if ssl_safe_ports is ngnos_defined %}
 {%     for port in ssl_safe_ports %}
 acl SSL_ports port {{ port }}
 {%     endfor %}
@@ -18,32 +18,32 @@ acl Safe_ports port 280         # http-mgmt
 acl Safe_ports port 488         # gss-http
 acl Safe_ports port 591         # filemaker
 acl Safe_ports port 777         # multiling http
-{% if safe_ports is vyos_defined %}
+{% if safe_ports is ngnos_defined %}
 {%     for port in safe_ports %}
 acl Safe_ports port {{ port }}
 {%     endfor %}
 {% endif %}
 acl CONNECT method CONNECT
-{% if domain_block is vyos_defined %}
+{% if domain_block is ngnos_defined %}
 {%     for domain in domain_block %}
 acl BLOCKDOMAIN dstdomain {{ domain }}
 {%     endfor %}
 http_access deny BLOCKDOMAIN
 {% endif %}
-{% if authentication is vyos_defined %}
-{%     if authentication.children is vyos_defined %}
+{% if authentication is ngnos_defined %}
+{%     if authentication.children is ngnos_defined %}
 auth_param basic children {{ authentication.children }}
 {%     endif %}
-{%     if authentication.credentials_ttl is vyos_defined %}
+{%     if authentication.credentials_ttl is ngnos_defined %}
 auth_param basic credentialsttl {{ authentication.credentials_ttl }} minute
 {%     endif %}
-{%     if authentication.realm is vyos_defined %}
+{%     if authentication.realm is ngnos_defined %}
 auth_param basic realm "{{ authentication.realm }}"
 {%     endif %}
 {# LDAP based Authentication #}
-{%     if authentication.method is vyos_defined %}
-{%         if authentication.ldap is vyos_defined and authentication.method is vyos_defined('ldap') %}
-auth_param basic program /usr/lib/squid/basic_ldap_auth -v {{ authentication.ldap.version }} -b "{{ authentication.ldap.base_dn }}" {{ '-D "' ~ authentication.ldap.bind_dn ~ '"' if authentication.ldap.bind_dn is vyos_defined }} {{ '-w "' ~ authentication.ldap.password ~ '"' if authentication.ldap.password is vyos_defined }} {{ '-f "' ~ authentication.ldap.filter_expression ~ '"' if authentication.ldap.filter_expression is vyos_defined }} {{ '-u "' ~ authentication.ldap.username_attribute ~ '"' if authentication.ldap.username_attribute is vyos_defined }} -p {{ authentication.ldap.port }} {{ '-ZZ' if authentication.ldap.use_ssl is vyos_defined }} -R -h "{{ authentication.ldap.server }}"
+{%     if authentication.method is ngnos_defined %}
+{%         if authentication.ldap is ngnos_defined and authentication.method is ngnos_defined('ldap') %}
+auth_param basic program /usr/lib/squid/basic_ldap_auth -v {{ authentication.ldap.version }} -b "{{ authentication.ldap.base_dn }}" {{ '-D "' ~ authentication.ldap.bind_dn ~ '"' if authentication.ldap.bind_dn is ngnos_defined }} {{ '-w "' ~ authentication.ldap.password ~ '"' if authentication.ldap.password is ngnos_defined }} {{ '-f "' ~ authentication.ldap.filter_expression ~ '"' if authentication.ldap.filter_expression is ngnos_defined }} {{ '-u "' ~ authentication.ldap.username_attribute ~ '"' if authentication.ldap.username_attribute is ngnos_defined }} -p {{ authentication.ldap.port }} {{ '-ZZ' if authentication.ldap.use_ssl is ngnos_defined }} -R -h "{{ authentication.ldap.server }}"
 {%         endif %}
 acl auth proxy_auth REQUIRED
 http_access allow auth
@@ -58,24 +58,24 @@ http_access allow localhost
 http_access allow net
 http_access deny all
 
-{% if reply_block_mime is vyos_defined %}
+{% if reply_block_mime is ngnos_defined %}
 {%     for mime_type in reply_block_mime %}
 acl BLOCK_MIME rep_mime_type {{ mime_type }}
 {%     endfor %}
 http_reply_access deny BLOCK_MIME
 {% endif %}
 
-{% if cache_size is vyos_defined %}
+{% if cache_size is ngnos_defined %}
 {%     if cache_size | int > 0 %}
 cache_dir ufs /var/spool/squid {{ cache_size }} 16 256
 {%     else %}
 # disabling disk cache
 {%     endif %}
 {% endif %}
-{% if mem_cache_size is vyos_defined %}
+{% if mem_cache_size is ngnos_defined %}
 cache_mem {{ mem_cache_size }} MB
 {% endif %}
-{% if disable_access_log is vyos_defined %}
+{% if disable_access_log is ngnos_defined %}
 access_log none
 {% else %}
 access_log /var/log/squid/access.log squid
@@ -84,26 +84,26 @@ access_log /var/log/squid/access.log squid
 {# by default we'll disable the store log #}
 cache_store_log none
 
-{% if append_domain is vyos_defined %}
+{% if append_domain is ngnos_defined %}
 append_domain {{ append_domain }}
 {% endif %}
-{% if maximum_object_size is vyos_defined %}
+{% if maximum_object_size is ngnos_defined %}
 maximum_object_size {{ maximum_object_size }} KB
 {% endif %}
-{% if minimum_object_size is vyos_defined %}
+{% if minimum_object_size is ngnos_defined %}
 minimum_object_size {{ minimum_object_size }} KB
 {% endif %}
-{% if reply_body_max_size is vyos_defined %}
+{% if reply_body_max_size is ngnos_defined %}
 reply_body_max_size {{ reply_body_max_size }} KB
 {% endif %}
-{% if outgoing_address is vyos_defined %}
+{% if outgoing_address is ngnos_defined %}
 tcp_outgoing_address {{ outgoing_address }}
 {% endif %}
 
 
-{% if listen_address is vyos_defined %}
+{% if listen_address is ngnos_defined %}
 {%     for address, config in listen_address.items() %}
-http_port {{ address | bracketize_ipv6 }}:{{ config.port if config.port is vyos_defined else default_port }} {{ 'intercept' if config.disable_transparent is not vyos_defined }}
+http_port {{ address | bracketize_ipv6 }}:{{ config.port if config.port is ngnos_defined else default_port }} {{ 'intercept' if config.disable_transparent is not ngnos_defined }}
 {%     endfor %}
 {% endif %}
 http_port 127.0.0.1:{{ default_port }}
@@ -112,13 +112,13 @@ http_port 127.0.0.1:{{ default_port }}
 forwarded_for off
 
 {# SquidGuard #}
-{% if url_filtering.disable is not vyos_defined and url_filtering.squidguard is vyos_defined %}
+{% if url_filtering.disable is not ngnos_defined and url_filtering.squidguard is ngnos_defined %}
 url_rewrite_program /usr/bin/squidGuard -c {{ squidguard_conf }}
 url_rewrite_children 8
 url_rewrite_bypass on
 {% endif %}
 
-{% if cache_peer is vyos_defined %}
+{% if cache_peer is ngnos_defined %}
 {%     for peer, config in cache_peer.items() %}
 cache_peer {{ config.address }} {{ config.type }} {{ config.http_port }} {{ config.icp_port }} {{ config.options }}
 {%     endfor %}

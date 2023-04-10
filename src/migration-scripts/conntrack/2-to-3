@@ -5,8 +5,8 @@
 
 import sys
 
-from vyos.configtree import ConfigTree
-from vyos.version import get_version
+from ngnos.configtree import ConfigTree
+from ngnos.version import get_version
 
 if len(sys.argv) < 1:
     print('Must specify file name!')

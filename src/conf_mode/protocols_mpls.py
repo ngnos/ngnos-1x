@@ -19,15 +19,15 @@ import os
 from sys import exit
 
 from glob import glob
-from vyos.config import Config
-from vyos.template import render_to_string
-from vyos.util import dict_search
-from vyos.util import read_file
-from vyos.util import sysctl_write
-from vyos.configverify import verify_interface_exists
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.template import render_to_string
+from ngnos.util import dict_search
+from ngnos.util import read_file
+from ngnos.util import sysctl_write
+from ngnos.configverify import verify_interface_exists
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
 config_file = r'/tmp/ldpd.frr'

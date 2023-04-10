@@ -16,7 +16,7 @@
 
 from sys import argv
 from sys import exit
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if __name__ == '__main__':
     if (len(argv) < 1):

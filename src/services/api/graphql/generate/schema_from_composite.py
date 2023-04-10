@@ -23,7 +23,7 @@ import sys
 from inspect import signature
 from jinja2 import Template
 
-from vyos.defaults import directories
+from ngnos.defaults import directories
 if __package__ is None or __package__ == '':
     sys.path.append(os.path.join(directories['services'], 'api'))
     from graphql.libs.op_mode import snake_to_pascal_case, map_type_name

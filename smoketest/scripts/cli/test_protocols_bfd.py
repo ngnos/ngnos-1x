@@ -16,9 +16,9 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
-from vyos.util import process_named_running
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'bfdd'
 base_path = ['protocols', 'bfd']
@@ -76,7 +76,7 @@ profiles = {
         },
 }
 
-class TestProtocolsBFD(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsBFD(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

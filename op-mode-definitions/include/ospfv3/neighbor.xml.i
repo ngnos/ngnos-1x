@@ -3,14 +3,14 @@
   <properties>
     <help>Show OSPFv3 neighbor information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/ospfv3/detail.xml.i>
     <node name="drchoice">
       <properties>
         <help>Show neighbor DR choice information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </node>
   </children>
 </node>

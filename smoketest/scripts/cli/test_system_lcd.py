@@ -16,15 +16,15 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 from configparser import ConfigParser
 
-from vyos.util import process_named_running
+from ngnos.util import process_named_running
 
 config_file = '/run/LCDd/LCDd.conf'
 base_path = ['system', 'lcd']
 
-class TestSystemLCD(VyOSUnitTestSHIM.TestCase):
+class TestSystemLCD(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

@@ -16,13 +16,13 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'hsflowd'
 base_path = ['system', 'sflow']
@@ -30,7 +30,7 @@ base_path = ['system', 'sflow']
 hsflowd_conf = '/run/sflow/hsflowd.conf'
 
 
-class TestSystemFlowAccounting(VyOSUnitTestSHIM.TestCase):
+class TestSystemFlowAccounting(ngNOSUnitTestSHIM.TestCase):
 
     @classmethod
     def setUpClass(cls):

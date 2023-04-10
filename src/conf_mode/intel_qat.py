@@ -19,10 +19,10 @@ import re
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.util import popen, run
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.util import popen, run
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 qat_init_script = '/etc/init.d/qat_service'

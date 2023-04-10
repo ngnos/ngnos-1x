@@ -16,13 +16,13 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
+from ngnos.configsession import ConfigSessionError
 
 base_path = ['system', 'acceleration', 'qat']
 
-class TestIntelQAT(VyOSUnitTestSHIM.TestCase):
+class TestIntelQAT(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

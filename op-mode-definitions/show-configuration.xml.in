@@ -21,27 +21,27 @@
               <help> Show running configuration as set commands </help>
             </properties>
             <!-- no admin check -->
-            <command>cli-shell-api showCfg --show-active-only | vyos-config-to-commands</command>
+            <command>cli-shell-api showCfg --show-active-only | ngnos-config-to-commands</command>
           </node>
           <node name="files">
             <properties>
               <help> Show available saved configurations </help>
             </properties>
             <!-- no admin check -->
-            <command>${vyos_op_scripts_dir}/show_configuration_files.sh</command>
+            <command>${ngnos_op_scripts_dir}/show_configuration_files.sh</command>
           </node>
           <node name="json">
             <properties>
               <help>Show running configuration in JSON format</help>
             </properties>
             <!-- no admin check -->
-            <command>${vyos_op_scripts_dir}/show_configuration_json.py</command>
+            <command>${ngnos_op_scripts_dir}/show_configuration_json.py</command>
             <children>
               <node name="pretty">
                 <properties>
                   <help>Show running configuration in readable JSON format</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/show_configuration_json.py --pretty</command>
+                <command>${ngnos_op_scripts_dir}/show_configuration_json.py --pretty</command>
               </node>
             </children>
           </node>

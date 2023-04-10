@@ -6,10 +6,10 @@ import re
 from isc_dhcp_leases import Lease
 from isc_dhcp_leases import IscDhcpLeases
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import ask_yes_no
-from vyos.util import call
-from vyos.util import commit_in_progress
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import ask_yes_no
+from ngnos.util import call
+from ngnos.util import commit_in_progress
 
 
 config = ConfigTreeQuery()

@@ -16,14 +16,14 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
 
 base_path = ['policy']
 
-class TestPolicy(VyOSUnitTestSHIM.TestCase):
+class TestPolicy(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()
@@ -94,7 +94,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for acl, acl_config in acls.items():
             path = base_path + ['access-list', acl]
-            self.cli_set(path + ['description', f'VyOS-ACL-{acl}'])
+            self.cli_set(path + ['description', f'ngNOS-ACL-{acl}'])
             if 'rule' not in acl_config:
                 continue
 
@@ -130,7 +130,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
                             tmp += ' any'
                         if 'host' in rule_config[direction]:
                             # XXX: Some weird side rule from the old vyatta days
-                            # possible to clean this up after the vyos-1x migration
+                            # possible to clean this up after the ngnos-1x migration
                             if int(acl) in range(100, 200) or int(acl) in range(2000, 2700):
                                 tmp += ' host'
 
@@ -186,7 +186,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for acl, acl_config in acls.items():
             path = base_path + ['access-list6', acl]
-            self.cli_set(path + ['description', f'VyOS-ACL-{acl}'])
+            self.cli_set(path + ['description', f'ngNOS-ACL-{acl}'])
             if 'rule' not in acl_config:
                 continue
 
@@ -229,7 +229,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
     def test_as_path_list(self):
         test_data = {
-            'VyOS' : {
+            'ngNOS' : {
                 'rule' : {
                     '5' : {
                         'action' : 'permit',
@@ -289,7 +289,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for as_path, as_path_config in test_data.items():
             path = base_path + ['as-path-list', as_path]
-            self.cli_set(path + ['description', f'VyOS-ASPATH-{as_path}'])
+            self.cli_set(path + ['description', f'ngNOS-ASPATH-{as_path}'])
             if 'rule' not in as_path_config:
                 continue
 
@@ -347,7 +347,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for comm_list, comm_list_config in test_data.items():
             path = base_path + ['community-list', comm_list]
-            self.cli_set(path + ['description', f'VyOS-COMM-{comm_list}'])
+            self.cli_set(path + ['description', f'ngNOS-COMM-{comm_list}'])
             if 'rule' not in comm_list_config:
                 continue
 
@@ -405,7 +405,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for comm_list, comm_list_config in test_data.items():
             path = base_path + ['extcommunity-list', comm_list]
-            self.cli_set(path + ['description', f'VyOS-EXTCOMM-{comm_list}'])
+            self.cli_set(path + ['description', f'ngNOS-EXTCOMM-{comm_list}'])
             if 'rule' not in comm_list_config:
                 continue
 
@@ -470,7 +470,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for comm_list, comm_list_config in test_data.items():
             path = base_path + ['large-community-list', comm_list]
-            self.cli_set(path + ['description', f'VyOS-LARGECOMM-{comm_list}'])
+            self.cli_set(path + ['description', f'ngNOS-LARGECOMM-{comm_list}'])
             if 'rule' not in comm_list_config:
                 continue
 
@@ -544,7 +544,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for prefix_list, prefix_list_config in test_data.items():
             path = base_path + ['prefix-list', prefix_list]
-            self.cli_set(path + ['description', f'VyOS-PFX-LIST-{prefix_list}'])
+            self.cli_set(path + ['description', f'ngNOS-PFX-LIST-{prefix_list}'])
             if 'rule' not in prefix_list_config:
                 continue
 
@@ -627,7 +627,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for prefix_list, prefix_list_config in test_data.items():
             path = base_path + ['prefix-list6', prefix_list]
-            self.cli_set(path + ['description', f'VyOS-PFX-LIST-{prefix_list}'])
+            self.cli_set(path + ['description', f'ngNOS-PFX-LIST-{prefix_list}'])
             if 'rule' not in prefix_list_config:
                 continue
 
@@ -668,13 +668,13 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
     def test_prefix_list_duplicates(self):
         # FRR does not allow to specify the same profix list rule multiple times
         #
-        # vyos(config)# ip prefix-list foo seq 10 permit 192.0.2.0/24
-        # vyos(config)# ip prefix-list foo seq 20 permit 192.0.2.0/24
+        # ngnos(config)# ip prefix-list foo seq 10 permit 192.0.2.0/24
+        # ngnos(config)# ip prefix-list foo seq 20 permit 192.0.2.0/24
         # % Configuration failed.
         # Error type: validation
         # Error description: duplicated prefix list value: 192.0.2.0/24
 
-        # There is also a VyOS verify() function to test this
+        # There is also a ngNOS verify() function to test this
 
         prefix = '100.64.0.0/10'
         prefix_list = 'duplicates'
@@ -770,7 +770,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
         }
         for route_map, route_map_config in test_data.items():
             path = base_path + ['route-map', route_map]
-            self.cli_set(path + ['description', f'VyOS ROUTE-MAP {route_map}'])
+            self.cli_set(path + ['description', f'ngNOS ROUTE-MAP {route_map}'])
             if 'rule' not in route_map_config:
                 continue
 
@@ -884,7 +884,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
         community_list = 'BGP-comm-0815'
 
         # ext community name only allows alphanumeric characters and no hyphen :/
-        # maybe change this if possible in vyos-1x rewrite
+        # maybe change this if possible in ngnos-1x rewrite
         extcommunity_list = 'BGPextcomm123'
 
         large_community_list = 'bgp-large-community-123456'
@@ -1116,7 +1116,7 @@ class TestPolicy(VyOSUnitTestSHIM.TestCase):
 
         for route_map, route_map_config in test_data.items():
             path = base_path + ['route-map', route_map]
-            self.cli_set(path + ['description', f'VyOS ROUTE-MAP {route_map}'])
+            self.cli_set(path + ['description', f'ngNOS ROUTE-MAP {route_map}'])
             if 'rule' not in route_map_config:
                 continue
 

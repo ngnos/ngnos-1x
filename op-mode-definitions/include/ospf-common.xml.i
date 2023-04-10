@@ -3,19 +3,19 @@
   <properties>
     <help>Show IPv4 OSPF border-routers information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
 <node name="database">
   <properties>
     <help>Show IPv4 OSPF database information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     <node name="asbr-summary">
       <properties>
         <help>Show IPv4 OSPF ASBR summary database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -24,7 +24,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -40,7 +40,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -54,13 +54,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show summary of self-originate IPv4 OSPF ASBR database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -68,7 +68,7 @@
       <properties>
         <help>Show IPv4 OSPF external database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -77,7 +77,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -93,7 +93,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -107,13 +107,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF external database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -121,13 +121,13 @@
       <properties>
         <help>Show IPv4 OSPF max-age database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <node name="network">
       <properties>
         <help>Show IPv4 OSPF network database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -136,7 +136,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -152,7 +152,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -166,13 +166,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF network database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -180,7 +180,7 @@
       <properties>
         <help>Show IPv4 OSPF NSSA external database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -189,7 +189,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -205,7 +205,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -219,13 +219,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF NSSA external database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -233,7 +233,7 @@
       <properties>
         <help>Show IPv4 OSPF opaque-area database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -242,7 +242,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -258,7 +258,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -272,13 +272,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF opaque-area database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -286,7 +286,7 @@
       <properties>
         <help>Show IPv4 OSPF opaque-as database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -295,7 +295,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -311,7 +311,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -325,13 +325,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF opaque-as database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -339,7 +339,7 @@
       <properties>
         <help>Show IPv4 OSPF opaque-link database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -348,7 +348,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -364,7 +364,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -378,13 +378,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF opaque-link database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -392,7 +392,7 @@
       <properties>
         <help>Show IPv4 OSPF router database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -401,7 +401,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -417,7 +417,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -431,13 +431,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF router database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -445,13 +445,13 @@
       <properties>
         <help>Show IPv4 OSPF self-originate database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <node name="summary">
       <properties>
         <help>Show summary of IPv4 OSPF database</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <tagNode name="adv-router">
           <properties>
@@ -460,7 +460,7 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <node name="adv-router">
           <properties>
@@ -476,7 +476,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
       <children>
         <node name="adv-router">
           <properties>
@@ -490,13 +490,13 @@
              <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </tagNode>
         <leafNode name="self-originate">
           <properties>
             <help>Show self-originate IPv4 OSPF summary database</help>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </leafNode>
       </children>
     </tagNode>
@@ -506,28 +506,28 @@
   <properties>
     <help>Show IPv4 OSPF interface information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <tagNode name="interface">
   <properties>
     <help>Show IPv4 OSPF information for specified interface</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_interfaces</script>
+      <script>${ngnos_completion_dir}/list_interfaces</script>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <node name="neighbor">
   <properties>
     <help>Show IPv4 OSPF neighbor information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     <node name="detail">
       <properties>
         <help>Show detailed IPv4 OSPF neighbor information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </node>
   </children>
 </node>
@@ -536,15 +536,15 @@
     <help>Show IPv4 OSPF neighbor information for specified IP address or interface</help>
     <completionHelp>
       <list>&lt;x.x.x.x&gt;</list>
-      <script>${vyos_completion_dir}/list_interfaces</script>
+      <script>${ngnos_completion_dir}/list_interfaces</script>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <leafNode name="route">
   <properties>
     <help>Show IPv4 OSPF route information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
 <!-- included end -->

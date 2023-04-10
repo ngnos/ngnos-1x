@@ -22,7 +22,7 @@ import sys
 from netaddr import IPNetwork, AddrFormatError
 
 
-parser = argparse.ArgumentParser(description='strip off private information from VyOS config')
+parser = argparse.ArgumentParser(description='strip off private information from ngNOS config')
 
 strictness = parser.add_mutually_exclusive_group()
 strictness.add_argument('--loose', action='store_true', help='remove only information specified as arguments')

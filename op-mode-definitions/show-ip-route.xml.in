@@ -57,13 +57,13 @@
                 <properties>
                   <help>Summary of all routes</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/route.py show_summary --family inet</command>
+                <command>${ngnos_op_scripts_dir}/route.py show_summary --family inet</command>
                 <children>
                   <tagNode name="table">
                     <properties>
                       <help>Summary of routes in a particular table</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/route.py show_summary --family inet --table $6</command>
+                    <command>${ngnos_op_scripts_dir}/route.py show_summary --family inet --table $6</command>
                   </tagNode>
                 </children>
               </node>
@@ -75,13 +75,13 @@
                     <path>vrf name</path>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   <node name="summary">
                     <properties>
                       <help>Summary of all routes in the VRF</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/route.py show_summary --family inet --vrf $5</command>
+                    <command>${ngnos_op_scripts_dir}/route.py show_summary --family inet --vrf $5</command>
                   </node>
                   #include <include/show-route-bgp.xml.i>
                   #include <include/show-route-connected.xml.i>
@@ -99,13 +99,13 @@
                         <list>&lt;x.x.x.x&gt; &lt;x.x.x.x/x&gt;</list>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                    <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                     <children>
                       <leafNode name="longer-prefixes">
                         <properties>
                           <help>Show longer prefixes of routes for specified prefix</help>
                         </properties>
-                        <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                        <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                       </leafNode>
                     </children>
                   </node>
@@ -120,13 +120,13 @@
                 <list>&lt;x.x.x.x&gt; &lt;x.x.x.x/x&gt;</list>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               <leafNode name="longer-prefixes">
                 <properties>
                   <help>Show longer prefixes of routes for specified prefix</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </leafNode>
             </children>
           </tagNode>

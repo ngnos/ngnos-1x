@@ -15,7 +15,7 @@
                 <properties>
                   <help>Show BGP VRF information</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </leafNode>
               <tagNode name="vrf">
                 <properties>
@@ -25,7 +25,7 @@
                     <list>all</list>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/bgp/show-ip-bgp-common.xml.i>
                 </children>

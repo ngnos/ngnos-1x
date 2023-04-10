@@ -3,7 +3,7 @@ Description=LCD display daemon
 Documentation=man:LCDd(8) http://www.lcdproc.org/
 RequiresMountsFor=/run
 ConditionPathExists=/run/LCDd/LCDd.conf
-After=vyos-router.service
+After=ngnos-router.service
 
 
 [Service]

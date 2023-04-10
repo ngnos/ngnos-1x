@@ -19,26 +19,26 @@ import os
 from sys import exit
 from time import sleep
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_authentication
-from vyos.configverify import verify_interface_exists
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_vrf
-from vyos.ifconfig import WWANIf
-from vyos.util import cmd
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import DEVNULL
-from vyos.util import is_systemd_service_active
-from vyos.util import write_file
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_authentication
+from ngnos.configverify import verify_interface_exists
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_vrf
+from ngnos.ifconfig import WWANIf
+from ngnos.util import cmd
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import DEVNULL
+from ngnos.util import is_systemd_service_active
+from ngnos.util import write_file
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 service_name = 'ModemManager.service'
-cron_script = '/etc/cron.d/vyos-wwan'
+cron_script = '/etc/cron.d/ngnos-wwan'
 
 def get_config(config=None):
     """
@@ -116,7 +116,7 @@ def generate(wwan):
     # disconnect - e.g. happens during RF signal loss. The script watches every
     # WWAN interface - so there is only one instance.
     if not os.path.exists(cron_script):
-        write_file(cron_script, '*/5 * * * * root /usr/libexec/vyos/vyos-check-wwan.py\n')
+        write_file(cron_script, '*/5 * * * * root /usr/libexec/ngnos/ngnos-check-wwan.py\n')
 
     return None
 

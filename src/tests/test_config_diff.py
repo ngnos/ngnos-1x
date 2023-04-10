@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import vyos.configtree
+import ngnos.configtree
 
 from unittest import TestCase
 
@@ -23,27 +23,27 @@ class TestConfigDiff(TestCase):
     def setUp(self):
         with open('tests/data/config.left', 'r') as f:
             config_string = f.read()
-            self.config_left = vyos.configtree.ConfigTree(config_string)
+            self.config_left = ngnos.configtree.ConfigTree(config_string)
 
         with open('tests/data/config.right', 'r') as f:
             config_string = f.read()
-            self.config_right = vyos.configtree.ConfigTree(config_string)
+            self.config_right = ngnos.configtree.ConfigTree(config_string)
 
-        self.config_null = vyos.configtree.ConfigTree('')
+        self.config_null = ngnos.configtree.ConfigTree('')
 
     def test_unit(self):
-        diff = vyos.configtree.DiffTree(self.config_left, self.config_null)
+        diff = ngnos.configtree.DiffTree(self.config_left, self.config_null)
         sub = diff.sub
         self.assertEqual(sub.to_string(), self.config_left.to_string())
 
-        diff = vyos.configtree.DiffTree(self.config_null, self.config_left)
+        diff = ngnos.configtree.DiffTree(self.config_null, self.config_left)
         add = diff.add
         self.assertEqual(add.to_string(), self.config_left.to_string())
 
     def test_symmetry(self):
-        lr_diff = vyos.configtree.DiffTree(self.config_left,
+        lr_diff = ngnos.configtree.DiffTree(self.config_left,
                                            self.config_right)
-        rl_diff = vyos.configtree.DiffTree(self.config_right,
+        rl_diff = ngnos.configtree.DiffTree(self.config_right,
                                            self.config_left)
 
         sub = lr_diff.sub
@@ -54,15 +54,15 @@ class TestConfigDiff(TestCase):
         self.assertEqual(add.to_string(), sub.to_string())
 
     def test_identity(self):
-        lr_diff = vyos.configtree.DiffTree(self.config_left,
+        lr_diff = ngnos.configtree.DiffTree(self.config_left,
                                            self.config_right)
 
         sub = lr_diff.sub
         inter = lr_diff.inter
         add = lr_diff.add
 
-        r_union = vyos.configtree.union(add, inter)
-        l_union = vyos.configtree.union(sub, inter)
+        r_union = ngnos.configtree.union(add, inter)
+        l_union = ngnos.configtree.union(sub, inter)
 
         self.assertEqual(r_union.to_string(),
                          self.config_right.to_string(ordered_values=True))

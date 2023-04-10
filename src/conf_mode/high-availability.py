@@ -21,17 +21,17 @@ from ipaddress import ip_interface
 from ipaddress import IPv4Interface
 from ipaddress import IPv6Interface
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.ifconfig.vrrp import VRRP
-from vyos.template import render
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.ifconfig.vrrp import VRRP
+from ngnos.template import render
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

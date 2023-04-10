@@ -144,7 +144,7 @@ protocols {
             capability {
                 dynamic
             }
-            password VyOSR0xx123
+            password ngNOSR0xx123
             remote-as 65522
             update-source eth1
         }
@@ -240,7 +240,7 @@ system {
             speed 115200
         }
     }
-    domain-name vyos.net
+    domain-name ngnos.com
     flow-accounting {
         interface eth1
         interface vti31
@@ -271,7 +271,7 @@ system {
             timeout 2
         }
         radius-source-address 192.168.34.37
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$O5gJRlDYQpj$MtrCV9lxMnZPMbcxlU7.FI793MImNHznxGoMFgm3Q6QP3vfKJyOSRCt3Ka/GzFQyW1yZS4NS616NLHaIPPFHc0
                 plaintext-password ""

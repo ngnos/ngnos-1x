@@ -19,13 +19,13 @@ import syslog
 import xmltodict
 
 from argparse import ArgumentParser
-from vyos.configquery import CliShellApiConfigQuery
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import call
-from vyos.util import commit_in_progress
-from vyos.util import cmd
-from vyos.util import run
-from vyos.template import render_to_string
+from ngnos.configquery import CliShellApiConfigQuery
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import call
+from ngnos.util import commit_in_progress
+from ngnos.util import cmd
+from ngnos.util import run
+from ngnos.template import render_to_string
 
 conntrackd_bin = '/usr/sbin/conntrackd'
 conntrackd_config = '/run/conntrackd/conntrackd.conf'

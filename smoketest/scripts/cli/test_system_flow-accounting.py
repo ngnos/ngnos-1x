@@ -16,22 +16,22 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.template import bracketize_ipv6
-from vyos.template import is_ipv6
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.template import bracketize_ipv6
+from ngnos.template import is_ipv6
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'uacctd'
 base_path = ['system', 'flow-accounting']
 
 uacctd_conf = '/run/pmacct/uacctd.conf'
 
-class TestSystemFlowAccounting(VyOSUnitTestSHIM.TestCase):
+class TestSystemFlowAccounting(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestSystemFlowAccounting, cls).setUpClass()
@@ -67,7 +67,7 @@ class TestSystemFlowAccounting(VyOSUnitTestSHIM.TestCase):
         self.cli_commit()
 
         # verify configuration
-        nftables_output = cmd('sudo nft list chain raw VYOS_CT_PREROUTING_HOOK').splitlines()
+        nftables_output = cmd('sudo nft list chain raw NGNOS_CT_PREROUTING_HOOK').splitlines()
         for interface in Section.interfaces('ethernet'):
             rule_found = False
             ifname_search = f'iifname "{interface}"'

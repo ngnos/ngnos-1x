@@ -12,6 +12,6 @@
       <path>protocols static table</path>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <!-- included end -->

@@ -20,7 +20,7 @@ if [ $# -lt 1 ]; then
 fi
 
 for var in "$@"; do
-    ${vyos_validators_dir}/numeric --range 1-4294967294 $var
+    ${ngnos_validators_dir}/numeric --range 1-4294967294 $var
     if [ $? -ne 0 ]; then
         exit 1
     fi

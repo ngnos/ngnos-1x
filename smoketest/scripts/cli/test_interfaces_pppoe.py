@@ -18,9 +18,9 @@ import re
 import unittest
 
 from psutil import process_iter
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
+from ngnos.configsession import ConfigSessionError
 
 config_file = '/etc/ppp/peers/{}'
 base_path = ['interfaces', 'pppoe']
@@ -33,7 +33,7 @@ def get_config_value(interface, key):
     return []
 
 # add a classmethod to setup a temporaray PPPoE server for "proper" validation
-class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
+class PPPoEInterfaceTest(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(PPPoEInterfaceTest, cls).setUpClass()
@@ -57,8 +57,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
     def test_01_pppoe_client(self):
         # Check if PPPoE dialer can be configured and runs
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
             mtu = '1400'
 
             self.cli_set(base_path + [interface, 'authentication', 'username', user])
@@ -76,8 +76,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
 
         # verify configuration file(s)
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
 
             tmp = get_config_value(interface, 'mtu')[1]
             self.assertEqual(tmp, mtu)
@@ -91,8 +91,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
     def test_02_pppoe_client_disabled_interface(self):
         # Check if PPPoE Client can be disabled
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
 
             self.cli_set(base_path + [interface, 'authentication', 'username', user])
             self.cli_set(base_path + [interface, 'authentication', 'password', passwd])
@@ -120,8 +120,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
     def test_03_pppoe_authentication(self):
         # When username or password is set - so must be the other
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
 
             self.cli_set(base_path + [interface, 'authentication', 'username', user])
             self.cli_set(base_path + [interface, 'source-interface', self._source_interface])
@@ -142,8 +142,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
         sla_len = '8'
 
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
 
             self.cli_set(base_path + [interface, 'authentication', 'username', user])
             self.cli_set(base_path + [interface, 'authentication', 'password', passwd])
@@ -162,8 +162,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
         self.cli_commit()
 
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
 
             # verify "normal" PPPoE value - 1492 is default MTU
             tmp = get_config_value(interface, 'mtu')[1]
@@ -178,8 +178,8 @@ class PPPoEInterfaceTest(VyOSUnitTestSHIM.TestCase):
     def test_05_pppoe_options(self):
         # Check if PPPoE dialer can be configured with DHCPv6-PD
         for interface in self._interfaces:
-            user = f'VyOS-user-{interface}'
-            passwd = f'VyOS-passwd-{interface}'
+            user = f'ngNOS-user-{interface}'
+            passwd = f'ngNOS-passwd-{interface}'
             ac_name = f'AC{interface}'
             service_name = f'SRV{interface}'
             host_uniq = 'cafebeefBABE123456'

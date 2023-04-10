@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="router-advert" owner="${vyos_conf_scripts_dir}/service_router-advert.py">
+      <node name="router-advert" owner="${ngnos_conf_scripts_dir}/service_router-advert.py">
         <properties>
           <help>IPv6 Router Advertisements (RAs) service</help>
           <priority>900</priority>
@@ -12,7 +12,7 @@
             <properties>
               <help>Interface to send RA on</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>

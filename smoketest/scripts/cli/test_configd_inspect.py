@@ -23,9 +23,9 @@ import importlib.util
 from inspect import signature, getsource
 from functools import wraps
 
-from vyos.defaults import directories
+from ngnos.defaults import directories
 
-INC_FILE = '/usr/share/vyos/configd-include.json'
+INC_FILE = '/usr/share/ngnos/configd-include.json'
 CONF_DIR = directories['conf_mode']
 
 f_list = ['get_config', 'verify', 'generate', 'apply']

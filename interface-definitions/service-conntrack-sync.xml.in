@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="conntrack-sync" owner="${vyos_conf_scripts_dir}/conntrack_sync.py">
+      <node name="conntrack-sync" owner="${ngnos_conf_scripts_dir}/conntrack_sync.py">
         <properties>
           <help>Connection tracking synchronization</help>
           <!-- before VRRP / HA -->
@@ -127,7 +127,7 @@
             <properties>
               <help>Interface to use for syncing conntrack entries</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces --bridgeable</script>
+                <script>${ngnos_completion_dir}/list_interfaces --bridgeable</script>
               </completionHelp>
             </properties>
             <children>

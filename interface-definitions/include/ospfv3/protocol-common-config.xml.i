@@ -111,7 +111,7 @@
   <properties>
     <help>Enable routing on an IPv6 interface</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_interfaces</script>
+      <script>${ngnos_completion_dir}/list_interfaces</script>
     </completionHelp>
     <valueHelp>
       <format>txt</format>

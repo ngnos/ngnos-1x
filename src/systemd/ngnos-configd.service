@@ -1,0 +1,27 @@
+[Unit]
+Description=ngNOS configuration daemon
+
+# Without this option, lots of default dependencies are added,
+# among them network.target, which creates a dependency cycle
+DefaultDependencies=no
+
+# Seemingly sensible way to say "as early as the system is ready"
+# All ngnos-configd needs is read/write mounted root
+After=systemd-remount-fs.service
+Before=ngnos-router.service
+
+[Service]
+ExecStart=/usr/bin/python3 -u /usr/libexec/ngnos/services/ngnos-configd
+Type=idle
+
+SyslogIdentifier=ngnos-configd
+SyslogFacility=daemon
+
+Restart=on-failure
+
+# Does't work in Jessie but leave it here
+User=root
+Group=vyattacfg
+
+[Install]
+WantedBy=ngnos.target

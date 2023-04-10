@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="isis" owner="${vyos_conf_scripts_dir}/protocols_isis.py">
+      <node name="isis" owner="${ngnos_conf_scripts_dir}/protocols_isis.py">
         <properties>
           <help>Intermediate System to Intermediate System (IS-IS)</help>
           <priority>610</priority>

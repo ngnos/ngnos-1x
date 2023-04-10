@@ -17,13 +17,13 @@
 import unittest
 
 from psutil import process_iter
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import read_file
-from vyos.util import process_named_running
-from vyos.template import is_ipv6
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import read_file
+from ngnos.util import process_named_running
+from ngnos.template import is_ipv6
 
 PROCESS_NAME = 'in.tftpd'
 base_path = ['service', 'tftp-server']
@@ -32,7 +32,7 @@ address_ipv4 = '192.0.2.1'
 address_ipv6 = '2001:db8::1'
 vrf = 'mgmt'
 
-class TestServiceTFTPD(VyOSUnitTestSHIM.TestCase):
+class TestServiceTFTPD(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceTFTPD, cls).setUpClass()

@@ -19,14 +19,14 @@ import os
 from json import loads
 from sys import exit
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.template import render
-from vyos.util import cmd
-from vyos.util import dict_search_args
-from vyos.util import run
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.template import render
+from ngnos.util import cmd
+from ngnos.util import dict_search_args
+from ngnos.util import run
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 mark_offset = 0x7FFFFFFF

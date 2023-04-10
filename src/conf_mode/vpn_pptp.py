@@ -21,12 +21,12 @@ from copy import deepcopy
 from stat import S_IRUSR, S_IWUSR, S_IRGRP
 from sys import exit
 
-from vyos.config import Config
-from vyos.template import render
-from vyos.util import call, get_half_cpus
-from vyos import ConfigError
+from ngnos.config import Config
+from ngnos.template import render
+from ngnos.util import call, get_half_cpus
+from ngnos import ConfigError
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 pptp_conf = '/run/accel-pppd/pptp.conf'

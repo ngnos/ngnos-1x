@@ -3,7 +3,7 @@
   <properties>
     <help>Protocol to match (protocol name, number, or "all")</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_protocols.sh</script>
+      <script>${ngnos_completion_dir}/list_protocols.sh</script>
       <list>all tcp_udp</list>
     </completionHelp>
     <valueHelp>

@@ -18,11 +18,11 @@ import os
 import unittest
 import time
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import call
-from vyos.util import cmd
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import call
+from ngnos.util import cmd
 
 
 base_path = ['load-balancing']
@@ -46,7 +46,7 @@ def cmd_in_netns(netns, cmd):
 def delete_netns(name):
     return call(f'sudo ip netns del {name}')
 
-class TestLoadBalancingWan(VyOSUnitTestSHIM.TestCase):
+class TestLoadBalancingWan(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestLoadBalancingWan, cls).setUpClass()
@@ -174,8 +174,8 @@ class TestLoadBalancingWan(VyOSUnitTestSHIM.TestCase):
 		ct mark 0xca counter snat to 192.0.2.10
 	}
 }"""
-        nat_vyos_pre_snat_hook = """table ip nat {
-	chain VYOS_PRE_SNAT_HOOK {
+        nat_ngnos_pre_snat_hook = """table ip nat {
+	chain NGNOS_PRE_SNAT_HOOK {
 		type nat hook postrouting priority srcnat - 1; policy accept;
 		counter jump WANLOADBALANCE
 	}
@@ -242,8 +242,8 @@ class TestLoadBalancingWan(VyOSUnitTestSHIM.TestCase):
         tmp = cmd(f'sudo nft -s list chain nat WANLOADBALANCE')
         self.assertEqual(tmp, nat_wanloadbalance)
 
-        tmp = cmd(f'sudo nft -s list chain nat VYOS_PRE_SNAT_HOOK')
-        self.assertEqual(tmp, nat_vyos_pre_snat_hook)
+        tmp = cmd(f'sudo nft -s list chain nat NGNOS_PRE_SNAT_HOOK')
+        self.assertEqual(tmp, nat_ngnos_pre_snat_hook)
 
         # Delete veth interfaces and netns
         for iface in [iface1, iface2, iface3, container_iface1, container_iface2, container_iface3]:

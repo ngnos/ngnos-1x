@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="policy" owner="${vyos_conf_scripts_dir}/policy.py">
+  <node name="policy" owner="${ngnos_conf_scripts_dir}/policy.py">
     <properties>
       <priority>200</priority>
       <help>Routing policy</help>
@@ -1286,7 +1286,7 @@
                     <properties>
                       <help>Nexthop IP address</help>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_local_ips.sh --ipv4</script>
+                        <script>${ngnos_completion_dir}/list_local_ips.sh --ipv4</script>
                         <list>unchanged peer-address</list>
                       </completionHelp>
                       <valueHelp>
@@ -1316,7 +1316,7 @@
                         <properties>
                           <help>Nexthop IPv6 global address</help>
                           <completionHelp>
-                            <script>${vyos_completion_dir}/list_local_ips.sh --ipv6</script>
+                            <script>${ngnos_completion_dir}/list_local_ips.sh --ipv6</script>
                           </completionHelp>
                           <valueHelp>
                             <format>ipv6</format>
@@ -1331,7 +1331,7 @@
                         <properties>
                           <help>Nexthop IPv6 local address</help>
                           <completionHelp>
-                            <script>${vyos_completion_dir}/list_local_ips.sh --ipv6</script>
+                            <script>${ngnos_completion_dir}/list_local_ips.sh --ipv6</script>
                           </completionHelp>
                           <valueHelp>
                             <format>ipv6</format>
@@ -1463,7 +1463,7 @@
                     <properties>
                       <help>Source address for route</help>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                        <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                       </completionHelp>
                       <valueHelp>
                         <format>ipv4</format>

@@ -17,7 +17,7 @@
 import argparse
 
 from sys import exit
-from vyos.util import cmd
+from ngnos.util import cmd
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", help="Get module model", action="store_true")

@@ -17,11 +17,11 @@
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'fastnetmon'
 FASTNETMON_CONF = '/run/fastnetmon/fastnetmon.conf'
@@ -29,7 +29,7 @@ NETWORKS_CONF = '/run/fastnetmon/networks_list'
 EXCLUDED_NETWORKS_CONF = '/run/fastnetmon/excluded_networks_list'
 base_path = ['service', 'ids', 'ddos-protection']
 
-class TestServiceIDS(VyOSUnitTestSHIM.TestCase):
+class TestServiceIDS(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceIDS, cls).setUpClass()

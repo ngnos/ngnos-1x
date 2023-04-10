@@ -19,7 +19,7 @@ import unittest
 
 class TestIproute2(unittest.TestCase):
     def test_ip_is_symlink(self):
-        # For an unknown reason VyOS 1.3.0-rc2 did not have a symlink from
+        # For an unknown reason ngNOS 1.3.0-rc2 did not have a symlink from
         # /usr/sbin/ip -> /bin/ip - verify this now and forever
         real_file = '/bin/ip'
         symlink = '/usr/sbin/ip'

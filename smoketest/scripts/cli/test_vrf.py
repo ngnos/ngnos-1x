@@ -20,21 +20,21 @@ import json
 import unittest
 
 from netifaces import interfaces
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Interface
-from vyos.ifconfig import Section
-from vyos.template import is_ipv4
-from vyos.util import cmd
-from vyos.util import read_file
-from vyos.util import get_interface_config
-from vyos.validate import is_intf_addr_assigned
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Interface
+from ngnos.ifconfig import Section
+from ngnos.template import is_ipv4
+from ngnos.util import cmd
+from ngnos.util import read_file
+from ngnos.util import get_interface_config
+from ngnos.validate import is_intf_addr_assigned
 
 base_path = ['vrf']
 vrfs = ['red', 'green', 'blue', 'foo-bar', 'baz_foo']
 
-class VRFTest(VyOSUnitTestSHIM.TestCase):
+class VRFTest(ngNOSUnitTestSHIM.TestCase):
     _interfaces = []
 
     @classmethod
@@ -62,7 +62,7 @@ class VRFTest(VyOSUnitTestSHIM.TestCase):
         table = '1000'
         for vrf in vrfs:
             base = base_path + ['name', vrf]
-            description = f'VyOS-VRF-{vrf}'
+            description = f'ngNOS-VRF-{vrf}'
             self.cli_set(base + ['description', description])
 
             # check validate() - a table ID is mandatory
@@ -81,9 +81,9 @@ class VRFTest(VyOSUnitTestSHIM.TestCase):
 
         # Verify VRF configuration
         table = '1000'
-        iproute2_config = read_file('/etc/iproute2/rt_tables.d/vyos-vrf.conf')
+        iproute2_config = read_file('/etc/iproute2/rt_tables.d/ngnos-vrf.conf')
         for vrf in vrfs:
-            description = f'VyOS-VRF-{vrf}'
+            description = f'ngNOS-VRF-{vrf}'
             self.assertTrue(vrf in interfaces())
             vrf_if = Interface(vrf)
             # validate proper interface description
@@ -97,8 +97,8 @@ class VRFTest(VyOSUnitTestSHIM.TestCase):
             # Test the iproute2 lookup file, syntax is as follows:
             #
             # # id       vrf name         comment
-            # 1000       red              # VyOS-VRF-red
-            # 1001       green            # VyOS-VRF-green
+            # 1000       red              # ngNOS-VRF-red
+            # 1001       green            # ngNOS-VRF-green
             #  ...
             regex = f'{table}\s+{vrf}\s+#\s+{description}'
             self.assertTrue(re.findall(regex, iproute2_config))

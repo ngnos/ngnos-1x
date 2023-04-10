@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="acceleration" owner="${vyos_conf_scripts_dir}/intel_qat.py">
+      <node name="acceleration" owner="${ngnos_conf_scripts_dir}/intel_qat.py">
         <properties>
           <help>Acceleration components</help>
           <priority>50</priority>

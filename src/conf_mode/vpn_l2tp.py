@@ -23,16 +23,16 @@ from sys import exit
 
 from ipaddress import ip_network
 
-from vyos.config import Config
-from vyos.template import is_ipv4
-from vyos.template import render
-from vyos.util import call
-from vyos.util import get_half_cpus
-from vyos.util import check_port_availability
-from vyos.util import is_listen_port_bind_service
-from vyos import ConfigError
+from ngnos.config import Config
+from ngnos.template import is_ipv4
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import get_half_cpus
+from ngnos.util import check_port_availability
+from ngnos.util import is_listen_port_bind_service
+from ngnos import ConfigError
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 l2tp_conf = '/run/accel-pppd/l2tp.conf'

@@ -20,23 +20,23 @@ from sys import exit
 from re import findall
 from netaddr import EUI, mac_unix_expanded
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_dhcpv6
-from vyos.configverify import verify_source_interface
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_vlan_config
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import WiFiIf
-from vyos.template import render
-from vyos.util import call
-from vyos.util import dict_search
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_dhcpv6
+from ngnos.configverify import verify_source_interface
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_vlan_config
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import WiFiIf
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 # XXX: wpa_supplicant works on the source interface

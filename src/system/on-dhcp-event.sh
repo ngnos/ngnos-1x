@@ -19,7 +19,7 @@ client_name=$2
 client_ip=$3
 client_mac=$4
 domain=$5
-hostsd_client="/usr/bin/vyos-hostsd-client"
+hostsd_client="/usr/bin/ngnos-hostsd-client"
 
 case "$action" in
   commit) # add mapping for new lease

@@ -16,7 +16,7 @@
 
 # - rename local-ip to gateway-address
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 from sys import argv
 from sys import exit
 

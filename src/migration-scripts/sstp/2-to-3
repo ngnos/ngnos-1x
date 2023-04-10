@@ -17,7 +17,7 @@
 # - Rename SSTP ppp-settings node to ppp-options to make use of a common
 #   Jinja Template to render Accel-PPP services
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 from sys import argv
 from sys import exit
 

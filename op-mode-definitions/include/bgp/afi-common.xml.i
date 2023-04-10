@@ -9,7 +9,7 @@
   <children>
     #include <include/bgp/exact-match.xml.i>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <tagNode name="large-community">
   <properties>
@@ -18,7 +18,7 @@
       <list>AA:BB:CC</list>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/bgp/exact-match.xml.i>
   </children>
@@ -30,7 +30,7 @@
       <path>policy large-community-list</path>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/bgp/exact-match.xml.i>
   </children>
@@ -39,25 +39,25 @@
   <properties>
     <help>RIB advertisement statistics</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
 <node name="summary">
   <properties>
     <help>Summary of BGP neighbor status</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     <leafNode name="established">
       <properties>
         <help>Show only sessions in Established state</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <leafNode name="failed">
       <properties>
         <help>Show only sessions not in Established state</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
   </children>
 </node>

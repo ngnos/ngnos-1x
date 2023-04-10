@@ -13,7 +13,7 @@
                 <properties>
                   <help>Show multicast interfaces</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/igmp-proxy.py show_interface</command>
+                <command>${ngnos_op_scripts_dir}/igmp-proxy.py show_interface</command>
               </leafNode>
               <leafNode name="summary">
                 <properties>

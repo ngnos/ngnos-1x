@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import call
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import call
 
 def is_configured():
     """ Check if high-availability virtual-server is configured """

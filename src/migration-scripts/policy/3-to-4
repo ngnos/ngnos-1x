@@ -36,7 +36,7 @@
 from sys import argv
 from sys import exit
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 
 # Migration function for large and regular communities

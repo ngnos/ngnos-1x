@@ -7,7 +7,7 @@
         <description>Protocol name</description>
       </valueHelp>
       <completionHelp>
-        <script>${vyos_completion_dir}/list_protocols.sh</script>
+        <script>${ngnos_completion_dir}/list_protocols.sh</script>
       </completionHelp>
       <constraint>
         <validator name="ip-protocol"/>

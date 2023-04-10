@@ -17,20 +17,20 @@
 from sys import exit
 from sys import argv
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_prefix_list
-from vyos.configverify import verify_route_map
-from vyos.configverify import verify_vrf
-from vyos.template import is_ip
-from vyos.template import is_interface
-from vyos.template import render_to_string
-from vyos.util import dict_search
-from vyos.validate import is_addr_assigned
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_prefix_list
+from ngnos.configverify import verify_route_map
+from ngnos.configverify import verify_vrf
+from ngnos.template import is_ip
+from ngnos.template import is_interface
+from ngnos.template import render_to_string
+from ngnos.util import dict_search
+from ngnos.validate import is_addr_assigned
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):
@@ -73,7 +73,7 @@ def get_config(config=None):
     # and route-maps for instance. They will be used in verify().
     #
     # XXX: one MUST always call this without the key_mangling() option! See
-    # vyos.configverify.verify_common_route_maps() for more information.
+    # ngnos.configverify.verify_common_route_maps() for more information.
     tmp = conf.get_config_dict(['policy'])
     # Merge policy dict into "regular" config dict
     bgp = dict_merge(tmp, bgp)

@@ -20,8 +20,8 @@
 import os
 
 from sys import exit, argv
-from vyos.configtree import ConfigTree
-from vyos.util import chown, chmod_750
+from ngnos.configtree import ConfigTree
+from ngnos.util import chown, chmod_750
 
 def migrate_default_keys():
     kdir = r'/config/auth/wireguard'

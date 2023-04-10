@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="console" owner="${vyos_conf_scripts_dir}/system_console.py">
+      <node name="console" owner="${ngnos_conf_scripts_dir}/system_console.py">
         <properties>
           <help>Serial console configuration</help>
           <priority>100</priority>

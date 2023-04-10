@@ -11,7 +11,7 @@
             <properties>
               <help>Show IPv4 Open Shortest Path First (OSPF) routing information</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/ospf-common.xml.i>
               <tagNode name="vrf">
@@ -22,7 +22,7 @@
                     <list>all</list>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/ospf-common.xml.i>
                 </children>

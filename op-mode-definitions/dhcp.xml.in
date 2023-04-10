@@ -16,7 +16,7 @@
                 <properties>
                   <help>Show DHCP server leases</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet</command>
+                <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet</command>
                 <children>
                   <tagNode name="pool">
                     <properties>
@@ -25,7 +25,7 @@
                         <path>service dhcp-server shared-network-name</path>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet --pool $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet --pool $6</command>
                   </tagNode>
                   <tagNode name="sort">
                     <properties>
@@ -34,7 +34,7 @@
                         <list>end hostname ip mac pool remaining start state</list>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet --sort $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet --sort $6</command>
                   </tagNode>
                   <tagNode name="state">
                     <properties>
@@ -43,7 +43,7 @@
                         <list>abandoned active all backup expired free released reset</list>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet --state $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet --state $6</command>
                   </tagNode>
                 </children>
               </node>
@@ -51,7 +51,7 @@
                 <properties>
                   <help>Show DHCP server statistics</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/dhcp.py show_pool_statistics --family inet</command>
+                <command>${ngnos_op_scripts_dir}/dhcp.py show_pool_statistics --family inet</command>
                 <children>
                   <tagNode name="pool">
                     <properties>
@@ -60,7 +60,7 @@
                         <path>service dhcp-server shared-network-name</path>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_pool_statistics --family inet --pool $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_pool_statistics --family inet --pool $6</command>
                   </tagNode>
                 </children>
               </node>
@@ -82,7 +82,7 @@
                 <properties>
                   <help>Show DHCPv6 server leases</help>
                 </properties>
-                <command>sudo ${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet6</command>
+                <command>sudo ${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet6</command>
                 <children>
                   <tagNode name="pool">
                     <properties>
@@ -91,7 +91,7 @@
                         <path>service dhcpv6-server shared-network-name</path>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet6 --pool $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet6 --pool $6</command>
                   </tagNode>
                   <tagNode name="sort">
                     <properties>
@@ -100,7 +100,7 @@
                         <list>end iaid_duid ip last_communication pool remaining state type</list>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet6 --sort $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet6 --sort $6</command>
                   </tagNode>
                   <tagNode name="state">
                     <properties>
@@ -109,7 +109,7 @@
                         <list>abandoned active all backup expired free released reset</list>
                       </completionHelp>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/dhcp.py show_server_leases --family inet6 --state $6</command>
+                    <command>${ngnos_op_scripts_dir}/dhcp.py show_server_leases --family inet6 --state $6</command>
                   </tagNode>
                 </children>
               </node>
@@ -136,7 +136,7 @@
             <properties>
               <help>Restart DHCP relay-agent</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/restart_dhcp_relay.py --ipv4</command>
+            <command>sudo ${ngnos_op_scripts_dir}/restart_dhcp_relay.py --ipv4</command>
           </node>
         </children>
       </node>
@@ -155,7 +155,7 @@
             <properties>
               <help>Restart DHCPv6 relay-agent</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/restart_dhcp_relay.py --ipv6</command>
+            <command>sudo ${ngnos_op_scripts_dir}/restart_dhcp_relay.py --ipv6</command>
           </node>
         </children>
       </node>
@@ -175,7 +175,7 @@
             <properties>
               <help>Renew DHCP client lease for specified interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <command>sudo systemctl restart "dhclient@$4.service"</command>
@@ -191,7 +191,7 @@
             <properties>
               <help>Renew DHCPv6 client lease for specified interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <command>sudo systemctl restart "dhcp6c@$4.service"</command>

@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from argparse import ArgumentParser
-from vyos.template import is_ipv4
+from ngnos.template import is_ipv4
 
 parser = ArgumentParser()
 group = parser.add_mutually_exclusive_group()

@@ -16,12 +16,12 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSession
-from vyos.configsession import ConfigSessionError
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSession
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'telegraf'
 TELEGRAF_CONF = '/run/telegraf/telegraf.conf'
@@ -33,7 +33,7 @@ url = 'https://foo.local'
 bucket = 'main'
 inputs = ['cpu', 'disk', 'mem', 'net', 'system', 'kernel', 'interrupts', 'syslog']
 
-class TestMonitoringTelegraf(VyOSUnitTestSHIM.TestCase):
+class TestMonitoringTelegraf(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         # Check for running process
         self.assertTrue(process_named_running(PROCESS_NAME))

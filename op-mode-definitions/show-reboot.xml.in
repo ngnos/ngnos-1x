@@ -6,7 +6,7 @@
         <properties>
           <help>Show scheduled reboot</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/powerctrl.py --check</command>
+        <command>${ngnos_op_scripts_dir}/powerctrl.py --check</command>
       </leafNode>
     </children>
   </node>

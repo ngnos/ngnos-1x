@@ -17,11 +17,11 @@
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import process_named_running
 
 base_path = ['protocols', 'rpki']
 PROCESS_NAME = 'bgpd'
@@ -30,7 +30,7 @@ rpki_known_hosts = '/config/auth/known_hosts'
 rpki_ssh_key = '/config/auth/id_rsa_rpki'
 rpki_ssh_pub = f'{rpki_ssh_key}.pub'
 
-class TestProtocolsRPKI(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsRPKI(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

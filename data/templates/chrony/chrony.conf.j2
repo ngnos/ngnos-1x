@@ -26,18 +26,18 @@ leapsectz right/UTC
 user {{ user }}
 
 # NTP servers to reach out to
-{% if server is vyos_defined %}
+{% if server is ngnos_defined %}
 {%     for server, config in server.items() %}
 {%         set association = 'server' %}
-{%         if config.pool is vyos_defined %}
+{%         if config.pool is ngnos_defined %}
 {%             set association = 'pool' %}
 {%         endif %}
-{{ association }} {{ server | replace('_', '-') }} iburst {{ 'nts' if config.nts is vyos_defined }} {{ 'noselect' if config.noselect is vyos_defined }} {{ 'prefer' if config.prefer is vyos_defined }}
+{{ association }} {{ server | replace('_', '-') }} iburst {{ 'nts' if config.nts is ngnos_defined }} {{ 'noselect' if config.noselect is ngnos_defined }} {{ 'prefer' if config.prefer is ngnos_defined }}
 {%     endfor %}
 {% endif %}
 
 # Allowed clients configuration
-{% if allow_client.address is vyos_defined %}
+{% if allow_client.address is ngnos_defined %}
 {%     for address in allow_client.address %}
 allow {{ address }}
 {%     endfor %}
@@ -45,14 +45,14 @@ allow {{ address }}
 deny all
 {% endif %}
 
-{% if listen_address is vyos_defined or interface is vyos_defined %}
+{% if listen_address is ngnos_defined or interface is ngnos_defined %}
 # NTP should listen on configured addresses only
-{%     if listen_address is vyos_defined %}
+{%     if listen_address is ngnos_defined %}
 {%         for address in listen_address %}
 bindaddress {{ address }}
 {%         endfor %}
 {%     endif %}
-{%     if interface is vyos_defined %}
+{%     if interface is ngnos_defined %}
 {%         for ifname in interface %}
 binddevice {{ ifname }}
 {%         endfor %}

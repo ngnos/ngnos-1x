@@ -17,26 +17,26 @@
 import os
 
 from sys import exit
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_interface_exists
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.util import run
-from vyos.template import render
-from vyos.template import get_ipv4
-from vyos.validate import is_addr_assigned
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_interface_exists
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.util import run
+from ngnos.template import render
+from ngnos.template import get_ipv4
+from ngnos.validate import is_addr_assigned
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = '/run/conntrackd/conntrackd.conf'
 
 def resync_vrrp():
-    tmp = run('/usr/libexec/vyos/conf_mode/high-availability.py')
+    tmp = run('/usr/libexec/ngnos/conf_mode/high-availability.py')
     if tmp > 0:
         print('ERROR: error restarting VRRP daemon!')
 

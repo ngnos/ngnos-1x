@@ -19,22 +19,22 @@ import os
 from sys import exit
 from netifaces import interfaces
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import leaf_node_changed
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_source_interface
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import Interface
-from vyos.ifconfig import VXLANIf
-from vyos.template import is_ipv6
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import leaf_node_changed
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_source_interface
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import Interface
+from ngnos.ifconfig import VXLANIf
+from ngnos.template import is_ipv6
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

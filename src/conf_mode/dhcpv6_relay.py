@@ -18,16 +18,16 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.ifconfig import Interface
-from vyos.template import render
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.validate import is_ipv6_link_local
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.ifconfig import Interface
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.validate import is_ipv6_link_local
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = '/run/dhcp-relay/dhcrelay6.conf'

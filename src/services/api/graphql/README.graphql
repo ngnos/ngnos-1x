@@ -31,7 +31,7 @@ mutation {
                           subnet: "192.168.0.0/24",
                           defaultRouter: "192.168.0.1",
                           nameServer: "192.168.0.1",
-                          domainName: "vyos.net",
+                          domainName: "ngnos.com",
                           lease: 86400,
                           range: 0,
                           start: "192.168.0.9",
@@ -69,7 +69,7 @@ https://hostname/graphql), one can load an arbitrary config file from a
 path.
 
 mutation {
-  LoadConfigFile(data: {fileName: "/home/vyos/config.boot"}) {
+  LoadConfigFile(data: {fileName: "/home/ngnos/config.boot"}) {
     success
     errors
     data {
@@ -175,9 +175,9 @@ services
 │       │       ├── remove_firewall_address_group_members.tmpl
 │       │       └── update_firewall_address_group_members.tmpl
 │       └── state.py
-├── vyos-configd
-├── vyos-hostsd
-└── vyos-http-api-server
+├── ngnos-configd
+├── ngnos-hostsd
+└── ngnos-http-api-server
 
 The GraphQL library that we are using, Ariadne, advertises itself as a
 'schema-first' implementation: define the schema; define resolvers
@@ -198,7 +198,7 @@ the produced resolver calls the appropriate wrapper in
 'api/graphql/recipes', with base class doing the (overridable) configuration
 steps of calling all defined 'set'/'delete' commands.
 
-Integrating the above with vyos-http-api-server is 4 lines of code.
+Integrating the above with ngnos-http-api-server is 4 lines of code.
 
 What needs to be done:
 

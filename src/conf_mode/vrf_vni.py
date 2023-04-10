@@ -17,11 +17,11 @@
 from sys import argv
 from sys import exit
 
-from vyos.config import Config
-from vyos.template import render_to_string
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.template import render_to_string
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
 frr_daemon = 'zebra'

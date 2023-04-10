@@ -17,11 +17,11 @@
 
 import sys
 
-import vyos.accel_ppp
-import vyos.opmode
+import ngnos.accel_ppp
+import ngnos.opmode
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import rc_cmd
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import rc_cmd
 
 
 accel_dict = {
@@ -54,7 +54,7 @@ accel_dict = {
 
 
 def _get_config_settings(protocol):
-    '''Get config dict from VyOS configuration'''
+    '''Get config dict from ngNOS configuration'''
     conf = ConfigTreeQuery()
     base_path = accel_dict[protocol]['base_path']
     data = conf.get_config_dict(base_path,
@@ -69,7 +69,7 @@ def _get_config_settings(protocol):
 
 def _get_raw_statistics(accel_output, pattern, protocol):
     return {
-        **vyos.accel_ppp.get_server_statistics(accel_output, pattern, sep=':'),
+        **ngnos.accel_ppp.get_server_statistics(accel_output, pattern, sep=':'),
         **_get_config_settings(protocol)
     }
 
@@ -78,8 +78,8 @@ def _get_raw_sessions(port):
     cmd_options = 'show sessions ifname,username,ip,ip6,ip6-dp,type,rate-limit,' \
                   'state,uptime-raw,calling-sid,called-sid,sid,comp,rx-bytes-raw,' \
                   'tx-bytes-raw,rx-pkts,tx-pkts'
-    output = vyos.accel_ppp.accel_cmd(port, cmd_options)
-    parsed_data: list[dict[str, str]] = vyos.accel_ppp.accel_out_parse(
+    output = ngnos.accel_ppp.accel_cmd(port, cmd_options)
+    parsed_data: list[dict[str, str]] = ngnos.accel_ppp.accel_out_parse(
         output.splitlines())
     return parsed_data
 
@@ -102,12 +102,12 @@ def _verify(func):
         # unknown or incorrect protocol query
         if protocol not in protocol_list:
             unconf_message = f'unknown protocol "{protocol}"'
-            raise vyos.opmode.UnconfiguredSubsystem(unconf_message)
+            raise ngnos.opmode.UnconfiguredSubsystem(unconf_message)
         # Check if config does not exist
         config_protocol_path = accel_dict[protocol]['path']
         if not config.exists(config_protocol_path):
             unconf_message = f'"{config_protocol_path}" is not configured'
-            raise vyos.opmode.UnconfiguredSubsystem(unconf_message)
+            raise ngnos.opmode.UnconfiguredSubsystem(unconf_message)
         return func(*args, **kwargs)
 
     return _wrapper
@@ -140,16 +140,16 @@ def show_sessions(raw: bool, protocol: str):
     if raw:
         return _get_raw_sessions(port)
 
-    return vyos.accel_ppp.accel_cmd(port,
+    return ngnos.accel_ppp.accel_cmd(port,
                                     'show sessions ifname,username,ip,ip6,ip6-dp,'
                                     'calling-sid,rate-limit,state,uptime,rx-bytes,tx-bytes')
 
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

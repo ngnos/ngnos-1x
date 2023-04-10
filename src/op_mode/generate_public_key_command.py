@@ -18,8 +18,8 @@ import os
 import sys
 import urllib.parse
 
-import vyos.remote
-from vyos.template import generate_uuid4
+import ngnos.remote
+from ngnos.template import generate_uuid4
 
 
 def get_key(path) -> list:
@@ -36,7 +36,7 @@ def get_key(path) -> list:
         with open(os.path.expanduser(path), 'r') as f:
             key_string = f.read()
     else:
-        key_string = vyos.remote.get_remote_config(path)
+        key_string = ngnos.remote.get_remote_config(path)
     return key_string.split('\n')
 
 
@@ -51,8 +51,8 @@ if __name__ == "__main__":
 
         try:
             username = sys.argv[1]
-            # Github keys don't have identifier for example 'vyos@localhost'
-            # 'ssh-rsa AAAA... vyos@localhost'
+            # Github keys don't have identifier for example 'ngnos@localhost'
+            # 'ssh-rsa AAAA... ngnos@localhost'
             # Generate uuid4 identifier
             identifier = f'github@{generate_uuid4("")}' if sys.argv[2].startswith('https://github.com') else k[2]
             algorithm, key = k[0], k[1]

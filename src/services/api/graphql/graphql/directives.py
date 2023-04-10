@@ -20,7 +20,7 @@ from . mutations import *
 def non(arg):
     pass
 
-class VyosDirective(SchemaDirectiveVisitor):
+class ngNOSDirective(SchemaDirectiveVisitor):
     def visit_field_definition(self, field, object_type, make_resolver=non):
         name = f'{field.type}'
         # field.type contains the return value of the mutation; trim value
@@ -31,7 +31,7 @@ class VyosDirective(SchemaDirectiveVisitor):
         field.resolve = func
         return field
 
-class ConfigSessionQueryDirective(VyosDirective):
+class ConfigSessionQueryDirective(ngNOSDirective):
     """
     Class providing implementation of 'configsessionquery' directive in schema.
     """
@@ -39,7 +39,7 @@ class ConfigSessionQueryDirective(VyosDirective):
         super().visit_field_definition(field, object_type,
                                        make_resolver=make_config_session_query_resolver)
 
-class ConfigSessionMutationDirective(VyosDirective):
+class ConfigSessionMutationDirective(ngNOSDirective):
     """
     Class providing implementation of 'configsessionmutation' directive in schema.
     """
@@ -47,7 +47,7 @@ class ConfigSessionMutationDirective(VyosDirective):
         super().visit_field_definition(field, object_type,
                                        make_resolver=make_config_session_mutation_resolver)
 
-class GenOpQueryDirective(VyosDirective):
+class GenOpQueryDirective(ngNOSDirective):
     """
     Class providing implementation of 'genopquery' directive in schema.
     """
@@ -55,7 +55,7 @@ class GenOpQueryDirective(VyosDirective):
         super().visit_field_definition(field, object_type,
                                        make_resolver=make_gen_op_query_resolver)
 
-class GenOpMutationDirective(VyosDirective):
+class GenOpMutationDirective(ngNOSDirective):
     """
     Class providing implementation of 'genopmutation' directive in schema.
     """
@@ -63,7 +63,7 @@ class GenOpMutationDirective(VyosDirective):
         super().visit_field_definition(field, object_type,
                                        make_resolver=make_gen_op_mutation_resolver)
 
-class CompositeQueryDirective(VyosDirective):
+class CompositeQueryDirective(ngNOSDirective):
     """
     Class providing implementation of 'system_status' directive in schema.
     """
@@ -71,7 +71,7 @@ class CompositeQueryDirective(VyosDirective):
         super().visit_field_definition(field, object_type,
                                        make_resolver=make_composite_query_resolver)
 
-class CompositeMutationDirective(VyosDirective):
+class CompositeMutationDirective(ngNOSDirective):
     """
     Class providing implementation of 'system_status' directive in schema.
     """

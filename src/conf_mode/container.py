@@ -21,25 +21,25 @@ from ipaddress import ip_address
 from ipaddress import ip_network
 from json import dumps as json_write
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import node_changed
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.ifconfig import Interface
-from vyos.util import call
-from vyos.util import cmd
-from vyos.util import run
-from vyos.util import rc_cmd
-from vyos.util import write_file
-from vyos.template import inc_ip
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.template import render
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import node_changed
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.ifconfig import Interface
+from ngnos.util import call
+from ngnos.util import cmd
+from ngnos.util import run
+from ngnos.util import rc_cmd
+from ngnos.util import write_file
+from ngnos.template import inc_ip
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.template import render
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_containers = '/etc/containers/containers.conf'
@@ -48,7 +48,7 @@ config_storage = '/etc/containers/storage.conf'
 systemd_unit_path = '/run/systemd/system'
 
 def _cmd(command):
-    if os.path.exists('/tmp/vyos.container.debug'):
+    if os.path.exists('/tmp/ngnos.container.debug'):
         print(command)
     return cmd(command)
 
@@ -144,9 +144,9 @@ def verify(container):
 
             # Check if requested container image exists locally. If it does not
             # exist locally - inform the user. This is required as there is a
-            # shared container image storage accross all VyOS images. A user can
+            # shared container image storage accross all ngNOS images. A user can
             # delete a container image from the system, boot into another version
-            # of VyOS and then it would fail to boot. This is to prevent any
+            # of ngNOS and then it would fail to boot. This is to prevent any
             # configuration error when container images are deleted from the
             # global storage. A per image local storage would be a super waste
             # of diskspace as there will be a full copy (up tu several GB/image)
@@ -421,7 +421,7 @@ def generate(container):
             if 'disable' in container_config:
                 continue
 
-            file_path = os.path.join(systemd_unit_path, f'vyos-container-{name}.service')
+            file_path = os.path.join(systemd_unit_path, f'ngnos-container-{name}.service')
             run_args = generate_run_arguments(name, container_config)
             render(file_path, 'container/systemd-unit.j2', {'name': name, 'run_args': run_args,},
                    formater=lambda _: _.replace("&quot;", '"').replace("&apos;", "'"))
@@ -433,8 +433,8 @@ def apply(container):
     # Option "--force" allows to delete containers with any status
     if 'container_remove' in container:
         for name in container['container_remove']:
-            file_path = os.path.join(systemd_unit_path, f'vyos-container-{name}.service')
-            call(f'systemctl stop vyos-container-{name}.service')
+            file_path = os.path.join(systemd_unit_path, f'ngnos-container-{name}.service')
+            call(f'systemctl stop ngnos-container-{name}.service')
             if os.path.exists(file_path):
                 os.unlink(file_path)
 
@@ -460,15 +460,15 @@ def apply(container):
                 # check if there is a container by that name running
                 tmp = _cmd('podman ps -a --format "{{.Names}}"')
                 if name in tmp:
-                    file_path = os.path.join(systemd_unit_path, f'vyos-container-{name}.service')
-                    call(f'systemctl stop vyos-container-{name}.service')
+                    file_path = os.path.join(systemd_unit_path, f'ngnos-container-{name}.service')
+                    call(f'systemctl stop ngnos-container-{name}.service')
                     if os.path.exists(file_path):
                         disabled_new = True
                         os.unlink(file_path)
                 continue
 
             if 'container_restart' in container and name in container['container_restart']:
-                cmd(f'systemctl restart vyos-container-{name}.service')
+                cmd(f'systemctl restart ngnos-container-{name}.service')
 
     if disabled_new:
         call('systemctl daemon-reload')

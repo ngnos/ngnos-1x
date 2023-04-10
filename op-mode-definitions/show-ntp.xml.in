@@ -6,13 +6,13 @@
         <properties>
           <help>Show peer status of NTP daemon</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/show_ntp.sh --sourcestats</command>
+        <command>${ngnos_op_scripts_dir}/show_ntp.sh --sourcestats</command>
         <children>
           <node name="system">
             <properties>
               <help>Show parameters about the system clock performance</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/show_ntp.sh --tracking</command>
+            <command>${ngnos_op_scripts_dir}/show_ntp.sh --tracking</command>
           </node>
         </children>
       </node>

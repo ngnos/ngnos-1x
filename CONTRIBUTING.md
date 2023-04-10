@@ -1,6 +1,6 @@
-# Contributing to VyOS
+# Contributing to ngNOS
 
-You wan't to help us improve VyOS? This is awesome!
+You wan't to help us improve ngNOS? This is awesome!
 
 We accept any kind of Pull Requests on GitHub. In order to get your changes into
 the main repository as smooth as possible please take yourself some time and
@@ -19,7 +19,7 @@ file(s) history by invoking git log path/to/file.txt.
 
 ### Prepare patch/commit
 
-In a big system, such as VyOS, that is comprised of multiple components, it’s
+In a big system, such as ngNOS, that is comprised of multiple components, it’s
 impossible to keep track of all the changes and bugs/feature requests in one’s
 head. We use a bugtracker known as Phabricator for it (“issue tracker” would
 be a better term, but this one stuck).
@@ -29,7 +29,7 @@ The information is used in three ways:
 * Keep track of the progress (what we have already done in this branch and
   what  we still need to do).
 * Prepare automatic release notes for upcoming releases
-* Help future maintainers of VyOS (it could be you!) to find out why certain
+* Help future maintainers of ngNOS (it could be you!) to find out why certain
   things have been changed in the codebase or why certain features have been
   added
 
@@ -52,7 +52,7 @@ The format should be and is inspired by this very good and detailed
 [Git documentation](https://git-scm.com/book/ch5-2.html), it is also worth
 reading https://chris.beams.io/posts/git-commit/.
 
-This is nothing VyOS specific - it is more a general topic for distributed
+This is nothing ngNOS specific - it is more a general topic for distributed
 development environments.
 
 * A single, short, summary of the commit (recommended 50 characters or less,
@@ -84,7 +84,7 @@ development environments.
   your upcoming commit.
   
 ## Bug Report/Issue
-Issues or bugs are found in any software project. VyOS is not an exception.
+Issues or bugs are found in any software project. ngNOS is not an exception.
 
 All issues should be reported to the developers. This lets the developers know
 what is not working properly. Without this sort of feedback every developer
@@ -95,10 +95,10 @@ will believe that everything is working correctly.
 When you believe you have found a bug, it is always a good idea to verify the
 issue prior to opening a bug request.
 
-* Consult our [Documentation](https://docs.vyos.io) to ensure that you have
+* Consult our [Documentation](https://docs.ngnos.com) to ensure that you have
   configured your system correctly
-* Get community support via [Slack](https://slack.vyos.io) or our online
-  [Forum](https://forum.vyos.io)
+* Get community support via [Slack](https://slack.ngnos.com) or our online
+  [Forum](https://forum.ngnos.com)
 
 #### Ensure the problem is reproducible
 
@@ -126,12 +126,12 @@ also contain information that is helpful for the development team.
 ### Reporting
 
 In order to open up a bug-report/feature request you need to create yourself
-an account on [Phabricator](https://vyos.dev). On the left
-side of the specific project (VyOS 1.2 or VyOS 1.3) you will find quick-links
+an account on [Phabricator](https://ngnos.com). On the left
+side of the specific project (ngNOS 1.2 or ngNOS 1.3) you will find quick-links
 for opening a bug-report/feature request.
 
 * Provide as much information as you can
-* Which version of VyOS are you using? Use operational level command:
+* Which version of ngNOS are you using? Use operational level command:
   ``show version``
 * How can we reproduce this Bug? Please include a CLI configuration, you can
   use ``show configuration command | strip-private`` to remove sensitive
@@ -139,27 +139,27 @@ for opening a bug-report/feature request.
 
 ## Feature Request
 
-You have an idea of how to make VyOS better or you are in need of a specific
-feature which all users of VyOS would benefit from? To send a feature request
-please search [Phabricator](https://vyos.dev) if there is already a
+You have an idea of how to make ngNOS better or you are in need of a specific
+feature which all users of ngNOS would benefit from? To send a feature request
+please search [Phabricator](https://ngnos.com) if there is already a
 request pending. You can enhance it or if you don't find one, create a new one
 by use the quick link in the left side under the specific project.
 
 ## Code Contribution
 
-For contributing code to VyOS please take a short moment and review the guideline
+For contributing code to ngNOS please take a short moment and review the guideline
 outlined in our Documentation at
-https://docs.vyos.io/en/latest/contributing/development.html#submit-a-patch
+https://docs.ngnos.com/en/latest/contributing/development.html#submit-a-patch
 
 ### Coding Guidelines
 
 We have some small coding guidelines which are defined in a separate section of
-at https://docs.vyos.io/en/latest/contributing/development.html#coding-guidelines.
+at https://docs.ngnos.com/en/latest/contributing/development.html#coding-guidelines.
 The guidelines cover how to create the necessary XML structure for new features
 and also how to read in the code from the CLI into the Python based scripting
 backend.
 
 Thank you for taking the time reading this guide.
 
-It might also worth browsing our [Blog](https://blog.vyos.io) for additional
+It might also worth browsing our [Blog](https://blog.ngnos.com) for additional
 info and updates.

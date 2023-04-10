@@ -16,10 +16,10 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'ripngd'
 acl_in = '198'
@@ -30,7 +30,7 @@ route_map = 'FooBar123'
 
 base_path = ['protocols', 'ripng']
 
-class TestProtocolsRIPng(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsRIPng(ngNOSUnitTestSHIM.TestCase):
     def setUp(self):
         self.cli_set(['policy', 'access-list6', acl_in, 'rule', '10', 'action', 'permit'])
         self.cli_set(['policy', 'access-list6', acl_in, 'rule', '10', 'source', 'any'])

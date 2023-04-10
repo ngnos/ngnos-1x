@@ -18,22 +18,22 @@ import re
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.version import get_version_data
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.version import get_version_data
 
 PROCESS_NAME = 'lldpd'
-LLDPD_CONF = '/etc/lldpd.d/01-vyos.conf'
+LLDPD_CONF = '/etc/lldpd.d/01-ngnos.conf'
 base_path = ['service', 'lldp']
 mgmt_if = 'dum83513'
 mgmt_addr = ['1.2.3.4', '1.2.3.5']
 
-class TestServiceLLDP(VyOSUnitTestSHIM.TestCase):
+class TestServiceLLDP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         # call base-classes classmethod
@@ -70,8 +70,8 @@ class TestServiceLLDP(VyOSUnitTestSHIM.TestCase):
         config = read_file(LLDPD_CONF)
         version_data = get_version_data()
         version = version_data['version']
-        self.assertIn(f'configure system platform VyOS', config)
-        self.assertIn(f'configure system description "VyOS {version}"', config)
+        self.assertIn(f'configure system platform ngNOS', config)
+        self.assertIn(f'configure system description "ngNOS {version}"', config)
 
     def test_02_lldp_mgmt_address(self):
         for addr in mgmt_addr:

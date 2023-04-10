@@ -20,12 +20,12 @@ import re
 from pathlib import Path
 from sys import exit
 
-from vyos.config import Config
-from vyos import ConfigError
-from vyos.util import run
-from vyos.template import render
+from ngnos.config import Config
+from ngnos import ConfigError
+from ngnos.util import run
+from ngnos.template import render
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):
@@ -45,7 +45,7 @@ def get_config(config=None):
     }
 
     #
-    # /etc/rsyslog.d/vyos-rsyslog.conf
+    # /etc/rsyslog.d/ngnos-rsyslog.conf
     # 'set system syslog global'
     #
     config_data['files'].update(
@@ -88,7 +88,7 @@ def get_config(config=None):
                     filename: {
                         'log-file': '/var/log/user/' + filename,
                         'max-files': '5',
-                        'action-on-max-size': '/usr/sbin/logrotate /etc/logrotate.d/vyos-rsyslog-generated-' + filename,
+                        'action-on-max-size': '/usr/sbin/logrotate /etc/logrotate.d/ngnos-rsyslog-generated-' + filename,
                         'selectors': '*.err',
                         'max-size': 262144
                     }
@@ -201,11 +201,11 @@ def generate(c):
     if c == None:
         return None
 
-    conf = '/etc/rsyslog.d/vyos-rsyslog.conf'
+    conf = '/etc/rsyslog.d/ngnos-rsyslog.conf'
     render(conf, 'syslog/rsyslog.conf.j2', c)
 
     # cleanup current logrotate config files
-    logrotate_files = Path('/etc/logrotate.d/').glob('vyos-rsyslog-generated-*')
+    logrotate_files = Path('/etc/logrotate.d/').glob('ngnos-rsyslog-generated-*')
     for file in logrotate_files:
         file.unlink()
 
@@ -213,7 +213,7 @@ def generate(c):
     # defined it shouldn't matter
     for filename, fileconfig in c.get('files', {}).items():
         if fileconfig['log-file'].startswith('/var/log/user/'):
-            conf = '/etc/logrotate.d/vyos-rsyslog-generated-' + filename
+            conf = '/etc/logrotate.d/ngnos-rsyslog-generated-' + filename
             render(conf, 'syslog/logrotate.j2', { 'config_render': fileconfig })
 
 
@@ -228,9 +228,9 @@ def verify(c):
     if not os.path.islink('/etc/rsyslog.conf'):
         os.remove('/etc/rsyslog.conf')
         os.symlink(
-            '/usr/share/vyos/templates/rsyslog/rsyslog.conf', '/etc/rsyslog.conf')
+            '/usr/share/ngnos/templates/rsyslog/rsyslog.conf', '/etc/rsyslog.conf')
 
-    # /var/log/vyos-rsyslog were the old files, we may want to clean those up, but currently there
+    # /var/log/ngnos-rsyslog were the old files, we may want to clean those up, but currently there
     # is a chance that someone still needs it, so I don't automatically remove
     # them
     #

@@ -19,26 +19,26 @@ import os
 from sys import exit
 from netifaces import interfaces
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import node_changed
-from vyos.configdict import is_member
-from vyos.configdict import is_source_interface
-from vyos.configdict import has_vlan_subinterface_configured
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_dhcpv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_vrf
-from vyos.ifconfig import BridgeIf
-from vyos.validate import has_address_configured
-from vyos.validate import has_vrf_configured
-from vyos.xml import defaults
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import node_changed
+from ngnos.configdict import is_member
+from ngnos.configdict import is_source_interface
+from ngnos.configdict import has_vlan_subinterface_configured
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_dhcpv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_vrf
+from ngnos.ifconfig import BridgeIf
+from ngnos.validate import has_address_configured
+from ngnos.validate import has_vrf_configured
+from ngnos.xml import defaults
 
-from vyos.util import cmd
-from vyos.util import dict_search
-from vyos import ConfigError
+from ngnos.util import cmd
+from ngnos.util import dict_search
+from ngnos import ConfigError
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

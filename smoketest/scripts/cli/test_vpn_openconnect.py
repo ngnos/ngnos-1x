@@ -16,11 +16,11 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.template import ip_from_cidr
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.template import ip_from_cidr
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 OCSERV_CONF = '/run/ocserv/ocserv.conf'
 base_path = ['vpn', 'openconnect']
@@ -56,7 +56,7 @@ otp_file = '/run/ocserv/users.oath'
 listen_if = 'dum116'
 listen_address = '100.64.0.1/32'
 
-class TestVPNOpenConnect(VyOSUnitTestSHIM.TestCase):
+class TestVPNOpenConnect(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestVPNOpenConnect, cls).setUpClass()
@@ -86,14 +86,14 @@ class TestVPNOpenConnect(VyOSUnitTestSHIM.TestCase):
         self.assertFalse(process_named_running(PROCESS_NAME))
 
     def test_ocserv(self):
-        user = 'vyos_user'
-        password = 'vyos_pass'
+        user = 'ngnos_user'
+        password = 'ngnos_pass'
         otp = '37500000026900000000200000000000'
         v4_subnet = '192.0.2.0/24'
         v6_prefix = '2001:db8:1000::/64'
         v6_len = '126'
         name_server = ['1.2.3.4', '1.2.3.5', '2001:db8::1']
-        split_dns = ['vyos.net', 'vyos.io']
+        split_dns = ['ngnos.net', 'ngnos.com']
 
         self.cli_set(base_path + ['authentication', 'local-users', 'username', user, 'password', password])
         self.cli_set(base_path + ['authentication', 'local-users', 'username', user, 'otp', 'key', otp])

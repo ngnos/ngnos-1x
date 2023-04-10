@@ -70,7 +70,7 @@
                     <list>enable disable</list>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/toggle_help_binding.sh $5</command>
+                <command>${ngnos_op_scripts_dir}/toggle_help_binding.sh $5</command>
               </tagNode>
             </children>
           </node>

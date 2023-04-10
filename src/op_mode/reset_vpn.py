@@ -16,9 +16,9 @@
 import sys
 import typing
 
-from vyos.util import run
+from ngnos.util import run
 
-import vyos.opmode
+import ngnos.opmode
 
 cmd_dict = {
     'cmd_base': '/usr/bin/accel-cmd -p {} terminate {} {}',
@@ -48,14 +48,14 @@ def reset_conn(protocol: str, username: typing.Optional[str] = None,
                                             'all',
                                             ''))
     else:
-        vyos.opmode.IncorrectValue('Unknown VPN Protocol, aborting')
+        ngnos.opmode.IncorrectValue('Unknown VPN Protocol, aborting')
 
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

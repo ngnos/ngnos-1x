@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="dhcpv6-relay" owner="${vyos_conf_scripts_dir}/dhcpv6_relay.py">
+      <node name="dhcpv6-relay" owner="${ngnos_conf_scripts_dir}/dhcpv6_relay.py">
         <properties>
           <help>DHCPv6 Relay Agent parameters</help>
           <priority>900</priority>
@@ -13,7 +13,7 @@
             <properties>
               <help>Interface for DHCPv6 Relay Agent to listen for requests</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>
@@ -49,7 +49,7 @@
             <properties>
               <help>Interface for DHCPv6 Relay Agent forward requests out</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>

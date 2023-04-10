@@ -1,6 +1,6 @@
 [Unit]
 Description=NDP Proxy Daemon
-After=vyos-router.service
+After=ngnos-router.service
 ConditionPathExists=/run/ndppd/ndppd.conf
 StartLimitIntervalSec=0
 

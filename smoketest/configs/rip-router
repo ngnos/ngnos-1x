@@ -8,7 +8,7 @@ interfaces {
             rip {
                 authentication {
                     md5 1 {
-                        password VyOSsecure
+                        password ngNOSsecure
                     }
                 }
                 split-horizon {
@@ -35,7 +35,7 @@ interfaces {
             ip {
                 rip {
                     authentication {
-                        plaintext-password VyOSsecure
+                        plaintext-password ngNOSsecure
                     }
                     split-horizon {
                         poison-reverse
@@ -55,7 +55,7 @@ interfaces {
                 rip {
                     authentication {
                         md5 1 {
-                            password VyOSsecure
+                            password ngNOSsecure
                         }
                     }
                     split-horizon {
@@ -75,7 +75,7 @@ interfaces {
                     rip {
                         authentication {
                             md5 1 {
-                                password VyOSsecure
+                                password ngNOSsecure
                             }
                         }
                     }
@@ -233,9 +233,9 @@ system {
             speed 115200
         }
     }
-    host-name vyos
+    host-name ngnos
     login {
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$O5gJRlDYQpj$MtrCV9lxMnZPMbcxlU7.FI793MImNHznxGoMFgm3Q6QP3vfKJyOSRCt3Ka/GzFQyW1yZS4NS616NLHaIPPFHc0
                 plaintext-password ""

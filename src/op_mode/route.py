@@ -24,7 +24,7 @@ import typing
 
 from jinja2 import Template
 
-import vyos.opmode
+import ngnos.opmode
 
 frr_command_template = Template("""
 {% if family == "inet" %}
@@ -57,7 +57,7 @@ frr_command_template = Template("""
 ArgFamily = typing.Literal['inet', 'inet6']
 
 def show_summary(raw: bool, family: ArgFamily, table: typing.Optional[int], vrf: typing.Optional[str]):
-    from vyos.util import cmd
+    from ngnos.util import cmd
 
     if family == 'inet':
         family_cmd = 'ip'
@@ -119,7 +119,7 @@ def show(raw: bool,
         frr_command = frr_command_template.render(kwargs)
         frr_command = re.sub(r'\s+', ' ', frr_command)
 
-        from vyos.util import cmd
+        from ngnos.util import cmd
         output = cmd(f"vtysh -c '{frr_command}'")
 
         if raw:
@@ -135,10 +135,10 @@ def show(raw: bool,
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)
 

@@ -16,16 +16,16 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.firewall import find_nftables_rule
-from vyos.util import call, process_named_running, read_file
+from ngnos.firewall import find_nftables_rule
+from ngnos.util import call, process_named_running, read_file
 
 tunnel_path = ['interfaces', 'tunnel']
 nhrp_path = ['protocols', 'nhrp']
 vpn_path = ['vpn', 'ipsec']
 
-class TestProtocolsNHRP(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsNHRP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsNHRP, cls).setUpClass()
@@ -46,7 +46,7 @@ class TestProtocolsNHRP(VyOSUnitTestSHIM.TestCase):
         tunnel_encapsulation = "gre"
         esp_group = "ESP-HUB"
         ike_group = "IKE-HUB"
-        nhrp_secret = "vyos123"
+        nhrp_secret = "ngnos123"
         nhrp_profile = "NHRPVPN"
         ipsec_secret = "secret"
 
@@ -110,10 +110,10 @@ class TestProtocolsNHRP(VyOSUnitTestSHIM.TestCase):
             f'ip protocol {tunnel_encapsulation}',
             f'ip saddr {tunnel_source}',
             f'ip daddr 224.0.0.0/4',
-            f'comment "VYOS_NHRP_{tunnel_if}"'
+            f'comment "NGNOS_NHRP_{tunnel_if}"'
         ]
 
-        self.assertTrue(find_nftables_rule('ip vyos_nhrp_filter', 'VYOS_NHRP_OUTPUT', firewall_matches) is not None)
+        self.assertTrue(find_nftables_rule('ip ngnos_nhrp_filter', 'NGNOS_NHRP_OUTPUT', firewall_matches) is not None)
         self.assertTrue(process_named_running('opennhrp'))
 
 if __name__ == '__main__':

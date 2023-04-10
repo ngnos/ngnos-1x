@@ -17,8 +17,8 @@
 
 import sys
 
-import vyos.opmode
-from vyos.util import cmd
+import ngnos.opmode
+from ngnos.util import cmd
 
 # FIY: As of coreutils from Debian Buster and Bullseye,
 # the outpt looks like this:
@@ -27,7 +27,7 @@ from vyos.util import cmd
 # Filesystem      Size  Used Avail Use%
 # /dev/sda1        16G  7.6G  7.3G  51%
 #
-# Those field names are automatically normalized by vyos.opmode.run,
+# Those field names are automatically normalized by ngnos.opmode.run,
 # so we don't touch them here,
 # and only normalize values.
 
@@ -43,7 +43,7 @@ def _get_system_storage(only_persistent=False):
 
 def _get_raw_data():
     from re import sub as re_sub
-    from vyos.util import human_to_bytes
+    from ngnos.util import human_to_bytes
 
     out =  _get_system_storage(only_persistent=True)
     lines = out.splitlines()
@@ -69,10 +69,10 @@ def show(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)
 

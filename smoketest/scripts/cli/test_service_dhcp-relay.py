@@ -16,18 +16,18 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'dhcrelay'
 RELAY_CONF = '/run/dhcp-relay/dhcrelay.conf'
 base_path = ['service', 'dhcp-relay']
 
-class TestServiceDHCPRelay(VyOSUnitTestSHIM.TestCase):
+class TestServiceDHCPRelay(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

@@ -16,11 +16,11 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import read_file
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import read_file
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'igmpproxy'
 IGMP_PROXY_CONF = '/etc/igmpproxy.conf'
@@ -28,7 +28,7 @@ base_path = ['protocols', 'igmp-proxy']
 upstream_if = 'eth1'
 downstream_if = 'eth2'
 
-class TestProtocolsIGMPProxy(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsIGMPProxy(ngNOSUnitTestSHIM.TestCase):
     def setUp(self):
         self.cli_set(['interfaces', 'ethernet', upstream_if, 'address', '172.16.1.1/24'])
 

@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="nhrp" owner="${vyos_conf_scripts_dir}/protocols_nhrp.py">
+      <node name="nhrp" owner="${ngnos_conf_scripts_dir}/protocols_nhrp.py">
         <properties>
           <help>Next Hop Resolution Protocol (NHRP) parameters</help>
           <priority>680</priority>

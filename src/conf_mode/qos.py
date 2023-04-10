@@ -19,28 +19,28 @@ import os
 from sys import exit
 from netifaces import interfaces
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdep import set_dependents, call_dependents
-from vyos.configdict import dict_merge
-from vyos.ifconfig import Section
-from vyos.qos import CAKE
-from vyos.qos import DropTail
-from vyos.qos import FairQueue
-from vyos.qos import FQCodel
-from vyos.qos import Limiter
-from vyos.qos import NetEm
-from vyos.qos import Priority
-from vyos.qos import RandomDetect
-from vyos.qos import RateLimiter
-from vyos.qos import RoundRobin
-from vyos.qos import TrafficShaper
-from vyos.qos import TrafficShaperHFSC
-from vyos.util import call
-from vyos.util import dict_search_recursive
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdep import set_dependents, call_dependents
+from ngnos.configdict import dict_merge
+from ngnos.ifconfig import Section
+from ngnos.qos import CAKE
+from ngnos.qos import DropTail
+from ngnos.qos import FairQueue
+from ngnos.qos import FQCodel
+from ngnos.qos import Limiter
+from ngnos.qos import NetEm
+from ngnos.qos import Priority
+from ngnos.qos import RandomDetect
+from ngnos.qos import RateLimiter
+from ngnos.qos import RoundRobin
+from ngnos.qos import TrafficShaper
+from ngnos.qos import TrafficShaperHFSC
+from ngnos.util import call
+from ngnos.util import dict_search_recursive
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 map_vyops_tc = {

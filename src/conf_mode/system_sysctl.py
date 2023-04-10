@@ -18,14 +18,14 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.template import render
-from vyos.util import cmd
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.template import render
+from ngnos.util import cmd
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
-config_file = r'/run/sysctl/99-vyos-sysctl.conf'
+config_file = r'/run/sysctl/99-ngnos-sysctl.conf'
 
 def get_config(config=None):
     if config:

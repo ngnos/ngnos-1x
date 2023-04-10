@@ -21,17 +21,17 @@ from glob import glob
 from ipaddress import IPv4Network
 from netifaces import interfaces
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.template import address_from_cidr
-from vyos.template import dec_ip
-from vyos.template import inc_ip
-from vyos.template import last_host_address
-from vyos.template import netmask_from_cidr
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.template import address_from_cidr
+from ngnos.template import dec_ip
+from ngnos.template import inc_ip
+from ngnos.template import last_host_address
+from ngnos.template import netmask_from_cidr
 
 PROCESS_NAME = 'openvpn'
 
@@ -94,7 +94,7 @@ def get_vrf(interface):
         tmp = tmp.replace('upper_', '')
         return tmp
 
-class TestInterfacesOpenVPN(VyOSUnitTestSHIM.TestCase):
+class TestInterfacesOpenVPN(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestInterfacesOpenVPN, cls).setUpClass()
@@ -169,10 +169,10 @@ class TestInterfacesOpenVPN(VyOSUnitTestSHIM.TestCase):
         self.cli_set(path + ['tls', 'certificate', 'ovpn_test'])
 
         # check validate() - can not have auth username without a password
-        self.cli_set(path + ['authentication', 'username', 'vyos'])
+        self.cli_set(path + ['authentication', 'username', 'ngnos'])
         with self.assertRaises(ConfigSessionError):
             self.cli_commit()
-        self.cli_set(path + ['authentication', 'password', 'vyos'])
+        self.cli_set(path + ['authentication', 'password', 'ngnos'])
 
         # client commit must pass
         self.cli_commit()

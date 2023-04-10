@@ -22,9 +22,9 @@ import sys
 import argparse
 import os
 
-import vyos.config
-from vyos.util import call
-from vyos.util import commit_in_progress
+import ngnos.config
+from ngnos.util import call
+from ngnos.util import commit_in_progress
 
 
 parser = argparse.ArgumentParser()
@@ -33,7 +33,7 @@ parser.add_argument("--ipv6", action="store_true", help="Restart IPv6 DHCP relay
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    c = vyos.config.Config()
+    c = ngnos.config.Config()
 
     if args.ipv4:
         # Do nothing if service is not configured

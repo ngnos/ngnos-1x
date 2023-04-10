@@ -30,39 +30,39 @@ from netifaces import interfaces
 from secrets import SystemRandom
 from shutil import rmtree
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import VTunIf
-from vyos.pki import load_dh_parameters
-from vyos.pki import load_private_key
-from vyos.pki import sort_ca_chain
-from vyos.pki import verify_ca_chain
-from vyos.pki import wrap_certificate
-from vyos.pki import wrap_crl
-from vyos.pki import wrap_dh_parameters
-from vyos.pki import wrap_openvpn_key
-from vyos.pki import wrap_private_key
-from vyos.template import render
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.util import call
-from vyos.util import chown
-from vyos.util import cmd
-from vyos.util import dict_search
-from vyos.util import dict_search_args
-from vyos.util import is_list_equal
-from vyos.util import makedir
-from vyos.util import read_file
-from vyos.util import write_file
-from vyos.validate import is_addr_assigned
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import VTunIf
+from ngnos.pki import load_dh_parameters
+from ngnos.pki import load_private_key
+from ngnos.pki import sort_ca_chain
+from ngnos.pki import verify_ca_chain
+from ngnos.pki import wrap_certificate
+from ngnos.pki import wrap_crl
+from ngnos.pki import wrap_dh_parameters
+from ngnos.pki import wrap_openvpn_key
+from ngnos.pki import wrap_private_key
+from ngnos.template import render
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.util import call
+from ngnos.util import chown
+from ngnos.util import cmd
+from ngnos.util import dict_search
+from ngnos.util import dict_search_args
+from ngnos.util import is_list_equal
+from ngnos.util import makedir
+from ngnos.util import read_file
+from ngnos.util import write_file
+from ngnos.validate import is_addr_assigned
 
-from vyos import ConfigError
-from vyos import airbag
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 user = 'openvpn'
@@ -645,7 +645,7 @@ def generate(openvpn):
                    user=user, group=group)
 
     # we need to support quoting of raw parameters from OpenVPN CLI
-    # see https://vyos.dev/T1632
+    # see https://ngnos.dev/T1632
     render(cfg_file.format(**openvpn), 'openvpn/server.conf.j2', openvpn,
            formater=lambda _: _.replace("&quot;", '"'), user=user, group=group)
 

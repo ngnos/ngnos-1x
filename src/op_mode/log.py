@@ -21,9 +21,9 @@ import typing
 
 from jinja2 import Template
 
-from vyos.util import rc_cmd
+from ngnos.util import rc_cmd
 
-import vyos.opmode
+import ngnos.opmode
 
 journalctl_command_template = Template("""
 --no-hostname
@@ -86,9 +86,9 @@ def show(raw: bool,
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

@@ -44,13 +44,13 @@ system {
             speed 115200
         }
     }
-    domain-name vyos.net
-    host-name vyos
+    domain-name ngnos.com
+    host-name ngnos
     ipv6 {
         disable
     }
     login {
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
                 plaintext-password ""

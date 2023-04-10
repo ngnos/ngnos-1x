@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="logs" owner="${vyos_conf_scripts_dir}/system-logs.py">
+      <node name="logs" owner="${ngnos_conf_scripts_dir}/system-logs.py">
         <properties>
           <help>Logging options</help>
           <priority>9999</priority>

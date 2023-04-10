@@ -18,10 +18,10 @@ import sys
 import json
 
 from tabulate import tabulate
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import rc_cmd
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import rc_cmd
 
-import vyos.opmode
+import ngnos.opmode
 
 
 occtl        = '/usr/bin/occtl'
@@ -31,7 +31,7 @@ occtl_socket = '/run/ocserv/occtl.socket'
 def _get_raw_data_sessions():
     rc, out = rc_cmd(f'sudo {occtl} --json --socket-file {occtl_socket} show users')
     if rc != 0:
-        raise vyos.opmode.DataUnavailable(out)
+        raise ngnos.opmode.DataUnavailable(out)
 
     sessions = json.loads(out)
     return sessions
@@ -55,7 +55,7 @@ def _get_formatted_sessions(data):
 def show_sessions(raw: bool):
     config = ConfigTreeQuery()
     if not config.exists('vpn openconnect'):
-        raise vyos.opmode.UnconfiguredSubsystem('Openconnect is not configured')
+        raise ngnos.opmode.UnconfiguredSubsystem('Openconnect is not configured')
 
     openconnect_data = _get_raw_data_sessions()
     if raw:
@@ -65,9 +65,9 @@ def show_sessions(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

@@ -22,10 +22,10 @@ import typing
 from sys import exit
 from tabulate import tabulate
 
-from vyos.util import cmd, rc_cmd
-from vyos.util import dict_search
+from ngnos.util import cmd, rc_cmd
+from ngnos.util import dict_search
 
-import vyos.opmode
+import ngnos.opmode
 
 
 def _get_json_data():
@@ -61,7 +61,7 @@ def _get_raw_data_fdb(bridge):
     # From iproute2 fdb.c, fdb_show() will only exit(-1) in case of
     # non-existent bridge device; raise error.
     if code == 255:
-        raise vyos.opmode.UnconfiguredSubsystem(f"no such bridge device {bridge}")
+        raise ngnos.opmode.UnconfiguredSubsystem(f"no such bridge device {bridge}")
     data_dict = json.loads(json_data)
     return data_dict
 
@@ -198,9 +198,9 @@ def show_mdb(raw: bool, interface: str):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

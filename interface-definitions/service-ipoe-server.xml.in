@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="ipoe-server" owner="${vyos_conf_scripts_dir}/service_ipoe-server.py">
+      <node name="ipoe-server" owner="${ngnos_conf_scripts_dir}/service_ipoe-server.py">
         <properties>
           <help>Internet Protocol over Ethernet (IPoE) Server</help>
           <priority>900</priority>
@@ -12,7 +12,7 @@
             <properties>
               <help>Interface to listen dhcp or unclassified packets</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>
@@ -122,7 +122,7 @@
                 <properties>
                   <help>Network interface for client MAC addresses</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
                 <children>

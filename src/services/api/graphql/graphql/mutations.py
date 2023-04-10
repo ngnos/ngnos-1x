@@ -23,7 +23,7 @@ from .. import state
 from .. libs import key_auth
 from api.graphql.session.session import Session
 from api.graphql.session.errors.op_mode_errors import op_mode_err_msg, op_mode_err_code
-from vyos.opmode import Error as OpModeError
+from ngnos.opmode import Error as OpModeError
 
 mutation = ObjectType("Mutation")
 
@@ -48,7 +48,7 @@ def make_mutation_resolver(mutation_name, class_name, session_func):
     @with_signature(func_sig, func_name=resolver_name)
     async def func_impl(*args, **kwargs):
         try:
-            auth_type = state.settings['app'].state.vyos_auth_type
+            auth_type = state.settings['app'].state.ngnos_auth_type
 
             if auth_type == 'key':
                 data = kwargs['data']
@@ -84,11 +84,11 @@ def make_mutation_resolver(mutation_name, class_name, session_func):
                     }
             else:
                 # AtrributeError will have already been raised if no
-                # vyos_auth_type; validation and defaultValue ensure it is
+                # ngnos_auth_type; validation and defaultValue ensure it is
                 # one of the previous cases, so this is never reached.
                 pass
 
-            session = state.settings['app'].state.vyos_session
+            session = state.settings['app'].state.ngnos_session
 
             # one may override the session functions with a local subclass
             try:
@@ -115,7 +115,7 @@ def make_mutation_resolver(mutation_name, class_name, session_func):
                 "errore": ['op_mode_error'],
                 "op_mode_error": {"name": f"{typename}",
                                  "message": msg if msg else op_mode_err_msg.get(typename, "Unknown"),
-                                 "vyos_code": op_mode_err_code.get(typename, 9999)}
+                                 "ngnos_code": op_mode_err_code.get(typename, 9999)}
             }
         except Exception as error:
             return {

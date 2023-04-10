@@ -5,7 +5,7 @@
       <help>Configure load-balancing</help>
     </properties>
     <children>
-      <node name="wan" owner="${vyos_conf_scripts_dir}/load-balancing-wan.py">
+      <node name="wan" owner="${ngnos_conf_scripts_dir}/load-balancing-wan.py">
         <properties>
           <help>Configure Wide Area Network (WAN) load-balancing</help>
         </properties>
@@ -44,7 +44,7 @@
             <properties>
               <help>Interface name</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>
@@ -218,7 +218,7 @@
                   <help>Inbound interface name (e.g., "eth0") [REQUIRED]</help>
                   <completionHelp>
                     <list>any</list>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
               </leafNode>
@@ -226,7 +226,7 @@
                 <properties>
                   <help>Interface name [REQUIRED]</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
                 <children>
@@ -328,7 +328,7 @@
                 <properties>
                   <help>Protocol to match (protocol name, number, or "all")</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_protocols.sh</script>
+                    <script>${ngnos_completion_dir}/list_protocols.sh</script>
                     <list>all tcp_udp</list>
                   </completionHelp>
                   <valueHelp>

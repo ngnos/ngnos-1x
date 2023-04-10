@@ -19,10 +19,10 @@ import typing
 from typing import Union, Tuple, Optional
 from humps import decamelize
 
-from vyos.defaults import directories
-from vyos.util import load_as_module
-from vyos.opmode import _normalize_field_names
-from vyos.opmode import _is_literal_type, _get_literal_values
+from ngnos.defaults import directories
+from ngnos.util import load_as_module
+from ngnos.opmode import _normalize_field_names
+from ngnos.opmode import _is_literal_type, _get_literal_values
 
 def load_op_mode_as_module(name: str):
     path = os.path.join(directories['op_mode'], name)

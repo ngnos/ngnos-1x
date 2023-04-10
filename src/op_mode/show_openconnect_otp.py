@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright 2017, 2022 VyOS maintainers and contributors <maintainers@vyos.io>
+# Copyright 2017, 2022 VyOS maintainers and contributors <maintainers@ngnos.io>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -18,10 +18,10 @@
 import argparse
 import os
 
-from vyos.config import Config
-from vyos.xml import defaults
-from vyos.configdict import dict_merge
-from vyos.util import popen
+from ngnos.config import Config
+from ngnos.xml import defaults
+from ngnos.configdict import dict_merge
+from ngnos.util import popen
 from base64 import b32encode
 
 otp_file = '/run/ocserv/users.oath'
@@ -46,7 +46,7 @@ def get_otp_ocserv(username):
     # options which we need to update into the dictionary retrived.
     default_values = defaults(base)
     ocserv = dict_merge(default_values, ocserv)
-    # workaround a "know limitation" - https://vyos.dev/T2665
+    # workaround a "know limitation" - https://ngnos.dev/T2665
     del ocserv['authentication']['local_users']['username']['otp']
     if not ocserv["authentication"]["local_users"]["username"]:
         return None

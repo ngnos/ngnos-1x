@@ -22,17 +22,17 @@ from netaddr import IPAddress
 from netaddr import IPRange
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import run
-from vyos.validate import is_subnet_connected
-from vyos.validate import is_addr_assigned
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import run
+from ngnos.validate import is_subnet_connected
+from ngnos.validate import is_addr_assigned
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = '/run/dhcp-server/dhcpd.conf'
@@ -283,12 +283,12 @@ def generate(dhcp):
     if not dhcp or 'disable' in dhcp:
         return None
 
-    # Please see: https://vyos.dev/T1129 for quoting of the raw
+    # Please see: https://ngnos.dev/T1129 for quoting of the raw
     # parameters we can pass to ISC DHCPd
     tmp_file = '/tmp/dhcpd.conf'
     render(tmp_file, 'dhcp-server/dhcpd.conf.j2', dhcp,
            formater=lambda _: _.replace("&quot;", '"'))
-    # XXX: as we have the ability for a user to pass in "raw" options via VyOS
+    # XXX: as we have the ability for a user to pass in "raw" options via ngNOS
     # CLI (see T3544) we now ask ISC dhcpd to test the newly rendered
     # configuration
     tmp = run(f'/usr/sbin/dhcpd -4 -q -t -cf {tmp_file}')

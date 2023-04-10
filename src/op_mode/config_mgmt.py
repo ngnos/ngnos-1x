@@ -17,8 +17,8 @@
 import sys
 import typing
 
-import vyos.opmode
-from vyos.config_mgmt import ConfigMgmt
+import ngnos.opmode
+from ngnos.config_mgmt import ConfigMgmt
 
 def show_commit_diff(raw: bool, rev: int, rev2: typing.Optional[int],
                      commands: bool):
@@ -77,9 +77,9 @@ def show_commit_log_brief(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

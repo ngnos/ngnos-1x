@@ -22,9 +22,9 @@
 # An array of host[:port] registries to try when pulling an unqualified image, in order.
 # unqualified-search-registries = ["example.com"]
 
-{% if registry is vyos_defined %}
+{% if registry is ngnos_defined %}
 {%     set registry_list = [] %}
-{%     for r, r_options in registry.items() if r_options.disable is not vyos_defined %}
+{%     for r, r_options in registry.items() if r_options.disable is not ngnos_defined %}
 {%         set _ = registry_list.append(r) %}
 {%     endfor %}
 unqualified-search-registries = {{ registry_list }}

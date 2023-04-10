@@ -17,7 +17,7 @@
 import argparse
 import os
 
-from vyos.util import popen
+from ngnos.util import popen
 from secrets import token_hex
 from base64 import b32encode
 

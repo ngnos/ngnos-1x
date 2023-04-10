@@ -2,7 +2,7 @@
 Description=WIDE DHCPv6 client on %i
 Documentation=man:dhcp6c(8) man:dhcp6c.conf(5)
 ConditionPathExists=/run/dhcp6c/dhcp6c.%i.conf
-After=vyos-router.service
+After=ngnos-router.service
 StartLimitIntervalSec=0
 
 [Service]

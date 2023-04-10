@@ -23,8 +23,8 @@ import sys
 import argparse
 import netifaces
 
-from vyos.config import Config
-from vyos.util import popen
+from ngnos.config import Config
+from ngnos.util import popen
 
 parser = argparse.ArgumentParser(description='Retrieve SNMP interfaces information')
 parser.add_argument('--ifindex', action='store', nargs='?', const='all', help='Show interface index')

@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="broadcast-relay" owner="${vyos_conf_scripts_dir}/bcast_relay.py">
+      <node name="broadcast-relay" owner="${ngnos_conf_scripts_dir}/bcast_relay.py">
         <properties>
           <help>UDP broadcast relay service</help>
           <priority>990</priority>

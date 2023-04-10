@@ -16,12 +16,12 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'squid'
 PROXY_CONF = '/etc/squid/squid.conf'
@@ -29,7 +29,7 @@ base_path = ['service', 'webproxy']
 listen_if = 'dum3632'
 listen_ip = '192.0.2.1'
 
-class TestServiceWebProxy(VyOSUnitTestSHIM.TestCase):
+class TestServiceWebProxy(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         # call base-classes classmethod
@@ -80,7 +80,7 @@ class TestServiceWebProxy(VyOSUnitTestSHIM.TestCase):
         self.assertTrue(process_named_running(PROCESS_NAME))
 
     def test_02_advanced_proxy(self):
-        domain = '.vyos.io'
+        domain = '.ngnos.com'
         cache_size = '900'
         port = '8080'
         min_obj_size = '128'
@@ -136,11 +136,11 @@ class TestServiceWebProxy(VyOSUnitTestSHIM.TestCase):
     def test_03_ldap_proxy_auth(self):
         auth_children = '20'
         cred_ttl = '120'
-        realm = 'VyOS Webproxy'
-        ldap_base_dn = 'DC=vyos,DC=net'
-        ldap_server = 'ldap.vyos.net'
+        realm = 'ngNOS Webproxy'
+        ldap_base_dn = 'DC=ngnos,DC=net'
+        ldap_server = 'ldap.ngnos.com'
         ldap_bind_dn = f'CN=proxyuser,CN=Users,{ldap_base_dn}'
-        ldap_password = 'VyOS12345'
+        ldap_password = 'ngNOS12345'
         ldap_attr = 'cn'
         ldap_filter = '(cn=%s)'
 
@@ -220,11 +220,11 @@ class TestServiceWebProxy(VyOSUnitTestSHIM.TestCase):
         sg_db_dir = '/opt/vyatta/etc/config/url-filtering/squidguard/db'
 
         default_cache = '100'
-        local_block = ['192.0.0.1', '10.0.0.1', 'block.vyos.net']
+        local_block = ['192.0.0.1', '10.0.0.1', 'block.ngnos.com']
         local_block_url = ['foo.com/bar.html', 'bar.com/foo.htm']
         local_block_pattern = ['porn', 'cisco', 'juniper']
-        local_ok = ['10.0.0.0', 'vyos.net']
-        local_ok_url = ['vyos.net', 'vyos.io']
+        local_ok = ['10.0.0.0', 'ngnos.com']
+        local_ok_url = ['ngnos.com', 'ngnos.io']
 
         self.cli_set(base_path + ['listen-address', listen_ip])
         self.cli_set(base_path + ['url-filtering', 'squidguard', 'log', 'all'])
@@ -270,7 +270,7 @@ class TestServiceWebProxy(VyOSUnitTestSHIM.TestCase):
         self.assertIn(f'urllist        local-ok-url-default/urls', sg_config)
 
         # Redirect - default value
-        self.assertIn(f'redirect 302:http://block.vyos.net', sg_config)
+        self.assertIn(f'redirect 302:http://block.ngnos.com', sg_config)
 
         # local-block database
         tmp = cmd(f'sudo cat {sg_db_dir}/local-block-default/domains')

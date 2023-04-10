@@ -18,22 +18,22 @@ import re
 import sys
 import copy
 
-import vyos.util
-import vyos.hostsd_client
+import ngnos.util
+import ngnos.hostsd_client
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.ifconfig import Section
-from vyos.template import is_ip
-from vyos.util import cmd
-from vyos.util import call
-from vyos.util import process_named_running
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.ifconfig import Section
+from ngnos.template import is_ip
+from ngnos.util import cmd
+from ngnos.util import call
+from ngnos.util import process_named_running
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 default_config_data = {
-    'hostname': 'vyos',
+    'hostname': 'ngnos',
     'domain_name': '',
     'domain_search': [],
     'nameserver': [],
@@ -126,9 +126,9 @@ def apply(config):
     if config is None:
         return None
 
-    ## Send the updated data to vyos-hostsd
+    ## Send the updated data to ngnos-hostsd
     try:
-        hc = vyos.hostsd_client.Client()
+        hc = ngnos.hostsd_client.Client()
 
         hc.set_host_name(config['hostname'], config['domain_name'])
 
@@ -153,10 +153,10 @@ def apply(config):
             hc.add_hosts({hostsd_tag: config['static_host_mapping']})
 
         hc.apply()
-    except vyos.hostsd_client.VyOSHostsdError as e:
+    except ngnos.hostsd_client.ngNOSHostsdError as e:
         raise ConfigError(str(e))
 
-    ## Actually update the hostname -- vyos-hostsd doesn't do that
+    ## Actually update the hostname -- ngnos-hostsd doesn't do that
 
     # No domain name -- the Debian way.
     hostname_new = config['hostname']

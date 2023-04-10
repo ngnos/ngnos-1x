@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="ntp" owner="${vyos_conf_scripts_dir}/ntp.py">
+      <node name="ntp" owner="${ngnos_conf_scripts_dir}/ntp.py">
         <properties>
           <help>Network Time Protocol (NTP) configuration</help>
           <priority>900</priority>

@@ -16,11 +16,11 @@
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import node_changed
-from vyos.util import call
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import node_changed
+from ngnos.util import call
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

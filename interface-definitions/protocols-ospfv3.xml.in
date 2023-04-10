@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="ospfv3" owner="${vyos_conf_scripts_dir}/protocols_ospfv3.py">
+      <node name="ospfv3" owner="${ngnos_conf_scripts_dir}/protocols_ospfv3.py">
         <properties>
           <help>Open Shortest Path First (OSPF) for IPv6</help>
           <priority>620</priority>

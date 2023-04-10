@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="pki" owner="${vyos_conf_scripts_dir}/pki.py">
+  <node name="pki" owner="${ngnos_conf_scripts_dir}/pki.py">
     <properties>
-      <help>VyOS PKI configuration</help>
+      <help>ngNOS PKI configuration</help>
       <priority>300</priority>
     </properties>
     <children>
@@ -191,7 +191,7 @@
                 <properties>
                   <help>Default organization</help>
                 </properties>
-                <defaultValue>VyOS</defaultValue>
+                <defaultValue>ngNOS</defaultValue>
               </leafNode>
             </children>
           </node>

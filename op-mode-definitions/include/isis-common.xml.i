@@ -8,10 +8,10 @@
       <properties>
         <help>Show detailed information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <tagNode name="database">
   <properties>
@@ -20,19 +20,19 @@
       <list>lsp-id detail</list>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <leafNode name="hostname">
   <properties>
     <help>Show IS-IS dynamic hostname mapping</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
 <node name="interface">
   <properties>
     <help>Show IS-IS interfaces</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_interfaces</script>
+      <script>${ngnos_completion_dir}/list_interfaces</script>
     </completionHelp>
   </properties>
   <children>
@@ -40,19 +40,19 @@
       <properties>
         <help>Show detailed information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <tagNode name="interface">
   <properties>
     <help>Show specific IS-IS interface</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_interfaces</script>
+      <script>${ngnos_completion_dir}/list_interfaces</script>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <node name="mpls-te">
   <properties>
@@ -63,22 +63,22 @@
       <properties>
         <help>Show router information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <leafNode name="interface">
       <properties>
         <help>Show interface information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <tagNode name="interface">
       <properties>
         <help>Show specific IS-IS interface</help>
         <completionHelp>
-          <script>${vyos_completion_dir}/list_interfaces</script>
+          <script>${ngnos_completion_dir}/list_interfaces</script>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </tagNode>
   </children>
 </node>
@@ -91,10 +91,10 @@
       <properties>
         <help>Show detailed information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <tagNode name="neighbor">
   <properties>
@@ -103,7 +103,7 @@
       <list>system-id</list>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <node name="route">
   <properties>
@@ -114,22 +114,22 @@
       <properties>
         <help>Show level-1 routes</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <leafNode name="level-2">
       <properties>
         <help>Show level-2 routes</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <leafNode name="prefix-sid">
      <properties>
        <help>Show Prefix-SID information</help>
      </properties>
-     <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+     <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
    </leafNode>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <node name="segment-routing">
   <properties>
@@ -140,7 +140,7 @@
       <properties>
         <help>Show node information</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
   </children>
 </node>
@@ -148,13 +148,13 @@
   <properties>
     <help>Show IS-IS SPF delay parameters</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
 <leafNode name="summary">
   <properties>
     <help>Show IS-IS information summary</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
 <node name="topology">
   <properties>
@@ -165,15 +165,15 @@
       <properties>
         <help>Show level-1 routes</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
     <leafNode name="level-2">
       <properties>
         <help>Show level-2 routes</help>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </leafNode>
   </children>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
 <!-- included end -->

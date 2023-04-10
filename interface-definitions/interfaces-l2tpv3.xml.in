@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="l2tpv3" owner="${vyos_conf_scripts_dir}/interfaces-l2tpv3.py">
+      <tagNode name="l2tpv3" owner="${ngnos_conf_scripts_dir}/interfaces-l2tpv3.py">
         <properties>
           <help>Layer 2 Tunnel Protocol Version 3 (L2TPv3) Interface</help>
           <priority>485</priority>

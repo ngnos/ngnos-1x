@@ -14,12 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VyOS 1.2 crux allowed configuring a lower or upper case loglevel. This
+# ngNOS 1.2 crux allowed configuring a lower or upper case loglevel. This
 # is no longer supported as the input data is validated and will lead to
 # an error. If user specifies an upper case logleve, make it lowercase
 
 from sys import argv,exit
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")
@@ -41,7 +41,7 @@ path_loglevel = base + ['loglevel']
 if config.exists(path_loglevel):
     # red in configured loglevel and convert it to lower case
     tmp = config.return_value(path_loglevel).lower()
-    # VyOS 1.2 had no proper value validation on the CLI thus the
+    # ngNOS 1.2 had no proper value validation on the CLI thus the
     # user could use any arbitrary values - sanitize them
     if tmp not in ['quiet', 'fatal', 'error', 'info', 'verbose']:
         tmp = 'info'

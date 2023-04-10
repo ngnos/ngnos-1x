@@ -12,9 +12,9 @@ system {
             speed 115200
         }
     }
-    host-name vyos
+    host-name ngnos
     login {
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
                 plaintext-password ""
@@ -22,11 +22,11 @@ system {
         }
     }
     ntp {
-        server time1.vyos.net {
+        server time1.ngnos.com {
         }
-        server time2.vyos.net {
+        server time2.ngnos.com {
         }
-        server time3.vyos.net {
+        server time3.ngnos.com {
         }
     }
     syslog {
@@ -86,5 +86,5 @@ vpn {
 
 
 // Warning: Do not remove the following line.
-// vyos-config-version: "bgp@1:broadcast-relay@1:cluster@1:config-management@1:conntrack@2:conntrack-sync@2:dhcp-relay@2:dhcp-server@5:dhcpv6-server@1:dns-forwarding@3:firewall@5:https@2:interfaces@22:ipoe-server@1:ipsec@6:isis@1:l2tp@3:lldp@1:mdns@1:nat@5:nat66@1:ntp@1:policy@1:pppoe-server@5:pptp@2:qos@1:quagga@9:rpki@1:salt@1:snmp@2:ssh@2:sstp@3:system@21:vrf@2:vrrp@2:vyos-accel-ppp@2:wanloadbalance@3:webproxy@2:zone-policy@1"
+// ngnos-config-version: "bgp@1:broadcast-relay@1:cluster@1:config-management@1:conntrack@2:conntrack-sync@2:dhcp-relay@2:dhcp-server@5:dhcpv6-server@1:dns-forwarding@3:firewall@5:https@2:interfaces@22:ipoe-server@1:ipsec@6:isis@1:l2tp@3:lldp@1:mdns@1:nat@5:nat66@1:ntp@1:policy@1:pppoe-server@5:pptp@2:qos@1:quagga@9:rpki@1:salt@1:snmp@2:ssh@2:sstp@3:system@21:vrf@2:vrrp@2:ngnos-accel-ppp@2:wanloadbalance@3:webproxy@2:zone-policy@1"
 // Release version: 1.4-rolling-202106290839

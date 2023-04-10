@@ -11,16 +11,16 @@
             <properties>
               <help>Show LLDP neighbors</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/lldp.py show_neighbors</command>
+            <command>${ngnos_op_scripts_dir}/lldp.py show_neighbors</command>
             <children>
               <tagNode name="interface">
                 <properties>
                   <help>Show LLDP for specified interface</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/lldp.py show_neighbors --interface $5</command>
+                <command>${ngnos_op_scripts_dir}/lldp.py show_neighbors --interface $5</command>
               </tagNode>
             </children>
           </node>

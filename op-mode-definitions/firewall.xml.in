@@ -123,13 +123,13 @@
                 <path>firewall group ipv6-network-group</path>
               </completionHelp>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show_group --name $4</command>
+            <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show_group --name $4</command>
           </tagNode>
           <leafNode name="group">
             <properties>
               <help>Show firewall group</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show_group</command>
+            <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show_group</command>
           </leafNode>
           <tagNode name="ipv6-name">
             <properties>
@@ -146,10 +146,10 @@
                     <path>firewall ipv6-name ${COMP_WORDS[6]} rule</path>
                   </completionHelp>
                 </properties>
-                <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show --name $4 --rule $6 --ipv6</command>
+                <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show --name $4 --rule $6 --ipv6</command>
               </tagNode>
             </children>
-            <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show --name $4 --ipv6</command>
+            <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show --name $4 --ipv6</command>
           </tagNode>
           <tagNode name="name">
             <properties>
@@ -166,25 +166,25 @@
                     <path>firewall name ${COMP_WORDS[6]} rule</path>
                   </completionHelp>
                 </properties>
-                <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show --name $4 --rule $6</command>
+                <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show --name $4 --rule $6</command>
               </tagNode>
             </children>
-            <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show --name $4</command>
+            <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show --name $4</command>
           </tagNode>
           <leafNode name="statistics">
             <properties>
               <help>Show statistics of firewall application</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show_statistics</command>
+            <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show_statistics</command>
           </leafNode>
           <leafNode name="summary">
             <properties>
               <help>Show summary of firewall application</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show_summary</command>
+            <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show_summary</command>
           </leafNode>
         </children>
-        <command>sudo ${vyos_op_scripts_dir}/firewall.py --action show_all</command>
+        <command>sudo ${ngnos_op_scripts_dir}/firewall.py --action show_all</command>
       </node>
     </children>
   </node>

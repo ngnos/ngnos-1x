@@ -17,7 +17,7 @@
 
 import sys
 
-import vyos.opmode
+import ngnos.opmode
 
 
 def _get_raw_data():
@@ -54,7 +54,7 @@ def _get_raw_data():
     return mem_data
 
 def _get_formatted_output(mem):
-    from vyos.util import bytes_to_human
+    from ngnos.util import bytes_to_human
 
     # For human-readable outputs, we convert bytes to more convenient units
     # (100M, 1.3G...)
@@ -78,10 +78,10 @@ def show(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)
 

@@ -21,15 +21,15 @@ from sys import exit
 from socket import getfqdn
 from cryptography.x509.oid import NameOID
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.pki import load_certificate
-from vyos.template import render_to_string
-from vyos.util import ask_input
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.pki import load_certificate
+from ngnos.template import render_to_string
+from ngnos.util import ask_input
 
 # Apple profiles only support one IKE/ESP encryption cipher and hash, whereas
-# VyOS comes with a multitude of different proposals for a connection.
+# ngNOS comes with a multitude of different proposals for a connection.
 #
-# We take all available proposals from the VyOS CLI and ask the user which one
+# We take all available proposals from the ngNOS CLI and ask the user which one
 # he would like to get enabled in his profile - thus there is limited possibility
 # to select a proposal that is not supported on the connection profile.
 #
@@ -42,7 +42,7 @@ from vyos.util import ask_input
 # - AES-256-GCM
 # - ChaCha20Poly1305
 #
-vyos2apple_cipher = {
+ngnos2apple_cipher = {
     '3des'  : '3DES',
     'aes128' : 'AES-128',
     'aes256' : 'AES-256',
@@ -60,7 +60,7 @@ vyos2apple_cipher = {
 # - GCMAES192
 # - GCMAES256
 #
-vyos2windows_cipher = {
+ngnos2windows_cipher = {
     '3des'  : 'DES3',
     'aes128' : 'AES128',
     'aes192' : 'AES192',
@@ -77,7 +77,7 @@ vyos2windows_cipher = {
 # - SHA2-384
 # - SHA2-512
 #
-vyos2apple_integrity = {
+ngnos2apple_integrity = {
     'sha1'     : 'SHA1-96',
     'sha1_160' : 'SHA1-160',
     'sha256'   : 'SHA2-256',
@@ -92,7 +92,7 @@ vyos2apple_integrity = {
 # - SHA2-384
 # - SHA2-512
 #
-vyos2windows_integrity = {
+ngnos2windows_integrity = {
     'sha1'       : 'SHA196',
     'sha256'     : 'SHA256',
     'aes128gmac' : 'GCMAES128',
@@ -121,11 +121,11 @@ conf = ConfigTreeQuery()
 if not conf.exists(config_base):
     exit('IPsec remote-access is not configured!')
 
-profile_name = 'VyOS IKEv2 Profile'
+profile_name = 'ngNOS IKEv2 Profile'
 if args.profile:
     profile_name = args.profile
 
-vpn_name = 'VyOS IKEv2 VPN'
+vpn_name = 'ngNOS IKEv2 VPN'
 if args.name:
     vpn_name = args.name
 
@@ -165,8 +165,8 @@ ike_proposal = conf.get_config_dict(ipsec_base + ['ike-group', data['ike_group']
 # have different limitations thus we load the limitations based on the operating
 # system used.
 
-vyos2client_cipher = vyos2apple_cipher if args.os == 'ios' else vyos2windows_cipher;
-vyos2client_integrity = vyos2apple_integrity if args.os == 'ios' else vyos2windows_integrity;
+ngnos2client_cipher = ngnos2apple_cipher if args.os == 'ios' else ngnos2windows_cipher;
+ngnos2client_integrity = ngnos2apple_integrity if args.os == 'ios' else ngnos2windows_integrity;
 supported_dh_groups = ios_supported_dh_groups if args.os == 'ios' else windows_supported_dh_groups;
 
 # Create a dictionary containing client conform IKE settings
@@ -174,13 +174,13 @@ ike = {}
 count = 1
 for _, proposal in ike_proposal.items():
     if {'dh_group', 'encryption', 'hash'} <= set(proposal):
-        if (proposal['encryption'] in set(vyos2client_cipher) and
-            proposal['hash'] in set(vyos2client_integrity) and
+        if (proposal['encryption'] in set(ngnos2client_cipher) and
+            proposal['hash'] in set(ngnos2client_integrity) and
             proposal['dh_group'] in set(supported_dh_groups)):
 
-            # We 're-code' from the VyOS IPsec proposals to the Apple naming scheme
-            proposal['encryption'] = vyos2client_cipher[ proposal['encryption'] ]
-            proposal['hash'] = vyos2client_integrity[ proposal['hash'] ]
+            # We 're-code' from the ngNOS IPsec proposals to the Apple naming scheme
+            proposal['encryption'] = ngnos2client_cipher[ proposal['encryption'] ]
+            proposal['hash'] = ngnos2client_integrity[ proposal['hash'] ]
 
             ike.update( { str(count) : proposal } )
             count += 1
@@ -190,10 +190,10 @@ esp = {}
 count = 1
 for _, proposal in esp_proposals.items():
     if {'encryption', 'hash'} <= set(proposal):
-        if proposal['encryption'] in set(vyos2client_cipher) and proposal['hash'] in set(vyos2client_integrity):
-            # We 're-code' from the VyOS IPsec proposals to the Apple naming scheme
-            proposal['encryption'] = vyos2client_cipher[ proposal['encryption'] ]
-            proposal['hash'] = vyos2client_integrity[ proposal['hash'] ]
+        if proposal['encryption'] in set(ngnos2client_cipher) and proposal['hash'] in set(ngnos2client_integrity):
+            # We 're-code' from the ngNOS IPsec proposals to the Apple naming scheme
+            proposal['encryption'] = ngnos2client_cipher[ proposal['encryption'] ]
+            proposal['hash'] = ngnos2client_integrity[ proposal['hash'] ]
 
             esp.update( { str(count) : proposal } )
             count += 1
@@ -224,7 +224,7 @@ print('\n\n==== <snip> ====')
 if args.os == 'ios':
     print(render_to_string('ipsec/ios_profile.j2', data))
     print('==== </snip> ====\n')
-    print('Save the XML from above to a new file named "vyos.mobileconfig" and E-Mail it to your phone.')
+    print('Save the XML from above to a new file named "ngnos.mobileconfig" and E-Mail it to your phone.')
 elif args.os == 'windows':
     print(render_to_string('ipsec/windows_profile.j2', data))
     print('==== </snip> ====\n')

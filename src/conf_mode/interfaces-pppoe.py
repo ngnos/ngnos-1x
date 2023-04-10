@@ -20,22 +20,22 @@ from sys import exit
 from copy import deepcopy
 from netifaces import interfaces
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configdict import get_pppoe_interfaces
-from vyos.configverify import verify_authentication
-from vyos.configverify import verify_source_interface
-from vyos.configverify import verify_interface_exists
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.ifconfig import PPPoEIf
-from vyos.template import render
-from vyos.util import call
-from vyos.util import is_systemd_service_running
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configdict import get_pppoe_interfaces
+from ngnos.configverify import verify_authentication
+from ngnos.configverify import verify_source_interface
+from ngnos.configverify import verify_interface_exists
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.ifconfig import PPPoEIf
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import is_systemd_service_running
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):
@@ -117,7 +117,7 @@ def apply(pppoe):
 
         call(f'systemctl restart ppp@{ifname}.service')
         # When interface comes "live" a hook is called:
-        # /etc/ppp/ip-up.d/99-vyos-pppoe-callback
+        # /etc/ppp/ip-up.d/99-ngnos-pppoe-callback
         # which triggers PPPoEIf.update()
     else:
         if os.path.isdir(f'/sys/class/net/{ifname}'):

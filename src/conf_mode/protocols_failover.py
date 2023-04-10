@@ -18,20 +18,20 @@ import json
 
 from pathlib import Path
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render
-from vyos.util import call
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 
 airbag.enable()
 
 
-service_name = 'vyos-failover'
+service_name = 'ngnos-failover'
 service_conf = Path(f'/run/{service_name}.conf')
-systemd_service = '/run/systemd/system/vyos-failover.service'
+systemd_service = '/run/systemd/system/ngnos-failover.service'
 rt_proto_failover = '/etc/iproute2/rt_protos.d/failover.conf'
 
 
@@ -95,7 +95,7 @@ def generate(failover):
     # Write configuration file
     conf_json = json.dumps(failover, indent=4)
     service_conf.write_text(conf_json)
-    render(systemd_service, 'protocols/systemd_vyos_failover_service.j2', failover)
+    render(systemd_service, 'protocols/systemd_ngnos_failover_service.j2', failover)
 
     return None
 

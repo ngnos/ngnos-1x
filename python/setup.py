@@ -9,16 +9,16 @@ def packages(directory):
     ]
 
 setup(
-    name = "vyos",
+    name = "ngnos",
     version = "1.3.0",
-    author = "VyOS maintainers and contributors",
-    author_email = "maintainers@vyos.net",
-    description = ("VyOS configuration libraries."),
+    author = "ngNOS maintainers and contributors",
+    author_email = "maintainers@ngnos.com",
+    description = ("ngNOS configuration libraries."),
     license = "LGPLv2+",
-    keywords = "vyos",
-    url = "http://www.vyos.io",
-    packages = packages('vyos'),
-    long_description="VyOS configuration libraries",
+    keywords = "ngnos",
+    url = "http://www.ngnos.com",
+    packages = packages('ngnos'),
+    long_description="ngNOS configuration libraries",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Topic :: Utilities",
@@ -26,7 +26,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "config-mgmt = vyos.config_mgmt:run",
+            "config-mgmt = ngnos.config_mgmt:run",
         ],
     },
 )

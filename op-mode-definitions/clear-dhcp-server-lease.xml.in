@@ -11,7 +11,7 @@
             <properties>
               <help>DHCP server lease</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/clear_dhcp_lease.py --ip $4</command>
+            <command>sudo ${ngnos_op_scripts_dir}/clear_dhcp_lease.py --ip $4</command>
           </tagNode>
         </children>
       </node>

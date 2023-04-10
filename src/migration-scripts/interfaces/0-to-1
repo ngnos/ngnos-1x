@@ -3,10 +3,10 @@
 # Change syntax of bridge interface
 # - move interface based bridge-group to actual bridge (de-nest)
 # - make stp and igmp-snooping nodes valueless
-# https://vyos.dev/T1556
+# https://ngnos.com/T1556
 
 import sys
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 def migrate_bridge(config, tree, intf):
     # check if bridge-group exists

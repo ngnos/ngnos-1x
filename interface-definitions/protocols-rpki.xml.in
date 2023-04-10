@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="rpki" owner="${vyos_conf_scripts_dir}/protocols_rpki.py">
+      <node name="rpki" owner="${ngnos_conf_scripts_dir}/protocols_rpki.py">
         <properties>
           <help>BGP prefix origin validation</help>
         </properties>

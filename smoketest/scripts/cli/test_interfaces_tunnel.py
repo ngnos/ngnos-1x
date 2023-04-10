@@ -18,9 +18,9 @@ import unittest
 
 from base_interfaces_test import BasicInterfaceTest
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import get_interface_config
-from vyos.template import inc_ip
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import get_interface_config
+from ngnos.template import inc_ip
 
 remote_ip4 = '192.0.2.100'
 remote_ip6 = '2001:db8::ffff'

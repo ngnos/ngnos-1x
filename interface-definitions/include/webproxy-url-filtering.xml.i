@@ -3,7 +3,7 @@
   <properties>
     <help>Category to allow</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_webproxy_category.sh</script>
+      <script>${ngnos_completion_dir}/list_webproxy_category.sh</script>
     </completionHelp>
     <multi/>
   </properties>
@@ -18,7 +18,7 @@
   <properties>
     <help>Category to block</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_webproxy_category.sh</script>
+      <script>${ngnos_completion_dir}/list_webproxy_category.sh</script>
     </completionHelp>
     <multi/>
   </properties>
@@ -110,7 +110,7 @@
   <properties>
     <help>Log block category</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_webproxy_category.sh</script>
+      <script>${ngnos_completion_dir}/list_webproxy_category.sh</script>
       <list>all</list>
     </completionHelp>
     <multi/>

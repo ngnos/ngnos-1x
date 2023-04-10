@@ -21,7 +21,7 @@ import sys
 from time import ctime
 
 from tabulate import tabulate
-from vyos.config import Config
+from ngnos.config import Config
 
 
 class UserInfo:
@@ -37,8 +37,8 @@ class UserInfo:
 
 filters = {
     'default': lambda user: not user.is_locked,  # Default is everything but locked accounts
-    'vyos': lambda user: user.user_type == 'vyos',
-    'other': lambda user: user.user_type != 'vyos',
+    'ngnos': lambda user: user.user_type == 'ngnos',
+    'other': lambda user: user.user_type != 'ngnos',
     'locked': lambda user: user.is_locked,
     'all': lambda user: True
 }
@@ -73,7 +73,7 @@ def decode_lastlog(lastlog_file, uid: int):
 
 def list_users():
     cfg = Config()
-    vyos_users = cfg.list_effective_nodes('system login user')
+    ngnos_users = cfg.list_effective_nodes('system login user')
     users = []
     with open('/var/log/lastlog', 'rb') as lastlog_file:
         for (name, _, uid, _, _, _, _) in pwd.getpwall():
@@ -82,7 +82,7 @@ def list_users():
                 continue
             user_info = UserInfo(
                 uid, name,
-                user_type='vyos' if name in vyos_users else 'other',
+                user_type='ngnos' if name in ngnos_users else 'other',
                 is_locked=is_locked(name),
                 login_time=lastlog_info[0],
                 tty=lastlog_info[1],
@@ -93,7 +93,7 @@ def list_users():
 
 def main():
     parser = argparse.ArgumentParser(prog=sys.argv[0], add_help=False)
-    parser.add_argument('type', nargs='?', choices=['all', 'vyos', 'other', 'locked'])
+    parser.add_argument('type', nargs='?', choices=['all', 'ngnos', 'other', 'locked'])
     args = parser.parse_args()
 
     filter_type = args.type if args.type is not None else 'default'

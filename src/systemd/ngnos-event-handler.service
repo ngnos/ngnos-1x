@@ -1,0 +1,11 @@
+[Unit]
+Description=ngNOS event handler
+After=network.target ngnos-router.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /usr/libexec/ngnos/system/ngnos-event-handler.py --config /run/ngnos-event-handler.conf
+
+[Install]
+WantedBy=multi-user.target

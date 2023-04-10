@@ -16,8 +16,8 @@
 
 import unittest
 
-from vyos.ifconfig import Interface
-from vyos.util import get_interface_config
+from ngnos.ifconfig import Interface
+from ngnos.util import get_interface_config
 
 from base_interfaces_test import BasicInterfaceTest
 

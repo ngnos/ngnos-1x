@@ -16,14 +16,14 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig.vrrp import VRRP
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.template import inc_ip
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig.vrrp import VRRP
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.template import inc_ip
 
 PROCESS_NAME = 'keepalived'
 KEEPALIVED_CONF = VRRP.location['config']
@@ -37,7 +37,7 @@ def getConfig(string, end='}'):
     out = cmd(command)
     return out
 
-class TestVRRP(VyOSUnitTestSHIM.TestCase):
+class TestVRRP(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         # Check for running process
         self.assertTrue(process_named_running(PROCESS_NAME))
@@ -171,7 +171,7 @@ class TestVRRP(VyOSUnitTestSHIM.TestCase):
             self.assertIn(f'garp_master_repeat {group_garp_master_repeat}', config)
 
     def test_03_sync_group(self):
-        sync_group = 'VyOS'
+        sync_group = 'ngNOS'
 
         for group in groups:
             vlan_id = group.lstrip('VLAN')
@@ -205,7 +205,7 @@ class TestVRRP(VyOSUnitTestSHIM.TestCase):
             self.assertIn(f'{group}', config)
 
     def test_04_exclude_vrrp_interface(self):
-        group = 'VyOS-WAN'
+        group = 'ngNOS-WAN'
         none_vrrp_interface = 'eth2'
         vlan_id = '24'
         vip = '100.64.24.1/24'

@@ -1,0 +1,22 @@
+{% set vrf_command = 'ip vrf exec ' ~ vrf ~ ' ' if vrf is ngnos_defined else '' %}
+[Unit]
+Description=ngNOS HTTP API service
+After=ngnos-router.service
+Requires=ngnos-router.service
+
+[Service]
+ExecStart={{ vrf_command }}/usr/libexec/ngnos/services/ngnos-http-api-server
+Type=idle
+
+SyslogIdentifier=ngnos-http-api
+SyslogFacility=daemon
+
+Restart=on-failure
+
+# Does't work but leave it here
+User=root
+Group=vyattacfg
+
+[Install]
+WantedBy=ngnos.target
+

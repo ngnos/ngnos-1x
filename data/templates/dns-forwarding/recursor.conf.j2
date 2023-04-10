@@ -24,7 +24,7 @@ max-negative-ttl={{ negative_ttl }}
 network-timeout={{ timeout }}
 
 # ignore-hosts-file
-export-etc-hosts={{ 'no' if ignore_hosts_file is vyos_defined else 'yes' }}
+export-etc-hosts={{ 'no' if ignore_hosts_file is ngnos_defined else 'yes' }}
 
 # listen-address
 local-address={{ listen_address | join(',') }}
@@ -35,13 +35,13 @@ local-port={{ port }}
 # dnssec
 dnssec={{ dnssec }}
 
-{% if dns64_prefix is vyos_defined %}
+{% if dns64_prefix is ngnos_defined %}
 # dns64-prefix
 dns64-prefix={{ dns64_prefix }}
 {% endif %}
 
 # serve rfc1918 records
-serve-rfc1918={{ 'no' if no_serve_rfc1918 is vyos_defined else 'yes' }}
+serve-rfc1918={{ 'no' if no_serve_rfc1918 is ngnos_defined else 'yes' }}
 
 # zones
 auth-zones={% for z in authoritative_zones %}{{ z.name }}={{ z.file }}{{- "," if not loop.last -}}{% endfor %}

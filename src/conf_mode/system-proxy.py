@@ -18,13 +18,13 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.template import render
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.template import render
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
-proxy_def = r'/etc/profile.d/vyos-system-proxy.sh'
+proxy_def = r'/etc/profile.d/ngnos-system-proxy.sh'
 
 def get_config(config=None):
     if config:

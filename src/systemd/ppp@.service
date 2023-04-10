@@ -1,6 +1,6 @@
 [Unit]
 Description=Dialing PPP connection %I
-After=vyos-router.service
+After=ngnos-router.service
 
 [Service]
 ExecStart=/usr/sbin/pppd call %I nodetach nolog

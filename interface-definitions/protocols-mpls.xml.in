@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="mpls" owner="${vyos_conf_scripts_dir}/protocols_mpls.py">
+      <node name="mpls" owner="${ngnos_conf_scripts_dir}/protocols_mpls.py">
         <properties>
           <help>Multiprotocol Label Switching (MPLS)</help>
           <priority>400</priority>

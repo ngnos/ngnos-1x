@@ -16,13 +16,13 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.template import address_from_cidr
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.template import address_from_cidr
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'dhcrelay'
 RELAY_CONF = '/run/dhcp-relay/dhcrelay6.conf'
@@ -33,7 +33,7 @@ upstream_if_addr = '2001:db8::1/64'
 listen_addr = '2001:db8:ffff::1/64'
 interfaces = []
 
-class TestServiceDHCPv6Relay(VyOSUnitTestSHIM.TestCase):
+class TestServiceDHCPv6Relay(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceDHCPv6Relay, cls).setUpClass()

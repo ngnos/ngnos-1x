@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="wireless" owner="${vyos_conf_scripts_dir}/interfaces-wireless.py">
+      <tagNode name="wireless" owner="${ngnos_conf_scripts_dir}/interfaces-wireless.py">
         <properties>
           <help>Wireless (WiFi/WLAN) Network Interface</help>
           <priority>318</priority>
@@ -569,7 +569,7 @@
             <properties>
               <help>Wireless physical device</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_wireless_phys.sh</script>
+                <script>${ngnos_completion_dir}/list_wireless_phys.sh</script>
               </completionHelp>
               <constraint>
                 <validator name="wireless-phy"/>

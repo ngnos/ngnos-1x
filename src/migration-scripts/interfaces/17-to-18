@@ -19,7 +19,7 @@
 # T3140: Relax ethernet interface offload-options
 
 from sys import exit, argv
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if __name__ == '__main__':
     if (len(argv) < 1):

@@ -1,0 +1,11 @@
+[Unit]
+Description=ngNOS system udpate-check service
+After=network.target ngnos-router.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /usr/libexec/ngnos/system/ngnos-system-update-check.py --config /run/ngnos-system-update.conf
+
+[Install]
+WantedBy=multi-user.target

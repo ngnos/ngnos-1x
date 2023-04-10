@@ -43,7 +43,7 @@
 #define debug_call(f) \
     do { if (DEBUG_ON) f; } while (0)
 
-#define SOCKET_PATH "ipc:///run/vyos-configd.sock"
+#define SOCKET_PATH "ipc:///run/ngnos-configd.sock"
 
 #define GET_ACTIVE "cli-shell-api --show-active-only --show-show-defaults --show-ignore-edit showConfig"
 #define GET_SESSION "cli-shell-api --show-working-only --show-show-defaults --show-ignore-edit showConfig"
@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
     int ex_index;
     int init_timeout = 0;
 
-    debug_print("Connecting to vyos-configd ...\n");
+    debug_print("Connecting to ngnos-configd ...\n");
     zmq_connect(requester, SOCKET_PATH);
 
     for (int i = 1; i < argc ; i++) {
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 
     debug_print("data to send: %s\n", string_node_data);
 
-    char *test = strstr(string_node_data, "VYOS_TAGNODE_VALUE");
+    char *test = strstr(string_node_data, "NGNOS_TAGNODE_VALUE");
     ex_index = test ? 2 : 1;
 
     if (access(COMMIT_MARKER, F_OK) != -1) {

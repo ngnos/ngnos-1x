@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="dhcpv6-server" owner="${vyos_conf_scripts_dir}/dhcpv6_server.py">
+      <node name="dhcpv6-server" owner="${ngnos_conf_scripts_dir}/dhcpv6_server.py">
         <properties>
           <help>DHCP for IPv6 (DHCPv6) server</help>
           <priority>900</priority>

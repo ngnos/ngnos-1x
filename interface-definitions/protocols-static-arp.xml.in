@@ -4,7 +4,7 @@
     <children>
       <node name="static">
         <children>
-          <node name="arp" owner="${vyos_conf_scripts_dir}/arp.py">
+          <node name="arp" owner="${ngnos_conf_scripts_dir}/arp.py">
             <properties>
               <help>Static ARP translation</help>
             </properties>
@@ -13,7 +13,7 @@
                 <properties>
                   <help>Interface configuration</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                   <valueHelp>
                     <format>txt</format>

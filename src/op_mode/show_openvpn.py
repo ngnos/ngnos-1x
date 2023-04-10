@@ -20,7 +20,7 @@ import jinja2
 import argparse
 
 from sys import exit
-from vyos.config import Config
+from ngnos.config import Config
 
 outp_tmpl = """
 {% if clients %}

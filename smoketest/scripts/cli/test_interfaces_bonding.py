@@ -19,11 +19,11 @@ import unittest
 
 from base_interfaces_test import BasicInterfaceTest
 
-from vyos.ifconfig import Section
-from vyos.ifconfig.interface import Interface
-from vyos.configsession import ConfigSessionError
-from vyos.util import get_interface_config
-from vyos.util import read_file
+from ngnos.ifconfig import Section
+from ngnos.ifconfig.interface import Interface
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import get_interface_config
+from ngnos.util import read_file
 
 class BondingInterfaceTest(BasicInterfaceTest.TestCase):
     @classmethod

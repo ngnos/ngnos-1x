@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="flow-accounting" owner="${vyos_conf_scripts_dir}/flow_accounting_conf.py">
+      <node name="flow-accounting" owner="${ngnos_conf_scripts_dir}/flow_accounting_conf.py">
         <properties>
           <help>Flow accounting settings</help>
           <priority>990</priority>
@@ -373,7 +373,7 @@
                   <help>sFlow agent IPv4 address</help>
                   <completionHelp>
                     <list>auto</list>
-                    <script>${vyos_completion_dir}/list_local_ips.sh --ipv4</script>
+                    <script>${ngnos_completion_dir}/list_local_ips.sh --ipv4</script>
                   </completionHelp>
                   <valueHelp>
                     <format>ipv4</format>

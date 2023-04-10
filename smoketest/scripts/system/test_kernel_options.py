@@ -20,8 +20,8 @@ import os
 import platform
 import unittest
 
-from vyos.util import call
-from vyos.util import read_file
+from ngnos.util import call
+from ngnos.util import read_file
 
 kernel = platform.release()
 config = read_file(f'/boot/config-{kernel}')
@@ -29,8 +29,8 @@ CONFIG = '/proc/config.gz'
 
 
 class TestKernelModules(unittest.TestCase):
-    """ VyOS makes use of a lot of Kernel drivers, modules and features. The
-    required modules which are essential for VyOS should be tested that they are
+    """ ngNOS makes use of a lot of Kernel drivers, modules and features. The
+    required modules which are essential for ngNOS should be tested that they are
     available in the Kernel that is run. """
 
     def test_bond_interface(self):

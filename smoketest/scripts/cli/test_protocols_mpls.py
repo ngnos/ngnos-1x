@@ -16,10 +16,10 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'ldpd'
 base_path = ['protocols', 'mpls', 'ldp']
@@ -65,7 +65,7 @@ profiles = {
         },
 }
 
-class TestProtocolsMPLS(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsMPLS(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsMPLS, cls).setUpClass()

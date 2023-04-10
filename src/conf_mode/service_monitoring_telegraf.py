@@ -20,18 +20,18 @@ import json
 from sys import exit
 from shutil import rmtree
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.ifconfig import Section
-from vyos.template import render
-from vyos.util import call
-from vyos.util import chown
-from vyos.util import cmd
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.ifconfig import Section
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import chown
+from ngnos.util import cmd
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 cache_dir = f'/etc/telegraf/.cache'
@@ -43,9 +43,9 @@ systemd_override = '/run/systemd/system/telegraf.service.d/10-override.conf'
 def get_nft_filter_chains():
     """ Get nft chains for table filter """
     try:
-        nft = cmd('nft --json list table ip vyos_filter')
+        nft = cmd('nft --json list table ip ngnos_filter')
     except Exception:
-        print('nft table ip vyos_filter not found')
+        print('nft table ip ngnos_filter not found')
         return []
     nft = json.loads(nft)
     chain_list = []

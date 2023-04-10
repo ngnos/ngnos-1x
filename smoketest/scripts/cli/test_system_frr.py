@@ -16,8 +16,8 @@
 
 import re
 import unittest
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.util import read_file
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.util import read_file
 
 config_file = '/etc/frr/daemons'
 base_path = ['system', 'frr']
@@ -39,7 +39,7 @@ def daemons_config_parse(daemons_config):
     return (daemons_config_dict)
 
 
-class TestSystemFRR(VyOSUnitTestSHIM.TestCase):
+class TestSystemFRR(ngNOSUnitTestSHIM.TestCase):
 
     def tearDown(self):
         self.cli_delete(base_path)

@@ -3,8 +3,8 @@
 import jinja2
 from sys import exit
 
-from vyos.config import Config
-from vyos.util import cmd
+from ngnos.config import Config
+from ngnos.util import cmd
 
 PDNS_CMD='/usr/bin/rec_control --socket-dir=/run/powerdns'
 

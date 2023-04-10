@@ -11,7 +11,7 @@
             <properties>
               <help>Show IPv6 Open Shortest Path First (OSPF)</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               <node name="area">
                 <properties>
@@ -54,7 +54,7 @@
                     <path>vrf name</path>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </node>
               <tagNode name="vrf">
                 <properties>
@@ -64,7 +64,7 @@
                     <path>vrf name</path>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   <node name="area">
                     <properties>
@@ -105,7 +105,7 @@
                 <properties>
                   <help>Show OSPFv3 VRFs</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </leafNode>
             </children>
           </node>

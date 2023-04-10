@@ -16,11 +16,11 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'ospf6d'
 base_path = ['protocols', 'ospfv3']
@@ -30,7 +30,7 @@ route_map = 'foo-bar-baz-0815'
 router_id = '192.0.2.1'
 default_area = '0'
 
-class TestProtocolsOSPFv3(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsOSPFv3(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsOSPFv3, cls).setUpClass()
@@ -130,7 +130,7 @@ class TestProtocolsOSPFv3(VyOSUnitTestSHIM.TestCase):
 
 
     def test_ospfv3_04_interfaces(self):
-        bfd_profile = 'vyos-ipv6'
+        bfd_profile = 'ngnos-ipv6'
 
         self.cli_set(base_path + ['parameters', 'router-id', router_id])
         self.cli_set(base_path + ['area', default_area])

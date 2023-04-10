@@ -19,10 +19,10 @@ import sys
 
 from tabulate import tabulate
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import cmd
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import cmd
 
-import vyos.opmode
+import ngnos.opmode
 
 
 def _data_to_dict(data, sep="\t") -> dict:
@@ -74,7 +74,7 @@ def show_forwarding_statistics(raw: bool):
 
     config = ConfigTreeQuery()
     if not config.exists('service dns forwarding'):
-        raise vyos.opmode.UnconfiguredSubsystem('DNS forwarding is not configured')
+        raise ngnos.opmode.UnconfiguredSubsystem('DNS forwarding is not configured')
 
     dns_data = _get_raw_forwarding_statistics()
     if raw:
@@ -85,9 +85,9 @@ def show_forwarding_statistics(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

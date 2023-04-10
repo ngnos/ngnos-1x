@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="pseudo-ethernet" owner="${vyos_conf_scripts_dir}/interfaces-pseudo-ethernet.py">
+      <tagNode name="pseudo-ethernet" owner="${ngnos_conf_scripts_dir}/interfaces-pseudo-ethernet.py">
         <properties>
           <help>Pseudo Ethernet Interface (Macvlan)</help>
           <priority>321</priority>

@@ -14,14 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# T3619: mirror Linux Kernel defaults for ethernet offloading options into VyOS
-#        CLI. See https://vyos.dev/T3619#102254 for all the details.
+# T3619: mirror Linux Kernel defaults for ethernet offloading options into ngNOS
+#        CLI. See https://ngnos.com/T3619#102254 for all the details.
 # T3787: Remove deprecated UDP fragmentation offloading option
 
 from sys import argv
 
-from vyos.ethtool import Ethtool
-from vyos.configtree import ConfigTree
+from ngnos.ethtool import Ethtool
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")

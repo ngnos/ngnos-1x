@@ -14,16 +14,16 @@
                 <list>&lt;hostname&gt; &lt;x.x.x.x&gt; &lt;h:h:h:h:h:h:h:h&gt;</list>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/force_mtu_host.sh $4</command>
+            <command>${ngnos_op_scripts_dir}/force_mtu_host.sh $4</command>
             <children>
               <tagNode name="interface">
                 <properties>
                   <help>Source interface</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/force_mtu_host.sh $4 $6</command>
+                <command>${ngnos_op_scripts_dir}/force_mtu_host.sh $4 $6</command>
               </tagNode>
             </children>
           </tagNode>

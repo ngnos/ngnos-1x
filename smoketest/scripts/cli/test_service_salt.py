@@ -17,11 +17,11 @@
 import unittest
 
 from socket import gethostname
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.util import cmd
 
 PROCESS_NAME = 'salt-minion'
 SALT_CONF = '/etc/salt/minion'
@@ -29,7 +29,7 @@ base_path = ['service', 'salt-minion']
 
 interface = 'dum4456'
 
-class TestServiceSALT(VyOSUnitTestSHIM.TestCase):
+class TestServiceSALT(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceSALT, cls).setUpClass()

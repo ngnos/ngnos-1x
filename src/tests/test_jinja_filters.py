@@ -17,13 +17,13 @@
 from unittest import TestCase
 
 from ipaddress import ip_network
-from vyos.template import address_from_cidr
-from vyos.template import netmask_from_cidr
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.template import first_host_address
-from vyos.template import last_host_address
-from vyos.template import inc_ip
+from ngnos.template import address_from_cidr
+from ngnos.template import netmask_from_cidr
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.template import first_host_address
+from ngnos.template import last_host_address
+from ngnos.template import inc_ip
 
 class TestTeamplteHelpers(TestCase):
     def setUp(self):

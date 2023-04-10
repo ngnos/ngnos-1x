@@ -3,63 +3,63 @@
 {% import 'firewall/nftables-defines.j2' as group_tmpl %}
 {% import 'firewall/nftables-zone.j2' as zone_tmpl %}
 
-{% if first_install is not vyos_defined %}
-delete table ip vyos_filter
+{% if first_install is not ngnos_defined %}
+delete table ip ngnos_filter
 {% endif %}
-table ip vyos_filter {
-    chain VYOS_FW_FORWARD {
+table ip ngnos_filter {
+    chain NGNOS_FW_FORWARD {
         type filter hook forward priority 0; policy accept;
-{% if state_policy is vyos_defined %}
-        jump VYOS_STATE_POLICY
+{% if state_policy is ngnos_defined %}
+        jump NGNOS_STATE_POLICY
 {% endif %}
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for ifname, ifconf in interface.items() %}
-{%         if ifconf.in is vyos_defined and ifconf.in.name is vyos_defined %}
+{%         if ifconf.in is ngnos_defined and ifconf.in.name is ngnos_defined %}
         iifname {{ ifname }} counter jump NAME_{{ ifconf.in.name }}
 {%         endif %}
-{%         if ifconf.out is vyos_defined and ifconf.out.name is vyos_defined %}
+{%         if ifconf.out is ngnos_defined and ifconf.out.name is ngnos_defined %}
         oifname {{ ifname }} counter jump NAME_{{ ifconf.out.name }}
 {%         endif %}
 {%     endfor %}
 {% endif %}
-        jump VYOS_POST_FW
+        jump NGNOS_POST_FW
     }
-    chain VYOS_FW_LOCAL {
+    chain NGNOS_FW_LOCAL {
         type filter hook input priority 0; policy accept;
-{% if state_policy is vyos_defined %}
-        jump VYOS_STATE_POLICY
+{% if state_policy is ngnos_defined %}
+        jump NGNOS_STATE_POLICY
 {% endif %}
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for ifname, ifconf in interface.items() %}
-{%         if ifconf.local is vyos_defined and ifconf.local.name is vyos_defined %}
+{%         if ifconf.local is ngnos_defined and ifconf.local.name is ngnos_defined %}
         iifname {{ ifname }} counter jump NAME_{{ ifconf.local.name }}
 {%         endif %}
 {%     endfor %}
 {% endif %}
-        jump VYOS_POST_FW
+        jump NGNOS_POST_FW
     }
-    chain VYOS_FW_OUTPUT {
+    chain NGNOS_FW_OUTPUT {
         type filter hook output priority 0; policy accept;
-{% if state_policy is vyos_defined %}
-        jump VYOS_STATE_POLICY
+{% if state_policy is ngnos_defined %}
+        jump NGNOS_STATE_POLICY
 {% endif %}
-        jump VYOS_POST_FW
+        jump NGNOS_POST_FW
     }
-    chain VYOS_POST_FW {
+    chain NGNOS_POST_FW {
         return
     }
-    chain VYOS_FRAG_MARK {
+    chain NGNOS_FRAG_MARK {
         type filter hook prerouting priority -450; policy accept;
         ip frag-off & 0x3fff != 0 meta mark set 0xffff1 return
     }
-{% if name is vyos_defined %}
+{% if name is ngnos_defined %}
 {%     set ns = namespace(sets=[]) %}
 {%     for name_text, conf in name.items() %}
     chain NAME_{{ name_text }} {
-{%         if conf.rule is vyos_defined %}
-{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not vyos_defined %}
+{%         if conf.rule is ngnos_defined %}
+{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not ngnos_defined %}
         {{ rule_conf | nft_rule(name_text, rule_id) }}
-{%                 if rule_conf.recent is vyos_defined %}
+{%                 if rule_conf.recent is ngnos_defined %}
 {%                     set ns.sets = ns.sets + [name_text + '_' + rule_id] %}
 {%                 endif %}
 {%             endfor %}
@@ -80,7 +80,7 @@ table ip vyos_filter {
         flags dynamic
     }
 {%     endfor %}
-{%     if geoip_updated.name is vyos_defined %}
+{%     if geoip_updated.name is ngnos_defined %}
 {%         for setname in geoip_updated.name %}
     set {{ setname }} {
         type ipv4_addr
@@ -92,19 +92,19 @@ table ip vyos_filter {
 
 {{ group_tmpl.groups(group, False) }}
 
-{% if zone is vyos_defined %}
-{{ zone_tmpl.zone_chains(zone, state_policy is vyos_defined, False) }}
+{% if zone is ngnos_defined %}
+{{ zone_tmpl.zone_chains(zone, state_policy is ngnos_defined, False) }}
 {% endif %}
 
-{% if state_policy is vyos_defined %}
-    chain VYOS_STATE_POLICY {
-{%     if state_policy.established is vyos_defined %}
+{% if state_policy is ngnos_defined %}
+    chain NGNOS_STATE_POLICY {
+{%     if state_policy.established is ngnos_defined %}
         {{ state_policy.established | nft_state_policy('established') }}
 {%     endif %}
-{%     if state_policy.invalid is vyos_defined %}
+{%     if state_policy.invalid is ngnos_defined %}
         {{ state_policy.invalid | nft_state_policy('invalid') }}
 {%     endif %}
-{%     if state_policy.related is vyos_defined %}
+{%     if state_policy.related is ngnos_defined %}
         {{ state_policy.related | nft_state_policy('related') }}
 {%     endif %}
         return
@@ -112,63 +112,63 @@ table ip vyos_filter {
 {% endif %}
 }
 
-{% if first_install is not vyos_defined %}
-delete table ip6 vyos_filter
+{% if first_install is not ngnos_defined %}
+delete table ip6 ngnos_filter
 {% endif %}
-table ip6 vyos_filter {
-    chain VYOS_FW6_FORWARD {
+table ip6 ngnos_filter {
+    chain NGNOS_FW6_FORWARD {
         type filter hook forward priority 0; policy accept;
-{% if state_policy is vyos_defined %}
-        jump VYOS_STATE_POLICY6
+{% if state_policy is ngnos_defined %}
+        jump NGNOS_STATE_POLICY6
 {% endif %}
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for ifname, ifconf in interface.items() %}
-{%         if ifconf.in is vyos_defined and ifconf.in.ipv6_name is vyos_defined %}
+{%         if ifconf.in is ngnos_defined and ifconf.in.ipv6_name is ngnos_defined %}
         iifname {{ ifname }} counter jump NAME6_{{ ifconf.in.ipv6_name }}
 {%         endif %}
-{%         if ifconf.out is vyos_defined and ifconf.out.ipv6_name is vyos_defined %}
+{%         if ifconf.out is ngnos_defined and ifconf.out.ipv6_name is ngnos_defined %}
         oifname {{ ifname }} counter jump NAME6_{{ ifconf.out.ipv6_name }}
 {%         endif %}
 {%     endfor %}
 {% endif %}
-        jump VYOS_POST_FW6
+        jump NGNOS_POST_FW6
     }
-    chain VYOS_FW6_LOCAL {
+    chain NGNOS_FW6_LOCAL {
         type filter hook input priority 0; policy accept;
-{% if state_policy is vyos_defined %}
-        jump VYOS_STATE_POLICY6
+{% if state_policy is ngnos_defined %}
+        jump NGNOS_STATE_POLICY6
 {% endif %}
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for ifname, ifconf in interface.items() %}
-{%         if ifconf.local is vyos_defined and ifconf.local.ipv6_name is vyos_defined %}
+{%         if ifconf.local is ngnos_defined and ifconf.local.ipv6_name is ngnos_defined %}
         iifname {{ ifname }} counter jump NAME6_{{ ifconf.local.ipv6_name }}
 {%         endif %}
 {%     endfor %}
 {% endif %}
-        jump VYOS_POST_FW6
+        jump NGNOS_POST_FW6
     }
-    chain VYOS_FW6_OUTPUT {
+    chain NGNOS_FW6_OUTPUT {
         type filter hook output priority 0; policy accept;
-{% if state_policy is vyos_defined %}
-        jump VYOS_STATE_POLICY6
+{% if state_policy is ngnos_defined %}
+        jump NGNOS_STATE_POLICY6
 {% endif %}
-        jump VYOS_POST_FW6
+        jump NGNOS_POST_FW6
     }
-    chain VYOS_POST_FW6 {
+    chain NGNOS_POST_FW6 {
         return
     }
-    chain VYOS_FRAG6_MARK {
+    chain NGNOS_FRAG6_MARK {
         type filter hook prerouting priority -450; policy accept;
         exthdr frag exists meta mark set 0xffff1 return
     }
-{% if ipv6_name is vyos_defined %}
+{% if ipv6_name is ngnos_defined %}
 {%     set ns = namespace(sets=[]) %}
 {%     for name_text, conf in ipv6_name.items() %}
     chain NAME6_{{ name_text }} {
-{%         if conf.rule is vyos_defined %}
-{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not vyos_defined %}
+{%         if conf.rule is ngnos_defined %}
+{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not ngnos_defined %}
         {{ rule_conf | nft_rule(name_text, rule_id, 'ip6') }}
-{%                 if rule_conf.recent is vyos_defined %}
+{%                 if rule_conf.recent is ngnos_defined %}
 {%                     set ns.sets = ns.sets + [name_text + '_' + rule_id] %}
 {%                 endif %}
 {%             endfor %}
@@ -189,7 +189,7 @@ table ip6 vyos_filter {
         flags dynamic
     }
 {%     endfor %}
-{%     if geoip_updated.ipv6_name is vyos_defined %}
+{%     if geoip_updated.ipv6_name is ngnos_defined %}
 {%         for setname in geoip_updated.ipv6_name %}
     set {{ setname }} {
         type ipv6_addr
@@ -201,19 +201,19 @@ table ip6 vyos_filter {
 
 {{ group_tmpl.groups(group, True) }}
 
-{% if zone is vyos_defined %}
-{{ zone_tmpl.zone_chains(zone, state_policy is vyos_defined, True) }}
+{% if zone is ngnos_defined %}
+{{ zone_tmpl.zone_chains(zone, state_policy is ngnos_defined, True) }}
 {% endif %}
 
-{% if state_policy is vyos_defined %}
-    chain VYOS_STATE_POLICY6 {
-{%     if state_policy.established is vyos_defined %}
+{% if state_policy is ngnos_defined %}
+    chain NGNOS_STATE_POLICY6 {
+{%     if state_policy.established is ngnos_defined %}
         {{ state_policy.established | nft_state_policy('established') }}
 {%     endif %}
-{%     if state_policy.invalid is vyos_defined %}
+{%     if state_policy.invalid is ngnos_defined %}
         {{ state_policy.invalid | nft_state_policy('invalid') }}
 {%     endif %}
-{%     if state_policy.related is vyos_defined %}
+{%     if state_policy.related is ngnos_defined %}
         {{ state_policy.related | nft_state_policy('related') }}
 {%     endif %}
         return

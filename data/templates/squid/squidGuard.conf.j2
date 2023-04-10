@@ -14,14 +14,14 @@ dest {{ category }}-{{ rule }}{
 {% if expressions | is_file %}
         expressionlist {{ category }}/expressions
 {% endif %}
-{% if log is vyos_defined %}
+{% if log is ngnos_defined %}
         log            blacklist.log
 {% endif %}
 }
 {% endmacro %}
 
-{% if url_filtering is vyos_defined and url_filtering.disable is not vyos_defined %}
-{%     if url_filtering.squidguard is vyos_defined %}
+{% if url_filtering is ngnos_defined and url_filtering.disable is not ngnos_defined %}
+{%     if url_filtering.squidguard is ngnos_defined %}
 {%         set sg_config = url_filtering.squidguard %}
 {%         set acl = namespace(value='') %}
 {%         set acl.value = acl.value + ' !in-addr' if sg_config.allow_ipaddr_url is not defined else acl.value %}
@@ -39,48 +39,48 @@ rewrite safesearch {
         log     rewrite.log
 }
 
-{%         if sg_config.local_ok is vyos_defined %}
+{%         if sg_config.local_ok is ngnos_defined %}
 {%             set acl.value = acl.value + ' local-ok-default' %}
 dest local-ok-default {
         domainlist     local-ok-default/domains
 }
 {%         endif %}
 
-{%         if sg_config.local_ok_url is vyos_defined %}
+{%         if sg_config.local_ok_url is ngnos_defined %}
 {%             set acl.value = acl.value + ' local-ok-url-default' %}
 dest local-ok-url-default {
         urllist        local-ok-url-default/urls
 }
 {%         endif %}
 
-{%         if sg_config.local_block is vyos_defined %}
+{%         if sg_config.local_block is ngnos_defined %}
 {%             set acl.value = acl.value + ' !local-block-default' %}
 dest local-block-default {
         domainlist     local-block-default/domains
 }
 {%         endif %}
 
-{%         if sg_config.local_block_url is vyos_defined %}
+{%         if sg_config.local_block_url is ngnos_defined %}
 {%             set acl.value = acl.value + ' !local-block-url-default' %}
 dest local-block-url-default {
         urllist        local-block-url-default/urls
 }
 {%         endif %}
 
-{%         if sg_config.local_block_keyword is vyos_defined %}
+{%         if sg_config.local_block_keyword is ngnos_defined %}
 {%             set acl.value = acl.value + ' !local-block-keyword-default' %}
 dest local-block-keyword-default {
         expressionlist local-block-keyword-default/expressions
 }
 {%         endif %}
 
-{%         if sg_config.block_category is vyos_defined %}
+{%         if sg_config.block_category is ngnos_defined %}
 {%             for category in sg_config.block_category %}
 {{ sg_rule(category, 'default', sg_config.log, squidguard_db_dir) }}
 {%                 set acl.value = acl.value + ' !' + category + '-default' %}
 {%             endfor %}
 {%         endif %}
-{%         if sg_config.allow_category is vyos_defined %}
+{%         if sg_config.allow_category is ngnos_defined %}
 {%             for category in sg_config.allow_category %}
 {{ sg_rule(category, 'default', False, squidguard_db_dir) }}
 {%                 set acl.value = acl.value + ' ' + category + '-default' %}
@@ -88,9 +88,9 @@ dest local-block-keyword-default {
 {%         endif %}
 
 
-{%         if sg_config.rule is vyos_defined %}
+{%         if sg_config.rule is ngnos_defined %}
 {%             for rule, rule_config in sg_config.rule.items() %}
-{%                 if rule_config.local_ok is vyos_defined %}
+{%                 if rule_config.local_ok is ngnos_defined %}
 {%                     if rule in ruleacls %}
 {%                         set _dummy = ruleacls.update({rule: ruleacls[rule] + ' local-ok-' + rule}) %}
 {%                     else %}
@@ -101,7 +101,7 @@ dest local-ok-{{ rule }} {
 }
 {%                 endif %}
 
-{%                 if rule_config.local_ok_url is vyos_defined %}
+{%                 if rule_config.local_ok_url is ngnos_defined %}
 {%                     if rule in ruleacls %}
 {%                         set _dummy = ruleacls.update({rule: ruleacls[rule] + ' local-ok-url-' + rule}) %}
 {%                     else    %}
@@ -112,7 +112,7 @@ dest local-ok-url-{{ rule }} {
 }
 {%                 endif %}
 
-{%                 if rule_config.local_block is vyos_defined %}
+{%                 if rule_config.local_block is ngnos_defined %}
 {%                     if rule in ruleacls %}
 {%                         set _dummy = ruleacls.update({rule: ruleacls[rule] + ' !local-block-' + rule}) %}
 {%                     else    %}
@@ -123,7 +123,7 @@ dest local-block-{{ rule }} {
 }
 {%                 endif %}
 
-{%                 if rule_config.local_block_url is vyos_defined %}
+{%                 if rule_config.local_block_url is ngnos_defined %}
 {%                     if rule in ruleacls %}
 {%                         set _dummy = ruleacls.update({rule: ruleacls[rule] + ' !local-block-url-' + rule}) %}
 {%                     else    %}
@@ -134,7 +134,7 @@ dest local-block-url-{{ rule }} {
 }
 {%                 endif %}
 
-{%                 if rule_config.local_block_keyword is vyos_defined %}
+{%                 if rule_config.local_block_keyword is ngnos_defined %}
 {%                     if rule in ruleacls %}
 {%                         set _dummy = ruleacls.update({rule: ruleacls[rule] + ' !local-block-keyword-' + rule}) %}
 {%                     else    %}
@@ -145,7 +145,7 @@ dest local-block-keyword-{{ rule }} {
 }
 {%                 endif %}
 
-{%                 if rule_config.block_category is vyos_defined %}
+{%                 if rule_config.block_category is ngnos_defined %}
 {%                     for b_category in rule_config.block_category %}
 {%                         if rule in ruleacls %}
 {%                             set _dummy = ruleacls.update({rule: ruleacls[rule] + ' !' + b_category + '-' + rule}) %}
@@ -156,7 +156,7 @@ dest local-block-keyword-{{ rule }} {
 {%                     endfor %}
 {%                 endif   %}
 
-{%                 if rule_config.allow_category is vyos_defined %}
+{%                 if rule_config.allow_category is ngnos_defined %}
 {%                     for a_category in rule_config.allow_category %}
 {%                         if rule in ruleacls %}
 {%                             set _dummy = ruleacls.update({rule: ruleacls[rule] + ' ' + a_category + '-' + rule}) %}
@@ -170,9 +170,9 @@ dest local-block-keyword-{{ rule }} {
 {%         endif %}
 
 
-{%         if sg_config.source_group is vyos_defined %}
+{%         if sg_config.source_group is ngnos_defined %}
 {%             for sgroup, sg_config in sg_config.source_group.items() %}
-{%                 if sg_config.address is vyos_defined %}
+{%                 if sg_config.address is ngnos_defined %}
 src {{ sgroup }} {
 {%                     for address in sg_config.address %}
         ip {{ address }}
@@ -183,21 +183,21 @@ src {{ sgroup }} {
 {%         endif %}
 
 acl {
-{%         if sg_config.rule is vyos_defined %}
+{%         if sg_config.rule is ngnos_defined %}
 {%             for rule, rule_config in sg_config.rule.items() %}
         {{ rule_config.source_group }} {
-            pass {{ ruleacls[rule] }} {{ 'none' if rule_config.default_action is vyos_defined('block') else 'any' }}
+            pass {{ ruleacls[rule] }} {{ 'none' if rule_config.default_action is ngnos_defined('block') else 'any' }}
         }
 {%             endfor %}
 {%         endif %}
 
         default {
-{%         if sg_config.enable_safe_search is vyos_defined %}
+{%         if sg_config.enable_safe_search is ngnos_defined %}
             rewrite safesearch
 {%         endif %}
-            pass {{ acl.value }} {{ 'none' if sg_config.default_action is vyos_defined('block') else 'any' }}
+            pass {{ acl.value }} {{ 'none' if sg_config.default_action is ngnos_defined('block') else 'any' }}
             redirect 302:http://{{ sg_config.redirect_url }}
-{%         if sg_config.log is vyos_defined %}
+{%         if sg_config.log is ngnos_defined %}
             log blacklist.log
 {%         endif %}
         }

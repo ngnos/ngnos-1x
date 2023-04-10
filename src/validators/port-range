@@ -3,7 +3,7 @@
 import sys
 import re
 
-from vyos.util import read_file
+from ngnos.util import read_file
 
 services_file = '/etc/services'
 

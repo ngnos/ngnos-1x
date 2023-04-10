@@ -19,7 +19,7 @@ import os
 from sys import argv
 from sys import exit
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 def replace_nat_interfaces(config, old, new):
     if not config.exists(['nat']):

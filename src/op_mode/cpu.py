@@ -16,8 +16,8 @@
 
 import sys
 
-import vyos.cpu
-import vyos.opmode
+import ngnos.cpu
+import ngnos.opmode
 
 from jinja2 import Template
 
@@ -37,15 +37,15 @@ CPU model(s): {{models | join(", ")}}
 """)
 
 def _get_raw_data():
-    return vyos.cpu.get_cpus()
+    return ngnos.cpu.get_cpus()
 
 def _format_cpus(cpu_data):
     env = {'cpus': cpu_data}
     return cpu_template.render(env).strip()
 
 def _get_summary_data():
-    count = vyos.cpu.get_core_count()
-    cpu_data = vyos.cpu.get_cpus()
+    count = ngnos.cpu.get_core_count()
+    cpu_data = ngnos.cpu.get_cpus()
     models = [c['model name'] for c in cpu_data]
     env = {'count': count, "models": models}
 
@@ -73,10 +73,10 @@ def show_summary(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)
 

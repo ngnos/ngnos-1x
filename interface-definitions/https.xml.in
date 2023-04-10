@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="https" owner="${vyos_conf_scripts_dir}/https.py">
+      <node name="https" owner="${ngnos_conf_scripts_dir}/https.py">
         <properties>
           <help>HTTPS configuration</help>
           <priority>1001</priority>
@@ -21,7 +21,7 @@
                 <properties>
                   <help>Address to listen for HTTPS requests</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                    <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                   </completionHelp>
                   <valueHelp>
                     <format>ipv4</format>
@@ -63,9 +63,9 @@
               #include <include/allow-client.xml.i>
             </children>
           </tagNode>
-          <node name="api" owner="${vyos_conf_scripts_dir}/http-api.py">
+          <node name="api" owner="${ngnos_conf_scripts_dir}/http-api.py">
             <properties>
-              <help>VyOS HTTP API configuration</help>
+              <help>ngNOS HTTP API configuration</help>
               <priority>1002</priority>
             </properties>
             <children>
@@ -209,7 +209,7 @@
             <children>
               #include <include/pki/ca-certificate.xml.i>
               #include <include/pki/certificate.xml.i>
-              <node name="certbot" owner="${vyos_conf_scripts_dir}/le_cert.py">
+              <node name="certbot" owner="${ngnos_conf_scripts_dir}/le_cert.py">
                 <properties>
                   <help>Request or apply a letsencrypt certificate for domain-name</help>
                 </properties>

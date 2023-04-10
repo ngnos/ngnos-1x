@@ -21,10 +21,10 @@ import unittest
 from base_interfaces_test import BasicInterfaceTest
 from glob import glob
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import process_named_running
-from vyos.util import check_kmod
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import process_named_running
+from ngnos.util import check_kmod
+from ngnos.util import read_file
 
 def get_config_value(interface, key):
     tmp = read_file(f'/run/hostapd/{interface}.conf')
@@ -37,13 +37,13 @@ class WirelessInterfaceTest(BasicInterfaceTest.TestCase):
         cls._test_ip = True
         cls._base_path = ['interfaces', 'wireless']
         cls._options = {
-            'wlan0':  ['physical-device phy0', 'ssid VyOS-WIFI-0',
+            'wlan0':  ['physical-device phy0', 'ssid ngNOS-WIFI-0',
                        'type station', 'address 192.0.2.1/30'],
-            'wlan1':  ['physical-device phy0', 'ssid VyOS-WIFI-1', 'country-code se',
+            'wlan1':  ['physical-device phy0', 'ssid ngNOS-WIFI-1', 'country-code se',
                        'type access-point', 'address 192.0.2.5/30', 'channel 0'],
-            'wlan10': ['physical-device phy1', 'ssid VyOS-WIFI-2',
+            'wlan10': ['physical-device phy1', 'ssid ngNOS-WIFI-2',
                        'type station', 'address 192.0.2.9/30'],
-            'wlan11': ['physical-device phy1', 'ssid VyOS-WIFI-3', 'country-code se',
+            'wlan11': ['physical-device phy1', 'ssid ngNOS-WIFI-3', 'country-code se',
                        'type access-point', 'address 192.0.2.13/30', 'channel 0'],
         }
         cls._interfaces = list(cls._options)
@@ -77,7 +77,7 @@ class WirelessInterfaceTest(BasicInterfaceTest.TestCase):
         self.cli_set(self._base_path + [interface, 'capabilities', 'ht', 'auto-powersave'])
 
         ht_opt = {
-            # VyOS CLI option           hostapd - ht_capab setting
+            # ngNOS CLI option           hostapd - ht_capab setting
             '40mhz-incapable'         : '[40-INTOLERANT]',
             'delayed-block-ack'       : '[DELAYED-BA]',
             'greenfield'              : '[GF]',
@@ -93,7 +93,7 @@ class WirelessInterfaceTest(BasicInterfaceTest.TestCase):
             self.cli_set(self._base_path + [interface, 'capabilities', 'ht'] + key.split())
 
         vht_opt = {
-            # VyOS CLI option           hostapd - ht_capab setting
+            # ngNOS CLI option           hostapd - ht_capab setting
             'stbc tx'                 : '[TX-STBC-2BY1]',
             'stbc rx 12'              : '[RX-STBC-12]',
             'ldpc'                    : '[RXLDPC]',
@@ -146,7 +146,7 @@ class WirelessInterfaceTest(BasicInterfaceTest.TestCase):
         phy = 'phy0'
         ssid = 'ssid'
         channel = '1'
-        wpa_key = 'VyOSVyOSVyOS'
+        wpa_key = 'ngNOSngNOSngNOS'
         mode = 'n'
         country = 'de'
 
@@ -208,7 +208,7 @@ class WirelessInterfaceTest(BasicInterfaceTest.TestCase):
 
     def test_wireless_access_point_bridge(self):
         interface = 'wlan0'
-        ssid = 'VyOS-Test'
+        ssid = 'ngNOS-Test'
         bridge = 'br42477'
 
         # We need a bridge where we can hook our access-point interface to

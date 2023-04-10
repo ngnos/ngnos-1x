@@ -19,28 +19,28 @@ import sys
 
 from copy import deepcopy
 
-import vyos.defaults
-import vyos.certbot_util
+import ngnos.defaults
+import ngnos.certbot_util
 
-from vyos.config import Config
-from vyos.configverify import verify_vrf
-from vyos import ConfigError
-from vyos.pki import wrap_certificate
-from vyos.pki import wrap_private_key
-from vyos.template import render
-from vyos.util import call
-from vyos.util import check_port_availability
-from vyos.util import is_listen_port_bind_service
-from vyos.util import write_file
+from ngnos.config import Config
+from ngnos.configverify import verify_vrf
+from ngnos import ConfigError
+from ngnos.pki import wrap_certificate
+from ngnos.pki import wrap_private_key
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import check_port_availability
+from ngnos.util import is_listen_port_bind_service
+from ngnos.util import write_file
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 config_file = '/etc/nginx/sites-available/default'
 systemd_override = r'/run/systemd/system/nginx.service.d/override.conf'
 cert_dir = '/etc/ssl/certs'
 key_dir = '/etc/ssl/private'
-certbot_dir = vyos.defaults.directories['certbot']
+certbot_dir = ngnos.defaults.directories['certbot']
 
 # https config needs to coordinate several subsystems: api, certbot,
 # self-signed certificate, as well as the virtual hosts defined within the
@@ -53,7 +53,7 @@ default_server_block = {
     'port'      : '443',
     'name'      : ['_'],
     'api'       : {},
-    'vyos_cert' : {},
+    'ngnos_cert' : {},
     'certbot'   : False
 }
 
@@ -182,13 +182,13 @@ def generate(https):
         write_file(cert_path, server_cert)
         write_file(key_path, wrap_private_key(pki_cert['private']['key']))
 
-        vyos_cert_data = {
+        ngnos_cert_data = {
             'crt': cert_path,
             'key': key_path
         }
 
         for block in server_block_list:
-            block['vyos_cert'] = vyos_cert_data
+            block['ngnos_cert'] = ngnos_cert_data
 
     # letsencrypt certificate using certbot
 
@@ -197,7 +197,7 @@ def generate(https):
     if cert_domains:
         certbot = True
         for domain in cert_domains:
-            sub_list = vyos.certbot_util.choose_server_block(server_block_list,
+            sub_list = ngnos.certbot_util.choose_server_block(server_block_list,
                                                              domain)
             if sub_list:
                 for sb in sub_list:
@@ -212,7 +212,7 @@ def generate(https):
     api_data = {}
     if 'api' in list(https):
         api_set = True
-        api_data = vyos.defaults.api_data
+        api_data = ngnos.defaults.api_data
     api_settings = https.get('api', {})
     if api_settings:
         port = api_settings.get('port', '')

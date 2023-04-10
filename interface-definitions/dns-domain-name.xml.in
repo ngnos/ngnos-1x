@@ -2,12 +2,12 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <leafNode name="name-server" owner="${vyos_conf_scripts_dir}/host_name.py">
+      <leafNode name="name-server" owner="${ngnos_conf_scripts_dir}/host_name.py">
         <properties>
           <help>System Domain Name Servers (DNS)</help>
           <priority>400</priority>
           <completionHelp>
-            <script>${vyos_completion_dir}/list_interfaces</script>
+            <script>${ngnos_completion_dir}/list_interfaces</script>
           </completionHelp>
           <valueHelp>
             <format>ipv4</format>
@@ -30,15 +30,15 @@
         </properties>
       </leafNode>
       <!-- script does not use XML defaults so far -->
-      <leafNode name="host-name" owner="${vyos_conf_scripts_dir}/host_name.py">
+      <leafNode name="host-name" owner="${ngnos_conf_scripts_dir}/host_name.py">
         <properties>
-          <help>System host name (default: vyos)</help>
+          <help>System host name (default: ngnos)</help>
           <constraint>
             #include <include/constraint/host-name.xml.i>
           </constraint>
         </properties>
       </leafNode>
-      <leafNode name="domain-name" owner="${vyos_conf_scripts_dir}/host_name.py">
+      <leafNode name="domain-name" owner="${ngnos_conf_scripts_dir}/host_name.py">
         <properties>
           <help>System domain name</help>
           <constraint>
@@ -46,7 +46,7 @@
           </constraint>
         </properties>
       </leafNode>
-      <node name="domain-search" owner="${vyos_conf_scripts_dir}/host_name.py">
+      <node name="domain-search" owner="${ngnos_conf_scripts_dir}/host_name.py">
         <properties>
           <help>Domain Name Server (DNS) domain completion order</help>
           <priority>400</priority>
@@ -64,7 +64,7 @@
           </leafNode>
         </children>
       </node>
-      <node name="static-host-mapping" owner="${vyos_conf_scripts_dir}/host_name.py">
+      <node name="static-host-mapping" owner="${ngnos_conf_scripts_dir}/host_name.py">
         <properties>
           <help>Map host names to addresses</help>
           <priority>400</priority>

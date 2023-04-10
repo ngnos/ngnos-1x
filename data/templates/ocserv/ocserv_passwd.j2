@@ -1,7 +1,7 @@
 #<username>:<group>:<hash>
-{% if username is vyos_defined %}
+{% if username is ngnos_defined %}
 {%     for user, user_config in username.items() %}
-{%         if user_config.disable is not vyos_defined %}
+{%         if user_config.disable is not ngnos_defined %}
 {{ user }}:*:{{ user_config.hash }}
 {%         endif %}
 {%     endfor %}

@@ -19,10 +19,10 @@ import unittest
 from requests import request
 from urllib3.exceptions import InsecureRequestWarning
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from base_vyostest_shim import ignore_warning
-from vyos.util import read_file
-from vyos.util import run
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from base_ngnostest_shim import ignore_warning
+from ngnos.util import read_file
+from ngnos.util import run
 
 base_path = ['service', 'https']
 pki_base = ['pki']
@@ -48,7 +48,7 @@ MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgPLpD0Ohhoq0g4nhx
 u8/3jHMM7sDwL3aWzW/zp54/LhCWUoLMjDdDEEigK4fal4ZF9aA9F0Ww
 """
 
-class TestHTTPSService(VyOSUnitTestSHIM.TestCase):
+class TestHTTPSService(ngNOSUnitTestSHIM.TestCase):
     def setUp(self):
         # ensure we can also run this test on a live system - so lets clean
         # out the current configuration :)
@@ -107,7 +107,7 @@ class TestHTTPSService(VyOSUnitTestSHIM.TestCase):
         name = 'localhost'
 
         self.cli_set(base_path + ['api', 'socket'])
-        key = 'MySuperSecretVyOS'
+        key = 'MySuperSecretngNOS'
         self.cli_set(base_path + ['api', 'keys', 'id', 'key-01', 'key', key])
 
         test_path = base_path + ['virtual-host', vhost_id]
@@ -204,7 +204,7 @@ class TestHTTPSService(VyOSUnitTestSHIM.TestCase):
 
         mutation = """
         mutation {
-          AuthToken (data: {username: "vyos", password: "vyos"}) {
+          AuthToken (data: {username: "ngnos", password: "ngnos"}) {
             success
             errors
             data {
@@ -227,7 +227,7 @@ class TestHTTPSService(VyOSUnitTestSHIM.TestCase):
             op_mode_error {
               name
               message
-              vyos_code
+              ngnos_code
             }
             data {
               result

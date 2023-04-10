@@ -16,18 +16,18 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'ospfd'
 base_path = ['protocols', 'ospf']
 
 route_map = 'foo-bar-baz10'
 
-class TestProtocolsOSPF(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsOSPF(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsOSPF, cls).setUpClass()
@@ -261,12 +261,12 @@ class TestProtocolsOSPF(VyOSUnitTestSHIM.TestCase):
 
     def test_ospf_09_interface_configuration(self):
         interfaces = Section.interfaces('ethernet')
-        password = 'vyos1234'
+        password = 'ngnos1234'
         bandwidth = '10000'
         cost = '150'
         network = 'point-to-point'
         priority = '200'
-        bfd_profile = 'vyos-test'
+        bfd_profile = 'ngnos-test'
 
         self.cli_set(base_path + ['passive-interface', 'default'])
         for interface in interfaces:

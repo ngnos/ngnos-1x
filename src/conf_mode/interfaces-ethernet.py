@@ -19,31 +19,31 @@ import os
 from glob import glob
 from sys import exit
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configverify import verify_address
-from vyos.configverify import verify_dhcpv6
-from vyos.configverify import verify_eapol
-from vyos.configverify import verify_interface_exists
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_mtu
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_vlan_config
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ethtool import Ethtool
-from vyos.ifconfig import EthernetIf
-from vyos.pki import find_chain
-from vyos.pki import encode_certificate
-from vyos.pki import load_certificate
-from vyos.pki import wrap_private_key
-from vyos.template import render
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import write_file
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_dhcpv6
+from ngnos.configverify import verify_eapol
+from ngnos.configverify import verify_interface_exists
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_mtu
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_vlan_config
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ethtool import Ethtool
+from ngnos.ifconfig import EthernetIf
+from ngnos.pki import find_chain
+from ngnos.pki import encode_certificate
+from ngnos.pki import load_certificate
+from ngnos.pki import wrap_private_key
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import write_file
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 # XXX: wpa_supplicant works on the source interface

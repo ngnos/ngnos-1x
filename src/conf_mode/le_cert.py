@@ -17,18 +17,18 @@
 import sys
 import os
 
-import vyos.defaults
-from vyos.config import Config
-from vyos import ConfigError
-from vyos.util import cmd
-from vyos.util import call
-from vyos.util import is_systemd_service_running
+import ngnos.defaults
+from ngnos.config import Config
+from ngnos import ConfigError
+from ngnos.util import cmd
+from ngnos.util import call
+from ngnos.util import is_systemd_service_running
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
-vyos_conf_scripts_dir = vyos.defaults.directories['conf_mode']
-vyos_certbot_dir = vyos.defaults.directories['certbot']
+ngnos_conf_scripts_dir = ngnos.defaults.directories['conf_mode']
+ngnos_certbot_dir = ngnos.defaults.directories['certbot']
 
 dependencies = [
     'https.py',
@@ -47,7 +47,7 @@ def request_certbot(cert):
     else:
         domain_flag = ''
 
-    certbot_cmd = f'certbot certonly --config-dir {vyos_certbot_dir} -n --nginx --agree-tos --no-eff-email --expand {email_flag} {domain_flag}'
+    certbot_cmd = f'certbot certonly --config-dir {ngnos_certbot_dir} -n --nginx --agree-tos --no-eff-email --expand {email_flag} {domain_flag}'
 
     cmd(certbot_cmd,
         raising=ConfigError,
@@ -101,7 +101,7 @@ def apply(cert):
         return None
 
     for dep in dependencies:
-        cmd(f'{vyos_conf_scripts_dir}/{dep}', raising=ConfigError)
+        cmd(f'{ngnos_conf_scripts_dir}/{dep}', raising=ConfigError)
 
 if __name__ == '__main__':
     try:

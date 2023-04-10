@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="vpn">
     <children>
-      <node name="sstp" owner="${vyos_conf_scripts_dir}/vpn_sstp.py">
+      <node name="sstp" owner="${ngnos_conf_scripts_dir}/vpn_sstp.py">
         <properties>
           <help>Secure Socket Tunneling Protocol (SSTP) server</help>
           <priority>901</priority>

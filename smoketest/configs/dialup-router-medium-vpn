@@ -68,8 +68,8 @@ interfaces {
             mtu 1500
             name-server auto
             password password
-            user-id vyos
-            password vyos
+            user-id ngnos
+            password ngnos
         }
         smp-affinity auto
         speed auto
@@ -123,8 +123,8 @@ interfaces {
     }
     openvpn vtun1 {
         authentication {
-            password vyos1
-            username vyos1
+            password ngnos1
+            username ngnos1
         }
         encryption aes256
         hash sha1
@@ -153,8 +153,8 @@ interfaces {
     }
     openvpn vtun2 {
         authentication {
-            password vyos2
-            username vyos2
+            password ngnos2
+            username ngnos2
         }
         disable
         encryption aes256
@@ -547,8 +547,8 @@ service {
             subnet 192.168.0.0/24 {
                 default-router 192.168.0.1
                 dns-server 192.168.0.1
-                domain-name vyos.net
-                domain-search vyos.net
+                domain-name ngnos.com
+                domain-search ngnos.com
                 failover {
                     local-address 192.168.0.250
                     name DHCP02
@@ -619,7 +619,7 @@ service {
     ssh {
         access-control {
             allow {
-                user vyos
+                user ngnos
             }
         }
         client-keepalive-interval 60
@@ -637,14 +637,14 @@ system {
             speed 115200
         }
     }
-    host-name vyos
+    host-name ngnos
     ip {
         arp {
             table-size 1024
         }
     }
     login {
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$O5gJRlDYQpj$MtrCV9lxMnZPMbcxlU7.FI793MImNHznxGoMFgm3Q6QP3vfKJyOSRCt3Ka/GzFQyW1yZS4NS616NLHaIPPFHc0
                 plaintext-password ""
@@ -669,16 +669,16 @@ system {
         reboot-on-panic true
     }
     static-host-mapping {
-        host-name host104.vyos.net {
+        host-name host104.ngnos.com {
             inet 192.168.0.104
         }
-        host-name host60.vyos.net {
+        host-name host60.ngnos.com {
             inet 192.168.0.60
         }
-        host-name host107.vyos.net {
+        host-name host107.ngnos.com {
             inet 192.168.0.107
         }
-        host-name host109.vyos.net {
+        host-name host109.ngnos.com {
             inet 192.168.0.109
         }
     }
@@ -706,7 +706,7 @@ system {
     task-scheduler {
         task Update-Blacklists {
             executable {
-                path /config/scripts/vyos-foo-update.script
+                path /config/scripts/ngnos-foo-update.script
             }
             interval 3h
         }

@@ -22,7 +22,7 @@
                     <list><![CDATA[<http[s]://[<username>:<password>@]<hostname>/<path-to-file>> <ftp://[<username>[:<password>]@]<hostname>/<path-to-file>> <tftp://<hostname>/<path-to-file>> <sftp://[<username>[:<password>]@]<hostname>/<path-to-file>> <scp://[<username>[:<password>]@]<hostname>/<path-to-file>> <[file://]/<path-to-file>>]]></list>
                   </completionHelp>
                 </properties>
-                <command>${vyos_op_scripts_dir}/generate_public_key_command.py "$4" "$6"</command>
+                <command>${ngnos_op_scripts_dir}/generate_public_key_command.py "$4" "$6"</command>
               </tagNode>
             </children>
           </tagNode>

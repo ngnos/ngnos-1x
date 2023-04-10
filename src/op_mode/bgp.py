@@ -26,9 +26,9 @@ import jmespath
 from jinja2 import Template
 from humps import decamelize
 
-from vyos.configquery import ConfigTreeQuery
+from ngnos.configquery import ConfigTreeQuery
 
-import vyos.opmode
+import ngnos.opmode
 
 ArgFamily = typing.Literal['inet', 'inet6']
 
@@ -68,7 +68,7 @@ def _verify(func):
             vrf_opt = f'vrf name {vrf}'
         # Check if config does not exist
         if not config.exists(f'{vrf_opt} protocols bgp {peer_opt}'):
-            raise vyos.opmode.UnconfiguredSubsystem(unconf_message)
+            raise ngnos.opmode.UnconfiguredSubsystem(unconf_message)
         return func(*args, **kwargs)
 
     return _wrapper
@@ -83,7 +83,7 @@ def show_neighbors(raw: bool,
     frr_command = frr_command_template.render(kwargs)
     frr_command = re.sub(r'\s+', ' ', frr_command)
 
-    from vyos.util import cmd
+    from ngnos.util import cmd
     output = cmd(f"vtysh -c '{frr_command}'")
 
     if raw:
@@ -113,9 +113,9 @@ def show_neighbors(raw: bool,
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

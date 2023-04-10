@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="sstpc" owner="${vyos_conf_scripts_dir}/interfaces-sstpc.py">
+      <tagNode name="sstpc" owner="${ngnos_conf_scripts_dir}/interfaces-sstpc.py">
         <properties>
           <help>Secure Socket Tunneling Protocol (SSTP) client Interface</help>
           <priority>460</priority>

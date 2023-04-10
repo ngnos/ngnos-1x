@@ -20,8 +20,8 @@ import jinja2
 import sys
 import time
 
-from vyos.config import Config
-from vyos.util import call
+from ngnos.config import Config
+from ngnos.util import call
 
 cache_file = r'/run/ddclient/ddclient.cache'
 

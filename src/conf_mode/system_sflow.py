@@ -18,14 +18,14 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render
-from vyos.util import call
-from vyos.validate import is_addr_assigned
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.validate import is_addr_assigned
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 hsflowd_conf_path = '/run/sflow/hsflowd.conf'

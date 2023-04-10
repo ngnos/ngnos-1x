@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="policy">
     <children>
-      <node name="local-route" owner="${vyos_conf_scripts_dir}/policy-local-route.py">
+      <node name="local-route" owner="${ngnos_conf_scripts_dir}/policy-local-route.py">
         <properties>
           <help>IPv4 policy route of local traffic</help>
           <priority>500</priority>
@@ -94,7 +94,7 @@
           </tagNode>
         </children>
       </node>
-      <node name="local-route6" owner="${vyos_conf_scripts_dir}/policy-local-route.py">
+      <node name="local-route6" owner="${ngnos_conf_scripts_dir}/policy-local-route.py">
         <properties>
           <help>IPv6 policy route of local traffic</help>
           <priority>500</priority>

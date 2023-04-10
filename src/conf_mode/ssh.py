@@ -20,15 +20,15 @@ from sys import exit
 from syslog import syslog
 from syslog import LOG_INFO
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.util import call
-from vyos.template import render
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.util import call
+from ngnos.template import render
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = r'/run/sshd/sshd_config'

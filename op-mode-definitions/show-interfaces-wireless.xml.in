@@ -8,19 +8,19 @@
             <properties>
               <help>Show Wireless (WLAN) interface information</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf_type=wireless</command>
+            <command>${ngnos_op_scripts_dir}/interfaces.py show_summary --intf_type=wireless</command>
             <children>
               <leafNode name="detail">
                 <properties>
                   <help>Show detailed wireless interface information</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/interfaces.py show --intf_type=wireless</command>
+                <command>${ngnos_op_scripts_dir}/interfaces.py show --intf_type=wireless</command>
               </leafNode>
               <leafNode name="info">
                 <properties>
                   <help>Show wireless interface configuration</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/show_wireless.py --brief</command>
+                <command>${ngnos_op_scripts_dir}/show_wireless.py --brief</command>
               </leafNode>
             </children>
           </node>
@@ -28,22 +28,22 @@
             <properties>
               <help>Show specified wireless interface information</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces --type wireless</script>
+                <script>${ngnos_completion_dir}/list_interfaces --type wireless</script>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/interfaces.py show --intf_name="$4" --intf_type=wireless</command>
+            <command>${ngnos_op_scripts_dir}/interfaces.py show --intf_name="$4" --intf_type=wireless</command>
             <children>
               <leafNode name="brief">
                 <properties>
                   <help>Show summary of the specified wireless interface information</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf_name="$4" --intf_type=wireless</command>
+                <command>${ngnos_op_scripts_dir}/interfaces.py show_summary --intf_name="$4" --intf_type=wireless</command>
               </leafNode>
               <node name="scan">
                 <properties>
                   <help>Show summary of the specified wireless interface information</help>
                 </properties>
-                <command>sudo ${vyos_op_scripts_dir}/show_wireless.py --scan "$4"</command>
+                <command>sudo ${ngnos_op_scripts_dir}/show_wireless.py --scan "$4"</command>
                 <children>
                   <leafNode name="detail">
                     <properties>
@@ -57,19 +57,19 @@
                 <properties>
                   <help>Show specified Wireless interface information</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/show_wireless.py --stations "$4"</command>
+                <command>${ngnos_op_scripts_dir}/show_wireless.py --stations "$4"</command>
               </leafNode>
               <tagNode name="vif">
                 <properties>
                   <help>Show specified virtual network interface (vif) information</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/interfaces.py show --intf_name="$4.$6" --intf_type=wireless</command>
+                <command>${ngnos_op_scripts_dir}/interfaces.py show --intf_name="$4.$6" --intf_type=wireless</command>
                 <children>
                   <leafNode name="brief">
                     <properties>
                       <help>Show summary of specified virtual network interface (vif) information</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf_name="$4.$6" --intf_type=wireless</command>
+                    <command>${ngnos_op_scripts_dir}/interfaces.py show_summary --intf_name="$4.$6" --intf_type=wireless</command>
                   </leafNode>
                 </children>
               </tagNode>

@@ -24,10 +24,10 @@ from syslog import openlog
 from syslog import LOG_PID
 from syslog import LOG_INFO
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import call
-from vyos.util import get_interface_config
-from vyos.util import get_interface_address
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import call
+from ngnos.util import get_interface_config
+from ngnos.util import get_interface_address
 
 if __name__ == '__main__':
     verb = os.getenv('PLUTO_VERB')

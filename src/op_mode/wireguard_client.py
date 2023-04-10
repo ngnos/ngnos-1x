@@ -20,20 +20,20 @@ import os
 from jinja2 import Template
 from ipaddress import ip_interface
 
-from vyos.ifconfig import Section
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.util import cmd
-from vyos.util import popen
+from ngnos.ifconfig import Section
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.util import cmd
+from ngnos.util import popen
 
 if os.geteuid() != 0:
     exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
 
 server_config = """WireGuard client configuration for interface: {{ interface }}
 
-To enable this configuration on a VyOS router you can use the following commands:
+To enable this configuration on a ngNOS router you can use the following commands:
 
-=== VyOS (server) configurtation ===
+=== ngNOS (server) configurtation ===
 
 {% for addr in address if address is defined %}
 set interfaces wireguard {{ interface }} peer {{ name }} allowed-ips '{{ addr }}'

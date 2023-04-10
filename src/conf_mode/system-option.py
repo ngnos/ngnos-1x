@@ -20,21 +20,21 @@ from netifaces import interfaces
 from sys import exit
 from time import sleep
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_source_interface
-from vyos.template import render
-from vyos.util import cmd
-from vyos.util import is_systemd_service_running
-from vyos.validate import is_addr_assigned
-from vyos.validate import is_intf_addr_assigned
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_source_interface
+from ngnos.template import render
+from ngnos.util import cmd
+from ngnos.util import is_systemd_service_running
+from ngnos.validate import is_addr_assigned
+from ngnos.validate import is_intf_addr_assigned
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 curlrc_config = r'/etc/curlrc'
-ssh_config = r'/etc/ssh/ssh_config.d/91-vyos-ssh-client-options.conf'
+ssh_config = r'/etc/ssh/ssh_config.d/91-ngnos-ssh-client-options.conf'
 systemd_action_file = '/lib/systemd/system/ctrl-alt-del.target'
 
 def get_config(config=None):
@@ -92,9 +92,9 @@ def generate(options):
 def apply(options):
     # System bootup beep
     if 'startup_beep' in options:
-        cmd('systemctl enable vyos-beep.service')
+        cmd('systemctl enable ngnos-beep.service')
     else:
-        cmd('systemctl disable vyos-beep.service')
+        cmd('systemctl disable ngnos-beep.service')
 
     # Ctrl-Alt-Delete action
     if os.path.exists(systemd_action_file):

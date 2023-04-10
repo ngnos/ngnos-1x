@@ -20,24 +20,24 @@ from netifaces import interfaces
 from sys import exit
 from glob import glob
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.hostsd_client import Client as hostsd_client
-from vyos.template import render
-from vyos.template import bracketize_ipv6
-from vyos.util import call
-from vyos.util import chown
-from vyos.util import dict_search
-from vyos.xml import defaults
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.hostsd_client import Client as hostsd_client
+from ngnos.template import render
+from ngnos.template import bracketize_ipv6
+from ngnos.util import call
+from ngnos.util import chown
+from ngnos.util import dict_search
+from ngnos.xml import defaults
 
-from vyos import ConfigError
-from vyos import airbag
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 pdns_rec_user = pdns_rec_group = 'pdns'
 pdns_rec_run_dir = '/run/powerdns'
 pdns_rec_lua_conf_file = f'{pdns_rec_run_dir}/recursor.conf.lua'
-pdns_rec_hostsd_lua_conf_file = f'{pdns_rec_run_dir}/recursor.vyos-hostsd.conf.lua'
+pdns_rec_hostsd_lua_conf_file = f'{pdns_rec_run_dir}/recursor.ngnos-hostsd.conf.lua'
 pdns_rec_hostsd_zones_file = f'{pdns_rec_run_dir}/recursor.forward-zones.conf'
 pdns_rec_config_file = f'{pdns_rec_run_dir}/recursor.conf'
 
@@ -321,7 +321,7 @@ def generate(dns):
                     zone, user=pdns_rec_user, group=pdns_rec_group)
 
 
-    # if vyos-hostsd didn't create its files yet, create them (empty)
+    # if ngnos-hostsd didn't create its files yet, create them (empty)
     for file in [pdns_rec_hostsd_lua_conf_file, pdns_rec_hostsd_zones_file]:
         with open(file, 'a'):
             pass
@@ -340,7 +340,7 @@ def apply(dns):
         for zone_filename in glob(f'{pdns_rec_run_dir}/zone.*.conf'):
             os.unlink(zone_filename)
     else:
-        ### first apply vyos-hostsd config
+        ### first apply ngnos-hostsd config
         hc = hostsd_client()
 
         # add static nameservers to hostsd so they can be joined with other

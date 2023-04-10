@@ -11,7 +11,7 @@
             <properties>
               <help>Pull a new image for container</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/container.py add_image --name "${4}"</command>
+            <command>sudo ${ngnos_op_scripts_dir}/container.py add_image --name "${4}"</command>
           </tagNode>
         </children>
       </node>
@@ -44,7 +44,7 @@
                 <script>sudo podman image ls -q</script>
               </completionHelp>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/container.py delete_image --name "${4}"</command>
+            <command>sudo ${ngnos_op_scripts_dir}/container.py delete_image --name "${4}"</command>
           </tagNode>
         </children>
       </node>
@@ -100,13 +100,13 @@
         <properties>
           <help>Show containers</help>
         </properties>
-        <command>sudo ${vyos_op_scripts_dir}/container.py show_container</command>
+        <command>sudo ${ngnos_op_scripts_dir}/container.py show_container</command>
         <children>
           <leafNode name="image">
             <properties>
               <help>Show container image</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/container.py show_image</command>
+            <command>sudo ${ngnos_op_scripts_dir}/container.py show_image</command>
           </leafNode>
           <tagNode name="log">
             <properties>
@@ -121,7 +121,7 @@
             <properties>
               <help>Show available container networks</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/container.py show_network</command>
+            <command>sudo ${ngnos_op_scripts_dir}/container.py show_network</command>
           </leafNode>
         </children>
       </node>
@@ -149,7 +149,7 @@
             <path>container name</path>
           </completionHelp>
         </properties>
-        <command>sudo ${vyos_op_scripts_dir}/container.py restart --name="$3"</command>
+        <command>sudo ${ngnos_op_scripts_dir}/container.py restart --name="$3"</command>
       </tagNode>
     </children>
   </node>

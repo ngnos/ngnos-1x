@@ -1,7 +1,7 @@
 [Unit]
 Description=UPnP service
 ConditionPathExists=/run/upnp/miniupnp.conf
-After=vyos-router.service
+After=ngnos-router.service
 StartLimitIntervalSec=0
 
 [Service]

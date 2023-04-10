@@ -13,7 +13,7 @@ interfaces {
                     authentication {
                         md5 {
                             key-id 10 {
-                                md5-key OSPFVyOSNET
+                                md5-key OSPFngNOSNET
                             }
                         }
                     }
@@ -87,7 +87,7 @@ service {
             authorization ro
             network 172.16.100.0/24
         }
-        contact "VyOS maintainers and contributors <maintainers@vyos.io>"
+        contact "ngNOS maintainers and contributors <maintainers@ngnos.com>"
         location "Jenkins"
     }
     ssh {
@@ -104,10 +104,10 @@ system {
             speed 115200
         }
     }
-    domain-name vyos.net
-    host-name vyos
+    domain-name ngnos.com
+    host-name ngnos
     login {
-        user vyos {
+        user ngnos {
             authentication {
                 encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
                 plaintext-password ""

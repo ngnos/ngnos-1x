@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="netns" owner="${vyos_conf_scripts_dir}/netns.py">
+  <node name="netns" owner="${ngnos_conf_scripts_dir}/netns.py">
     <properties>
       <help>Network namespace</help>
       <priority>299</priority>

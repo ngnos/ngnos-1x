@@ -19,8 +19,8 @@ import unittest
 from base_accel_ppp_test import BasicAccelPPPTest
 
 from configparser import ConfigParser
-from vyos.util import read_file
-from vyos.template import range_to_regex
+from ngnos.util import read_file
+from ngnos.template import range_to_regex
 
 local_if = ['interfaces', 'dummy', 'dum667']
 ac_name = 'ACN'
@@ -177,7 +177,7 @@ class TestServicePPPoEServer(BasicAccelPPPTest.TestCase):
 
         subnet = '192.0.2.0/24'
         gateway = '192.0.2.1'
-        pool = 'VYOS'
+        pool = 'NGNOS'
 
         subnet_name = f'{subnet},name'
         gw_ip_prefix = f'{gateway}/24'

@@ -16,12 +16,12 @@
 
 import re
 import unittest
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.util import read_file
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.util import read_file
 
 # path to logrotate configs
-logrotate_atop_file = '/etc/logrotate.d/vyos-atop'
-logrotate_rsyslog_file = '/etc/logrotate.d/vyos-rsyslog'
+logrotate_atop_file = '/etc/logrotate.d/ngnos-atop'
+logrotate_rsyslog_file = '/etc/logrotate.d/ngnos-rsyslog'
 # default values
 default_atop_maxsize = '10M'
 default_atop_rotate = '10'
@@ -55,7 +55,7 @@ def logrotate_config_parse(file_path):
     return (logrotate_config_dict)
 
 
-class TestSystemLogs(VyOSUnitTestSHIM.TestCase):
+class TestSystemLogs(ngNOSUnitTestSHIM.TestCase):
 
     def tearDown(self):
         self.cli_delete(base_path)

@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="bfd" owner="${vyos_conf_scripts_dir}/protocols_bfd.py">
+      <node name="bfd" owner="${ngnos_conf_scripts_dir}/protocols_bfd.py">
         <properties>
           <help>Bidirectional Forwarding Detection (BFD)</help>
           <priority>820</priority>
@@ -37,7 +37,7 @@
                     <properties>
                       <help>Local address to bind our peer listener to</help>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                        <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                       </completionHelp>
                       <valueHelp>
                         <format>ipv4</format>

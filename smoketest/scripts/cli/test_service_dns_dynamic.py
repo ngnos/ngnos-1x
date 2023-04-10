@@ -18,18 +18,18 @@ import re
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 PROCESS_NAME = 'ddclient'
 DDCLIENT_CONF = '/run/ddclient/ddclient.conf'
 
 base_path = ['service', 'dns', 'dynamic']
-hostname = 'test.ddns.vyos.io'
+hostname = 'test.ddns.ngnos.com'
 interface = 'eth0'
 
 def get_config_value(key):
@@ -38,7 +38,7 @@ def get_config_value(key):
     tmp = tmp[0].rstrip(',')
     return tmp
 
-class TestServiceDDNS(VyOSUnitTestSHIM.TestCase):
+class TestServiceDDNS(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         # Delete DDNS configuration
         self.cli_delete(base_path)
@@ -49,9 +49,9 @@ class TestServiceDDNS(VyOSUnitTestSHIM.TestCase):
         services = ['cloudflare', 'afraid', 'dyndns', 'zoneedit']
 
         for service in services:
-            user = 'vyos_user'
-            password = 'vyos_pass'
-            zone = 'vyos.io'
+            user = 'ngnos_user'
+            password = 'ngnos_pass'
+            zone = 'ngnos.com'
             self.cli_delete(base_path)
             self.cli_set(base_path + ddns + [service, 'host-name', hostname])
             self.cli_set(base_path + ddns + [service, 'login', user])
@@ -66,7 +66,7 @@ class TestServiceDDNS(VyOSUnitTestSHIM.TestCase):
                 # for all others
                 with self.assertRaises(ConfigSessionError):
                     self.cli_commit()
-                self.cli_delete(base_path + ddns + [service, 'zone', 'vyos.io'])
+                self.cli_delete(base_path + ddns + [service, 'zone', 'ngnos.com'])
                 # commit changes again - now it should work
                 self.cli_commit()
 
@@ -96,14 +96,14 @@ class TestServiceDDNS(VyOSUnitTestSHIM.TestCase):
 
     def test_dyndns_rfc2136(self):
         # Check if DDNS service can be configured and runs
-        ddns = ['interface', interface, 'rfc2136', 'vyos']
+        ddns = ['interface', interface, 'rfc2136', 'ngnos']
         ddns_key_file = '/config/auth/my.key'
 
         self.cli_set(base_path + ddns + ['key', ddns_key_file])
-        self.cli_set(base_path + ddns + ['record', 'test.ddns.vyos.io'])
-        self.cli_set(base_path + ddns + ['server', 'ns1.vyos.io'])
+        self.cli_set(base_path + ddns + ['record', 'test.ddns.ngnos.com'])
+        self.cli_set(base_path + ddns + ['server', 'ns1.ngnos.com'])
         self.cli_set(base_path + ddns + ['ttl', '300'])
-        self.cli_set(base_path + ddns + ['zone', 'vyos.io'])
+        self.cli_set(base_path + ddns + ['zone', 'ngnos.com'])
 
         # ensure an exception will be raised as no key is present
         if os.path.exists(ddns_key_file):
@@ -129,7 +129,7 @@ class TestServiceDDNS(VyOSUnitTestSHIM.TestCase):
         proto = 'dyndns2'
         user = 'none'
         password = 'paSS_4ord'
-        srv = 'ddns.vyos.io'
+        srv = 'ddns.ngnos.com'
 
         self.cli_set(base_path + ['interface', interface, 'ipv6-enable'])
         self.cli_set(base_path + ddns + ['host-name', hostname])

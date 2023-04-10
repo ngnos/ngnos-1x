@@ -19,18 +19,18 @@ import os
 from shutil import rmtree
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render
-from vyos.util import call
-from vyos.util import chmod_755
-from vyos.util import dict_search
-from vyos.util import write_file
-from vyos.validate import is_addr_assigned
-from vyos.xml import defaults
-from vyos.base import Warning
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import chmod_755
+from ngnos.util import dict_search
+from ngnos.util import write_file
+from ngnos.validate import is_addr_assigned
+from ngnos.xml import defaults
+from ngnos.base import Warning
+from ngnos import ConfigError
+from ngnos import airbag
 
 airbag.enable()
 

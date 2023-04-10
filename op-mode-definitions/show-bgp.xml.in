@@ -6,13 +6,13 @@
         <properties>
           <help>BGP information</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+        <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         <children>
           <node name="cidr-only">
             <properties>
               <help>Display only routes with non-natural netmasks</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/vtysh-generic-wide.xml.i>
             </children>
@@ -27,7 +27,7 @@
                 <properties>
                   <help>MAC address database</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+                <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
               </leafNode>
             </children>
           </node>
@@ -36,26 +36,26 @@
             <properties>
               <help>Global BGP memory statistics</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </leafNode>
           #include <include/bgp/next-hop.xml.i>
           <leafNode name="statistics">
             <properties>
               <help>BGP RIB advertisement statistics</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </leafNode>
           <leafNode name="statistics-all">
             <properties>
               <help>Display number of prefixes for all afi/safi</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </leafNode>
           <leafNode name="vrf">
             <properties>
               <help>Show BGP VRF information</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </leafNode>
           <tagNode name="vrf">
             <properties>
@@ -65,7 +65,7 @@
                 <list>all</list>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/bgp/show-bgp-common.xml.i>
               #include <include/bgp/martian-next-hop.xml.i>

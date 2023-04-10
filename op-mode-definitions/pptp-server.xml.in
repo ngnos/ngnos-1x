@@ -11,13 +11,13 @@
             <properties>
               <help>Show active PPTP server sessions</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/ppp-server-ctrl.py --proto="pptp" --action="show sessions"</command>
+            <command>${ngnos_op_scripts_dir}/ppp-server-ctrl.py --proto="pptp" --action="show sessions"</command>
           </leafNode>
           <leafNode name="statistics">
             <properties>
               <help>Show PPTP server statistics</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/ppp-server-ctrl.py --proto="pptp" --action="show stat"</command>
+            <command>${ngnos_op_scripts_dir}/ppp-server-ctrl.py --proto="pptp" --action="show stat"</command>
           </leafNode>
         </children>
       </node>

@@ -2,7 +2,7 @@
 Description=Accel-PPP - High performance VPN server application for Linux
 RequiresMountsFor=/run
 ConditionPathExists=/run/accel-pppd/%i.conf
-After=vyos-router.service
+After=ngnos-router.service
 
 [Service]
 WorkingDirectory=/run/accel-pppd

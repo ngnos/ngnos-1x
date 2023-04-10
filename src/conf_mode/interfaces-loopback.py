@@ -18,12 +18,12 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configverify import verify_mirror_redirect
-from vyos.ifconfig import LoopbackIf
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.ifconfig import LoopbackIf
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):

@@ -19,17 +19,17 @@ import jmespath
 import json
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import dict_search
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import dict_search
 
 base_path = ['nat66']
 src_path = base_path + ['source']
 dst_path = base_path + ['destination']
 
-class TestNAT66(VyOSUnitTestSHIM.TestCase):
+class TestNAT66(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestNAT66, cls).setUpClass()
@@ -76,7 +76,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['oifname "eth1"', f'ip6 saddr {source_prefix}', 'return']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_source_nat66_address(self):
         source_prefix = 'fc00::/64'
@@ -92,7 +92,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['oifname "eth1"', f'ip6 saddr {source_prefix}', f'snat to {translation_address}']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_destination_nat66(self):
         destination_address = 'fc00::1'
@@ -115,7 +115,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['iifname "eth1"', 'ip6 saddr fc02::1', 'ip6 daddr fc00::1', 'return']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_destination_nat66_protocol(self):
         translation_address = '2001:db8:1111::1'
@@ -139,7 +139,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['iifname "eth1"', 'tcp dport 4545', 'ip6 saddr 2001:db8:2222::/64', 'tcp sport 8080', 'dnat to [2001:db8:1111::1]:5555']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_destination_nat66_prefix(self):
         destination_prefix = 'fc00::/64'
@@ -155,7 +155,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['iifname "eth1"', f'ip6 daddr {destination_prefix}', f'dnat prefix to {translation_prefix}']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_destination_nat66_without_translation_address(self):
         self.cli_set(dst_path + ['rule', '1', 'inbound-interface', 'eth1'])
@@ -169,7 +169,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['iifname "eth1"', 'tcp dport 443', 'dnat to :443']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_source_nat66_required_translation_prefix(self):
         # T2813: Ensure translation address is specified
@@ -211,7 +211,7 @@ class TestNAT66(VyOSUnitTestSHIM.TestCase):
             ['oifname "eth1"', 'ip6 saddr 2001:db8:2222::/64', 'tcp dport 9999', 'tcp sport 8080', 'snat to [2001:db8:1111::1]:80']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_nat')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_nat')
 
     def test_nat66_no_rules(self):
         # T3206: deleting all rules but keep the direction 'destination' or

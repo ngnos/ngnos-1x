@@ -19,25 +19,25 @@ import os
 from netifaces import interfaces
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import get_interface_dict
-from vyos.configdict import is_node_changed
-from vyos.configdict import is_source_interface
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_address
-from vyos.configverify import verify_bridge_delete
-from vyos.configverify import verify_mtu_ipv6
-from vyos.configverify import verify_mirror_redirect
-from vyos.configverify import verify_source_interface
-from vyos.configverify import verify_bond_bridge_member
-from vyos.ifconfig import MACsecIf
-from vyos.ifconfig import Interface
-from vyos.template import render
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.util import is_systemd_service_running
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_interface_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configdict import is_source_interface
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_address
+from ngnos.configverify import verify_bridge_delete
+from ngnos.configverify import verify_mtu_ipv6
+from ngnos.configverify import verify_mirror_redirect
+from ngnos.configverify import verify_source_interface
+from ngnos.configverify import verify_bond_bridge_member
+from ngnos.ifconfig import MACsecIf
+from ngnos.ifconfig import Interface
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.util import is_systemd_service_running
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 # XXX: wpa_supplicant works on the source interface

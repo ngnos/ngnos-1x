@@ -24,20 +24,20 @@ import tabulate
 from cryptography import x509
 from cryptography.x509.oid import ExtendedKeyUsageOID
 
-from vyos.config import Config
-from vyos.configquery import ConfigTreeQuery
-from vyos.configdict import dict_merge
-from vyos.pki import encode_certificate, encode_public_key, encode_private_key, encode_dh_parameters
-from vyos.pki import create_certificate, create_certificate_request, create_certificate_revocation_list
-from vyos.pki import create_private_key
-from vyos.pki import create_dh_parameters
-from vyos.pki import load_certificate, load_certificate_request, load_private_key
-from vyos.pki import load_crl, load_dh_parameters, load_public_key
-from vyos.pki import verify_certificate
-from vyos.xml import defaults
-from vyos.util import ask_input, ask_yes_no
-from vyos.util import cmd
-from vyos.util import install_into_config
+from ngnos.config import Config
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.configdict import dict_merge
+from ngnos.pki import encode_certificate, encode_public_key, encode_private_key, encode_dh_parameters
+from ngnos.pki import create_certificate, create_certificate_request, create_certificate_revocation_list
+from ngnos.pki import create_private_key
+from ngnos.pki import create_dh_parameters
+from ngnos.pki import load_certificate, load_certificate_request, load_private_key
+from ngnos.pki import load_crl, load_dh_parameters, load_public_key
+from ngnos.pki import verify_certificate
+from ngnos.xml import defaults
+from ngnos.util import ask_input, ask_yes_no
+from ngnos.util import cmd
+from ngnos.util import install_into_config
 
 CERT_REQ_END = '-----END CERTIFICATE REQUEST-----'
 auth_dir = '/config/auth'
@@ -225,7 +225,7 @@ def install_openvpn_key(name, key_data, key_version='1'):
 
 def install_wireguard_key(interface, private_key, public_key):
     # Show conf commands for installing wireguard key pairs
-    from vyos.ifconfig import Section
+    from ngnos.ifconfig import Section
     if Section.section(interface) != 'wireguard':
         print(f'"{interface}" is not a WireGuard interface name!')
         exit(1)
@@ -236,7 +236,7 @@ def install_wireguard_key(interface, private_key, public_key):
     print(f"Corresponding public-key to use on peer system is: '{public_key}'")
 
 def install_wireguard_psk(interface, peer, psk):
-    from vyos.ifconfig import Section
+    from ngnos.ifconfig import Section
     if Section.section(interface) != 'wireguard':
         print(f'"{interface}" is not a WireGuard interface name!')
         exit(1)
@@ -313,11 +313,11 @@ def generate_certificate_request(private_key=None, key_type=None, return_request
     subject['state'] = ask_input('Enter state:', default=default_values['state'])
     subject['locality'] = ask_input('Enter locality:', default=default_values['locality'])
     subject['organization'] = ask_input('Enter organization name:', default=default_values['organization'])
-    subject['common_name'] = ask_input('Enter common name:', default='vyos.io')
+    subject['common_name'] = ask_input('Enter common name:', default='ngnos.com')
     subject_alt_names = None
 
     if ask_san and ask_yes_no('Do you want to configure Subject Alternative Names?'):
-        print("Enter alternative names in a comma separate list, example: ipv4:1.1.1.1,ipv6:fe80::1,dns:vyos.net")
+        print("Enter alternative names in a comma separate list, example: ipv4:1.1.1.1,ipv6:fe80::1,dns:ngnos.com")
         san_string = ask_input('Enter Subject Alternative Names:')
         subject_alt_names = parse_san_string(san_string)
 
@@ -1002,8 +1002,8 @@ if __name__ == '__main__':
 
             elif args.wireguard:
                 # WireGuard supports writing key directly into the CLI, but this
-                # requires the vyos_libexec_dir environment variable to be set
-                os.environ["vyos_libexec_dir"] = "/usr/libexec/vyos"
+                # requires the ngnos_libexec_dir environment variable to be set
+                os.environ["ngnos_libexec_dir"] = "/usr/libexec/ngnos"
 
                 if args.key:
                     generate_wireguard_key(args.interface, install=args.install)

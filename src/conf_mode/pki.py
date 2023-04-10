@@ -16,21 +16,21 @@
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdep import set_dependents, call_dependents
-from vyos.configdict import dict_merge
-from vyos.configdict import node_changed
-from vyos.pki import is_ca_certificate
-from vyos.pki import load_certificate
-from vyos.pki import load_public_key
-from vyos.pki import load_private_key
-from vyos.pki import load_crl
-from vyos.pki import load_dh_parameters
-from vyos.util import dict_search_args
-from vyos.util import dict_search_recursive
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdep import set_dependents, call_dependents
+from ngnos.configdict import dict_merge
+from ngnos.configdict import node_changed
+from ngnos.pki import is_ca_certificate
+from ngnos.pki import load_certificate
+from ngnos.pki import load_public_key
+from ngnos.pki import load_private_key
+from ngnos.pki import load_crl
+from ngnos.pki import load_dh_parameters
+from ngnos.util import dict_search_args
+from ngnos.util import dict_search_recursive
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 # keys to recursively search for under specified path, script to call if update required
@@ -38,37 +38,37 @@ sync_search = [
     {
         'keys': ['certificate'],
         'path': ['service', 'https'],
-        'script': '/usr/libexec/vyos/conf_mode/https.py'
+        'script': '/usr/libexec/ngnos/conf_mode/https.py'
     },
     {
         'keys': ['certificate', 'ca_certificate'],
         'path': ['interfaces', 'ethernet'],
-        'script': '/usr/libexec/vyos/conf_mode/interfaces-ethernet.py'
+        'script': '/usr/libexec/ngnos/conf_mode/interfaces-ethernet.py'
     },
     {
         'keys': ['certificate', 'ca_certificate', 'dh_params', 'shared_secret_key', 'auth_key', 'crypt_key'],
         'path': ['interfaces', 'openvpn'],
-        'script': '/usr/libexec/vyos/conf_mode/interfaces-openvpn.py'
+        'script': '/usr/libexec/ngnos/conf_mode/interfaces-openvpn.py'
     },
     {
         'keys': ['ca_certificate'],
         'path': ['interfaces', 'sstpc'],
-        'script': '/usr/libexec/vyos/conf_mode/interfaces-sstpc.py'
+        'script': '/usr/libexec/ngnos/conf_mode/interfaces-sstpc.py'
     },
     {
         'keys': ['certificate', 'ca_certificate', 'local_key', 'remote_key'],
         'path': ['vpn', 'ipsec'],
-        'script': '/usr/libexec/vyos/conf_mode/vpn_ipsec.py'
+        'script': '/usr/libexec/ngnos/conf_mode/vpn_ipsec.py'
     },
     {
         'keys': ['certificate', 'ca_certificate'],
         'path': ['vpn', 'openconnect'],
-        'script': '/usr/libexec/vyos/conf_mode/vpn_openconnect.py'
+        'script': '/usr/libexec/ngnos/conf_mode/vpn_openconnect.py'
     },
     {
         'keys': ['certificate', 'ca_certificate'],
         'path': ['vpn', 'sstp'],
-        'script': '/usr/libexec/vyos/conf_mode/vpn_sstp.py'
+        'script': '/usr/libexec/ngnos/conf_mode/vpn_sstp.py'
     }
 ]
 

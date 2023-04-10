@@ -20,12 +20,12 @@ from json import loads
 from sys import exit
 from netifaces import ifaddresses, interfaces, AF_INET
 
-from vyos.config import Config
-from vyos.ifconfig.vrrp import VRRP
-from vyos.template import render
-from vyos.util import call
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.ifconfig.vrrp import VRRP
+from ngnos.template import render
+from ngnos.util import call
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = '/run/avahi-daemon/avahi-daemon.conf'

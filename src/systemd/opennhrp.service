@@ -1,6 +1,6 @@
 [Unit]
 Description=OpenNHRP
-After=vyos-router.service
+After=ngnos-router.service
 ConditionPathExists=/run/opennhrp/opennhrp.conf
 StartLimitIntervalSec=0
 

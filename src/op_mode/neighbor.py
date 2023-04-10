@@ -30,7 +30,7 @@
 import sys
 import typing
 
-import vyos.opmode
+import ngnos.opmode
 
 ArgFamily = typing.Literal['inet', 'inet6']
 ArgState = typing.Literal['reachable', 'stale', 'failed', 'permanent']
@@ -41,7 +41,7 @@ def interface_exists(interface):
 
 def get_raw_data(family, interface=None, state=None):
     from json import loads
-    from vyos.util import cmd
+    from ngnos.util import cmd
 
     if interface:
         if not interface_exists(interface):
@@ -102,7 +102,7 @@ def show(raw: bool, family: ArgFamily, interface: typing.Optional[str],
         return format_neighbors(data, interface)
 
 def reset(family: ArgFamily, interface: typing.Optional[str], address: typing.Optional[str]):
-    from vyos.util import run
+    from ngnos.util import run
 
     if address and interface:
         raise ValueError("interface and address parameters are mutually exclusive")
@@ -117,10 +117,10 @@ def reset(family: ArgFamily, interface: typing.Optional[str], address: typing.Op
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)
 

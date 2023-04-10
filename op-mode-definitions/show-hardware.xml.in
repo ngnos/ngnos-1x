@@ -11,7 +11,7 @@
             <properties>
               <help>Show CPU informaion</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/cpu.py show</command>
+            <command>${ngnos_op_scripts_dir}/cpu.py show</command>
             <children>
               <node name="detail">
                 <properties>
@@ -23,7 +23,7 @@
                 <properties>
                   <help>Show system CPUs summary</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/cpu.py show_summary</command>
+                <command>${ngnos_op_scripts_dir}/cpu.py show_summary</command>
               </node>
             </children>
           </node>
@@ -105,7 +105,7 @@
                 <properties>
                   <help>Show information about connected USB serial ports</help>
                 </properties>
-                <command>${vyos_op_scripts_dir}/show_usb_serial.py</command>
+                <command>${ngnos_op_scripts_dir}/show_usb_serial.py</command>
               </leafNode>
             </children>
           </node>

@@ -16,14 +16,14 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.util import process_named_running
+from ngnos.util import process_named_running
 
 base_path = ['service', 'mdns', 'repeater']
 intf_base = ['interfaces', 'dummy']
 
-class TestServiceMDNSrepeater(VyOSUnitTestSHIM.TestCase):
+class TestServiceMDNSrepeater(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_delete(intf_base + ['dum10'])

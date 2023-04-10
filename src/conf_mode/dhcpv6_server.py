@@ -20,14 +20,14 @@ from ipaddress import ip_address
 from ipaddress import ip_network
 from sys import exit
 
-from vyos.config import Config
-from vyos.template import render
-from vyos.template import is_ipv6
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.validate import is_subnet_connected
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.template import render
+from ngnos.template import is_ipv6
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.validate import is_subnet_connected
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = '/run/dhcp-server/dhcpdv6.conf'

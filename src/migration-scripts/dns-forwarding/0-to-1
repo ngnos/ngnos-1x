@@ -20,7 +20,7 @@
 # default values of 0.0.0.0/0 and ::/0
 
 import sys
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(sys.argv) < 1):
     print("Must specify file name!")

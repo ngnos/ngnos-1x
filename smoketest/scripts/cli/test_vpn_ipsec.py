@@ -17,10 +17,10 @@
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.util import call
-from vyos.util import process_named_running
-from vyos.util import read_file
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.util import call
+from ngnos.util import process_named_running
+from ngnos.util import read_file
 
 ethernet_path = ['interfaces', 'ethernet']
 tunnel_path = ['interfaces', 'tunnel']
@@ -116,7 +116,7 @@ usmoy47ke8pTXPHgQ8ZUwsfM4IztqOm+w0X6mSZi6HdJCnMdxCZBBpO225UvonSR
 rgiyCHemtMepq57Pl1Nmj49eEA==
 """
 
-class TestVPNIPsec(VyOSUnitTestSHIM.TestCase):
+class TestVPNIPsec(ngNOSUnitTestSHIM.TestCase):
     skip_process_check = False
 
     @classmethod
@@ -399,7 +399,7 @@ class TestVPNIPsec(VyOSUnitTestSHIM.TestCase):
     def test_05_x509_site2site(self):
         # Enable PKI
         peer_name = 'peer1'
-        ca_name = 'MyVyOS-CA'
+        ca_name = 'MyngNOS-CA'
         self.cli_set(['pki', 'ca', ca_name, 'certificate', ca_pem.replace('\n','')])
         self.cli_set(['pki', 'certificate', peer_name, 'certificate', peer_cert.replace('\n','')])
         self.cli_set(['pki', 'certificate', peer_name, 'private', 'key', peer_key.replace('\n','')])
@@ -472,8 +472,8 @@ class TestVPNIPsec(VyOSUnitTestSHIM.TestCase):
 
     def test_06_flex_vpn_vips(self):
         local_address = '192.0.2.5'
-        local_id = 'vyos-r1'
-        remote_id = 'vyos-r2'
+        local_id = 'ngnos-r1'
+        remote_id = 'ngnos-r2'
         peer_base_path = base_path + ['site-to-site', 'peer', connection_name]
 
         self.cli_set(tunnel_path + ['tun1', 'encapsulation', 'gre'])

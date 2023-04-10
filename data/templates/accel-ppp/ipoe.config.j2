@@ -21,56 +21,56 @@ level=5
 
 [ipoe]
 verbose=1
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for iface, iface_config in interface.items() %}
 {%         set tmp = 'interface=' %}
-{%         if iface_config.vlan is vyos_defined %}
+{%         if iface_config.vlan is ngnos_defined %}
 {%             set tmp = tmp ~ 're:^' ~ iface ~ '\.' ~ iface_config.vlan | range_to_regex ~ '$' %}
 {%         else %}
 {%             set tmp = tmp ~ iface %}
 {%         endif %}
 {%         set shared = '' %}
-{%         if iface_config.network is vyos_defined('shared') %}
+{%         if iface_config.network is ngnos_defined('shared') %}
 {%             set shared = 'shared=1,' %}
-{%         elif iface_config.network is vyos_defined('vlan') %}
+{%         elif iface_config.network is ngnos_defined('vlan') %}
 {%             set shared = 'shared=0,' %}
 {%         endif %}
-{%         set range = 'range=' ~ iface_config.client_subnet ~ ',' if iface_config.client_subnet is vyos_defined else '' %}
+{%         set range = 'range=' ~ iface_config.client_subnet ~ ',' if iface_config.client_subnet is ngnos_defined else '' %}
 {{ tmp }},{{ shared }}mode={{ iface_config.mode | upper }},ifcfg=1,{{ range }}start=dhcpv4,ipv6=1
-{%         if iface_config.vlan is vyos_defined %}
+{%         if iface_config.vlan is ngnos_defined %}
 vlan-mon={{ iface }},{{ iface_config.vlan | join(',') }}
 {%         endif %}
 {%     endfor %}
 {% endif %}
-{% if authentication.mode is vyos_defined('noauth') %}
+{% if authentication.mode is ngnos_defined('noauth') %}
 noauth=1
-{% elif authentication.mode is vyos_defined('local') %}
+{% elif authentication.mode is ngnos_defined('local') %}
 username=ifname
 password=csid
 {% endif %}
-{% if client_ip_pool.name is vyos_defined %}
-{%     if first_named_pool is vyos_defined %}
+{% if client_ip_pool.name is ngnos_defined %}
+{%     if first_named_pool is ngnos_defined %}
 ip-pool={{ first_named_pool }}
 {%     else %}
 {%         for pool, pool_options in client_ip_pool.name.items() %}
-{%             if pool_options.subnet is vyos_defined %}
+{%             if pool_options.subnet is ngnos_defined %}
 ip-pool={{ pool }}
 {%             endif %}
 {%         endfor %}
 {%     endif %}
 {%     for pool, pool_options in client_ip_pool.name.items() %}
-{%         if pool_options.gateway_address is vyos_defined %}
+{%         if pool_options.gateway_address is ngnos_defined %}
 gw-ip-address={{ pool_options.gateway_address }}/{{ pool_options.subnet.split('/')[1] }}
 {%         endif %}
 {%     endfor %}
 {% endif %}
 proxy-arp=1
 
-{% if ordered_named_pools is vyos_defined %}
+{% if ordered_named_pools is ngnos_defined %}
 [ip-pool]
 {%     for p in ordered_named_pools %}
 {%         for pool, pool_options in p.items() %}
-{%             set next_named_pool = ',next=' ~ pool_options.next_pool if pool_options.next_pool is vyos_defined else '' %}
+{%             set next_named_pool = ',next=' ~ pool_options.next_pool if pool_options.next_pool is ngnos_defined else '' %}
 {{ pool_options.subnet }},name={{ pool }}{{ next_named_pool }}
 {%         endfor %}
 {%     endfor %}

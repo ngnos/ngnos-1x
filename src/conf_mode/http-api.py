@@ -21,23 +21,23 @@ import json
 from time import sleep
 from copy import deepcopy
 
-import vyos.defaults
+import ngnos.defaults
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdep import set_dependents, call_dependents
-from vyos.template import render
-from vyos.util import cmd
-from vyos.util import call
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdep import set_dependents, call_dependents
+from ngnos.template import render
+from ngnos.util import cmd
+from ngnos.util import call
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
-api_conf_file = '/etc/vyos/http-api.conf'
-systemd_service = '/run/systemd/system/vyos-http-api.service'
+api_conf_file = '/etc/ngnos/http-api.conf'
+systemd_service = '/run/systemd/system/ngnos-http-api.service'
 
-vyos_conf_scripts_dir=vyos.defaults.directories['conf_mode']
+ngnos_conf_scripts_dir=ngnos.defaults.directories['conf_mode']
 
 def _translate_values_to_boolean(d: dict) -> dict:
     for k in list(d):
@@ -49,7 +49,7 @@ def _translate_values_to_boolean(d: dict) -> dict:
             pass
 
 def get_config(config=None):
-    http_api = deepcopy(vyos.defaults.api_data)
+    http_api = deepcopy(ngnos.defaults.api_data)
     x = http_api.get('api_keys')
     if x is None:
         default_key = None
@@ -117,19 +117,19 @@ def generate(http_api):
             os.unlink(systemd_service)
         return None
 
-    if not os.path.exists('/etc/vyos'):
-        os.mkdir('/etc/vyos')
+    if not os.path.exists('/etc/ngnos'):
+        os.mkdir('/etc/ngnos')
 
     with open(api_conf_file, 'w') as f:
         json.dump(http_api, f, indent=2)
 
-    render(systemd_service, 'https/vyos-http-api.service.j2', http_api)
+    render(systemd_service, 'https/ngnos-http-api.service.j2', http_api)
     return None
 
 def apply(http_api):
     # Reload systemd manager configuration
     call('systemctl daemon-reload')
-    service_name = 'vyos-http-api.service'
+    service_name = 'ngnos-http-api.service'
 
     if http_api is not None:
         call(f'systemctl restart {service_name}')

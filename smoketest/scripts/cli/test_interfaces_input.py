@@ -16,14 +16,14 @@
 
 import unittest
 
-from vyos.util import read_file
-from vyos.ifconfig import Interface
-from base_vyostest_shim import VyOSUnitTestSHIM
+from ngnos.util import read_file
+from ngnos.ifconfig import Interface
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
 base_path = ['interfaces', 'input']
 
 # add a classmethod to setup a temporaray PPPoE server for "proper" validation
-class InputInterfaceTest(VyOSUnitTestSHIM.TestCase):
+class InputInterfaceTest(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(InputInterfaceTest, cls).setUpClass()

@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="lldp" owner="${vyos_conf_scripts_dir}/lldp.py">
+      <node name="lldp" owner="${ngnos_conf_scripts_dir}/lldp.py">
         <properties>
           <help>LLDP settings</help>
           <priority>985</priority>
@@ -159,7 +159,7 @@
             <properties>
               <help>Management IP Address</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
               </completionHelp>
               <valueHelp>
                 <format>ipv4</format>

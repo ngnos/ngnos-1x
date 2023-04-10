@@ -15,18 +15,18 @@
 import re
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 from configparser import ConfigParser
 
-from vyos.configsession import ConfigSession
-from vyos.configsession import ConfigSessionError
-from vyos.template import is_ipv4
-from vyos.util import cmd
-from vyos.util import get_half_cpus
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSession
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import is_ipv4
+from ngnos.util import cmd
+from ngnos.util import get_half_cpus
+from ngnos.util import process_named_running
 
 class BasicAccelPPPTest:
-    class TestCase(VyOSUnitTestSHIM.TestCase):
+    class TestCase(ngNOSUnitTestSHIM.TestCase):
 
         @classmethod
         def setUpClass(cls):
@@ -62,7 +62,7 @@ class BasicAccelPPPTest:
 
         def basic_config(self):
             # PPPoE local auth mode requires local users to be configured!
-            self.set(['authentication', 'local-users', 'username', 'vyos', 'password', 'vyos'])
+            self.set(['authentication', 'local-users', 'username', 'ngnos', 'password', 'ngnos'])
             self.set(['authentication', 'mode', 'local'])
             self.set(['gateway-address', self._gateway])
 
@@ -146,7 +146,7 @@ class BasicAccelPPPTest:
             self.basic_config()
 
             radius_server = '192.0.2.22'
-            radius_key = 'secretVyOS'
+            radius_key = 'secretngNOS'
             radius_port = '2000'
             radius_port_acc = '3000'
 
@@ -160,7 +160,7 @@ class BasicAccelPPPTest:
             self.set(['authentication', 'radius', 'dynamic-author', 'server', coa_server])
             self.set(['authentication', 'radius', 'dynamic-author', 'key', coa_key])
 
-            nas_id = 'VyOS-PPPoE'
+            nas_id = 'ngNOS-PPPoE'
             nas_ip = '7.7.7.7'
             self.set(['authentication', 'radius', 'nas-identifier', nas_id])
             self.set(['authentication', 'radius', 'nas-ip-address', nas_ip])

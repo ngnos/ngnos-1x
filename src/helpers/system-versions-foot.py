@@ -16,13 +16,13 @@
 # along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-import vyos.defaults
-from vyos.component_version import write_system_footer
+import ngnos.defaults
+from ngnos.component_version import write_system_footer
 
 sys.stdout.write("\n\n")
-if vyos.defaults.cfg_vintage == 'vyos':
-    write_system_footer(None, vintage='vyos')
-elif vyos.defaults.cfg_vintage == 'vyatta':
+if ngnos.defaults.cfg_vintage == 'ngnos':
+    write_system_footer(None, vintage='ngnos')
+elif ngnos.defaults.cfg_vintage == 'vyatta':
     write_system_footer(None, vintage='vyatta')
 else:
-    write_system_footer(None, vintage='vyos')
+    write_system_footer(None, vintage='ngnos')

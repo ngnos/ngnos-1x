@@ -22,12 +22,12 @@ from hurry import filesize
 from re import split as re_split
 from tabulate import tabulate
 
-from vyos.util import convert_data
-from vyos.util import seconds_to_human
-from vyos.configquery import ConfigTreeQuery
+from ngnos.util import convert_data
+from ngnos.util import seconds_to_human
+from ngnos.configquery import ConfigTreeQuery
 
-import vyos.opmode
-import vyos.ipsec
+import ngnos.opmode
+import ngnos.ipsec
 
 
 def _convert(text):
@@ -40,11 +40,11 @@ def _alphanum_key(key):
 
 def _get_raw_data_sas():
     try:
-        get_sas = vyos.ipsec.get_vici_sas()
+        get_sas = ngnos.ipsec.get_vici_sas()
         sas = convert_data(get_sas)
         return sas
-    except (vyos.ipsec.ViciInitiateError) as err:
-        raise vyos.opmode.UnconfiguredSubsystem(err)
+    except (ngnos.ipsec.ViciInitiateError) as err:
+        raise ngnos.opmode.UnconfiguredSubsystem(err)
 
 def _get_formatted_output_sas(sas):
     sa_data = []
@@ -128,11 +128,11 @@ def _get_formatted_output_sas(sas):
 
 def _get_convert_data_connections():
     try:
-        get_connections = vyos.ipsec.get_vici_connections()
+        get_connections = ngnos.ipsec.get_vici_connections()
         connections = convert_data(get_connections)
         return connections
-    except (vyos.ipsec.ViciInitiateError) as err:
-        raise vyos.opmode.UnconfiguredSubsystem(err)
+    except (ngnos.ipsec.ViciInitiateError) as err:
+        raise ngnos.opmode.UnconfiguredSubsystem(err)
 
 def _get_parent_sa_proposal(connection_name: str, data: list) -> dict:
     """Get parent SA proposals by connection name
@@ -428,21 +428,21 @@ def reset_peer(peer: str, tunnel: typing.Optional[str] = None):
         elif tunnel == 'vti':
             tunnel_sw = f'{peer}-vti'
     try:
-        sa_list: list = vyos.ipsec.get_vici_sas_by_name(peer, tunnel_sw)
+        sa_list: list = ngnos.ipsec.get_vici_sas_by_name(peer, tunnel_sw)
         if not sa_list:
-            raise vyos.opmode.IncorrectValue(
+            raise ngnos.opmode.IncorrectValue(
                 f'Peer\'s {peer} SA(s) not found, aborting')
         if tunnel and sa_list:
             childsa_id_list: list = _get_childsa_id_list(sa_list)
             if not childsa_id_list:
-                raise vyos.opmode.IncorrectValue(
+                raise ngnos.opmode.IncorrectValue(
                     f'Peer {peer} tunnel {tunnel} SA(s) not found, aborting')
-        vyos.ipsec.terminate_vici_by_name(peer, tunnel_sw)
+        ngnos.ipsec.terminate_vici_by_name(peer, tunnel_sw)
         print(f'Peer {peer} reset result: success')
-    except (vyos.ipsec.ViciInitiateError) as err:
-        raise vyos.opmode.UnconfiguredSubsystem(err)
-    except (vyos.ipsec.ViciCommandError) as err:
-        raise vyos.opmode.IncorrectValue(err)
+    except (ngnos.ipsec.ViciInitiateError) as err:
+        raise ngnos.opmode.UnconfiguredSubsystem(err)
+    except (ngnos.ipsec.ViciCommandError) as err:
+        raise ngnos.opmode.IncorrectValue(err)
 
 def reset_all_peers():
     sitetosite_list = _get_all_sitetosite_peers_name_list()
@@ -450,11 +450,11 @@ def reset_all_peers():
         for peer_name in sitetosite_list:
             try:
                 reset_peer(peer_name)
-            except (vyos.opmode.IncorrectValue) as err:
+            except (ngnos.opmode.IncorrectValue) as err:
                 print(err)
         print('Peers reset result: success')
     else:
-        raise vyos.opmode.UnconfiguredSubsystem(
+        raise ngnos.opmode.UnconfiguredSubsystem(
             'VPN IPSec site-to-site is not configured, aborting')
 
 def _get_ra_session_list_by_username(username: typing.Optional[str] = None):
@@ -466,7 +466,7 @@ def _get_ra_session_list_by_username(username: typing.Optional[str] = None):
     :rtype:
     """
     list_sa_id = []
-    sa_list = vyos.ipsec.get_vici_sas()
+    sa_list = ngnos.ipsec.get_vici_sas()
     for sa_val in sa_list:
         for sa in sa_val.values():
             if 'remote-eap-id' in sa:
@@ -485,7 +485,7 @@ def reset_ra(username: typing.Optional[str] = None):
     else:
         list_sa_id = _get_ra_session_list_by_username()
     if list_sa_id:
-        vyos.ipsec.terminate_vici_ikeid_list(list_sa_id)
+        ngnos.ipsec.terminate_vici_ikeid_list(list_sa_id)
 
 
 def reset_profile_dst(profile: str, tunnel: str, nbma_dst: str):
@@ -494,32 +494,32 @@ def reset_profile_dst(profile: str, tunnel: str, nbma_dst: str):
         try:
             # Get IKE SAs
             sa_list = convert_data(
-                vyos.ipsec.get_vici_sas_by_name(ike_sa_name, None))
+                ngnos.ipsec.get_vici_sas_by_name(ike_sa_name, None))
             if not sa_list:
-                raise vyos.opmode.IncorrectValue(
+                raise ngnos.opmode.IncorrectValue(
                     f'SA(s) for profile {profile} tunnel {tunnel} not found, aborting')
             sa_nbma_list = list([x for x in sa_list if
                                  ike_sa_name in x and x[ike_sa_name][
                                      'remote-host'] == nbma_dst])
             if not sa_nbma_list:
-                raise vyos.opmode.IncorrectValue(
+                raise ngnos.opmode.IncorrectValue(
                     f'SA(s) for profile {profile} tunnel {tunnel} remote-host {nbma_dst} not found, aborting')
             # terminate IKE SAs
-            vyos.ipsec.terminate_vici_ikeid_list(list(
+            ngnos.ipsec.terminate_vici_ikeid_list(list(
                 [x[ike_sa_name]['uniqueid'] for x in sa_nbma_list if
                  ike_sa_name in x]))
             # initiate IKE SAs
             for ike in sa_nbma_list:
                 if ike_sa_name in ike:
-                    vyos.ipsec.vici_initiate(ike_sa_name, 'dmvpn',
+                    ngnos.ipsec.vici_initiate(ike_sa_name, 'dmvpn',
                                              ike[ike_sa_name]['local-host'],
                                              ike[ike_sa_name]['remote-host'])
             print(
                 f'Profile {profile} tunnel {tunnel} remote-host {nbma_dst} reset result: success')
-        except (vyos.ipsec.ViciInitiateError) as err:
-            raise vyos.opmode.UnconfiguredSubsystem(err)
-        except (vyos.ipsec.ViciCommandError) as err:
-            raise vyos.opmode.IncorrectValue(err)
+        except (ngnos.ipsec.ViciInitiateError) as err:
+            raise ngnos.opmode.UnconfiguredSubsystem(err)
+        except (ngnos.ipsec.ViciCommandError) as err:
+            raise ngnos.opmode.IncorrectValue(err)
 
 
 def reset_profile_all(profile: str, tunnel: str):
@@ -528,25 +528,25 @@ def reset_profile_all(profile: str, tunnel: str):
         try:
             # Get IKE SAs
             sa_list: list = convert_data(
-                vyos.ipsec.get_vici_sas_by_name(ike_sa_name, None))
+                ngnos.ipsec.get_vici_sas_by_name(ike_sa_name, None))
             if not sa_list:
-                raise vyos.opmode.IncorrectValue(
+                raise ngnos.opmode.IncorrectValue(
                     f'SA(s) for profile {profile} tunnel {tunnel} not found, aborting')
             # terminate IKE SAs
-            vyos.ipsec.terminate_vici_by_name(ike_sa_name, None)
+            ngnos.ipsec.terminate_vici_by_name(ike_sa_name, None)
             # initiate IKE SAs
             for ike in sa_list:
                 if ike_sa_name in ike:
-                    vyos.ipsec.vici_initiate(ike_sa_name, 'dmvpn',
+                    ngnos.ipsec.vici_initiate(ike_sa_name, 'dmvpn',
                                              ike[ike_sa_name]['local-host'],
                                              ike[ike_sa_name]['remote-host'])
                 print(
                     f'Profile {profile} tunnel {tunnel} remote-host {ike[ike_sa_name]["remote-host"]} reset result: success')
             print(f'Profile {profile} tunnel {tunnel} reset result: success')
-        except (vyos.ipsec.ViciInitiateError) as err:
-            raise vyos.opmode.UnconfiguredSubsystem(err)
-        except (vyos.ipsec.ViciCommandError) as err:
-            raise vyos.opmode.IncorrectValue(err)
+        except (ngnos.ipsec.ViciInitiateError) as err:
+            raise ngnos.opmode.UnconfiguredSubsystem(err)
+        except (ngnos.ipsec.ViciCommandError) as err:
+            raise ngnos.opmode.IncorrectValue(err)
 
 
 def show_sa(raw: bool):
@@ -575,9 +575,9 @@ def show_connections_summary(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

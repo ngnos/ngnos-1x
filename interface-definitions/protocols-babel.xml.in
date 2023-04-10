@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="babel" owner="${vyos_conf_scripts_dir}/protocols_babel.py">
+      <node name="babel" owner="${ngnos_conf_scripts_dir}/protocols_babel.py">
         <properties>
           <help>Babel Routing Protocol</help>
           <priority>650</priority>
@@ -203,7 +203,7 @@
                         <description>Apply filtering to an interface</description>
                       </valueHelp>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_interfaces</script>
+                        <script>${ngnos_completion_dir}/list_interfaces</script>
                       </completionHelp>
                       <constraint>
                         #include <include/constraint/interface-name.xml.i>
@@ -231,7 +231,7 @@
                         <description>Apply filtering to an interface</description>
                       </valueHelp>
                       <completionHelp>
-                        <script>${vyos_completion_dir}/list_interfaces</script>
+                        <script>${ngnos_completion_dir}/list_interfaces</script>
                       </completionHelp>
                       <constraint>
                         #include <include/constraint/interface-name.xml.i>

@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="tunnel" owner="${vyos_conf_scripts_dir}/interfaces-tunnel.py">
+      <tagNode name="tunnel" owner="${ngnos_conf_scripts_dir}/interfaces-tunnel.py">
         <properties>
           <help>Tunnel interface</help>
           <priority>380</priority>

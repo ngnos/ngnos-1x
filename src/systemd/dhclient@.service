@@ -3,7 +3,7 @@ Description=DHCP client on %i
 Documentation=man:dhclient(8)
 ConditionPathExists=/var/lib/dhcp/dhclient_%i.conf
 ConditionPathExists=/var/lib/dhcp/dhclient_%i.options
-After=vyos-router.service
+After=ngnos-router.service
 
 [Service]
 WorkingDirectory=/var/lib/dhcp

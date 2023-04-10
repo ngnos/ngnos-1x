@@ -18,9 +18,9 @@ import argparse
 import re
 import tabulate
 
-from vyos.config import Config
-from vyos.util import cmd
-from vyos.util import dict_search_args
+from ngnos.config import Config
+from ngnos.util import cmd
+from ngnos.util import dict_search_args
 
 def get_config_policy(conf, name=None, ipv6=False):
     config_path = ['policy']
@@ -34,7 +34,7 @@ def get_config_policy(conf, name=None, ipv6=False):
 
 def get_nftables_details(name, ipv6=False):
     suffix = '6' if ipv6 else ''
-    command = f'sudo nft list chain ip{suffix} mangle VYOS_PBR{suffix}_{name}'
+    command = f'sudo nft list chain ip{suffix} mangle NGNOS_PBR{suffix}_{name}'
     try:
         results = cmd(command)
     except:

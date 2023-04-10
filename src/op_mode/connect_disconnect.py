@@ -19,10 +19,10 @@ import argparse
 
 from psutil import process_iter
 
-from vyos.util import call
-from vyos.util import commit_in_progress
-from vyos.util import DEVNULL
-from vyos.util import is_wwan_connected
+from ngnos.util import call
+from ngnos.util import commit_in_progress
+from ngnos.util import DEVNULL
+from ngnos.util import is_wwan_connected
 
 def check_ppp_interface(interface):
     if not os.path.isfile(f'/etc/ppp/peers/{interface}'):
@@ -55,7 +55,7 @@ def connect(interface):
         if is_wwan_connected(interface):
             print(f'Interface {interface}: already connected!')
         else:
-            call(f'VYOS_TAGNODE_VALUE={interface} /usr/libexec/vyos/conf_mode/interfaces-wwan.py')
+            call(f'NGNOS_TAGNODE_VALUE={interface} /usr/libexec/ngnos/conf_mode/interfaces-wwan.py')
     else:
         print(f'Unknown interface {interface}, can not connect. Aborting!')
 

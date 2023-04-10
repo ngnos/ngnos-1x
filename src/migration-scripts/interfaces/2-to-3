@@ -2,10 +2,10 @@
 
 # Change syntax of openvpn encryption settings
 # - move cipher from encryption to encryption cipher
-# https://vyos.dev/T1704
+# https://ngnos.com/T1704
 
 import sys
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(sys.argv) < 1):
     print("Must specify file name!")

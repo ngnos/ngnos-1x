@@ -17,7 +17,7 @@
 # T3753: upgrade to FRR8 and move CLI options to better fit with the new FRR CLI
 
 from sys import argv
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 def ospf_passive_migration(config, ospf_base):
     if config.exists(ospf_base):

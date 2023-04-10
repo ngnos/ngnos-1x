@@ -15,13 +15,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import unittest
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.util import read_file
+from ngnos.util import read_file
 
 base_path = ['system', 'ip']
 
-class TestSystemIP(VyOSUnitTestSHIM.TestCase):
+class TestSystemIP(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

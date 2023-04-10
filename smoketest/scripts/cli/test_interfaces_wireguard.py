@@ -17,12 +17,12 @@
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
 
 base_path = ['interfaces', 'wireguard']
 
-class WireGuardInterfaceTest(VyOSUnitTestSHIM.TestCase):
+class WireGuardInterfaceTest(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(WireGuardInterfaceTest, cls).setUpClass()

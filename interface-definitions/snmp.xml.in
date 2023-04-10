@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="snmp" owner="${vyos_conf_scripts_dir}/snmp.py">
+      <node name="snmp" owner="${ngnos_conf_scripts_dir}/snmp.py">
         <properties>
           <help>Simple Network Management Protocol (SNMP)</help>
           <priority>900</priority>
@@ -83,7 +83,7 @@
             <properties>
               <help>IP address to listen for incoming SNMP requests</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
               </completionHelp>
               <valueHelp>
                 <format>ipv4</format>

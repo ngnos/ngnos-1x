@@ -18,15 +18,15 @@ import os
 import re
 from pathlib import Path
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.util import call
-from vyos.util import read_file
-from vyos.util import write_file
-from vyos.template import render
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.util import call
+from ngnos.util import read_file
+from ngnos.util import write_file
+from ngnos.template import render
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 by_bus_dir = '/dev/serial/by-bus'

@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="dhcp-server" owner="${vyos_conf_scripts_dir}/dhcp_server.py">
+      <node name="dhcp-server" owner="${ngnos_conf_scripts_dir}/dhcp_server.py">
         <properties>
           <help>Dynamic Host Configuration Protocol (DHCP) for DHCP server</help>
           <priority>911</priority>

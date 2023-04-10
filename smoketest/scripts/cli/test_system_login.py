@@ -18,20 +18,20 @@ import re
 import platform
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
 from distutils.version import LooseVersion
 from platform import release as kernel_version
 from subprocess import Popen, PIPE
 from pwd import getpwall
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import read_file
-from vyos.template import inc_ip
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import read_file
+from ngnos.template import inc_ip
 
 base_path = ['system', 'login']
-users = ['vyos1', 'vyos-roxx123', 'VyOS-123_super.Nice']
+users = ['ngnos1', 'ngnos-roxx123', 'ngNOS-123_super.Nice']
 
 ssh_pubkey = """
 AAAAB3NzaC1yc2EAAAADAQABAAABgQD0NuhUOEtMIKnUVFIHoFatqX/c4mjerXyF
@@ -45,7 +45,7 @@ pHJz8umqkxy3hfw0K7BRFtjWd63sbOP8Q/SDV7LPaIfIxenA9zv2rY7y+AIqTmSr
 TTSb0X1zPGxPIRFy5GoGtO9Mm5h4OZk=
 """
 
-class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
+class TestSystemLogin(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestSystemLogin, cls).setUpClass()
@@ -84,11 +84,11 @@ class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
         self.cli_set(['service', 'ssh', 'port', '22'])
 
         for user in users:
-            name = "VyOS Roxx " + user
+            name = "ngNOS Roxx " + user
             home_dir = "/tmp/" + user
 
             self.cli_set(base_path + ['user', user, 'authentication', 'plaintext-password', user])
-            self.cli_set(base_path + ['user', user, 'full-name', 'VyOS Roxx'])
+            self.cli_set(base_path + ['user', user, 'full-name', 'ngNOS Roxx'])
             self.cli_set(base_path + ['user', user, 'home-directory', home_dir])
 
         self.cli_commit()
@@ -102,7 +102,7 @@ class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
             (stdout, stderr) = proc.communicate()
 
             # stdout is something like this:
-            # b'Linux LR1.wue3 5.10.61-amd64-vyos #1 SMP Fri Aug 27 08:55:46 UTC 2021 x86_64 GNU/Linux\n'
+            # b'Linux LR1.wue3 5.10.61-amd64-ngnos #1 SMP Fri Aug 27 08:55:46 UTC 2021 x86_64 GNU/Linux\n'
             self.assertTrue(len(stdout) > 40)
 
     def test_system_login_otp(self):
@@ -123,7 +123,7 @@ class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
 
     def test_system_user_ssh_key(self):
         ssh_user = 'ssh-test_user'
-        public_keys = 'vyos_test@domain-foo.com'
+        public_keys = 'ngnos_test@domain-foo.com'
         type = 'ssh-rsa'
 
         self.cli_set(base_path + ['user', ssh_user, 'authentication', 'public-keys', public_keys, 'key', ssh_pubkey.replace('\n','')])
@@ -159,7 +159,7 @@ class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
     def test_system_login_radius_ipv4(self):
         # Verify generated RADIUS configuration files
 
-        radius_key = 'VyOSsecretVyOS'
+        radius_key = 'ngNOSsecretngNOS'
         radius_server = '172.16.100.10'
         radius_source = '127.0.0.1'
         radius_port = '2000'
@@ -213,7 +213,7 @@ class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
     def test_system_login_radius_ipv6(self):
         # Verify generated RADIUS configuration files
 
-        radius_key = 'VyOS-VyOS'
+        radius_key = 'ngNOS-ngNOS'
         radius_server = '2001:db8::1'
         radius_source = '::1'
         radius_port = '4000'
@@ -278,7 +278,7 @@ class TestSystemLogin(VyOSUnitTestSHIM.TestCase):
 
         self.cli_commit()
 
-        security_limits = read_file('/etc/security/limits.d/10-vyos.conf')
+        security_limits = read_file('/etc/security/limits.d/10-ngnos.conf')
         self.assertIn(f'* - maxsyslogins {max_logins}', security_limits)
 
         self.cli_delete(base_path + ['timeout'])

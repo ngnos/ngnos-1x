@@ -19,22 +19,22 @@ import re
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.firewall import find_nftables_rule
-from vyos.firewall import remove_nftables_rule
-from vyos.util import cmd
-from vyos.util import run
-from vyos.util import process_named_running
-from vyos.util import dict_search
-from vyos.template import render
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.firewall import find_nftables_rule
+from ngnos.firewall import remove_nftables_rule
+from ngnos.util import cmd
+from ngnos.util import run
+from ngnos.util import process_named_running
+from ngnos.util import dict_search
+from ngnos.template import render
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 conntrack_config = r'/etc/modprobe.d/vyatta_nf_conntrack.conf'
-sysctl_file = r'/run/sysctl/10-vyos-conntrack.conf'
+sysctl_file = r'/run/sysctl/10-ngnos-conntrack.conf'
 nftables_ct_file = r'/run/nftables-ct.conf'
 
 # Every ALG (Application Layer Gateway) consists of either a Kernel Object
@@ -65,7 +65,7 @@ module_map = {
 }
 
 def resync_conntrackd():
-    tmp = run('/usr/libexec/vyos/conf_mode/conntrack_sync.py')
+    tmp = run('/usr/libexec/ngnos/conf_mode/conntrack_sync.py')
     if tmp > 0:
         print('ERROR: error restarting conntrackd!')
 
@@ -101,7 +101,7 @@ def verify(conntrack):
     return None
 
 def generate(conntrack):
-    render(conntrack_config, 'conntrack/vyos_nf_conntrack.conf.j2', conntrack)
+    render(conntrack_config, 'conntrack/ngnos_nf_conntrack.conf.j2', conntrack)
     render(sysctl_file, 'conntrack/sysctl.conf.j2', conntrack)
     render(nftables_ct_file, 'conntrack/nftables-ct.j2', conntrack)
 
@@ -118,12 +118,12 @@ def find_nftables_ct_rule(rule):
     helper_search = re.search('ct helper set "(\w+)"', rule)
     if helper_search:
         rule = helper_search[1]
-    return find_nftables_rule('raw', 'VYOS_CT_HELPER', [rule])
+    return find_nftables_rule('raw', 'NGNOS_CT_HELPER', [rule])
 
 def find_remove_rule(rule):
     handle = find_nftables_ct_rule(rule)
     if handle:
-        remove_nftables_rule('raw', 'VYOS_CT_HELPER', handle)
+        remove_nftables_rule('raw', 'NGNOS_CT_HELPER', handle)
 
 def apply(conntrack):
     # Depending on the enable/disable state of the ALG (Application Layer Gateway)
@@ -145,7 +145,7 @@ def apply(conntrack):
             if 'nftables' in module_config:
                 for rule in module_config['nftables']:
                     if not find_nftables_ct_rule(rule):
-                        cmd(f'nft insert rule ip raw VYOS_CT_HELPER {rule}')
+                        cmd(f'nft insert rule ip raw NGNOS_CT_HELPER {rule}')
 
     # Load new nftables ruleset
     cmd(f'nft -f {nftables_ct_file}')

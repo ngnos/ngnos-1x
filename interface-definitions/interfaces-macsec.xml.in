@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="macsec" owner="${vyos_conf_scripts_dir}/interfaces-macsec.py">
+      <tagNode name="macsec" owner="${ngnos_conf_scripts_dir}/interfaces-macsec.py">
         <properties>
           <help>MACsec Interface (802.1ae)</help>
           <priority>461</priority>

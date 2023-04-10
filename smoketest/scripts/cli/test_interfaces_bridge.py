@@ -23,11 +23,11 @@ from copy import deepcopy
 from glob import glob
 from netifaces import interfaces
 
-from vyos.ifconfig import Section
-from vyos.util import cmd
-from vyos.util import read_file
-from vyos.util import get_interface_config
-from vyos.validate import is_intf_addr_assigned
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
+from ngnos.util import read_file
+from ngnos.util import get_interface_config
+from ngnos.validate import is_intf_addr_assigned
 
 class BridgeInterfaceTest(BasicInterfaceTest.TestCase):
     @classmethod

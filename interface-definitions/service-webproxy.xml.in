@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="webproxy" owner="${vyos_conf_scripts_dir}/service_webproxy.py">
+      <node name="webproxy" owner="${ngnos_conf_scripts_dir}/service_webproxy.py">
         <properties>
           <help>Webproxy service settings</help>
           <priority>500</priority>
@@ -316,7 +316,7 @@
             <properties>
               <help>IPv4 listen-address for WebProxy</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_local_ips.sh --ipv4</script>
+                <script>${ngnos_completion_dir}/list_local_ips.sh --ipv4</script>
               </completionHelp>
               <valueHelp>
                 <format>ipv4</format>
@@ -451,7 +451,7 @@
                         <description>URL for redirect</description>
                       </valueHelp>
                     </properties>
-                    <defaultValue>block.vyos.net</defaultValue>
+                    <defaultValue>block.ngnos.net</defaultValue>
                   </leafNode>
                   <tagNode name="rule">
                     <properties>

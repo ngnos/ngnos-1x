@@ -2,29 +2,29 @@
 
 {% import 'firewall/nftables-defines.j2' as group_tmpl %}
 
-{% if first_install is not vyos_defined %}
-delete table ip vyos_mangle
-delete table ip6 vyos_mangle
+{% if first_install is not ngnos_defined %}
+delete table ip ngnos_mangle
+delete table ip6 ngnos_mangle
 {% endif %}
-table ip vyos_mangle {
-    chain VYOS_PBR_PREROUTING {
+table ip ngnos_mangle {
+    chain NGNOS_PBR_PREROUTING {
         type filter hook prerouting priority -150; policy accept;
-{% if route is vyos_defined %}
-{%     for route_text, conf in route.items() if conf.interface is vyos_defined %}
-        iifname { {{ conf.interface | join(",") }} } counter jump VYOS_PBR_{{ route_text }}
+{% if route is ngnos_defined %}
+{%     for route_text, conf in route.items() if conf.interface is ngnos_defined %}
+        iifname { {{ conf.interface | join(",") }} } counter jump NGNOS_PBR_{{ route_text }}
 {%     endfor %}
 {% endif %}
     }
 
-    chain VYOS_PBR_POSTROUTING {
+    chain NGNOS_PBR_POSTROUTING {
         type filter hook postrouting priority -150; policy accept;
     }
 
-{% if route is vyos_defined %}
+{% if route is ngnos_defined %}
 {%     for route_text, conf in route.items() %}
-    chain VYOS_PBR_{{ route_text }} {
-{%         if conf.rule is vyos_defined %}
-{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not vyos_defined %}
+    chain NGNOS_PBR_{{ route_text }} {
+{%         if conf.rule is ngnos_defined %}
+{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not ngnos_defined %}
         {{ rule_conf | nft_rule(route_text, rule_id, 'ip') }}
 {%             endfor %}
 {%         endif %}
@@ -35,25 +35,25 @@ table ip vyos_mangle {
 {{ group_tmpl.groups(firewall_group, False) }}
 }
 
-table ip6 vyos_mangle {
-    chain VYOS_PBR6_PREROUTING {
+table ip6 ngnos_mangle {
+    chain NGNOS_PBR6_PREROUTING {
         type filter hook prerouting priority -150; policy accept;
-{% if route6 is vyos_defined %}
-{%     for route_text, conf in route6.items() if conf.interface is vyos_defined %}
-        iifname { {{ ",".join(conf.interface) }} } counter jump VYOS_PBR6_{{ route_text }}
+{% if route6 is ngnos_defined %}
+{%     for route_text, conf in route6.items() if conf.interface is ngnos_defined %}
+        iifname { {{ ",".join(conf.interface) }} } counter jump NGNOS_PBR6_{{ route_text }}
 {%     endfor %}
 {% endif %}
     }
 
-    chain VYOS_PBR6_POSTROUTING {
+    chain NGNOS_PBR6_POSTROUTING {
         type filter hook postrouting priority -150; policy accept;
     }
 
-{% if route6 is vyos_defined %}
+{% if route6 is ngnos_defined %}
 {%     for route_text, conf in route6.items() %}
-    chain VYOS_PBR6_{{ route_text }} {
-{%         if conf.rule is vyos_defined %}
-{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not vyos_defined %}
+    chain NGNOS_PBR6_{{ route_text }} {
+{%         if conf.rule is ngnos_defined %}
+{%             for rule_id, rule_conf in conf.rule.items() if rule_conf.disable is not ngnos_defined %}
         {{ rule_conf | nft_rule(route_text, rule_id, 'ip6') }}
 {%             endfor %}
 {%         endif %}

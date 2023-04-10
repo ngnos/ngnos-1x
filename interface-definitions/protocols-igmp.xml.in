@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="igmp" owner="${vyos_conf_scripts_dir}/protocols_igmp.py">
+      <node name="igmp" owner="${ngnos_conf_scripts_dir}/protocols_igmp.py">
         <properties>
           <help>Internet Group Management Protocol (IGMP)</help>
         </properties>
@@ -12,7 +12,7 @@
             <properties>
               <help>IGMP interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>

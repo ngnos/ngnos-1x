@@ -3,7 +3,7 @@
   <properties>
     <help>Show OSPFv3 border-router (ABR and ASBR) information</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/ospfv3/detail.xml.i>
   </children>
@@ -15,6 +15,6 @@
       <list>&lt;x.x.x.x&gt;</list>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <!-- included end -->

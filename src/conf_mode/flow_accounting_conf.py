@@ -22,25 +22,25 @@ import ipaddress
 
 from ipaddress import ip_address
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.ifconfig import Section
-from vyos.ifconfig import Interface
-from vyos.template import render
-from vyos.util import call
-from vyos.util import cmd
-from vyos.validate import is_addr_assigned
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.ifconfig import Section
+from ngnos.ifconfig import Interface
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import cmd
+from ngnos.validate import is_addr_assigned
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 uacctd_conf_path = '/run/pmacct/uacctd.conf'
 systemd_service = 'uacctd.service'
 systemd_override = f'/run/systemd/system/{systemd_service}.d/override.conf'
 nftables_nflog_table = 'raw'
-nftables_nflog_chain = 'VYOS_CT_PREROUTING_HOOK'
+nftables_nflog_chain = 'NGNOS_CT_PREROUTING_HOOK'
 egress_nftables_nflog_table = 'inet mangle'
 egress_nftables_nflog_chain = 'FORWARD'
 

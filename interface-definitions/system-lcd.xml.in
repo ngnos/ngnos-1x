@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="lcd" owner="${vyos_conf_scripts_dir}/system_lcd.py">
+      <node name="lcd" owner="${ngnos_conf_scripts_dir}/system_lcd.py">
         <properties>
           <help>System LCD display</help>
           <priority>100</priority>

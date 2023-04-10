@@ -16,14 +16,14 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
 from psutil import process_iter
-from vyos.configsession import ConfigSessionError
+from ngnos.configsession import ConfigSessionError
 
 base_path = ['service', 'broadcast-relay']
 
-class TestServiceBroadcastRelay(VyOSUnitTestSHIM.TestCase):
+class TestServiceBroadcastRelay(ngNOSUnitTestSHIM.TestCase):
     _address1 = '192.0.2.1/24'
     _address2 = '192.0.2.1/24'
 
@@ -41,7 +41,7 @@ class TestServiceBroadcastRelay(VyOSUnitTestSHIM.TestCase):
         ids = range(1, 5)
         for id in ids:
             base = base_path + ['id', str(id)]
-            self.cli_set(base + ['description', 'vyos'])
+            self.cli_set(base + ['description', 'ngnos'])
             self.cli_set(base + ['port', str(10000 + id)])
 
             # check validate() - two interfaces must be present

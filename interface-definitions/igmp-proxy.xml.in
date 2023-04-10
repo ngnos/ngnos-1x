@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="igmp-proxy" owner="${vyos_conf_scripts_dir}/igmp_proxy.py">
+      <node name="igmp-proxy" owner="${ngnos_conf_scripts_dir}/igmp_proxy.py">
         <properties>
           <help>Internet Group Management Protocol (IGMP) proxy parameters</help>
           <priority>740</priority>
@@ -20,7 +20,7 @@
             <properties>
               <help>Interface for IGMP proxy</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
             </properties>
             <children>

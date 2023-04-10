@@ -21,12 +21,12 @@ import unittest
 from base_interfaces_test import BasicInterfaceTest
 from netifaces import interfaces
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import cmd
-from vyos.util import read_file
-from vyos.util import get_interface_config
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
+from ngnos.util import read_file
+from ngnos.util import get_interface_config
+from ngnos.util import process_named_running
 
 PROCESS_NAME = 'wpa_supplicant'
 

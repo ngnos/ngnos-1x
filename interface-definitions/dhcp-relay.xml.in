@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="dhcp-relay" owner="${vyos_conf_scripts_dir}/dhcp_relay.py">
+      <node name="dhcp-relay" owner="${ngnos_conf_scripts_dir}/dhcp_relay.py">
         <properties>
           <help>Host Configuration Protocol (DHCP) relay agent</help>
           <priority>910</priority>
@@ -14,7 +14,7 @@
             <properties>
               <help>Interface for DHCP Relay Agent to listen for requests</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
               <valueHelp>
                 <format>txt</format>
@@ -30,7 +30,7 @@
             <properties>
               <help>Interface for DHCP Relay Agent forward requests out</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_interfaces</script>
+                <script>${ngnos_completion_dir}/list_interfaces</script>
               </completionHelp>
               <valueHelp>
                 <format>txt</format>

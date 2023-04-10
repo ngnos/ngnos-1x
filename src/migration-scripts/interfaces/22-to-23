@@ -16,7 +16,7 @@
 
 from sys import argv
 from sys import exit
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 def migrate_ospf(config, path, interface):
     path = path + ['ospf']

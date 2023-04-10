@@ -3,7 +3,7 @@ Description=ISC DHCP IPv6 server
 Documentation=man:dhcpd(8)
 RequiresMountsFor=/run
 ConditionPathExists=/run/dhcp-server/dhcpdv6.conf
-After=vyos-router.service
+After=ngnos-router.service
 
 [Service]
 Type=forking

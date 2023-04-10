@@ -12,7 +12,7 @@
             <properties>
               <help>Monitor traffic dump from an interface</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_dumpable_interfaces.py</script>
+                <script>${ngnos_completion_dir}/list_dumpable_interfaces.py</script>
               </completionHelp>
             </properties>
             <children>

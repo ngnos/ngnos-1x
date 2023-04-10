@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="rip" owner="${vyos_conf_scripts_dir}/protocols_rip.py">
+      <node name="rip" owner="${ngnos_conf_scripts_dir}/protocols_rip.py">
         <properties>
           <help>Routing Information Protocol (RIP) parameters</help>
           <priority>650</priority>
@@ -36,7 +36,7 @@
                     <description>Apply filtering to an interface</description>
                   </valueHelp>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                   <constraint>
                     #include <include/constraint/interface-name.xml.i>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="vrf" owner="${vyos_conf_scripts_dir}/vrf.py">
+  <node name="vrf" owner="${ngnos_conf_scripts_dir}/vrf.py">
     <properties>
       <help>Virtual Routing and Forwarding</help>
       <!-- must be before any interface, check /opt/vyatta/sbin/priority.pl -->
@@ -49,7 +49,7 @@
               <help>Routing protocol parameters</help>
             </properties>
             <children>
-              <node name="bgp" owner="${vyos_conf_scripts_dir}/protocols_bgp.py $VAR(../../@)">
+              <node name="bgp" owner="${ngnos_conf_scripts_dir}/protocols_bgp.py $VAR(../../@)">
                 <properties>
                   <help>Border Gateway Protocol (BGP)</help>
                   <priority>821</priority>
@@ -58,7 +58,7 @@
                   #include <include/bgp/protocol-common-config.xml.i>
                 </children>
               </node>
-              <node name="eigrp" owner="${vyos_conf_scripts_dir}/protocols_eigrp.py $VAR(../../@)">
+              <node name="eigrp" owner="${ngnos_conf_scripts_dir}/protocols_eigrp.py $VAR(../../@)">
                 <properties>
                   <help>Enhanced Interior Gateway Routing Protocol (EIGRP)</help>
                   <priority>821</priority>
@@ -67,7 +67,7 @@
                   #include <include/eigrp/protocol-common-config.xml.i>
                 </children>
               </node>
-              <node name="isis" owner="${vyos_conf_scripts_dir}/protocols_isis.py $VAR(../../@)">
+              <node name="isis" owner="${ngnos_conf_scripts_dir}/protocols_isis.py $VAR(../../@)">
                 <properties>
                   <help>Intermediate System to Intermediate System (IS-IS)</help>
                   <priority>611</priority>
@@ -76,7 +76,7 @@
                   #include <include/isis/protocol-common-config.xml.i>
                 </children>
               </node>
-              <node name="ospf" owner="${vyos_conf_scripts_dir}/protocols_ospf.py $VAR(../../@)">
+              <node name="ospf" owner="${ngnos_conf_scripts_dir}/protocols_ospf.py $VAR(../../@)">
                 <properties>
                   <help>Open Shortest Path First (OSPF)</help>
                   <priority>621</priority>
@@ -85,7 +85,7 @@
                   #include <include/ospf/protocol-common-config.xml.i>
                 </children>
               </node>
-              <node name="ospfv3" owner="${vyos_conf_scripts_dir}/protocols_ospfv3.py $VAR(../../@)">
+              <node name="ospfv3" owner="${ngnos_conf_scripts_dir}/protocols_ospfv3.py $VAR(../../@)">
                 <properties>
                   <help>Open Shortest Path First (OSPF) for IPv6</help>
                   <priority>621</priority>
@@ -94,7 +94,7 @@
                   #include <include/ospfv3/protocol-common-config.xml.i>
                 </children>
               </node>
-              <node name="static" owner="${vyos_conf_scripts_dir}/protocols_static.py $VAR(../../@)">
+              <node name="static" owner="${ngnos_conf_scripts_dir}/protocols_static.py $VAR(../../@)">
                 <properties>
                   <help>Static Routing</help>
                   <priority>481</priority>
@@ -119,7 +119,7 @@
               <constraintErrorMessage>VRF routing table must be in range from 100 to 65535</constraintErrorMessage>
             </properties>
           </leafNode>
-          <leafNode name="vni" owner="${vyos_conf_scripts_dir}/vrf_vni.py">
+          <leafNode name="vni" owner="${ngnos_conf_scripts_dir}/vrf_vni.py">
             <properties>
               <help>Virtual Network Identifier</help>
               <!-- priority must be after BGP -->

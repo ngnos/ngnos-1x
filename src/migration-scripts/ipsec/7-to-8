@@ -25,11 +25,11 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from sys import argv
 from sys import exit
 
-from vyos.configtree import ConfigTree
-from vyos.pki import load_public_key
-from vyos.pki import load_private_key
-from vyos.pki import encode_public_key
-from vyos.pki import encode_private_key
+from ngnos.configtree import ConfigTree
+from ngnos.pki import load_public_key
+from ngnos.pki import load_private_key
+from ngnos.pki import encode_public_key
+from ngnos.pki import encode_private_key
 
 if (len(argv) < 1):
     print("Must specify file name!")

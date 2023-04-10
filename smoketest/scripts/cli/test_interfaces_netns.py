@@ -20,18 +20,18 @@ import json
 import unittest
 
 from netifaces import interfaces
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSession
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Interface
-from vyos.ifconfig import Section
-from vyos.util import cmd
+from ngnos.configsession import ConfigSession
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Interface
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
 
 base_path = ['netns']
 namespaces = ['mgmt', 'front', 'back', 'ams-ix']
 
-class NETNSTest(VyOSUnitTestSHIM.TestCase):
+class NETNSTest(ngNOSUnitTestSHIM.TestCase):
 
     def setUp(self):
         self._interfaces = ['dum10', 'dum12', 'dum50']

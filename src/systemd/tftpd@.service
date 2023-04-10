@@ -1,6 +1,6 @@
 [Unit]
 Description=TFTP server
-After=vyos-router.service
+After=ngnos-router.service
 RequiresMountsFor=/run
 
 [Service]

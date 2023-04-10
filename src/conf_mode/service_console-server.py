@@ -19,12 +19,12 @@ import os
 from sys import exit
 from psutil import process_iter
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render
-from vyos.util import call
-from vyos.xml import defaults
-from vyos import ConfigError
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.xml import defaults
+from ngnos import ConfigError
 
 config_file = '/run/conserver/conserver.cf'
 dropbear_systemd_file = '/run/systemd/system/dropbear@{port}.service.d/override.conf'

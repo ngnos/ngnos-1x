@@ -17,17 +17,17 @@
 from pathlib import Path
 from sys import exit
 
-from vyos import ConfigError
-from vyos import airbag
-from vyos.config import Config
-from vyos.logger import syslog
-from vyos.template import render_to_string
-from vyos.util import read_file, write_file, run
+from ngnos import ConfigError
+from ngnos import airbag
+from ngnos.config import Config
+from ngnos.logger import syslog
+from ngnos.template import render_to_string
+from ngnos.util import read_file, write_file, run
 airbag.enable()
 
 # path to daemons config and config status files
 config_file = '/etc/frr/daemons'
-vyos_status_file = '/tmp/vyos-config-status'
+ngnos_status_file = '/tmp/ngnos-config-status'
 # path to watchfrr for FRR control
 watchfrr = '/usr/lib/frr/watchfrr.sh'
 
@@ -64,7 +64,7 @@ def generate(frr_config):
 def apply(frr_config):
     # check if this is initial commit during boot or intiated by CLI
     # if the file exists, this must be CLI commit
-    commit_type_cli = Path(vyos_status_file).exists()
+    commit_type_cli = Path(ngnos_status_file).exists()
     # display warning to user
     if commit_type_cli and frr_config.get('config_file_changed'):
         # Since FRR restart is not safe thing, better to give

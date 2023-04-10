@@ -17,14 +17,14 @@
 import json
 from pathlib import Path
 
-from vyos.config import Config
-from vyos.util import call, dict_search
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.util import call, dict_search
+from ngnos import ConfigError
+from ngnos import airbag
 
 airbag.enable()
 
-service_name = 'vyos-event-handler'
+service_name = 'ngnos-event-handler'
 service_conf = Path(f'/run/{service_name}.conf')
 
 

@@ -17,10 +17,10 @@
 import os
 import sys
 
-from vyos import ConfigError
-from vyos.config import Config
-from vyos.config_mgmt import ConfigMgmt
-from vyos.config_mgmt import commit_post_hook_dir, commit_hooks
+from ngnos import ConfigError
+from ngnos.config import Config
+from ngnos.config_mgmt import ConfigMgmt
+from ngnos.config_mgmt import commit_post_hook_dir, commit_hooks
 
 def get_config(config=None):
     if config:

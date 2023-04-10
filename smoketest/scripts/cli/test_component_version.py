@@ -16,10 +16,10 @@
 
 import unittest
 
-import vyos.component_version as component_version
+import ngnos.component_version as component_version
 
 # After T3474, component versions should be updated in the files in
-# vyos-1x/interface-definitions/include/version/
+# ngnos-1x/interface-definitions/include/version/
 # This test verifies that the legacy version in curver_DATA does not exceed
 # that in the xml cache.
 class TestComponentVersion(unittest.TestCase):

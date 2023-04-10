@@ -19,13 +19,13 @@ import os
 from ipaddress import IPv4Address
 from sys import exit
 
-from vyos import ConfigError
-from vyos.config import Config
-from vyos.util import call, process_named_running
-from vyos.template import render
+from ngnos import ConfigError
+from ngnos.config import Config
+from ngnos.util import call, process_named_running
+from ngnos.template import render
 from signal import SIGTERM
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 # Required to use the full path to pimd, in another case daemon will not be started

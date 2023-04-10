@@ -21,17 +21,17 @@ import jmespath
 from pathlib import Path
 from sys import exit
 
-from vyos.config import Config
-from vyos.util import call
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.util import call
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 
 base = ['system', 'update-check']
-service_name = 'vyos-system-update'
+service_name = 'ngnos-system-update'
 service_conf = Path(f'/run/{service_name}.conf')
-motd_file = Path('/run/motd.d/10-vyos-update')
+motd_file = Path('/run/motd.d/10-ngnos-update')
 
 
 def get_config(config=None):

@@ -24,14 +24,14 @@ from netifaces import AF_INET6
 from netifaces import ifaddresses
 
 from base_interfaces_test import BasicInterfaceTest
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.pki import CERT_BEGIN
-from vyos.template import is_ipv6
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.validate import is_ipv6_link_local
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.pki import CERT_BEGIN
+from ngnos.template import is_ipv6
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.validate import is_ipv6_link_local
 
 server_ca_root_cert_data = """
 MIIBcTCCARagAwIBAgIUDcAf1oIQV+6WRaW7NPcSnECQ/lUwCgYIKoZIzj0EAwIw

@@ -9,7 +9,7 @@
         <properties>
           <help>Format a disk drive</help>
           <completionHelp>
-            <script>${vyos_completion_dir}/list_disks.py</script>
+            <script>${ngnos_completion_dir}/list_disks.py</script>
           </completionHelp>
         </properties>
         <children>
@@ -17,10 +17,10 @@
             <properties>
               <help>Format this disk the same as another disk</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_disks.py --exclude ${COMP_WORDS[2]}</script>
+                <script>${ngnos_completion_dir}/list_disks.py --exclude ${COMP_WORDS[2]}</script>
               </completionHelp>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/format_disk.py --target $3 --proto $5</command>
+            <command>sudo ${ngnos_op_scripts_dir}/format_disk.py --target $3 --proto $5</command>
           </tagNode>
         </children>
       </tagNode>
@@ -32,7 +32,7 @@
         <properties>
           <help>Show status of disk device</help>
           <completionHelp>
-            <script>${vyos_completion_dir}/list_disks.py</script>
+            <script>${ngnos_completion_dir}/list_disks.py</script>
           </completionHelp>
         </properties>
         <children>
@@ -40,7 +40,7 @@
             <properties>
               <help>Show disk drive formatting</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/show_disk_format.sh $3</command>
+            <command>${ngnos_op_scripts_dir}/show_disk_format.sh $3</command>
           </leafNode>
         </children>
       </tagNode>

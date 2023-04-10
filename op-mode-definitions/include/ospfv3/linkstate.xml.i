@@ -20,7 +20,7 @@
               <list>&lt;x.x.x.x&gt;</list>
             </completionHelp>
           </properties>
-          <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+          <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
         </node>
       </children>
     </tagNode>
@@ -31,7 +31,7 @@
           <list>&lt;x.x.x.x&gt;</list>
         </completionHelp>
       </properties>
-      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
     </tagNode>
   </children>
 </node>

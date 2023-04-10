@@ -12,7 +12,7 @@ def check_auth(key_list, key):
 
 def auth_required(key):
     api_keys = None
-    api_keys = state.settings['app'].state.vyos_keys
+    api_keys = state.settings['app'].state.ngnos_keys
     key_id = check_auth(api_keys, key)
-    state.settings['app'].state.vyos_id = key_id
+    state.settings['app'].state.ngnos_id = key_id
     return key_id

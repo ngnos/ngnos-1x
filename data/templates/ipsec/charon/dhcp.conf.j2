@@ -1,9 +1,9 @@
 dhcp {
     load = yes
-{% if remote_access.dhcp.interface is vyos_defined %}
+{% if remote_access.dhcp.interface is ngnos_defined %}
     interface = {{ remote_access.dhcp.interface }}
 {% endif %}
-{% if remote_access.dhcp.server is vyos_defined %}
+{% if remote_access.dhcp.server is ngnos_defined %}
     server = {{ remote_access.dhcp.server }}
 {% endif %}
 

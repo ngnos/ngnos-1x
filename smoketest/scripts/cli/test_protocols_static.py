@@ -16,11 +16,11 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.template import is_ipv6
-from vyos.util import get_interface_config
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import is_ipv6
+from ngnos.util import get_interface_config
 
 base_path = ['protocols', 'static']
 vrf_path =  ['protocols', 'vrf']
@@ -91,7 +91,7 @@ routes = {
 
 tables = ['80', '81', '82']
 
-class TestProtocolsStatic(VyOSUnitTestSHIM.TestCase):
+class TestProtocolsStatic(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestProtocolsStatic, cls).setUpClass()

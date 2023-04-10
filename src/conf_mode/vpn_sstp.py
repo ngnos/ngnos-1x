@@ -18,20 +18,20 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import get_accel_dict
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_accel_ppp_base_service
-from vyos.pki import wrap_certificate
-from vyos.pki import wrap_private_key
-from vyos.template import render
-from vyos.util import call
-from vyos.util import check_port_availability
-from vyos.util import dict_search
-from vyos.util import is_listen_port_bind_service
-from vyos.util import write_file
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_accel_dict
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_accel_ppp_base_service
+from ngnos.pki import wrap_certificate
+from ngnos.pki import wrap_private_key
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import check_port_availability
+from ngnos.util import dict_search
+from ngnos.util import is_listen_port_bind_service
+from ngnos.util import write_file
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 cfg_dir = '/run/accel-pppd'

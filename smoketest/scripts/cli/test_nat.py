@@ -19,10 +19,10 @@ import json
 import os
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import dict_search
+from base_ngnostest_shim import ngNOSUnitTestSHIM
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import dict_search
 
 base_path = ['nat']
 src_path = base_path + ['source']
@@ -32,7 +32,7 @@ static_path = base_path + ['static']
 nftables_nat_config = '/run/nftables_nat.conf'
 nftables_static_nat_conf = '/run/nftables_static-nat-rules.nft'
 
-class TestNAT(VyOSUnitTestSHIM.TestCase):
+class TestNAT(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestNAT, cls).setUpClass()
@@ -74,7 +74,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
         outbound_iface_100 = 'eth0'
         outbound_iface_200 = 'eth1'
 
-        nftables_search = ['jump VYOS_PRE_SNAT_HOOK']
+        nftables_search = ['jump NGNOS_PRE_SNAT_HOOK']
 
         for rule in rules:
             network = f'192.168.{rule}.0/24'
@@ -93,7 +93,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
 
         self.cli_commit()
 
-        self.verify_nftables(nftables_search, 'ip vyos_nat')
+        self.verify_nftables(nftables_search, 'ip ngnos_nat')
 
     def test_snat_groups(self):
         address_group = 'smoketest_addr'
@@ -115,7 +115,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
             [f'ip saddr @A_{address_group}', f'oifname "{outbound_iface}"', 'masquerade']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_nat')
+        self.verify_nftables(nftables_search, 'ip ngnos_nat')
 
         self.cli_delete(['firewall'])
 
@@ -126,7 +126,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
         inbound_proto_100 = 'udp'
         inbound_proto_200 = 'tcp'
 
-        nftables_search = ['jump VYOS_PRE_DNAT_HOOK']
+        nftables_search = ['jump NGNOS_PRE_DNAT_HOOK']
 
         for rule in rules:
             port = f'10{rule}'
@@ -148,7 +148,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
 
         self.cli_commit()
 
-        self.verify_nftables(nftables_search, 'ip vyos_nat')
+        self.verify_nftables(nftables_search, 'ip ngnos_nat')
 
     def test_snat_required_translation_address(self):
         # T2813: Ensure translation address is specified
@@ -203,7 +203,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
             ['iifname "eth1"', 'tcp dport 443', 'pkttype host', 'dnat to :443']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_nat')
+        self.verify_nftables(nftables_search, 'ip ngnos_nat')
 
     def test_static_nat(self):
         dst_addr_1 = '10.0.1.1'
@@ -229,7 +229,7 @@ class TestNAT(VyOSUnitTestSHIM.TestCase):
             [f'oifname "{ifname}"', f'snat ip prefix to ip saddr map {{ {translate_addr_2} : {dst_addr_2} }}']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_static_nat')
+        self.verify_nftables(nftables_search, 'ip ngnos_static_nat')
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

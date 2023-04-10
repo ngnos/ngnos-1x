@@ -21,14 +21,14 @@
 import sys
 import typing
 
-import vyos.opmode
-import vyos.version
-import vyos.limericks
+import ngnos.opmode
+import ngnos.version
+import ngnos.limericks
 
 from jinja2 import Template
 
 version_output_tmpl = """
-Version:          VyOS {{version}}
+Version:          ngNOS {{version}}
 Release train:    {{release_train}}
 
 Built by:         {{built_by}}
@@ -45,17 +45,17 @@ Hardware model:   {{hardware_model}}
 Hardware S/N:     {{hardware_serial}}
 Hardware UUID:    {{hardware_uuid}}
 
-Copyright:        VyOS maintainers and contributors
+Copyright:        ngNOS maintainers and contributors
 {%- if limerick %}
 {{limerick}}
 {% endif -%}
 """
 
 def _get_raw_data(funny=False):
-    version_data = vyos.version.get_full_version_data()
+    version_data = ngnos.version.get_full_version_data()
 
     if funny:
-        version_data["limerick"] = vyos.limericks.get_random()
+        version_data["limerick"] = ngnos.limericks.get_random()
 
     return version_data
 
@@ -75,10 +75,10 @@ def show(raw: bool, funny: typing.Optional[bool]):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)
 

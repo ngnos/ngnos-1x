@@ -19,20 +19,20 @@ import os
 from sys import exit
 from sys import argv
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import node_changed
-from vyos.configverify import verify_common_route_maps
-from vyos.configverify import verify_route_map
-from vyos.configverify import verify_interface_exists
-from vyos.configverify import verify_access_list
-from vyos.template import render_to_string
-from vyos.util import dict_search
-from vyos.util import get_interface_config
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import node_changed
+from ngnos.configverify import verify_common_route_maps
+from ngnos.configverify import verify_route_map
+from ngnos.configverify import verify_interface_exists
+from ngnos.configverify import verify_access_list
+from ngnos.template import render_to_string
+from ngnos.util import dict_search
+from ngnos.util import get_interface_config
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):
@@ -143,7 +143,7 @@ def get_config(config=None):
     # and route-maps for instance. They will be used in verify().
     #
     # XXX: one MUST always call this without the key_mangling() option! See
-    # vyos.configverify.verify_common_route_maps() for more information.
+    # ngnos.configverify.verify_common_route_maps() for more information.
     tmp = conf.get_config_dict(['policy'])
     # Merge policy dict into "regular" config dict
     ospf = dict_merge(tmp, ospf)
@@ -189,7 +189,7 @@ def verify(ospf):
                                           'network configuration at the same time!')
 
             # If interface specific options are set, we must ensure that the
-            # interface is bound to our requesting VRF. Due to the VyOS
+            # interface is bound to our requesting VRF. Due to the ngNOS
             # priorities the interface is bound to the VRF after creation of
             # the VRF itself, and before any routing protocol is configured.
             if 'vrf' in ospf:

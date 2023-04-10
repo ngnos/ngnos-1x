@@ -19,9 +19,9 @@ import os
 import re
 import argparse
 
-from vyos.config import Config
-from vyos.util import popen
-from vyos.util import call
+from ngnos.config import Config
+from ngnos.util import popen
+from ngnos.util import call
 
 def detect_qat_dev():
     output, err = popen('lspci -nn', decode='utf-8')

@@ -16,21 +16,21 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig.vrrp import VRRP
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.template import inc_ip
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig.vrrp import VRRP
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.template import inc_ip
 
 PROCESS_NAME = 'keepalived'
 KEEPALIVED_CONF = VRRP.location['config']
 base_path = ['high-availability']
 vrrp_interface = 'eth1'
 
-class TestHAVirtualServer(VyOSUnitTestSHIM.TestCase):
+class TestHAVirtualServer(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         # Check for running process
         self.assertTrue(process_named_running(PROCESS_NAME))
@@ -92,7 +92,7 @@ class TestHAVirtualServer(VyOSUnitTestSHIM.TestCase):
         rport = '222'
         proto = 'tcp'
         connection_timeout = '23'
-        group = 'VyOS'
+        group = 'ngNOS'
         vrid = '99'
 
         vrrp_base = base_path + ['vrrp', 'group']

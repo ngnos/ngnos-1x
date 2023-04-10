@@ -16,16 +16,16 @@
 
 import os
 
-from vyos.config import Config
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_vrf
-from vyos.configverify import verify_interface_exists
-from vyos.util import call
-from vyos.util import chmod_750
-from vyos.util import get_interface_config
-from vyos.template import render
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_vrf
+from ngnos.configverify import verify_interface_exists
+from ngnos.util import call
+from ngnos.util import chmod_750
+from ngnos.util import get_interface_config
+from ngnos.template import render
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = r'/run/chrony/chrony.conf'

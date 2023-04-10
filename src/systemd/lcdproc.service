@@ -1,7 +1,7 @@
 [Unit]
 Description=LCDproc system status information viewer on %I
 Documentation=man:lcdproc(8) http://www.lcdproc.org/
-After=vyos-router.service LCDd.service
+After=ngnos-router.service LCDd.service
 Requires=LCDd.service
 
 [Service]

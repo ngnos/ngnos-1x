@@ -16,7 +16,7 @@
 
 from sys import exit
 from sys import argv
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(argv) < 1):
     print("Must specify file name!")
@@ -43,9 +43,9 @@ if config.exists(base + ['cache']):
             # We do not longer support the address leafNode, RPKI cache server
             # IP address is now used from the tagNode
             config.delete(address_node)
-            # VyOS 1.2 had no per instance preference, setting new defaults
+            # ngNOS 1.2 had no per instance preference, setting new defaults
             config.set(base + ['cache', cache, 'preference'], value=preference)
-            # Increase preference for the next caching peer - actually VyOS 1.2
+            # Increase preference for the next caching peer - actually ngNOS 1.2
             # supported only one but better save then sorry (T3253)
             preference += 1
 

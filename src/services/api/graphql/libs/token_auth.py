@@ -11,7 +11,7 @@ def _check_passwd_pam(username: str, passwd: str) -> bool:
     return False
 
 def init_secret():
-    length = int(state.settings['app'].state.vyos_secret_len)
+    length = int(state.settings['app'].state.ngnos_secret_len)
     secret = token_hex(length)
     state.settings['secret'] = secret
 
@@ -21,10 +21,10 @@ def generate_token(user: str, passwd: str, secret: str, exp: int) -> dict:
     if _check_passwd_pam(user, passwd):
         app = state.settings['app']
         try:
-            users = app.state.vyos_token_users
+            users = app.state.ngnos_token_users
         except AttributeError:
-            app.state.vyos_token_users = {}
-            users = app.state.vyos_token_users
+            app.state.ngnos_token_users = {}
+            users = app.state.ngnos_token_users
         user_id = uuid.uuid1().hex
         payload_data = {'iss': user, 'sub': user_id, 'exp': exp}
         secret = state.settings.get('secret')
@@ -59,7 +59,7 @@ def get_user_context(request):
         except jwt.PyJWTError:
             return context
         try:
-            users = state.settings['app'].state.vyos_token_users
+            users = state.settings['app'].state.ngnos_token_users
         except AttributeError:
             return context
 

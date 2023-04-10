@@ -18,11 +18,11 @@ import os
 import re
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.firewall import find_nftables_rule
-from vyos.util import cmd
-from vyos.util import read_file
+from ngnos.firewall import find_nftables_rule
+from ngnos.util import cmd
+from ngnos.util import read_file
 
 base_path = ['system', 'conntrack']
 
@@ -30,7 +30,7 @@ def get_sysctl(parameter):
     tmp = parameter.replace(r'.', r'/')
     return read_file(f'/proc/sys/{tmp}')
 
-class TestSystemConntrack(VyOSUnitTestSHIM.TestCase):
+class TestSystemConntrack(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()
@@ -189,7 +189,7 @@ class TestSystemConntrack(VyOSUnitTestSHIM.TestCase):
                     self.assertTrue(os.path.isdir(f'/sys/module/{driver}'))
             if 'nftables' in module_options:
                 for rule in module_options['nftables']:
-                    self.assertTrue(find_nftables_rule('raw', 'VYOS_CT_HELPER', [rule]) != None)
+                    self.assertTrue(find_nftables_rule('raw', 'NGNOS_CT_HELPER', [rule]) != None)
 
         # unload modules
         for module in modules:
@@ -205,7 +205,7 @@ class TestSystemConntrack(VyOSUnitTestSHIM.TestCase):
                     self.assertFalse(os.path.isdir(f'/sys/module/{driver}'))
             if 'nftables' in module_options:
                 for rule in module_options['nftables']:
-                    self.assertTrue(find_nftables_rule('raw', 'VYOS_CT_HELPER', [rule]) == None)
+                    self.assertTrue(find_nftables_rule('raw', 'NGNOS_CT_HELPER', [rule]) == None)
 
     def test_conntrack_hash_size(self):
         hash_size = '65536'

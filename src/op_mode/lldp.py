@@ -21,11 +21,11 @@ import typing
 
 from tabulate import tabulate
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import cmd
-from vyos.util import dict_search
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import cmd
+from ngnos.util import dict_search
 
-import vyos.opmode
+import ngnos.opmode
 unconf_message = 'LLDP is not configured'
 capability_codes = """Capability Codes: R - Router, B - Bridge, W - Wlan r - Repeater, S - Station
                   D - Docsis, T - Telephone, O - Other
@@ -40,7 +40,7 @@ def _verify(func):
     def _wrapper(*args, **kwargs):
         config = ConfigTreeQuery()
         if not config.exists(['service', 'lldp']):
-            raise vyos.opmode.UnconfiguredSubsystem(unconf_message)
+            raise ngnos.opmode.UnconfiguredSubsystem(unconf_message)
         return func(*args, **kwargs)
     return _wrapper
 
@@ -141,9 +141,9 @@ def show_neighbors(raw: bool, interface: typing.Optional[str], detail: typing.Op
 
 if __name__ == "__main__":
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

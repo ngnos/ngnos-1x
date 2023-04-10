@@ -16,15 +16,15 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import process_named_running
-from vyos.util import read_file
-from vyos.template import address_from_cidr
-from vyos.template import inc_ip
-from vyos.template import dec_ip
-from vyos.template import netmask_from_cidr
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import process_named_running
+from ngnos.util import read_file
+from ngnos.template import address_from_cidr
+from ngnos.template import inc_ip
+from ngnos.template import dec_ip
+from ngnos.template import netmask_from_cidr
 
 PROCESS_NAME = 'dhcpd'
 DHCPD_CONF = '/run/dhcp-server/dhcpd.conf'
@@ -33,9 +33,9 @@ subnet = '192.0.2.0/25'
 router = inc_ip(subnet, 1)
 dns_1 = inc_ip(subnet, 2)
 dns_2 = inc_ip(subnet, 3)
-domain_name = 'vyos.net'
+domain_name = 'ngnos.com'
 
-class TestServiceDHCPServer(VyOSUnitTestSHIM.TestCase):
+class TestServiceDHCPServer(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServiceDHCPServer, cls).setUpClass()
@@ -106,11 +106,11 @@ class TestServiceDHCPServer(VyOSUnitTestSHIM.TestCase):
         range_0_stop        = inc_ip(subnet, 20)
         smtp_server         = '1.2.3.4'
         time_server         = '4.3.2.1'
-        tftp_server         = 'tftp.vyos.io'
-        search_domains      = ['foo.vyos.net', 'bar.vyos.net']
-        bootfile_name       = 'vyos'
+        tftp_server         = 'tftp.ngnos.com'
+        search_domains      = ['foo.ngnos.com', 'bar.ngnos.com']
+        bootfile_name       = 'ngnos'
         bootfile_server     = '192.0.2.1'
-        wpad                = 'http://wpad.vyos.io/foo/bar'
+        wpad                = 'http://wpad.ngnos.com/foo/bar'
         server_identifier   = bootfile_server
         ipv6_only_preferred = '300'
 
@@ -234,7 +234,7 @@ class TestServiceDHCPServer(VyOSUnitTestSHIM.TestCase):
         lease_time = '14400'
 
         for network in ['0', '1', '2', '3']:
-            shared_net_name = f'VyOS-SMOKETEST-{network}'
+            shared_net_name = f'ngNOS-SMOKETEST-{network}'
             subnet = f'192.0.{network}.0/24'
             router = inc_ip(subnet, 1)
             dns_1 = inc_ip(subnet, 2)
@@ -268,7 +268,7 @@ class TestServiceDHCPServer(VyOSUnitTestSHIM.TestCase):
 
         config = read_file(DHCPD_CONF)
         for network in ['0', '1', '2', '3']:
-            shared_net_name = f'VyOS-SMOKETEST-{network}'
+            shared_net_name = f'ngNOS-SMOKETEST-{network}'
             subnet = f'192.0.{network}.0/24'
             router = inc_ip(subnet, 1)
             dns_1 = inc_ip(subnet, 2)
@@ -425,7 +425,7 @@ class TestServiceDHCPServer(VyOSUnitTestSHIM.TestCase):
 
     def test_dhcp_failover(self):
         shared_net_name = 'FAILOVER'
-        failover_name = 'VyOS-Failover'
+        failover_name = 'ngNOS-Failover'
 
         range_0_start = inc_ip(subnet, 10)
         range_0_stop  = inc_ip(subnet, 20)

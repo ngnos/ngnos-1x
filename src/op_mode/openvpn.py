@@ -21,11 +21,11 @@ import sys
 import typing
 from tabulate import tabulate
 
-import vyos.opmode
-from vyos.util import bytes_to_human
-from vyos.util import commit_in_progress
-from vyos.util import call
-from vyos.config import Config
+import ngnos.opmode
+from ngnos.util import bytes_to_human
+from ngnos.util import commit_in_progress
+from ngnos.util import call
+from ngnos.config import Config
 
 ArgMode = typing.Literal['client', 'server', 'site_to_site']
 
@@ -63,7 +63,7 @@ def _get_interface_status(mode: str, interface: str) -> dict:
     }
 
     if not os.path.exists(status_file):
-        raise vyos.opmode.DataUnavailable('No information for interface {interface}')
+        raise ngnos.opmode.DataUnavailable('No information for interface {interface}')
 
     with open(status_file, 'r') as f:
         lines = f.readlines()
@@ -75,10 +75,10 @@ def _get_interface_status(mode: str, interface: str) -> dict:
             if line_no == 0:
                 if mode == 'server':
                     if not line == 'OpenVPN CLIENT LIST':
-                        raise vyos.opmode.InternalError('Expected "OpenVPN CLIENT LIST"')
+                        raise ngnos.opmode.InternalError('Expected "OpenVPN CLIENT LIST"')
                 else:
                     if not line == 'OpenVPN STATISTICS':
-                        raise vyos.opmode.InternalError('Expected "OpenVPN STATISTICS"')
+                        raise ngnos.opmode.InternalError('Expected "OpenVPN STATISTICS"')
 
                 continue
 
@@ -214,16 +214,16 @@ def show(raw: bool, mode: ArgMode) -> typing.Union[list,str]:
 def reset(interface: str):
     if os.path.isfile(f'/run/openvpn/{interface}.conf'):
         if commit_in_progress():
-            raise vyos.opmode.CommitInProgress('Retry OpenVPN reset: commit in progress.')
+            raise ngnos.opmode.CommitInProgress('Retry OpenVPN reset: commit in progress.')
         call(f'systemctl restart openvpn@{interface}.service')
     else:
-        raise vyos.opmode.IncorrectValue(f'OpenVPN interface "{interface}" does not exist!')
+        raise ngnos.opmode.IncorrectValue(f'OpenVPN interface "{interface}" does not exist!')
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

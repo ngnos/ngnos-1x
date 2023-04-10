@@ -17,11 +17,11 @@
 import re
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
+from ngnos.configsession import ConfigSessionError
 
-from vyos.util import read_file
+from ngnos.util import read_file
 
 RESOLV_CONF = '/etc/resolv.conf'
 
@@ -32,7 +32,7 @@ def get_name_servers():
     resolv_conf = read_file(RESOLV_CONF)
     return re.findall(r'\n?nameserver\s+(.*)', resolv_conf)
 
-class TestSystemNameServer(VyOSUnitTestSHIM.TestCase):
+class TestSystemNameServer(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         # Delete existing name servers
         self.cli_delete(base_path)

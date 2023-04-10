@@ -13,7 +13,7 @@ smuxsocket localhost
 # linkUp/Down configure the Event MIB tables to monitor
 # the ifTable for network interfaces being taken up or down
 # for making internal queries to retrieve any necessary information
-iquerySecName {{ vyos_user }}
+iquerySecName {{ ngnos_user }}
 
 # Modified from the default linkUpDownNotification
 # to include more OIDs and poll more frequently
@@ -33,17 +33,17 @@ ignoreDisk /usr/lib/live/mount/persistence/container
 # configurable section #
 ########################
 
-# Default system description is VyOS version
-sysDescr VyOS {{ version }}
+# Default system description is ngNOS version
+sysDescr ngNOS {{ version }}
 
-{% if description is vyos_defined %}
+{% if description is ngnos_defined %}
 # Description
 SysDescr {{ description }}
 {% endif %}
 
 # Listen
 {% set options = [] %}
-{% if listen_address is vyos_defined %}
+{% if listen_address is ngnos_defined %}
 {%     for address, address_options in listen_address.items() %}
 {%         if address | is_ipv6 %}
 {%             set protocol = protocol ~ '6' %}
@@ -54,12 +54,12 @@ SysDescr {{ description }}
 {%     set _ = options.append(protocol ~ ':161') %}
 {%     set _ = options.append(protocol ~ '6:161') %}
 {% endif %}
-agentaddress unix:/run/snmpd.socket{{ ',' ~ options | join(',') if options is vyos_defined }}
+agentaddress unix:/run/snmpd.socket{{ ',' ~ options | join(',') if options is ngnos_defined }}
 
 # SNMP communities
-{% if community is vyos_defined %}
+{% if community is ngnos_defined %}
 {%     for comm, comm_config in community.items() %}
-{%         if comm_config.client is vyos_defined %}
+{%         if comm_config.client is ngnos_defined %}
 {%             for client in comm_config.client %}
 {%                 if client | is_ipv4 %}
 {{ comm_config.authorization }}community {{ comm }} {{ client }} -V RESTRICTED
@@ -68,7 +68,7 @@ agentaddress unix:/run/snmpd.socket{{ ',' ~ options | join(',') if options is vy
 {%                 endif %}
 {%             endfor %}
 {%         endif %}
-{%         if comm_config.network is vyos_defined %}
+{%         if comm_config.network is ngnos_defined %}
 {%             for network in comm_config.network %}
 {%                 if network | is_ipv4 %}
 {{ comm_config.authorization }}community {{ comm }} {{ network }} -V RESTRICTED
@@ -99,38 +99,38 @@ view RESTRICTED    excluded  .1.3.6.1.2.1.4.35
 view RESTRICTED    excluded  .1.3.6.1.2.1.4.24
 {% endif %}
 
-{% if contact is vyos_defined %}
+{% if contact is ngnos_defined %}
 # system contact information
 SysContact {{ contact }}
 {% endif %}
 
-{% if location is vyos_defined %}
+{% if location is ngnos_defined %}
 # system location information
 SysLocation {{ location }}
 {% endif %}
 
-{% if smux_peer is vyos_defined %}
+{% if smux_peer is ngnos_defined %}
 # additional smux peers
 {%     for peer in smux_peer %}
 smuxpeer {{ peer }}
 {%     endfor %}
 {% endif %}
 
-{% if trap_target is vyos_defined %}
+{% if trap_target is ngnos_defined %}
 # if there is a problem - tell someone!
 {%     for trap, trap_config in trap_target.items() %}
 trap2sink {{ trap }}:{{ trap_config.port }} {{ trap_config.community }}
 {%     endfor %}
 {% endif %}
 
-{% if v3 is vyos_defined %}
+{% if v3 is ngnos_defined %}
 #
 # SNMPv3 stuff goes here
 #
-{%     if v3.view is vyos_defined %}
+{%     if v3.view is ngnos_defined %}
 # views
 {%         for view, view_config in v3.view.items() %}
-{%             if view_config.oid is vyos_defined %}
+{%             if view_config.oid is ngnos_defined %}
 {%                 for oid in view_config.oid %}
 view {{ view }} included .{{ oid }}
 {%                 endfor %}
@@ -139,7 +139,7 @@ view {{ view }} included .{{ oid }}
 {%     endif %}
 
 # access
-{%     if v3.group is vyos_defined %}
+{%     if v3.group is ngnos_defined %}
 #             context sec.model sec.level match  read    write  notif
 {%         for group, group_config in v3.group.items() %}
 access {{ group }} "" usm {{ group_config.seclevel }} exact {{ group_config.view }} {{ 'none' if group_config.mode == 'ro' else group_config.view }} none
@@ -147,30 +147,30 @@ access {{ group }} "" usm {{ group_config.seclevel }} exact {{ group_config.view
 {%     endif %}
 
 # trap-target
-{%     if v3.trap_target is vyos_defined %}
+{%     if v3.trap_target is ngnos_defined %}
 {%         for trap, trap_config in v3.trap_target.items() %}
 {%             set options = '' %}
 {%             if trap_config.type == 'inform' %}
 {%                 set options = options ~ ' -Ci' %}
 {%             endif %}
-{%             if v3.engineid is vyos_defined %}
+{%             if v3.engineid is ngnos_defined %}
 {%                 set options = options ~ ' -e "' ~ v3.engineid ~ '"' %}
 {%             endif %}
-{%             if trap_config.user is vyos_defined %}
+{%             if trap_config.user is ngnos_defined %}
 {%                 set options = options ~ ' -u ' ~ trap_config.user %}
 {%             endif %}
-{%             if trap_config.auth.plaintext_password is vyos_defined or trap_config.auth.encrypted_password is vyos_defined %}
+{%             if trap_config.auth.plaintext_password is ngnos_defined or trap_config.auth.encrypted_password is ngnos_defined %}
 {%                 set options = options ~ ' -a ' ~ trap_config.auth.type %}
-{%                 if trap_config.auth.plaintext_password is vyos_defined %}
+{%                 if trap_config.auth.plaintext_password is ngnos_defined %}
 {%                     set options = options ~ ' -A ' ~ trap_config.auth.plaintext_password %}
-{%                 elif trap_config.auth.encrypted_password is vyos_defined %}
+{%                 elif trap_config.auth.encrypted_password is ngnos_defined %}
 {%                     set options = options ~ ' -3m ' ~ trap_config.auth.encrypted_password %}
 {%                 endif %}
-{%                 if trap_config.privacy.plaintext_password is vyos_defined or trap_config.privacy.encrypted_password is vyos_defined %}
+{%                 if trap_config.privacy.plaintext_password is ngnos_defined or trap_config.privacy.encrypted_password is ngnos_defined %}
 {%                     set options = options ~ ' -x ' ~ trap_config.privacy.type %}
-{%                     if trap_config.privacy.plaintext_password is vyos_defined %}
+{%                     if trap_config.privacy.plaintext_password is ngnos_defined %}
 {%                         set options = options ~ ' -X ' ~ trap_config.privacy.plaintext_password %}
-{%                     elif trap_config.privacy.encrypted_password is vyos_defined %}
+{%                     elif trap_config.privacy.encrypted_password is ngnos_defined %}
 {%                         set options = options ~ ' -3M ' ~ trap_config.privacy.encrypted_password %}
 {%                     endif %}
 {%                     set options = options ~ ' -l authPriv' %}
@@ -185,7 +185,7 @@ trapsess -v 3 {{ options }} {{ trap }}:{{ trap_config.protocol }}:{{ trap_config
 {%     endif %}
 
 # group
-{%     if v3.user is vyos_defined %}
+{%     if v3.user is ngnos_defined %}
 {%         for user, user_config in v3.user.items() %}
 group {{ user_config.group }} usm {{ user }}
 {%         endfor %}
@@ -193,7 +193,7 @@ group {{ user_config.group }} usm {{ user }}
 {# SNMPv3 end #}
 {% endif %}
 
-{% if script_extensions.extension_name is vyos_defined %}
+{% if script_extensions.extension_name is ngnos_defined %}
 # extension scripts
 {%     for script, script_config in script_extensions.extension_name.items() | sort(attribute=script) %}
 extend {{ script }} {{ script_config.script }}

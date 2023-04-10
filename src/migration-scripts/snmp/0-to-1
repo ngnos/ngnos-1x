@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 if (len(sys.argv) < 1):
     print("Must specify file name!")
@@ -33,18 +33,18 @@ if not config.exists(config_base):
     # Nothing to do
     sys.exit(0)
 else:
-    # we no longer support a per trap target engine ID (https://vyos.dev/T818)
+    # we no longer support a per trap target engine ID (https://ngnos.com/T818)
     if config.exists(config_base + ['v3', 'trap-target']):
         for target in config.list_nodes(config_base + ['v3', 'trap-target']):
             config.delete(config_base + ['v3', 'trap-target', target, 'engineid'])
 
-    # we no longer support a per user engine ID (https://vyos.dev/T818)
+    # we no longer support a per user engine ID (https://ngnos.com/T818)
     if config.exists(config_base + ['v3', 'user']):
         for user in config.list_nodes(config_base + ['v3', 'user']):
             config.delete(config_base + ['v3', 'user', user, 'engineid'])
 
     # we drop TSM support as there seem to be no users and this code is untested
-    # https://vyos.dev/T1769
+    # https://ngnos.com/T1769
     if config.exists(config_base + ['v3', 'tsm']):
         config.delete(config_base + ['v3', 'tsm'])
 

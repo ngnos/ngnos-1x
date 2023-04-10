@@ -19,11 +19,11 @@ import unittest
 from glob import glob
 from time import sleep
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.util import cmd
-from vyos.util import run
+from ngnos.configsession import ConfigSessionError
+from ngnos.util import cmd
+from ngnos.util import run
 
 sysfs_config = {
     'all_ping': {'sysfs': '/proc/sys/net/ipv4/icmp_echo_ignore_all', 'default': '0', 'test_value': 'disable'},
@@ -38,7 +38,7 @@ sysfs_config = {
     'twa_hazards_protection': {'sysfs': '/proc/sys/net/ipv4/tcp_rfc1337', 'default': '0', 'test_value': 'enable'}
 }
 
-class TestFirewall(VyOSUnitTestSHIM.TestCase):
+class TestFirewall(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestFirewall, cls).setUpClass()
@@ -65,7 +65,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['chain NAME_smoketest']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_filter', inverse=True)
+        self.verify_nftables(nftables_search, 'ip ngnos_filter', inverse=True)
 
     def verify_nftables(self, nftables_search, table, inverse=False, args=''):
         nftables_output = cmd(f'sudo nft {args} list table {table}')
@@ -106,7 +106,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
         ]
 
         # -t prevents 1000+ GeoIP elements being returned
-        self.verify_nftables(nftables_search, 'ip vyos_filter', args='-t')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter', args='-t')
 
     def test_groups(self):
         hostmap_path = ['system', 'static-host-mapping', 'host-name']
@@ -143,7 +143,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
 
         self.cli_commit()
 
-        self.wait_for_domain_resolver('ip vyos_filter', 'D_smoketest_domain', '192.0.2.5')
+        self.wait_for_domain_resolver('ip ngnos_filter', 'D_smoketest_domain', '192.0.2.5')
 
         nftables_search = [
             ['iifname "eth0"', 'jump NAME_smoketest'],
@@ -158,7 +158,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['ip saddr @D_smoketest_domain', 'return'],
             ['oifname @I_smoketest_interface', 'return']
         ]
-        self.verify_nftables(nftables_search, 'ip vyos_filter')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter')
 
         self.cli_delete(['system', 'static-host-mapping'])
         self.cli_commit()
@@ -193,7 +193,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['elements = { 53, 123 }']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_filter')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter')
 
     def test_ipv4_basic_rules(self):
         name = 'smoketest'
@@ -259,7 +259,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['meta l4proto gre', f'oifname "{interface}"', f'ct mark {mark_hex}', 'return']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_filter')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter')
 
     def test_ipv4_advanced(self):
         name = 'smoketest-adv'
@@ -317,7 +317,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             [f'meta l4proto udp','queue flags bypass,fanout to 0-15']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_filter')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter')
 
     def test_ipv4_mask(self):
         name = 'smoketest-mask'
@@ -350,7 +350,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             [f'saddr & 0.0.255.255 == @A_mask_group']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_filter')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter')
 
 
     def test_ipv6_basic_rules(self):
@@ -387,7 +387,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['smoketest default-action', f'log prefix "[{name}-default-D]"', 'drop']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_filter')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_filter')
 
     def test_ipv6_advanced(self):
         name = 'v6-smoketest-adv'
@@ -430,7 +430,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             [f'log prefix "[{name2}-default-J]"', f'jump NAME6_{name}']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_filter')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_filter')
 
     def test_ipv6_mask(self):
         name = 'v6-smoketest-mask'
@@ -463,7 +463,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['saddr & ::ffff:ffff:ffff:ffff == @A6_mask_group']
         ]
 
-        self.verify_nftables(nftables_search, 'ip6 vyos_filter')
+        self.verify_nftables(nftables_search, 'ip6 ngnos_filter')
 
     def test_state_policy(self):
         self.cli_set(['firewall', 'state-policy', 'established', 'action', 'accept'])
@@ -473,14 +473,14 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
         self.cli_commit()
 
         chains = {
-            'ip vyos_filter': ['VYOS_FW_FORWARD', 'VYOS_FW_OUTPUT', 'VYOS_FW_LOCAL'],
-            'ip6 vyos_filter': ['VYOS_FW6_FORWARD', 'VYOS_FW6_OUTPUT', 'VYOS_FW6_LOCAL']
+            'ip ngnos_filter': ['NGNOS_FW_FORWARD', 'NGNOS_FW_OUTPUT', 'NGNOS_FW_LOCAL'],
+            'ip6 ngnos_filter': ['NGNOS_FW6_FORWARD', 'NGNOS_FW6_OUTPUT', 'NGNOS_FW6_LOCAL']
         }
 
-        for table in ['ip vyos_filter', 'ip6 vyos_filter']:
+        for table in ['ip ngnos_filter', 'ip6 ngnos_filter']:
             for chain in chains[table]:
                 nftables_output = cmd(f'sudo nft list chain {table} {chain}')
-                self.assertTrue('jump VYOS_STATE_POLICY' in nftables_output)
+                self.assertTrue('jump NGNOS_STATE_POLICY' in nftables_output)
 
     def test_ipv4_state_and_status_rules(self):
         name = 'smoketest-state'
@@ -514,7 +514,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['drop', f'comment "{name} default-action drop"']
         ]
 
-        self.verify_nftables(nftables_search, 'ip vyos_filter')
+        self.verify_nftables(nftables_search, 'ip ngnos_filter')
 
     def test_sysfs(self):
         for name, conf in sysfs_config.items():
@@ -553,7 +553,7 @@ class TestFirewall(VyOSUnitTestSHIM.TestCase):
             ['oifname "eth0"', 'jump NAME_smoketest']
         ]
 
-        nftables_output = cmd('sudo nft list table ip vyos_filter')
+        nftables_output = cmd('sudo nft list table ip ngnos_filter')
 
         for search in nftables_search:
             matched = False

@@ -17,9 +17,9 @@
 import sys
 import syslog
 
-from vyos.config import Config
-from vyos import ConfigError
-from vyos.util import run
+from ngnos.config import Config
+from ngnos import ConfigError
+from ngnos.util import run
 
 def get_config():
     c = Config()

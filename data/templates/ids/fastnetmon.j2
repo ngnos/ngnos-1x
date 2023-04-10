@@ -17,7 +17,7 @@ ban_details_records_count = 500
 
 ## How long (in seconds) we should keep an IP in blocked state
 ## If you set 0 here it completely disables unban capability
-{% if ban_time is vyos_defined %}
+{% if ban_time is ngnos_defined %}
 ban_time = {{ ban_time }}
 {% endif %}
 
@@ -29,72 +29,72 @@ unban_only_if_attack_finished = on
 # For each subnet, list track speed in bps and pps for both directions
 enable_subnet_counters = off
 
-{% if mode.mirror is vyos_defined %}
+{% if mode.mirror is ngnos_defined %}
 mirror_afpacket = on
 {% endif %}
 
-process_incoming_traffic = {{ 'on' if direction is vyos_defined and 'in' in direction else 'off' }}
-process_outgoing_traffic = {{ 'on' if direction is vyos_defined and 'out' in direction else 'off' }}
+process_incoming_traffic = {{ 'on' if direction is ngnos_defined and 'in' in direction else 'off' }}
+process_outgoing_traffic = {{ 'on' if direction is ngnos_defined and 'out' in direction else 'off' }}
 
-{% if threshold is vyos_defined %}
-{%     if threshold.general is vyos_defined %}
+{% if threshold is ngnos_defined %}
+{%     if threshold.general is ngnos_defined %}
 # General threshold
 {%         for thr, thr_value in threshold.general.items() %}
-{%             if thr is vyos_defined('fps') %}
+{%             if thr is ngnos_defined('fps') %}
 ban_for_flows = on
 threshold_flows = {{ thr_value }}
-{%             elif thr is vyos_defined('mbps') %}
+{%             elif thr is ngnos_defined('mbps') %}
 ban_for_bandwidth = on
 threshold_mbps = {{ thr_value }}
-{%             elif thr is vyos_defined('pps') %}
+{%             elif thr is ngnos_defined('pps') %}
 ban_for_pps = on
 threshold_pps = {{ thr_value }}
 {%             endif %}
 {%         endfor %}
 {%     endif %}
 
-{%     if threshold.tcp is vyos_defined %}
+{%     if threshold.tcp is ngnos_defined %}
 # TCP threshold
 {%         for thr, thr_value in threshold.tcp.items() %}
-{%             if thr is vyos_defined('fps') %}
+{%             if thr is ngnos_defined('fps') %}
 ban_for_tcp_flows = on
 threshold_tcp_flows = {{ thr_value }}
-{%             elif thr is vyos_defined('mbps') %}
+{%             elif thr is ngnos_defined('mbps') %}
 ban_for_tcp_bandwidth = on
 threshold_tcp_mbps = {{ thr_value }}
-{%             elif thr is vyos_defined('pps') %}
+{%             elif thr is ngnos_defined('pps') %}
 ban_for_tcp_pps = on
 threshold_tcp_pps = {{ thr_value }}
 {%             endif %}
 {%         endfor %}
 {%     endif %}
 
-{%     if threshold.udp is vyos_defined %}
+{%     if threshold.udp is ngnos_defined %}
 # UDP threshold
 {%         for thr, thr_value in threshold.udp.items() %}
-{%             if thr is vyos_defined('fps') %}
+{%             if thr is ngnos_defined('fps') %}
 ban_for_udp_flows = on
 threshold_udp_flows = {{ thr_value }}
-{%             elif thr is vyos_defined('mbps') %}
+{%             elif thr is ngnos_defined('mbps') %}
 ban_for_udp_bandwidth = on
 threshold_udp_mbps = {{ thr_value }}
-{%             elif thr is vyos_defined('pps') %}
+{%             elif thr is ngnos_defined('pps') %}
 ban_for_udp_pps = on
 threshold_udp_pps = {{ thr_value }}
 {%             endif %}
 {%         endfor %}
 {%     endif %}
 
-{%     if threshold.icmp is vyos_defined %}
+{%     if threshold.icmp is ngnos_defined %}
 # ICMP threshold
 {%         for thr, thr_value in threshold.icmp.items() %}
-{%             if thr is vyos_defined('fps') %}
+{%             if thr is ngnos_defined('fps') %}
 ban_for_icmp_flows = on
 threshold_icmp_flows = {{ thr_value }}
-{%             elif thr is vyos_defined('mbps') %}
+{%             elif thr is ngnos_defined('mbps') %}
 ban_for_icmp_bandwidth = on
 threshold_icmp_mbps = {{ thr_value }}
-{%             elif thr is vyos_defined('pps') %}
+{%             elif thr is ngnos_defined('pps') %}
 ban_for_icmp_pps = on
 threshold_icmp_pps = {{ thr_value }}
 {%             endif %}
@@ -103,10 +103,10 @@ threshold_icmp_pps = {{ thr_value }}
 
 {% endif %}
 
-{% if listen_interface is vyos_defined %}
+{% if listen_interface is ngnos_defined %}
 interfaces = {{ listen_interface | join(',') }}
 {% endif %}
 
-{% if alert_script is vyos_defined %}
+{% if alert_script is ngnos_defined %}
 notify_script_path = {{ alert_script }}
 {% endif %}

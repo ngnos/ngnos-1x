@@ -17,15 +17,15 @@
 import json
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.util import cmd
+from ngnos.util import cmd
 
 base_path = ['protocols', 'static', 'arp']
 interface = 'eth0'
 address = '192.0.2.1/24'
 
-class TestARP(VyOSUnitTestSHIM.TestCase):
+class TestARP(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestARP, cls).setUpClass()

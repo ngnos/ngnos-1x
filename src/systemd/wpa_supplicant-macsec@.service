@@ -2,7 +2,7 @@
 Description=WPA supplicant daemon (MACsec-specific version)
 Requires=sys-subsystem-net-devices-%i.device
 ConditionPathExists=/run/wpa_supplicant/%I.conf
-After=vyos-router.service
+After=ngnos-router.service
 RequiresMountsFor=/run
 
 [Service]

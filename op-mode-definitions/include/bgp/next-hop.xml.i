@@ -3,7 +3,7 @@
   <properties>
     <help>Show BGP nexthop table</help>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/vtysh-generic-detail.xml.i>
   </children>
@@ -15,7 +15,7 @@
       <list>&lt;x.x.x.x&gt; &lt;h:h:h:h:h:h:h:h&gt;</list>
     </completionHelp>
   </properties>
-  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/vtysh-generic-detail.xml.i>
   </children>

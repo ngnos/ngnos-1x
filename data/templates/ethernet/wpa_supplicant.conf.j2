@@ -31,8 +31,8 @@ ap_scan=0
 fast_reauth=1
 
 network={
-{% if eapol is vyos_defined %}
-{%     if eapol.ca_certificate is vyos_defined %}
+{% if eapol is ngnos_defined %}
+{%     if eapol.ca_certificate is ngnos_defined %}
     ca_cert="/run/wpa_supplicant/{{ ifname }}_ca.pem"
 {%     endif %}
     client_cert="/run/wpa_supplicant/{{ ifname }}_cert.pem"
@@ -43,7 +43,7 @@ network={
     key_mgmt=IEEE8021X
     eap=TLS
 
-{% if mac is vyos_defined %}
+{% if mac is ngnos_defined %}
     identity="{{ mac }}"
 {% else %}
     identity="{{ hw_id }}"

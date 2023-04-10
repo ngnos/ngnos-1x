@@ -26,11 +26,11 @@ import logging
 from queue import Queue
 from logging.handlers import SysLogHandler
 
-from vyos.ifconfig.vrrp import VRRP
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import cmd
-from vyos.util import dict_search
-from vyos.util import commit_in_progress
+from ngnos.ifconfig.vrrp import VRRP
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import cmd
+from ngnos.util import dict_search
+from ngnos.util import commit_in_progress
 
 # configure logging
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ logger.addHandler(logs_handler_syslog)
 logger.setLevel(logging.DEBUG)
 
 mdns_running_file = '/run/mdns_vrrp_active'
-mdns_update_command = 'sudo /usr/libexec/vyos/conf_mode/service_mdns-repeater.py'
+mdns_update_command = 'sudo /usr/libexec/ngnos/conf_mode/service_mdns-repeater.py'
 
 # class for all operations
 class KeepalivedFifo:

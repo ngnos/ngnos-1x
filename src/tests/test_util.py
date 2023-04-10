@@ -15,9 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from unittest import TestCase
-from vyos.util import *
+from ngnos.util import *
 
-class TestVyOSUtil(TestCase):
+class TestngNOSUtil(TestCase):
     def test_key_mangline(self):
         data = {"foo-bar": {"baz-quux": None}}
         expected_data = {"foo_bar": {"baz_quux": None}}

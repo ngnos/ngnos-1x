@@ -16,11 +16,11 @@
 
 import sys
 import tabulate
-import vyos.opmode
+import ngnos.opmode
 
-from vyos.util import cmd
-from vyos.util import process_named_running
-from vyos.util import colon_separated_to_dict
+from ngnos.util import cmd
+from ngnos.util import process_named_running
+from ngnos.util import colon_separated_to_dict
 
 
 def _get_formatted_output(output_dict: dict) -> str:
@@ -66,7 +66,7 @@ def show_interface(raw: bool):
     :type raw: bool
     """
     if not process_named_running('opennhrp'):
-        raise vyos.opmode.UnconfiguredSubsystem('OpenNHRP is not running.')
+        raise ngnos.opmode.UnconfiguredSubsystem('OpenNHRP is not running.')
     interface_string: str = cmd('sudo opennhrpctl interface show')
     interface_dict: dict = _get_formatted_dict(interface_string)
     if raw:
@@ -82,7 +82,7 @@ def show_tunnel(raw: bool):
     :type raw: bool
     """
     if not process_named_running('opennhrp'):
-        raise vyos.opmode.UnconfiguredSubsystem('OpenNHRP is not running.')
+        raise ngnos.opmode.UnconfiguredSubsystem('OpenNHRP is not running.')
     tunnel_string: str = cmd('sudo opennhrpctl show')
     tunnel_dict: list = _get_formatted_dict(tunnel_string)
     if raw:
@@ -93,9 +93,9 @@ def show_tunnel(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

@@ -6,7 +6,7 @@
         <properties>
           <help>Show virtual server information</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/show_virtual_server.py</command>
+        <command>${ngnos_op_scripts_dir}/show_virtual_server.py</command>
       </node>
     </children>
   </node>

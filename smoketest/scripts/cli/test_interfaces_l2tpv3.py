@@ -19,7 +19,7 @@ import json
 import unittest
 
 from base_interfaces_test import BasicInterfaceTest
-from vyos.util import cmd
+from ngnos.util import cmd
 
 class L2TPv3InterfaceTest(BasicInterfaceTest.TestCase):
     @classmethod

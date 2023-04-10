@@ -3,7 +3,7 @@
   <properties>
     <help>Match interface</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_interfaces</script>
+      <script>${ngnos_completion_dir}/list_interfaces</script>
     </completionHelp>
   </properties>
 </leafNode>

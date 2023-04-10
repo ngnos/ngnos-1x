@@ -21,17 +21,17 @@ import os
 from sys import exit
 from netifaces import interfaces
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render
-from vyos.util import cmd
-from vyos.util import check_kmod
-from vyos.util import dict_search
-from vyos.template import is_ipv6
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render
+from ngnos.util import cmd
+from ngnos.util import check_kmod
+from ngnos.util import dict_search
+from ngnos.template import is_ipv6
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 k_mod = ['nft_nat', 'nft_chain_nat']
@@ -80,9 +80,9 @@ def get_config(config=None):
 
     if not conf.exists(base):
         nat['helper_functions'] = 'remove'
-        nat['pre_ct_ignore'] = get_handler(condensed_json, 'PREROUTING', 'VYOS_CT_HELPER')
+        nat['pre_ct_ignore'] = get_handler(condensed_json, 'PREROUTING', 'NGNOS_CT_HELPER')
         nat['pre_ct_conntrack'] = get_handler(condensed_json, 'PREROUTING', 'NAT_CONNTRACK')
-        nat['out_ct_ignore'] = get_handler(condensed_json, 'OUTPUT', 'VYOS_CT_HELPER')
+        nat['out_ct_ignore'] = get_handler(condensed_json, 'OUTPUT', 'NGNOS_CT_HELPER')
         nat['out_ct_conntrack'] = get_handler(condensed_json, 'OUTPUT', 'NAT_CONNTRACK')
         nat['deleted'] = ''
         return nat
@@ -93,10 +93,10 @@ def get_config(config=None):
         nat['helper_functions'] = 'add'
 
         # Retrieve current table handler positions
-        nat['pre_ct_ignore'] = get_handler(condensed_json, 'PREROUTING', 'VYOS_CT_IGNORE')
-        nat['pre_ct_conntrack'] = get_handler(condensed_json, 'PREROUTING', 'VYOS_CT_PREROUTING_HOOK')
-        nat['out_ct_ignore'] = get_handler(condensed_json, 'OUTPUT', 'VYOS_CT_IGNORE')
-        nat['out_ct_conntrack'] = get_handler(condensed_json, 'OUTPUT', 'VYOS_CT_OUTPUT_HOOK')
+        nat['pre_ct_ignore'] = get_handler(condensed_json, 'PREROUTING', 'NGNOS_CT_IGNORE')
+        nat['pre_ct_conntrack'] = get_handler(condensed_json, 'PREROUTING', 'NGNOS_CT_PREROUTING_HOOK')
+        nat['out_ct_ignore'] = get_handler(condensed_json, 'OUTPUT', 'NGNOS_CT_IGNORE')
+        nat['out_ct_conntrack'] = get_handler(condensed_json, 'OUTPUT', 'NGNOS_CT_OUTPUT_HOOK')
     else:
         nat['helper_functions'] = 'has'
 

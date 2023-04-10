@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="wwan" owner="${vyos_conf_scripts_dir}/interfaces-wwan.py">
+      <tagNode name="wwan" owner="${ngnos_conf_scripts_dir}/interfaces-wwan.py">
         <properties>
           <help>Wireless Modem (WWAN) Interface</help>
           <priority>350</priority>

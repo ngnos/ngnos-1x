@@ -17,8 +17,8 @@
 import argparse
 import sys
 
-from vyos.configquery import ConfigTreeQuery
-from vyos.firewall import geoip_update
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.firewall import geoip_update
 
 def get_config(config=None):
     if config:

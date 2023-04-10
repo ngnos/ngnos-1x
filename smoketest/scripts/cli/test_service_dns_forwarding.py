@@ -17,16 +17,16 @@
 import re
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.template import bracketize_ipv6
-from vyos.util import read_file
-from vyos.util import process_named_running
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import bracketize_ipv6
+from ngnos.util import read_file
+from ngnos.util import process_named_running
 
 CONFIG_FILE = '/run/powerdns/recursor.conf'
 FORWARD_FILE = '/run/powerdns/recursor.forward-zones.conf'
-HOSTSD_FILE = '/run/powerdns/recursor.vyos-hostsd.conf.lua'
+HOSTSD_FILE = '/run/powerdns/recursor.ngnos-hostsd.conf.lua'
 PROCESS_NAME= 'pdns_recursor'
 
 base_path = ['service', 'dns', 'forwarding']
@@ -39,7 +39,7 @@ def get_config_value(key, file=CONFIG_FILE):
     tmp = re.findall(r'\n{}=+(.*)'.format(key), tmp)
     return tmp[0]
 
-class TestServicePowerDNS(VyOSUnitTestSHIM.TestCase):
+class TestServicePowerDNS(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestServicePowerDNS, cls).setUpClass()
@@ -168,7 +168,7 @@ class TestServicePowerDNS(VyOSUnitTestSHIM.TestCase):
         for address in listen_adress:
             self.cli_set(base_path + ['listen-address', address])
 
-        domains = ['vyos.io', 'vyos.net', 'vyos.com']
+        domains = ['ngnos.net', 'ngnos.com']
         nameservers = {'192.0.2.1': {}, '192.0.2.2': {'port': '53'}, '2001:db8::1': {'port': '853'}}
         for domain in domains:
             for h,p in nameservers.items():

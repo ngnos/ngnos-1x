@@ -15,12 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import typing
 import sys
-import vyos.opmode
+import ngnos.opmode
 
 import tabulate
-from vyos.configquery import ConfigTreeQuery
-from vyos.util import dict_search_args
-from vyos.util import dict_search
+from ngnos.configquery import ConfigTreeQuery
+from ngnos.util import dict_search_args
+from ngnos.util import dict_search
 
 
 def get_config_zone(conf, name=None):
@@ -104,12 +104,12 @@ def _convert_config(zones_config: dict, zone: str = None) -> list:
         if zones_config:
             output = [_convert_one_zone_data(zone, zones_config)]
         else:
-            raise vyos.opmode.DataUnavailable(f'Zone {zone} not found')
+            raise ngnos.opmode.DataUnavailable(f'Zone {zone} not found')
     else:
         if zones_config:
             output = _convert_zones_data(zones_config)
         else:
-            raise vyos.opmode.UnconfiguredSubsystem(
+            raise ngnos.opmode.UnconfiguredSubsystem(
                 'Zone entries are not configured')
     return output
 
@@ -207,9 +207,9 @@ def show(raw: bool, zone: typing.Optional[str]):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

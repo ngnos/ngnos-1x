@@ -3,7 +3,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="eigrp" owner="${vyos_conf_scripts_dir}/protocols_eigrp.py">
+      <node name="eigrp" owner="${ngnos_conf_scripts_dir}/protocols_eigrp.py">
         <properties>
           <help>Enhanced Interior Gateway Routing Protocol (EIGRP)</help>
           <priority>820</priority>

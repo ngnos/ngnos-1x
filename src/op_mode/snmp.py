@@ -23,8 +23,8 @@ import os
 import sys
 import argparse
 
-from vyos.config import Config
-from vyos.util import call
+from ngnos.config import Config
+from ngnos.util import call
 
 config_file_daemon = r'/etc/snmp/snmpd.conf'
 

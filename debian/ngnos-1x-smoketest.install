@@ -1,0 +1,5 @@
+usr/bin/ngnos-smoketest
+usr/bin/ngnos-configtest
+usr/bin/ngnos-configtest-pki
+usr/libexec/ngnos/tests/smoke
+usr/libexec/ngnos/tests/config

@@ -18,11 +18,11 @@ import sys
 import os
 
 from copy import deepcopy
-from vyos.config import Config
-from vyos import ConfigError
-from vyos.util import call
+from ngnos.config import Config
+from ngnos import ConfigError
+from ngnos.util import call
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 default_config_data = {

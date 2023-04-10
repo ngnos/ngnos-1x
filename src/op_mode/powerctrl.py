@@ -22,7 +22,7 @@ from datetime import datetime, timedelta, time as type_time, date as type_date
 from sys import exit
 from time import time
 
-from vyos.util import ask_yes_no, cmd, call, run, STDOUT
+from ngnos.util import ask_yes_no, cmd, call, run, STDOUT
 
 systemd_sched_file = "/run/systemd/shutdown/scheduled"
 

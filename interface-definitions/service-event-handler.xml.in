@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="event-handler" owner="${vyos_conf_scripts_dir}/service_event_handler.py">
+      <node name="event-handler" owner="${ngnos_conf_scripts_dir}/service_event_handler.py">
         <properties>
           <help>Service event handler</help>
         </properties>

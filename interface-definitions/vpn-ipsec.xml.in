@@ -5,7 +5,7 @@
       <help>Virtual Private Network (VPN)</help>
     </properties>
     <children>
-      <node name="ipsec" owner="${vyos_conf_scripts_dir}/vpn_ipsec.py">
+      <node name="ipsec" owner="${ngnos_conf_scripts_dir}/vpn_ipsec.py">
         <properties>
           <help>VPN IP security (IPsec) parameters</help>
           <priority>901</priority>

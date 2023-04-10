@@ -1,0 +1,23 @@
+# These rules use ngnos_net_name to persistently name network interfaces
+# per "hwid" association in the ngNOS configuration file.
+
+ACTION!="add", 				GOTO="ngnos_net_end"
+SUBSYSTEM!="net",			GOTO="ngnos_net_end"
+
+# Do name change for ethernet and wireless devices only
+KERNEL!="eth*|wlan*|e*", 			GOTO="ngnos_net_end"
+
+# ignore "secondary" monitor interfaces of mac80211 drivers
+KERNEL=="wlan*", ATTRS{type}=="803",	GOTO="ngnos_net_end"
+
+# If using ngNOS predefined names
+ENV{NGNOS_IFNAME}!="eth*",	GOTO="end_ngnos_predef_names"
+
+DRIVERS=="?*", PROGRAM="ngnos_net_name %k $attr{address} $env{NGNOS_IFNAME}", NAME="%c", GOTO="ngnos_net_end"
+
+LABEL="end_ngnos_predef_names"
+
+# ignore interfaces without a driver link like bridges and VLANs
+DRIVERS=="?*", PROGRAM="ngnos_net_name %k $attr{address}", NAME="%c"
+
+LABEL="ngnos_net_end"

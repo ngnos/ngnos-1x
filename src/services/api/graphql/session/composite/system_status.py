@@ -21,7 +21,7 @@ import sys
 import json
 import importlib.util
 
-from vyos.defaults import directories
+from ngnos.defaults import directories
 
 from api.graphql.libs.op_mode import load_op_mode_as_module
 

@@ -22,10 +22,10 @@ import ipaddress
 import os.path
 from tabulate import tabulate
 from json import loads
-from vyos.util import cmd
-from vyos.util import commit_in_progress
-from vyos.util import run
-from vyos.logger import syslog
+from ngnos.util import cmd
+from ngnos.util import commit_in_progress
+from ngnos.util import run
+from ngnos.logger import syslog
 
 # some default values
 uacctd_pidfile = '/var/run/uacctd.pid'

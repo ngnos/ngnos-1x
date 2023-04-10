@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2022 VyOS maintainers and contributors
+# Copyright (C) 2022 ngNOS maintainers and contributors
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 or later as
@@ -18,11 +18,11 @@ import os
 import unittest
 
 from json import loads
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.ifconfig import Section
-from vyos.util import cmd
+from ngnos.configsession import ConfigSessionError
+from ngnos.ifconfig import Section
+from ngnos.util import cmd
 
 base_path = ['qos']
 
@@ -38,7 +38,7 @@ def get_tc_filter_json(interface, direction) -> list:
     tmp = loads(tmp)
     return tmp
 
-class TestQoS(VyOSUnitTestSHIM.TestCase):
+class TestQoS(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestQoS, cls).setUpClass()

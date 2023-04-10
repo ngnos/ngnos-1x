@@ -18,7 +18,7 @@ import os
 import sys
 import argparse
 
-from vyos.ifconfig import Section
+from ngnos.ifconfig import Section
 
 def get_client_from_interface(interface):
     clients = []

@@ -3,7 +3,7 @@
   <properties>
     <help>IPv4 source address used to initiate connection</help>
     <completionHelp>
-      <script>${vyos_completion_dir}/list_local_ips.sh --ipv4</script>
+      <script>${ngnos_completion_dir}/list_local_ips.sh --ipv4</script>
     </completionHelp>
     <valueHelp>
       <format>ipv4</format>

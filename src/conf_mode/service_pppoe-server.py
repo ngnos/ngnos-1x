@@ -18,16 +18,16 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import get_accel_dict
-from vyos.configdict import is_node_changed
-from vyos.configverify import verify_accel_ppp_base_service
-from vyos.configverify import verify_interface_exists
-from vyos.template import render
-from vyos.util import call
-from vyos.util import dict_search
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import get_accel_dict
+from ngnos.configdict import is_node_changed
+from ngnos.configverify import verify_accel_ppp_base_service
+from ngnos.configverify import verify_interface_exists
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 pppoe_conf = r'/run/accel-pppd/pppoe.conf'

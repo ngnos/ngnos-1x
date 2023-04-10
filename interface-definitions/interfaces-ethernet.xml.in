@@ -5,7 +5,7 @@
       <help>Network interfaces</help>
     </properties>
     <children>
-      <tagNode name="ethernet" owner="${vyos_conf_scripts_dir}/interfaces-ethernet.py">
+      <tagNode name="ethernet" owner="${ngnos_conf_scripts_dir}/interfaces-ethernet.py">
         <properties>
           <help>Ethernet Interface</help>
           <priority>318</priority>

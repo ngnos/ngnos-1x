@@ -11,13 +11,13 @@ ippool
 {# Common authentication protocols (pap, chap ...) #}
 {% include 'accel-ppp/config_modules_auth_protocols.j2' %}
 
-{% if snmp is vyos_defined %}
+{% if snmp is ngnos_defined %}
 net-snmp
 {% endif %}
-{% if limits is vyos_defined %}
+{% if limits is ngnos_defined %}
 connlimit
 {% endif %}
-{% if extended_scripts is vyos_defined %}
+{% if extended_scripts is ngnos_defined %}
 sigchld
 pppd_compat
 {% endif %}
@@ -30,12 +30,12 @@ syslog=accel-pppoe,daemon
 copy=1
 level=5
 
-{% if authentication.mode is vyos_defined("noauth") %}
+{% if authentication.mode is ngnos_defined("noauth") %}
 [auth]
 noauth=1
 {% endif %}
 
-{% if snmp.master_agent is vyos_defined %}
+{% if snmp.master_agent is ngnos_defined %}
 [snmp]
 master=1
 {% endif %}
@@ -52,7 +52,7 @@ disable
 {# Common DNS name-server definition #}
 {% include 'accel-ppp/config_name_server.j2' %}
 
-{% if wins_server is vyos_defined %}
+{% if wins_server is ngnos_defined %}
 [wins]
 {%     for server in wins_server %}
 wins{{ loop.index }}={{ server }}
@@ -62,7 +62,7 @@ wins{{ loop.index }}={{ server }}
 {# Common chap-secrets and RADIUS server/option definitions #}
 {% include 'accel-ppp/config_chap_secrets_radius.j2' %}
 
-{% if session_control is vyos_defined and session_control is not vyos_defined('disable') %}
+{% if session_control is ngnos_defined and session_control is not ngnos_defined('disable') %}
 [common]
 single-session={{ session_control }}
 {% endif %}
@@ -70,35 +70,35 @@ single-session={{ session_control }}
 [ppp]
 verbose=1
 check-ip=1
-ccp={{ "1" if ppp_options.ccp is vyos_defined else "0" }}
-unit-preallocate={{ "1" if authentication.radius.preallocate_vif is vyos_defined else "0" }}
-{% if ppp_options.min_mtu is vyos_defined %}
+ccp={{ "1" if ppp_options.ccp is ngnos_defined else "0" }}
+unit-preallocate={{ "1" if authentication.radius.preallocate_vif is ngnos_defined else "0" }}
+{% if ppp_options.min_mtu is ngnos_defined %}
 min-mtu={{ ppp_options.min_mtu }}
 {% endif %}
-{% if ppp_options.mru is vyos_defined %}
+{% if ppp_options.mru is ngnos_defined %}
 mru={{ ppp_options.mru }}
 {% endif %}
 mppe={{ ppp_options.mppe }}
 lcp-echo-interval={{ ppp_options.lcp_echo_interval }}
 lcp-echo-timeout={{ ppp_options.lcp_echo_timeout }}
 lcp-echo-failure={{ ppp_options.lcp_echo_failure }}
-{% if ppp_options.ipv4 is vyos_defined %}
+{% if ppp_options.ipv4 is ngnos_defined %}
 ipv4={{ ppp_options.ipv4 }}
 {% endif %}
 {# IPv6 #}
-{% if ppp_options.ipv6 is vyos_defined %}
+{% if ppp_options.ipv6 is ngnos_defined %}
 ipv6={{ ppp_options.ipv6 }}
-{%     if ppp_options.ipv6_intf_id is vyos_defined %}
+{%     if ppp_options.ipv6_intf_id is ngnos_defined %}
 ipv6-intf-id={{ ppp_options.ipv6_intf_id }}
 {%     endif %}
-{%     if ppp_options.ipv6_peer_intf_id is vyos_defined %}
+{%     if ppp_options.ipv6_peer_intf_id is ngnos_defined %}
 ipv6-peer-intf-id={{ ppp_options.ipv6_peer_intf_id }}
 {%     endif %}
-ipv6-accept-peer-intf-id={{ "1" if ppp_options.ipv6_accept_peer_intf_id is vyos_defined else "0" }}
+ipv6-accept-peer-intf-id={{ "1" if ppp_options.ipv6_accept_peer_intf_id is ngnos_defined else "0" }}
 {% endif %}
 {# MTU #}
 mtu={{ mtu }}
-{% if ppp_options.interface_cache is vyos_defined %}
+{% if ppp_options.interface_cache is ngnos_defined %}
 unit-cache={{ ppp_options.interface_cache }}
 {% endif %}
 
@@ -106,9 +106,9 @@ unit-cache={{ ppp_options.interface_cache }}
 verbose=1
 ac-name={{ access_concentrator }}
 
-{% if interface is vyos_defined %}
+{% if interface is ngnos_defined %}
 {%     for iface, iface_config in interface.items() %}
-{%         if iface_config.vlan is not vyos_defined %}
+{%         if iface_config.vlan is not ngnos_defined %}
 interface={{ iface }}
 {%         else %}
 {%             for vlan in iface_config.vlan %}
@@ -134,35 +134,35 @@ service-name={{ service_name | join(',') }}
 {%     endfor %}
 pado-delay={{ pado_delay_param.value }}
 {% endif %}
-{% if authentication.radius.called_sid_format is vyos_defined %}
+{% if authentication.radius.called_sid_format is ngnos_defined %}
 called-sid={{ authentication.radius.called_sid_format }}
 {% endif %}
 
-{% if authentication.mode is vyos_defined("local") or authentication.mode is vyos_defined("noauth") %}
-{%     if authentication.mode is vyos_defined("noauth") %}
+{% if authentication.mode is ngnos_defined("local") or authentication.mode is ngnos_defined("noauth") %}
+{%     if authentication.mode is ngnos_defined("noauth") %}
 noauth=1
 {%     endif %}
-{%     if client_ip_pool.name is vyos_defined %}
+{%     if client_ip_pool.name is ngnos_defined %}
 {%         for pool, pool_config in client_ip_pool.name.items() %}
-{%             if pool_config.subnet is vyos_defined %}
+{%             if pool_config.subnet is ngnos_defined %}
 ip-pool={{ pool }}
 {%             endif %}
-{%             if pool_config.gateway_address is vyos_defined %}
+{%             if pool_config.gateway_address is ngnos_defined %}
 gw-ip-address={{ pool_config.gateway_address }}/{{ pool_config.subnet.split('/')[1] }}
 {%             endif %}
 {%         endfor %}
 {%     endif %}
 {% endif %}
 
-{% if limits is vyos_defined %}
+{% if limits is ngnos_defined %}
 [connlimit]
-{%     if limits.connection_limit is vyos_defined %}
+{%     if limits.connection_limit is ngnos_defined %}
 limit={{ limits.connection_limit }}
 {%     endif %}
-{%     if limits.burst is vyos_defined %}
+{%     if limits.burst is ngnos_defined %}
 burst={{ limits.burst }}
 {%     endif %}
-{%     if limits.timeout is vyos_defined %}
+{%     if limits.timeout is ngnos_defined %}
 timeout={{ limits.timeout }}
 {%     endif %}
 {% endif %}
@@ -170,7 +170,7 @@ timeout={{ limits.timeout }}
 {# Common RADIUS shaper configuration #}
 {% include 'accel-ppp/config_shaper_radius.j2' %}
 
-{% if extended_scripts is vyos_defined %}
+{% if extended_scripts is ngnos_defined %}
 [pppd-compat]
 verbose=1
 radattr-prefix=/run/accel-pppd/radattr

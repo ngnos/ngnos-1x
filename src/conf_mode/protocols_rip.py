@@ -18,18 +18,18 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configdict import node_changed
-from vyos.configverify import verify_common_route_maps
-from vyos.configverify import verify_access_list
-from vyos.configverify import verify_prefix_list
-from vyos.util import dict_search
-from vyos.xml import defaults
-from vyos.template import render_to_string
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configdict import node_changed
+from ngnos.configverify import verify_common_route_maps
+from ngnos.configverify import verify_access_list
+from ngnos.configverify import verify_prefix_list
+from ngnos.util import dict_search
+from ngnos.xml import defaults
+from ngnos.template import render_to_string
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
 def get_config(config=None):
@@ -63,7 +63,7 @@ def get_config(config=None):
     # and route-maps for instance. They will be used in verify().
     #
     # XXX: one MUST always call this without the key_mangling() option! See
-    # vyos.configverify.verify_common_route_maps() for more information.
+    # ngnos.configverify.verify_common_route_maps() for more information.
     tmp = conf.get_config_dict(['policy'])
     # Merge policy dict into "regular" config dict
     rip = dict_merge(tmp, rip)

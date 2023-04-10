@@ -20,17 +20,17 @@ from socket import gethostname
 from sys import exit
 from urllib3 import PoolManager
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_interface_exists
-from vyos.template import render
-from vyos.util import call
-from vyos.util import chown
-from vyos.xml import defaults
-from vyos import ConfigError
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_interface_exists
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import chown
+from ngnos.xml import defaults
+from ngnos import ConfigError
 
-from vyos import airbag
+from ngnos import airbag
 airbag.enable()
 
 config_file = r'/etc/salt/minion'

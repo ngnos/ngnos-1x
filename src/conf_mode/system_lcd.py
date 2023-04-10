@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright 2020-2022 VyOS maintainers and contributors <maintainers@vyos.io>
+# Copyright 2020-2022 VyOS maintainers and contributors <maintainers@ngnos.io>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 or later as
@@ -18,12 +18,12 @@ import os
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.util import call
-from vyos.util import find_device_file
-from vyos.template import render
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.util import call
+from ngnos.util import find_device_file
+from ngnos.template import render
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 lcdd_conf = '/run/LCDd/LCDd.conf'

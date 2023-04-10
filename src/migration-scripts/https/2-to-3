@@ -18,12 +18,12 @@
 
 import sys
 
-from vyos.configtree import ConfigTree
-from vyos.pki import create_certificate
-from vyos.pki import create_certificate_request
-from vyos.pki import create_private_key
-from vyos.pki import encode_certificate
-from vyos.pki import encode_private_key
+from ngnos.configtree import ConfigTree
+from ngnos.pki import create_certificate
+from ngnos.pki import create_certificate_request
+from ngnos.pki import create_private_key
+from ngnos.pki import encode_certificate
+from ngnos.pki import encode_private_key
 
 if (len(sys.argv) < 2):
     print("Must specify file name!")
@@ -59,8 +59,8 @@ if config.exists(base + ['system-generated-certificate', 'lifetime']):
     valid_days = int(config.return_value(base + ['system-generated-certificate', 'lifetime']))
 
 key = create_private_key('rsa', 2048)
-subject = {'country': 'GB', 'state': 'N/A', 'locality': 'N/A', 'organization': 'VyOS', 'common_name': 'vyos'}
-cert_req = create_certificate_request(subject, key, ['vyos'])
+subject = {'country': 'GB', 'state': 'N/A', 'locality': 'N/A', 'organization': 'ngNOS', 'common_name': 'ngnos'}
+cert_req = create_certificate_request(subject, key, ['ngnos'])
 cert = create_certificate(cert_req, cert_req, key, valid_days)
 
 if cert:

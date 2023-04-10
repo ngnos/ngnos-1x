@@ -7,7 +7,7 @@
           <help>Intrusion Detection System</help>
         </properties>
         <children>
-          <node name="ddos-protection" owner="${vyos_conf_scripts_dir}/service_ids_fastnetmon.py">
+          <node name="ddos-protection" owner="${ngnos_conf_scripts_dir}/service_ids_fastnetmon.py">
             <properties>
               <help>FastNetMon detection and protection parameters</help>
               <priority>731</priority>
@@ -65,7 +65,7 @@
                 <properties>
                   <help>Listen interface for mirroring traffic</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                   <multi/>
                 </properties>

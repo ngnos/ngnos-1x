@@ -8,7 +8,7 @@
           <help>Domain Name System related services</help>
         </properties>
         <children>
-          <node name="forwarding" owner="${vyos_conf_scripts_dir}/dns_forwarding.py">
+          <node name="forwarding" owner="${ngnos_conf_scripts_dir}/dns_forwarding.py">
             <properties>
               <help>DNS forwarding</help>
               <priority>918</priority>
@@ -31,7 +31,7 @@
                 <properties>
                   <help>Interfaces whose DHCP client nameservers to forward requests to</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                   <multi/>
                 </properties>
@@ -623,7 +623,7 @@
                 <properties>
                   <help>Local addresses from which to send DNS queries</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_local_ips.sh --both</script>
+                    <script>${ngnos_completion_dir}/list_local_ips.sh --both</script>
                   </completionHelp>
                   <valueHelp>
                     <format>ipv4</format>

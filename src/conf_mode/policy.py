@@ -16,13 +16,13 @@
 
 from sys import exit
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.template import render_to_string
-from vyos.util import dict_search
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.template import render_to_string
+from ngnos.util import dict_search
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 
 airbag.enable()
 
@@ -96,7 +96,7 @@ def get_config(config=None):
     # and route-maps for instance. They will be used in verify().
     #
     # XXX: one MUST always call this without the key_mangling() option! See
-    # vyos.configverify.verify_common_route_maps() for more information.
+    # ngnos.configverify.verify_common_route_maps() for more information.
     tmp = conf.get_config_dict(['protocols'], key_mangling=('-', '_'),
                                no_tag_node_value_mangle=True)
     # Merge policy dict into "regular" config dict

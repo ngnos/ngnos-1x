@@ -19,9 +19,9 @@ import sys
 
 from sys import exit
 
-from vyos.util import cmd
+from ngnos.util import cmd
 
-import vyos.opmode
+import ngnos.opmode
 
 def _get_json_data(command: str) -> list:
     """
@@ -36,18 +36,18 @@ def _get_raw_data(command: str) -> list:
     return data
 
 def add_image(name: str):
-    from vyos.util import rc_cmd
+    from ngnos.util import rc_cmd
 
     rc, output = rc_cmd(f'podman image pull {name}')
     if rc != 0:
-        raise vyos.opmode.InternalError(output)
+        raise ngnos.opmode.InternalError(output)
 
 def delete_image(name: str):
-    from vyos.util import rc_cmd
+    from ngnos.util import rc_cmd
 
     rc, output = rc_cmd(f'podman image rm --force {name}')
     if rc != 0:
-        raise vyos.opmode.InternalError(output)
+        raise ngnos.opmode.InternalError(output)
 
 def show_container(raw: bool):
     command = 'podman ps --all'
@@ -77,9 +77,9 @@ def show_network(raw: bool):
 
 
 def restart(name: str):
-    from vyos.util import rc_cmd
+    from ngnos.util import rc_cmd
 
-    rc, output = rc_cmd(f'systemctl restart vyos-container-{name}.service')
+    rc, output = rc_cmd(f'systemctl restart ngnos-container-{name}.service')
     if rc != 0:
         print(output)
         return None
@@ -89,9 +89,9 @@ def restart(name: str):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

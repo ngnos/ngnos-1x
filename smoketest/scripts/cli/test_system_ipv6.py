@@ -16,12 +16,12 @@
 
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.template import is_ipv4
-from vyos.util import read_file
-from vyos.util import get_interface_config
-from vyos.validate import is_intf_addr_assigned
+from ngnos.template import is_ipv4
+from ngnos.util import read_file
+from ngnos.util import get_interface_config
+from ngnos.validate import is_intf_addr_assigned
 
 base_path = ['system', 'ipv6']
 
@@ -30,7 +30,7 @@ file_disable = '/proc/sys/net/ipv6/conf/all/disable_ipv6'
 file_dad = '/proc/sys/net/ipv6/conf/all/accept_dad'
 file_multipath = '/proc/sys/net/ipv6/fib_multipath_hash_policy'
 
-class TestSystemIPv6(VyOSUnitTestSHIM.TestCase):
+class TestSystemIPv6(ngNOSUnitTestSHIM.TestCase):
     def tearDown(self):
         self.cli_delete(base_path)
         self.cli_commit()

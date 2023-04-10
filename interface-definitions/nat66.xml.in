@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interfaceDefinition>
-  <node name="nat66" owner="${vyos_conf_scripts_dir}/nat66.py">
+  <node name="nat66" owner="${ngnos_conf_scripts_dir}/nat66.py">
     <properties>
       <help>IPv6-to-IPv6 Network Prefix Translation (NAT66/NPT) Settings</help>
       <priority>500</priority>
@@ -42,7 +42,7 @@
                 <properties>
                   <help>Outbound interface of NAT66 traffic</help>
                   <completionHelp>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
               </leafNode>
@@ -171,7 +171,7 @@
                   <help>Inbound interface of NAT66 traffic</help>
                   <completionHelp>
                     <list>any</list>
-                    <script>${vyos_completion_dir}/list_interfaces</script>
+                    <script>${ngnos_completion_dir}/list_interfaces</script>
                   </completionHelp>
                 </properties>
               </leafNode>

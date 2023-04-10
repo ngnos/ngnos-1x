@@ -25,18 +25,18 @@ import socket
 import sys
 import tabulate
 
-import vyos.config
-import vyos.opmode
+import ngnos.config
+import ngnos.opmode
 
-from vyos.util import bytes_to_human, print_error
+from ngnos.util import bytes_to_human, print_error
 
 def _is_configured():
     """Check if IGMP proxy is configured"""
-    return vyos.config.Config().exists_effective('protocols igmp-proxy')
+    return ngnos.config.Config().exists_effective('protocols igmp-proxy')
 
 def _is_running():
     """Check if IGMP proxy is currently running"""
-    return not vyos.util.run('ps -C igmpproxy')
+    return not ngnos.util.run('ps -C igmpproxy')
 
 def _kernel_to_ip(addr):
     """
@@ -91,9 +91,9 @@ if not _is_running():
 
 if __name__ == "__main__":
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print_error(e)
         sys.exit(1)

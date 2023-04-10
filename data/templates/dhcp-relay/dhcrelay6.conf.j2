@@ -10,12 +10,12 @@
 {# listen_interface is mandatory so it's always present #}
 {% set listen = namespace(value='')  %}
 {% for interface, config in listen_interface.items() %}
-{%     if config.address is vyos_defined %}
+{%     if config.address is ngnos_defined %}
 {%         set listen.value = listen.value ~ '-l ' ~ config.address ~ '%' ~ interface ~ ' ' %}
 {%     else %}
 {%         set listen.value = listen.value ~ '-l ' ~ interface ~ ' ' %}
 {%     endif %}
 {% endfor %}
 
-OPTIONS="{{ listen.value }} {{ upstream.value }} -c {{ max_hop_count }} {{ '-I' if use_interface_id_option is vyos_defined }}"
+OPTIONS="{{ listen.value }} {{ upstream.value }} -c {{ max_hop_count }} {{ '-I' if use_interface_id_option is ngnos_defined }}"
 

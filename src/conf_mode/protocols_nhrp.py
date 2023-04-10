@@ -16,13 +16,13 @@
 
 import os
 
-from vyos.config import Config
-from vyos.configdict import node_changed
-from vyos.template import render
-from vyos.util import process_named_running
-from vyos.util import run
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import node_changed
+from ngnos.template import render
+from ngnos.util import process_named_running
+from ngnos.util import run
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 opennhrp_conf = '/run/opennhrp/opennhrp.conf'

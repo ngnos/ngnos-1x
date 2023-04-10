@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="interfaces">
     <children>
-      <tagNode name="openvpn" owner="${vyos_conf_scripts_dir}/interfaces-openvpn.py">
+      <tagNode name="openvpn" owner="${ngnos_conf_scripts_dir}/interfaces-openvpn.py">
         <properties>
           <help>OpenVPN Tunnel Interface</help>
           <priority>460</priority>

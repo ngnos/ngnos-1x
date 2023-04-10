@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from vyos.ifconfig import Section
-from vyos.ifconfig import Interface
+from ngnos.ifconfig import Section
+from ngnos.ifconfig import Interface
 
 import time
 

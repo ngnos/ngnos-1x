@@ -22,18 +22,18 @@ from copy import deepcopy
 from glob import glob
 from sys import exit
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.configverify import verify_vrf
-from vyos.template import render
-from vyos.template import is_ipv4
-from vyos.util import call
-from vyos.util import chmod_755
-from vyos.validate import is_addr_assigned
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.configverify import verify_vrf
+from ngnos.template import render
+from ngnos.template import is_ipv4
+from ngnos.util import call
+from ngnos.util import chmod_755
+from ngnos.validate import is_addr_assigned
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = r'/etc/default/tftpd'

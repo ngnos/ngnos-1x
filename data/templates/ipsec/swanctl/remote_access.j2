@@ -4,20 +4,20 @@
 {% set esp = esp_group[rw_conf.esp_group] %}
     ra-{{ name }} {
         remote_addrs = %any
-        local_addrs = {{ rw_conf.local_address if rw_conf.local_address is vyos_defined else '%any' }}
+        local_addrs = {{ rw_conf.local_address if rw_conf.local_address is ngnos_defined else '%any' }}
         proposals = {{ ike_group[rw_conf.ike_group] | get_esp_ike_cipher | join(',') }}
-        version = {{ ike.key_exchange[4:] if ike.key_exchange is vyos_defined else "0" }}
+        version = {{ ike.key_exchange[4:] if ike.key_exchange is ngnos_defined else "0" }}
         send_certreq = no
         rekey_time = {{ ike.lifetime }}s
         keyingtries = 0
-{% if rw_conf.unique is vyos_defined %}
+{% if rw_conf.unique is ngnos_defined %}
         unique = {{ rw_conf.unique }}
 {% endif %}
-{% if rw_conf.pool is vyos_defined %}
+{% if rw_conf.pool is ngnos_defined %}
         pools = {{ rw_conf.pool | join(',') }}
 {% endif %}
         local {
-{% if rw_conf.authentication.local_id is vyos_defined and rw_conf.authentication.use_x509_id is not vyos_defined %}
+{% if rw_conf.authentication.local_id is ngnos_defined and rw_conf.authentication.use_x509_id is not ngnos_defined %}
 {#          please use " quotes - else Apple iOS goes crazy #}
             id = "{{ rw_conf.authentication.local_id }}"
 {% endif %}
@@ -41,8 +41,8 @@
                 rand_time = 540s
                 dpd_action = clear
                 inactivity = {{ rw_conf.timeout }}
-{% set local_prefix = rw_conf.local.prefix if rw_conf.local.prefix is vyos_defined else ['0.0.0.0/0', '::/0'] %}
-{% set local_port = rw_conf.local.port if rw_conf.local.port is vyos_defined else '' %}
+{% set local_prefix = rw_conf.local.prefix if rw_conf.local.prefix is ngnos_defined else ['0.0.0.0/0', '::/0'] %}
+{% set local_port = rw_conf.local.port if rw_conf.local.port is ngnos_defined else '' %}
 {% set local_suffix = '[%any/{1}]'.format(local_port) if local_port else '' %}
                 local_ts = {{ local_prefix | join(local_suffix + ",") }}{{ local_suffix }}
             }

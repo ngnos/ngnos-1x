@@ -18,8 +18,8 @@ import os
 import sys
 import argparse
 
-from vyos.config import Config
-from vyos.util import dict_search
+from ngnos.config import Config
+from ngnos.util import dict_search
 
 def get_user_from_interface(interface):
     config = Config()

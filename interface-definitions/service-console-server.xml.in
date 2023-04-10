@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="service">
     <children>
-      <node name="console-server" owner="${vyos_conf_scripts_dir}/service_console-server.py">
+      <node name="console-server" owner="${ngnos_conf_scripts_dir}/service_console-server.py">
         <properties>
           <help>Serial Console Server</help>
         </properties>

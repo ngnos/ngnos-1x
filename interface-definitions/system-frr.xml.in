@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="frr" owner="${vyos_conf_scripts_dir}/system_frr.py">
+      <node name="frr" owner="${ngnos_conf_scripts_dir}/system_frr.py">
         <properties>
           <help>Configure FRR parameters</help>
           <!-- Before components that use FRR -->

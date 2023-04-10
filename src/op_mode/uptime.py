@@ -16,11 +16,11 @@
 
 import sys
 
-import vyos.opmode
+import ngnos.opmode
 
 def _get_uptime_seconds():
   from re import search
-  from vyos.util import read_file
+  from ngnos.util import read_file
 
   data = read_file("/proc/uptime")
   seconds = search("([0-9\.]+)\s", data).group(1)
@@ -29,8 +29,8 @@ def _get_uptime_seconds():
 
 def _get_load_averages():
     from re import search
-    from vyos.util import cmd
-    from vyos.cpu import get_core_count
+    from ngnos.util import cmd
+    from ngnos.cpu import get_core_count
 
     data = cmd("uptime")
     matches = search(r"load average:\s*(?P<one>[0-9\.]+)\s*,\s*(?P<five>[0-9\.]+)\s*,\s*(?P<fifteen>[0-9\.]+)\s*", data)
@@ -45,7 +45,7 @@ def _get_load_averages():
     return res
 
 def _get_raw_data():
-    from vyos.util import seconds_to_human
+    from ngnos.util import seconds_to_human
 
     res = {}
     res["uptime_seconds"] = _get_uptime_seconds()
@@ -74,9 +74,9 @@ def show(raw: bool):
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

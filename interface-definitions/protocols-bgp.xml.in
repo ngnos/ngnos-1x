@@ -2,7 +2,7 @@
 <interfaceDefinition>
   <node name="protocols">
     <children>
-      <node name="bgp" owner="${vyos_conf_scripts_dir}/protocols_bgp.py">
+      <node name="bgp" owner="${ngnos_conf_scripts_dir}/protocols_bgp.py">
         <properties>
           <help>Border Gateway Protocol (BGP)</help>
           <priority>820</priority>

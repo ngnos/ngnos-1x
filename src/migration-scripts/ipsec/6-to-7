@@ -21,13 +21,13 @@ import os
 from sys import argv
 from sys import exit
 
-from vyos.configtree import ConfigTree
-from vyos.pki import load_certificate
-from vyos.pki import load_crl
-from vyos.pki import load_private_key
-from vyos.pki import encode_certificate
-from vyos.pki import encode_private_key
-from vyos.util import run
+from ngnos.configtree import ConfigTree
+from ngnos.pki import load_certificate
+from ngnos.pki import load_crl
+from ngnos.pki import load_private_key
+from ngnos.pki import encode_certificate
+from ngnos.pki import encode_private_key
+from ngnos.util import run
 
 if (len(argv) < 1):
     print("Must specify file name!")

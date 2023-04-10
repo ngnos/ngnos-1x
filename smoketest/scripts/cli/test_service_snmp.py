@@ -17,16 +17,16 @@
 import re
 import unittest
 
-from base_vyostest_shim import VyOSUnitTestSHIM
+from base_ngnostest_shim import ngNOSUnitTestSHIM
 
-from vyos.configsession import ConfigSessionError
-from vyos.template import is_ipv4
-from vyos.template import address_from_cidr
-from vyos.util import call
-from vyos.util import DEVNULL
-from vyos.util import read_file
-from vyos.util import process_named_running
-from vyos.version import get_version_data
+from ngnos.configsession import ConfigSessionError
+from ngnos.template import is_ipv4
+from ngnos.template import address_from_cidr
+from ngnos.util import call
+from ngnos.util import DEVNULL
+from ngnos.util import read_file
+from ngnos.util import process_named_running
+from ngnos.version import get_version_data
 
 PROCESS_NAME = 'snmpd'
 SNMPD_CONF = '/etc/snmp/snmpd.conf'
@@ -36,9 +36,9 @@ base_path = ['service', 'snmp']
 snmpv3_group = 'default_group'
 snmpv3_view = 'default_view'
 snmpv3_view_oid = '1'
-snmpv3_user = 'vyos'
-snmpv3_auth_pw = 'vyos12345678'
-snmpv3_priv_pw = 'vyos87654321'
+snmpv3_user = 'ngnos'
+snmpv3_auth_pw = 'ngnos12345678'
+snmpv3_priv_pw = 'ngnos87654321'
 snmpv3_engine_id = '000000000000000000000002'
 
 def get_config_value(key):
@@ -46,7 +46,7 @@ def get_config_value(key):
     tmp = re.findall(r'\n?{}\s+(.*)'.format(key), tmp)
     return tmp[0]
 
-class TestSNMPService(VyOSUnitTestSHIM.TestCase):
+class TestSNMPService(ngNOSUnitTestSHIM.TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestSNMPService, cls).setUpClass()
@@ -69,7 +69,7 @@ class TestSNMPService(VyOSUnitTestSHIM.TestCase):
     def test_snmp_basic(self):
         dummy_if = 'dum7312'
         dummy_addr = '100.64.0.1/32'
-        contact = 'maintainers@vyos.io'
+        contact = 'maintainers@ngnos.io'
         location = 'QEMU'
 
         self.cli_set(['interfaces', 'dummy', dummy_if, 'address', dummy_addr])
@@ -81,7 +81,7 @@ class TestSNMPService(VyOSUnitTestSHIM.TestCase):
         port = '5000'
 
         for auth in ['ro', 'rw']:
-            community = 'VyOS' + auth
+            community = 'ngNOS' + auth
             self.cli_set(base_path + ['community', community, 'authorization', auth])
             for client in clients:
                 self.cli_set(base_path + ['community', community, 'client', client])
@@ -111,7 +111,7 @@ class TestSNMPService(VyOSUnitTestSHIM.TestCase):
 
         config = get_config_value('sysDescr')
         version_data = get_version_data()
-        self.assertEqual('VyOS ' + version_data['version'], config)
+        self.assertEqual('ngNOS ' + version_data['version'], config)
 
         config = get_config_value('SysContact')
         self.assertEqual(contact, config)
@@ -125,7 +125,7 @@ class TestSNMPService(VyOSUnitTestSHIM.TestCase):
 
         ## Check communities and default view RESTRICTED
         for auth in ['ro', 'rw']:
-            community = 'VyOS' + auth
+            community = 'ngNOS' + auth
             for addr in clients:
                 if is_ipv4(addr):
                     entry = auth + 'community ' + community + ' ' + addr + ' -V'
@@ -196,7 +196,7 @@ class TestSNMPService(VyOSUnitTestSHIM.TestCase):
         # check validate() - user requires a group to be created
         with self.assertRaises(ConfigSessionError):
             self.cli_commit()
-        self.cli_set(base_path + ['v3', 'user', 'vyos', 'group', snmpv3_group])
+        self.cli_set(base_path + ['v3', 'user', 'ngnos', 'group', snmpv3_group])
 
         self.cli_set(base_path + ['v3', 'group', snmpv3_group, 'mode', 'ro'])
         # check validate() - a view must be created before this can be comitted
@@ -210,11 +210,11 @@ class TestSNMPService(VyOSUnitTestSHIM.TestCase):
 
         # commit will alter the CLI values - check if they have been updated:
         hashed_password = '4c67690d45d3dfcd33d0d7e308e370ad'
-        tmp = self._session.show_config(base_path + ['v3', 'user', 'vyos', 'auth', 'encrypted-password']).split()[1]
+        tmp = self._session.show_config(base_path + ['v3', 'user', 'ngnos', 'auth', 'encrypted-password']).split()[1]
         self.assertEqual(tmp, hashed_password)
 
         hashed_password = 'e11c83f2c510540a3c4de84ee66de440'
-        tmp = self._session.show_config(base_path + ['v3', 'user', 'vyos', 'privacy', 'encrypted-password']).split()[1]
+        tmp = self._session.show_config(base_path + ['v3', 'user', 'ngnos', 'privacy', 'encrypted-password']).split()[1]
         self.assertEqual(tmp, hashed_password)
 
         tmp = read_file(SNMPD_CONF)

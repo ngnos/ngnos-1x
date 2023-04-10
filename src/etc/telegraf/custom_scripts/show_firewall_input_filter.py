@@ -4,7 +4,7 @@ import json
 import re
 import time
 
-from vyos.util import cmd
+from ngnos.util import cmd
 
 
 def get_nft_filter_chains():
@@ -12,7 +12,7 @@ def get_nft_filter_chains():
     Get list of nft chains for table filter
     """
     try:
-        nft = cmd('/usr/sbin/nft --json list table ip vyos_filter')
+        nft = cmd('/usr/sbin/nft --json list table ip ngnos_filter')
     except Exception:
         return []
     nft = json.loads(nft)
@@ -30,7 +30,7 @@ def get_nftables_details(name):
     """
     Get dict, counters packets and bytes for chain
     """
-    command = f'/usr/sbin/nft list chain ip vyos_filter {name}'
+    command = f'/usr/sbin/nft list chain ip ngnos_filter {name}'
     try:
         results = cmd(command)
     except:
@@ -63,7 +63,7 @@ def get_nft_telegraf(name):
     Get data for telegraf in influxDB format
     """
     for rule, rule_config in get_nftables_details(name).items():
-        print(f'nftables,table=vyos_filter,chain={name},'
+        print(f'nftables,table=ngnos_filter,chain={name},'
               f'ruleid={rule} '
               f'pkts={rule_config["packets"]}i,'
               f'bytes={rule_config["bytes"]}i '

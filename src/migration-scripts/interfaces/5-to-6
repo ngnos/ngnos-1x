@@ -18,7 +18,7 @@
 # a denested "service router-advert"
 
 import sys
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 
 def copy_rtradv(c, old_base, interface):
     base = ['service', 'router-advert', 'interface']

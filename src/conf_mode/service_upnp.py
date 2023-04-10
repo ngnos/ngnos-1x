@@ -22,15 +22,15 @@ import netifaces
 from ipaddress import IPv4Network
 from ipaddress import IPv6Network
 
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.util import call
-from vyos.template import render
-from vyos.template import is_ipv4
-from vyos.template import is_ipv6
-from vyos.xml import defaults
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.util import call
+from ngnos.template import render
+from ngnos.template import is_ipv4
+from ngnos.template import is_ipv6
+from ngnos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = r'/run/upnp/miniupnp.conf'

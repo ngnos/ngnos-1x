@@ -2,8 +2,8 @@
 
 import re
 import sys
-from vyos.util import popen
-from vyos.util import DEVNULL
+from ngnos.util import popen
+from ngnos.util import DEVNULL
 output,retcode = popen("sensors --no-adapter",  stderr=DEVNULL)
 if retcode == 0:
     print (output)

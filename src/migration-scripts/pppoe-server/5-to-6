@@ -16,7 +16,7 @@
 
 # - T4703: merge vlan-id and vlan-range to vlan CLI node
 
-from vyos.configtree import ConfigTree
+from ngnos.configtree import ConfigTree
 from sys import argv
 from sys import exit
 

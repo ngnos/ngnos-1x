@@ -20,9 +20,9 @@ import json
 import re
 import tabulate
 
-from vyos.config import Config
-from vyos.util import cmd
-from vyos.util import dict_search_args
+from ngnos.config import Config
+from ngnos.util import cmd
+from ngnos.util import dict_search_args
 
 def get_firewall_interfaces(firewall, name=None, ipv6=False):
     directions = ['in', 'out', 'local']
@@ -79,7 +79,7 @@ def get_config_firewall(conf, name=None, ipv6=False, interfaces=True):
 def get_nftables_details(name, ipv6=False):
     suffix = '6' if ipv6 else ''
     name_prefix = 'NAME6_' if ipv6 else 'NAME_'
-    command = f'sudo nft list chain ip{suffix} vyos_filter {name_prefix}{name}'
+    command = f'sudo nft list chain ip{suffix} ngnos_filter {name_prefix}{name}'
     try:
         results = cmd(command)
     except:

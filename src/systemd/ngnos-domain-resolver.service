@@ -1,0 +1,13 @@
+[Unit]
+Description=ngNOS firewall domain resolver
+After=ngnos-router.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 -u /usr/libexec/ngnos/ngnos-domain-resolver.py
+StandardError=journal
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

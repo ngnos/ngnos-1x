@@ -19,23 +19,23 @@ import os
 from sys import exit
 from json import loads
 
-from vyos.config import Config
-from vyos.configdict import node_changed
-from vyos.ifconfig import Interface
-from vyos.template import render
-from vyos.util import call
-from vyos.util import cmd
-from vyos.util import dict_search
-from vyos.util import get_interface_config
-from vyos.util import popen
-from vyos.util import run
-from vyos.util import sysctl_write
-from vyos import ConfigError
-from vyos import frr
-from vyos import airbag
+from ngnos.config import Config
+from ngnos.configdict import node_changed
+from ngnos.ifconfig import Interface
+from ngnos.template import render
+from ngnos.util import call
+from ngnos.util import cmd
+from ngnos.util import dict_search
+from ngnos.util import get_interface_config
+from ngnos.util import popen
+from ngnos.util import run
+from ngnos.util import sysctl_write
+from ngnos import ConfigError
+from ngnos import frr
+from ngnos import airbag
 airbag.enable()
 
-config_file = '/etc/iproute2/rt_tables.d/vyos-vrf.conf'
+config_file = '/etc/iproute2/rt_tables.d/ngnos-vrf.conf'
 nft_vrf_config = '/tmp/nftables-vrf-zones'
 
 def has_rule(af : str, priority : int, table : str):

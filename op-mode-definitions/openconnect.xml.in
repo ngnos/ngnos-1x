@@ -11,13 +11,13 @@
             <properties>
               <help>Show active OpenConnect server sessions</help>
             </properties>
-            <command>${vyos_op_scripts_dir}/openconnect.py show_sessions</command>
+            <command>${ngnos_op_scripts_dir}/openconnect.py show_sessions</command>
           </leafNode>
           <tagNode name="user">
             <properties>
               <help>Show OpenConnect configured user settings</help>
               <completionHelp>
-                <script>sudo ${vyos_completion_dir}/list_openconnect_users.py</script>
+                <script>sudo ${ngnos_completion_dir}/list_openconnect_users.py</script>
               </completionHelp>
             </properties>
             <children>
@@ -28,33 +28,33 @@
                 <children>
                   <leafNode name="full">
                     <properties>
-                      <help>Show full settings, including QR code and commands for VyOS</help>
+                      <help>Show full settings, including QR code and commands for ngNOS</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="full"</command>
+                    <command>${ngnos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="full"</command>
                   </leafNode>
                   <leafNode name="key-hex">
                     <properties>
-                      <help>Show OTP authentication secret in Hex (used in VyOS config)</help>
+                      <help>Show OTP authentication secret in Hex (used in ngNOS config)</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="key-hex"</command>
+                    <command>${ngnos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="key-hex"</command>
                   </leafNode>
                   <leafNode name="key-b32">
                     <properties>
                       <help>Show OTP authentication secret in Base32 (used in mobile apps)</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="key-b32"</command>
+                    <command>${ngnos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="key-b32"</command>
                   </leafNode>
                   <leafNode name="qrcode">
                     <properties>
                       <help>Show OTP authentication QR code</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="qrcode"</command>
+                    <command>${ngnos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="qrcode"</command>
                   </leafNode>
                   <leafNode name="uri">
                     <properties>
                       <help>Show OTP authentication otpauth URI</help>
                     </properties>
-                    <command>${vyos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="uri"</command>
+                    <command>${ngnos_op_scripts_dir}/show_openconnect_otp.py --user="$4" --info="uri"</command>
                   </leafNode>
                 </children>
               </node>
@@ -70,7 +70,7 @@
         <properties>
           <help>Restart openconnect server process</help>
         </properties>
-        <command>${vyos_op_scripts_dir}/openconnect-control.py --action="restart"</command>
+        <command>${ngnos_op_scripts_dir}/openconnect-control.py --action="restart"</command>
       </leafNode>
     </children>
   </node>

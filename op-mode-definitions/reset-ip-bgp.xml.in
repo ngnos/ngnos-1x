@@ -74,10 +74,10 @@
             <properties>
               <help>BGP IPv4/IPv6 neighbor to clear</help>
               <completionHelp>
-                <script>${vyos_completion_dir}/list_bgp_neighbors.sh --ipv4</script>
+                <script>${ngnos_completion_dir}/list_bgp_neighbors.sh --ipv4</script>
               </completionHelp>
             </properties>
-            <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+            <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/bgp/reset-bgp-neighbor-options.xml.i>
             </children>

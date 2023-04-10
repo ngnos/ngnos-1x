@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from unittest import TestCase
-from vyos.configverify import verify_diffie_hellman_length
-from vyos.util import cmd
+from ngnos.configverify import verify_diffie_hellman_length
+from ngnos.util import cmd
 
 dh_file = '/tmp/dh.pem'
 

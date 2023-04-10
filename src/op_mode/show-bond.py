@@ -17,9 +17,9 @@
 import jinja2
 
 from argparse import ArgumentParser
-from vyos.ifconfig import Section
-from vyos.ifconfig import BondIf
-from vyos.util import read_file
+from ngnos.ifconfig import Section
+from ngnos.ifconfig import BondIf
+from ngnos.util import read_file
 
 from sys import exit
 

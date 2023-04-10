@@ -70,7 +70,7 @@
                 <properties>
                   <help>Show webproxy blacklist categories</help>
                 </properties>
-                <command>${vyos_completion_dir}/list_webproxy_category.sh</command>
+                <command>${ngnos_completion_dir}/list_webproxy_category.sh</command>
               </node>
             </children>
           </node>
@@ -101,7 +101,7 @@
             <properties>
               <help>Update the webproxy blacklist database</help>
             </properties>
-            <command>sudo ${vyos_op_scripts_dir}/webproxy_update_blacklist.sh --update-blacklist</command>
+            <command>sudo ${ngnos_op_scripts_dir}/webproxy_update_blacklist.sh --update-blacklist</command>
           </node>
         </children>
       </node>

@@ -25,8 +25,8 @@ import re
 from sys import argv
 from sys import exit
 
-from vyos.configtree import ConfigTree
-from vyos.ifconfig import Section
+from ngnos.configtree import ConfigTree
+from ngnos.ifconfig import Section
 
 if (len(argv) < 1):
     print("Must specify file name!")

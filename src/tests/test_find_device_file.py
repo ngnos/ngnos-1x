@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from unittest import TestCase
-from vyos.util import find_device_file
+from ngnos.util import find_device_file
 
 class TestDeviceFile(TestCase):
     """ used to find USB devices on target """
@@ -32,4 +32,4 @@ class TestDeviceFile(TestCase):
         self.assertEqual(find_device_file('event0'), '/dev/input/event0')
 
     def test_non_existing(self):
-        self.assertFalse(find_device_file('vyos'))
+        self.assertFalse(find_device_file('ngnos'))

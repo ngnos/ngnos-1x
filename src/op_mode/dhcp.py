@@ -22,14 +22,14 @@ from ipaddress import ip_address
 from isc_dhcp_leases import IscDhcpLeases
 from tabulate import tabulate
 
-import vyos.opmode
+import ngnos.opmode
 
-from vyos.base import Warning
-from vyos.configquery import ConfigTreeQuery
+from ngnos.base import Warning
+from ngnos.configquery import ConfigTreeQuery
 
-from vyos.util import cmd
-from vyos.util import dict_search
-from vyos.util import is_systemd_service_running
+from ngnos.util import cmd
+from ngnos.util import dict_search
+from ngnos.util import is_systemd_service_running
 
 config = ConfigTreeQuery()
 lease_valid_states = ['all', 'active', 'free', 'expired', 'released', 'abandoned', 'reset', 'backup']
@@ -246,7 +246,7 @@ def _verify(func):
         unconf_message = f'DHCP{v} server is not configured'
         # Check if config does not exist
         if not config.exists(f'service dhcp{v}-server'):
-            raise vyos.opmode.UnconfiguredSubsystem(unconf_message)
+            raise ngnos.opmode.UnconfiguredSubsystem(unconf_message)
         return func(*args, **kwargs)
     return _wrapper
 
@@ -269,14 +269,14 @@ def show_server_leases(raw: bool, family: ArgFamily, pool: typing.Optional[str],
 
     v = 'v6' if family == 'inet6' else ''
     if pool and pool not in _get_dhcp_pools(family=family):
-        raise vyos.opmode.IncorrectValue(f'DHCP{v} pool "{pool}" does not exist!')
+        raise ngnos.opmode.IncorrectValue(f'DHCP{v} pool "{pool}" does not exist!')
 
     if state and state not in lease_valid_states:
-        raise vyos.opmode.IncorrectValue(f'DHCP{v} state "{state}" is invalid!')
+        raise ngnos.opmode.IncorrectValue(f'DHCP{v} state "{state}" is invalid!')
 
     sort_valid = sort_valid_inet6 if family == 'inet6' else sort_valid_inet
     if sorted and sorted not in sort_valid:
-        raise vyos.opmode.IncorrectValue(f'DHCP{v} sort "{sorted}" is invalid!')
+        raise ngnos.opmode.IncorrectValue(f'DHCP{v} sort "{sorted}" is invalid!')
 
     lease_data = _get_raw_server_leases(family=family, pool=pool, sorted=sorted, state=state)
     if raw:
@@ -287,9 +287,9 @@ def show_server_leases(raw: bool, family: ArgFamily, pool: typing.Optional[str],
 
 if __name__ == '__main__':
     try:
-        res = vyos.opmode.run(sys.modules[__name__])
+        res = ngnos.opmode.run(sys.modules[__name__])
         if res:
             print(res)
-    except (ValueError, vyos.opmode.Error) as e:
+    except (ValueError, ngnos.opmode.Error) as e:
         print(e)
         sys.exit(1)

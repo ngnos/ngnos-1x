@@ -1,8 +1,8 @@
-{% set vrf_command = 'ip vrf exec ' ~ vrf ~ ' ' if vrf is vyos_defined else '' %}
+{% set vrf_command = 'ip vrf exec ' ~ vrf ~ ' ' if vrf is ngnos_defined else '' %}
 [Unit]
 StartLimitIntervalSec=0
 ConditionPathExists={{ config_file }}
-After=vyos-router.service
+After=ngnos-router.service
 
 [Service]
 EnvironmentFile=

@@ -17,7 +17,7 @@
 import unittest
 
 from base_accel_ppp_test import BasicAccelPPPTest
-from vyos.util import read_file
+from ngnos.util import read_file
 
 pki_path = ['pki']
 

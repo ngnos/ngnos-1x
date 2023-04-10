@@ -16,19 +16,19 @@
 
 from sys import exit
 
-from vyos import ConfigError
-from vyos import airbag
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.logger import syslog
-from vyos.template import render
-from vyos.util import dict_search
-from vyos.xml import defaults
+from ngnos import ConfigError
+from ngnos import airbag
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.logger import syslog
+from ngnos.template import render
+from ngnos.util import dict_search
+from ngnos.xml import defaults
 airbag.enable()
 
 # path to logrotate configs
-logrotate_atop_file = '/etc/logrotate.d/vyos-atop'
-logrotate_rsyslog_file = '/etc/logrotate.d/vyos-rsyslog'
+logrotate_atop_file = '/etc/logrotate.d/ngnos-atop'
+logrotate_rsyslog_file = '/etc/logrotate.d/ngnos-rsyslog'
 
 
 def get_config(config=None):
@@ -57,13 +57,13 @@ def generate(logs_config):
     logrotate_atop = dict_search('logrotate.atop', logs_config)
     # generate new config file for atop
     syslog.debug('Adding logrotate config for atop')
-    render(logrotate_atop_file, 'logs/logrotate/vyos-atop.j2', logrotate_atop)
+    render(logrotate_atop_file, 'logs/logrotate/ngnos-atop.j2', logrotate_atop)
 
     # get configuration for logrotate rsyslog
     logrotate_rsyslog = dict_search('logrotate.messages', logs_config)
     # generate new config file for rsyslog
     syslog.debug('Adding logrotate config for rsyslog')
-    render(logrotate_rsyslog_file, 'logs/logrotate/vyos-rsyslog.j2',
+    render(logrotate_rsyslog_file, 'logs/logrotate/ngnos-rsyslog.j2',
            logrotate_rsyslog)
 
 

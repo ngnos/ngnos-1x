@@ -18,22 +18,22 @@ import os
 
 from sys import exit
 
-from vyos.base import Warning
-from vyos.config import Config
-from vyos.configdict import dict_merge
-from vyos.validate import is_addr_assigned
-from vyos.validate import is_loopback_addr
-from vyos.version import get_version_data
-from vyos.util import call
-from vyos.util import dict_search
-from vyos.xml import defaults
-from vyos.template import render
-from vyos import ConfigError
-from vyos import airbag
+from ngnos.base import Warning
+from ngnos.config import Config
+from ngnos.configdict import dict_merge
+from ngnos.validate import is_addr_assigned
+from ngnos.validate import is_loopback_addr
+from ngnos.version import get_version_data
+from ngnos.util import call
+from ngnos.util import dict_search
+from ngnos.xml import defaults
+from ngnos.template import render
+from ngnos import ConfigError
+from ngnos import airbag
 airbag.enable()
 
 config_file = "/etc/default/lldpd"
-vyos_config_file = "/etc/lldpd.d/01-vyos.conf"
+ngnos_config_file = "/etc/lldpd.d/01-ngnos.conf"
 base = ['service', 'lldp']
 
 def get_config(config=None):
@@ -112,7 +112,7 @@ def generate(lldp):
         return
 
     render(config_file, 'lldp/lldpd.j2', lldp)
-    render(vyos_config_file, 'lldp/vyos.conf.j2', lldp)
+    render(ngnos_config_file, 'lldp/ngnos.conf.j2', lldp)
 
 def apply(lldp):
     systemd_service = 'lldpd.service'
@@ -124,8 +124,8 @@ def apply(lldp):
         call(f'systemctl stop {systemd_service}')
         if os.path.isfile(config_file):
             os.unlink(config_file)
-        if os.path.isfile(vyos_config_file):
-            os.unlink(vyos_config_file)
+        if os.path.isfile(ngnos_config_file):
+            os.unlink(ngnos_config_file)
 
 if __name__ == '__main__':
     try:

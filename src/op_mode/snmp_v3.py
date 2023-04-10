@@ -23,7 +23,7 @@ import sys
 import jinja2
 import argparse
 
-from vyos.config import Config
+from ngnos.config import Config
 
 parser = argparse.ArgumentParser(description='Retrieve SNMP v3 information')
 parser.add_argument('--all',   action="store_true", help='Show all available information')

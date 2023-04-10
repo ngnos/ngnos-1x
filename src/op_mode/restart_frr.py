@@ -22,11 +22,11 @@ import psutil
 from logging.handlers import SysLogHandler
 from shutil import rmtree
 
-from vyos.base import Warning
-from vyos.util import call
-from vyos.util import ask_yes_no
-from vyos.util import process_named_running
-from vyos.util import makedir
+from ngnos.base import Warning
+from ngnos.util import call
+from ngnos.util import ask_yes_no
+from ngnos.util import process_named_running
+from ngnos.util import makedir
 
 # some default values
 watchfrr = '/usr/lib/frr/watchfrr.sh'
