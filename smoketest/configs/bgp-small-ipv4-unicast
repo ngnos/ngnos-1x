@@ -55,7 +55,7 @@ system {
     login {
         user ngnos {
             authentication {
-                encrypted-password $6$O5gJRlDYQpj$MtrCV9lxMnZPMbcxlU7.FI793MImNHznxGoMFgm3Q6QP3vfKJyOSRCt3Ka/GzFQyW1yZS4NS616NLHaIPPFHc0
+                encrypted-password $6$1qXKXL7z74Lruf1Z$GAWNXp9QIOQ.ymDdZrglhFYEXF/kD0v7Rpot9JFsdws6Kf6ETkg0eN29Hf6hcAEXEdKgU02WB58ISgdRL8lni0
                 plaintext-password ""
             }
         }

@@ -20,6 +20,7 @@ lib/
 opt/
 srv/localui
 usr/sbin
+usr/sbin/vyshim
 usr/bin/config-mgmt
 usr/bin/initial-setup
 usr/bin/ngnos-config-file-query

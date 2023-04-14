@@ -52,7 +52,7 @@ system {
     login {
         user ngnos {
             authentication {
-                encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
+                encrypted-password $6$HlBPQA/GzB8QAF/Q$ggMtNWGJxXbJN32IimN4ue8Kt0G.wULS8Dy10nVk5ckkXu1vGoYnKLiRLsjKQuQta0V0dyqzj5cnhIxsD/Y5N.
                 plaintext-password ""
             }
             level admin

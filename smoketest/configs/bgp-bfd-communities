@@ -501,7 +501,7 @@ system {
     login {
         user ngnos {
             authentication {
-                encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
+                encrypted-password $6$IShAQAxIw900NdtX$EyEz7lQNDoyEuvKSG2bi.ELQvOvay.RXlhC4C6z2v3BWr7P/lE0vB3EWufiMi29kXwDUx4VFNVzXmgMS14daK1
                 plaintext-password ""
             }
             level admin

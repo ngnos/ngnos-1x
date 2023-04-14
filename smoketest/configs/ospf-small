@@ -109,7 +109,7 @@ system {
     login {
         user ngnos {
             authentication {
-                encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
+                encrypted-password $6$E27HsDaPehRj7Bx2$SRGHpwVBez.NO33VO6zupLGqL4/zy5cdovz2q1qFYoFbX0CX17.i1PcSpilAHRVTiqKWUY5lId0U5q3obtbRT1
                 plaintext-password ""
             }
             level admin

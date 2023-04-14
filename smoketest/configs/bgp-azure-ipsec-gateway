@@ -273,7 +273,7 @@ system {
         radius-source-address 192.168.34.37
         user ngnos {
             authentication {
-                encrypted-password $6$O5gJRlDYQpj$MtrCV9lxMnZPMbcxlU7.FI793MImNHznxGoMFgm3Q6QP3vfKJyOSRCt3Ka/GzFQyW1yZS4NS616NLHaIPPFHc0
+                encrypted-password $6$l0uEL7zCNTplC3N4$hWnMQpvA1Z5wqMoVu6rAT0g0Wk1MmTwEwRSiykvMSmXy9ChxkpX5pDgz6.jcJvPoBRXdg1wYH8sNC6iVx.Dpf0
                 plaintext-password ""
             }
         }
