@@ -24,7 +24,7 @@ DEB_TARGET_ARCH := $(shell dpkg-architecture -qDEB_TARGET_ARCH)
 override_dh_strip_nondeterminism:
 
 override_dh_gencontrol:
-	dh_gencontrol -- -v$(shell (git describe --tags --long --match 'ngnos/*' --dirty 2>/dev/null || echo 1.4dev0) | sed -E 's%ngnos/%%' | sed -E 's%-dirty%+dirty%')
+	dh_gencontrol -- -v$(shell (git describe --tags --long --match 'ngnos/*' --dirty 2>/dev/null || echo 1.4dev0-4294-g97ef83ada) | sed -E 's%ngnos/%%' | sed -E 's%-dirty%+dirty%')
 
 override_dh_auto_build:
 	make all
