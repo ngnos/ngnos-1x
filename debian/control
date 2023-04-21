@@ -62,7 +62,6 @@ Depends:
   frr-rpki-rtrlib,
   frr-snmp,
   fuse-overlayfs,
-  libpam-google-authenticator,
   grc,
   hostapd,
   hsflowd,
