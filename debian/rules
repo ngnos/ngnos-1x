@@ -30,7 +30,7 @@ override_dh_auto_build:
 	make all
 ifeq ($(DEB_TARGET_ARCH),amd64)
 	# Only build XDP on amd64 systems
-	#make vyxdp
+	make vyxdp
 endif
 
 override_dh_auto_install:
