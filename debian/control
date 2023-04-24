@@ -32,16 +32,9 @@ Standards-Version: 3.9.6
 
 Package: ngnos-1x
 Architecture: amd64 arm64
-Depends: ${shlibs:Depends},
-  libbpf-dev [amd64],
-  libbpf1 [amd64],
-  ${misc:Depends}
-Description: ngNOS configuration scripts and data.
-
-Package: ngnos-1x
-Architecture: amd64 arm64
 Depends:
   ${python3:Depends},
+  ${shlibs:Depends},
   accel-ppp,
   auditd,
   avahi-daemon,
@@ -89,6 +82,7 @@ Depends:
   lcdproc-extra-drivers,
   libatomic1,
   libauparse0,
+  libbpf-dev [amd64],
   libbpf1 [amd64],
   libcharon-extra-plugins (>=5.9),
   libcharon-extauth-plugins (>=5.9),
