@@ -124,3 +124,7 @@ fi
 
 # Generate API GraphQL schema
 /usr/libexec/ngnos/services/api/graphql/generate/generate_schema.py
+
+# Hack for libbpf
+ln -s /usr/lib/x86_64-linux-gnu/libbpf.so.1.1.0 /usr/lib/libbpf.so.1
+ln -s /usr/lib/x86_64-linux-gnu/libbpf.so.1.1.0 /lib/libbpf.so.1
