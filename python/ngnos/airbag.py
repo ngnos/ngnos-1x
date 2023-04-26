@@ -163,9 +163,11 @@ When reporting problems, please include as much information as possible:
 
 INSTRUCTIONS = """\
 - Contact us using the online help desk if you have a subscription:
-  https://support.ngnos.com/
+  https://support.ngnos.io/
 - Make sure you are running the latest version of ngNOS available at:
-  https://ngnos.com/get/
+  https://ngnos.net/get/
 - Consult the community forum to see how to handle this issue:
-  https://forum.ngnos.com
+  https://forum.ngnos.io
+- Join us on Slack where our users exchange help and advice:
+  https://ngnos.slack.com
 """.strip()

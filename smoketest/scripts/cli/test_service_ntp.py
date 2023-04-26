@@ -47,7 +47,7 @@ class TestSystemNTP(ngNOSUnitTestSHIM.TestCase):
         # Test basic NTP support with multiple servers and their options
         servers = ['192.0.2.1', '192.0.2.2']
         options = ['nts', 'noselect', 'prefer']
-        pools = ['pool.ngnos.com']
+        pools = ['pool.vyos.io']
 
         for server in servers:
             for option in options:
@@ -112,7 +112,7 @@ class TestSystemNTP(ngNOSUnitTestSHIM.TestCase):
         for interface in interfaces:
             self.cli_set(base_path + ['interface', interface])
 
-        servers = ['time1.ngnos.com', 'time2.ngnos.com']
+        servers = ['time1.vyos.net', 'time2.vyos.net']
         for server in servers:
             self.cli_set(base_path + ['server', server])
 
@@ -130,7 +130,7 @@ class TestSystemNTP(ngNOSUnitTestSHIM.TestCase):
         self.cli_set(['vrf', 'name', vrf_name, 'table', '12345'])
         self.cli_set(base_path + ['vrf', vrf_name])
 
-        servers = ['time1.ngnos.com', 'time2.ngnos.com']
+        servers = ['time1.vyos.net', 'time2.vyos.net']
         for server in servers:
             self.cli_set(base_path + ['server', server])
 

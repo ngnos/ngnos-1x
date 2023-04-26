@@ -810,12 +810,6 @@
             </node>
           </children>
         </node>
-        <leafNode name="advertise-all-vni">
-          <properties>
-            <help>Advertise All local VNIs</help>
-            <valueless/>
-          </properties>
-        </leafNode>
         #include <include/bgp/afi-l2vpn-common.xml.i>
         <leafNode name="advertise-pip">
           <properties>
@@ -1565,7 +1559,6 @@
     #include <include/port-number.xml.i>
   </children>
 </tagNode>
-#include <include/route-map.xml.i>
 <node name="timers">
   <properties>
     <help>BGP protocol timers</help>

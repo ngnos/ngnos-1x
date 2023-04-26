@@ -109,11 +109,11 @@ system {
     name-server 8.8.8.8
     name-server 9.9.9.9
     ntp {
-        server time1.ngnos.com {
+        server time1.vyos.net {
         }
-        server time2.ngnos.com {
+        server time2.vyos.net {
         }
-        server time3.ngnos.com {
+        server time3.vyos.net {
         }
     }
     syslog {

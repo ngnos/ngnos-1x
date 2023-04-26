@@ -16,69 +16,75 @@
 
 import os
 import argparse
-import jinja2
 import sys
 import time
+from tabulate import tabulate
 
 from ngnos.config import Config
+from ngnos.template import is_ipv4, is_ipv6
 from ngnos.util import call
 
 cache_file = r'/run/ddclient/ddclient.cache'
 
-OUT_TMPL_SRC = """
-{% for entry in hosts %}
-ip address   : {{ entry.ip }}
-host-name    : {{ entry.host }}
-last update  : {{ entry.time }}
-update-status: {{ entry.status }}
+columns = {
+    'host':        'Hostname',
+    'ipv4':        'IPv4 address',
+    'status-ipv4': 'IPv4 status',
+    'ipv6':        'IPv6 address',
+    'status-ipv6': 'IPv6 status',
+    'mtime':       'Last update',
+}
 
-{% endfor %}
-"""
+
+def _get_formatted_host_records(host_data):
+    data_entries = []
+    for entry in host_data:
+        data_entries.append([entry.get(key) for key in columns.keys()])
+
+    header = columns.values()
+    output = tabulate(data_entries, header, numalign='left')
+    return output
+
 
 def show_status():
-    # A ddclient status file must not always exist
+    # A ddclient status file might not always exist
     if not os.path.exists(cache_file):
         sys.exit(0)
 
-    data = {
-        'hosts': []
-    }
+    data = []
 
     with open(cache_file, 'r') as f:
         for line in f:
             if line.startswith('#'):
                 continue
 
-            outp = {
-                'host': '',
-                'ip': '',
-                'time': ''
-            }
+            props = {}
+            # ddclient cache rows have properties in 'key=value' format separated by comma
+            # we pick up the ones we are interested in
+            for kvraw in line.split(' ')[0].split(','):
+                k, v = kvraw.split('=')
+                if k in list(columns.keys()) + ['ip', 'status']:  # ip and status are legacy keys
+                    props[k] = v
 
-            if 'host=' in line:
-                host = line.split('host=')[1]
-                if host:
-                    outp['host'] = host.split(',')[0]
+            # Extract IPv4 and IPv6 address and status from legacy keys
+            # Dual-stack isn't supported in legacy format, 'ip' and 'status' are for one of IPv4 or IPv6
+            if 'ip' in props:
+                if is_ipv4(props['ip']):
+                    props['ipv4'] = props['ip']
+                    props['status-ipv4'] = props['status']
+                elif is_ipv6(props['ip']):
+                    props['ipv6'] = props['ip']
+                    props['status-ipv6'] = props['status']
+                del props['ip']
 
-            if 'ip=' in line:
-                ip = line.split('ip=')[1]
-                if ip:
-                    outp['ip'] = ip.split(',')[0]
+            # Convert mtime to human readable format
+            if 'mtime' in props:
+                props['mtime'] = time.strftime(
+                    "%Y-%m-%d %H:%M:%S", time.localtime(int(props['mtime'], base=10)))
 
-            if 'mtime=' in line:
-                mtime = line.split('mtime=')[1]
-                if mtime:
-                    outp['time'] = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(int(mtime.split(',')[0], base=10)))
+            data.append(props)
 
-            if 'status=' in line:
-                status = line.split('status=')[1]
-                if status:
-                    outp['status'] = status.split(',')[0]
-
-            data['hosts'].append(outp)
-
-    tmpl = jinja2.Template(OUT_TMPL_SRC)
-    print(tmpl.render(data))
+    print(_get_formatted_host_records(data))
 
 
 def update_ddns():

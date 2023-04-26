@@ -508,15 +508,15 @@
   </properties>
   <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
-<tagNode name="interface">
+#include <include/vtysh-generic-interface-tagNode.xml.i>
+<node name="mpls">
   <properties>
-    <help>Show IPv4 OSPF information for specified interface</help>
-    <completionHelp>
-      <script>${ngnos_completion_dir}/list_interfaces</script>
-    </completionHelp>
+    <help>Show MPLS information</help>
   </properties>
-  <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-</tagNode>
+  <children>
+  #include <include/ldp-sync.xml.i>
+  </children>
+</node>
 <node name="neighbor">
   <properties>
     <help>Show IPv4 OSPF neighbor information</help>
@@ -541,10 +541,18 @@
   </properties>
   <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
-<leafNode name="route">
+<node name="route">
   <properties>
     <help>Show IPv4 OSPF route information</help>
   </properties>
   <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-</leafNode>
+  <children>
+    <leafNode name="detail">
+      <properties>
+        <help>Show detailed IPv4 OSPF route information</help>
+      </properties>
+      <command>${ngnos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+    </leafNode>
+  </children>
+</node>
 <!-- included end -->

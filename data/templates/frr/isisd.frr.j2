@@ -25,6 +25,12 @@ interface {{ iface }}
 {%         if iface_config.hello_padding is ngnos_defined %}
  isis hello padding
 {%         endif %}
+{%         if iface_config.ldp_sync.disable is ngnos_defined %}
+ no isis mpls ldp-sync
+{%         elif iface_config.ldp_sync.holddown is ngnos_defined %}
+ isis mpls ldp-sync
+ isis mpls ldp-sync holddown {{ iface_config.ldp_sync.holddown }}
+{%         endif %}
 {%         if iface_config.metric is ngnos_defined %}
  isis metric {{ iface_config.metric }}
 {%         endif %}
@@ -83,6 +89,11 @@ router isis ngNOS {{ 'vrf ' + vrf if vrf is ngnos_defined }}
 {% endif %}
 {% if max_lsp_lifetime is ngnos_defined %}
  max-lsp-lifetime {{ max_lsp_lifetime }}
+{% endif %}
+{% if ldp_sync.holddown is ngnos_defined %}
+ mpls ldp-sync holddown {{ ldp_sync.holddown }}
+{% elif ldp_sync is ngnos_defined %}
+ mpls ldp-sync
 {% endif %}
 {% if spf_interval is ngnos_defined %}
  spf-interval {{ spf_interval }}

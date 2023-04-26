@@ -16,7 +16,7 @@ Build-Depends:
   build-essential,
   libngnosconfig0 (>= 0.0.7),
   libzmq3-dev,
-  python3,
+  python3 (>= 3.10),
   python3-coverage,
   python3-lxml,
   python3-netifaces,
@@ -33,8 +33,9 @@ Standards-Version: 3.9.6
 Package: ngnos-1x
 Architecture: amd64 arm64
 Depends:
-  ${python3:Depends},
+  ${python3:Depends} (>= 3.10),
   ${shlibs:Depends},
+  aardvark-dns,
   accel-ppp,
   auditd,
   avahi-daemon,
@@ -63,6 +64,7 @@ Depends:
   frr-rpki-rtrlib,
   frr-snmp,
   fuse-overlayfs,
+  libpam-google-authenticator,
   grc,
   hostapd,
   hsflowd,

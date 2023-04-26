@@ -87,6 +87,9 @@ def get_config_certificate(name=None):
 
 def get_certificate_ca(cert, ca_certs):
     # Find CA certificate for given certificate
+    if not ca_certs:
+        return None
+
     for ca_name, ca_dict in ca_certs.items():
         if 'certificate' not in ca_dict:
             continue
@@ -313,11 +316,11 @@ def generate_certificate_request(private_key=None, key_type=None, return_request
     subject['state'] = ask_input('Enter state:', default=default_values['state'])
     subject['locality'] = ask_input('Enter locality:', default=default_values['locality'])
     subject['organization'] = ask_input('Enter organization name:', default=default_values['organization'])
-    subject['common_name'] = ask_input('Enter common name:', default='ngnos.com')
+    subject['common_name'] = ask_input('Enter common name:', default='ngnos.io')
     subject_alt_names = None
 
     if ask_san and ask_yes_no('Do you want to configure Subject Alternative Names?'):
-        print("Enter alternative names in a comma separate list, example: ipv4:1.1.1.1,ipv6:fe80::1,dns:ngnos.com")
+        print("Enter alternative names in a comma separate list, example: ipv4:1.1.1.1,ipv6:fe80::1,dns:ngnos.net")
         san_string = ask_input('Enter Subject Alternative Names:')
         subject_alt_names = parse_san_string(san_string)
 

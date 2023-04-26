@@ -46,7 +46,7 @@ interface_definitions: $(config_xml_obj)
 	find $(TMPL_DIR) -name node.def -type f -empty -exec false {} + || sh -c 'echo "There are empty node.def files! Check your interface definitions." && exit 1'
 
 ifeq ($(BUILD_ARCH),arm64)
-	# There is currently no telegraf support in ngNOS for ARM64, remove CLI definitions
+	# There is currently no telegraf support in VyOS for ARM64, remove CLI definitions
 	rm -rf $(TMPL_DIR)/service/monitoring/telegraf
 endif
 
@@ -67,6 +67,7 @@ op_mode_definitions: $(op_xml_obj)
 	rm -f $(OP_TMPL_DIR)/set/node.def
 	rm -f $(OP_TMPL_DIR)/show/node.def
 	rm -f $(OP_TMPL_DIR)/show/system/node.def
+	rm -f $(OP_TMPL_DIR)/show/tech-support/node.def
 
 	# XXX: ping and traceroute must be able to recursivly call itself as the
 	# options are provided from the script itself
@@ -91,7 +92,7 @@ all: clean interface_definitions op_mode_definitions check test j2lint vyshim
 .PHONY: check
 .ONESHELL:
 check:
-	@echo "Checking which CLI scripts are not enabled to work with ngnos-configd..."
+	@echo "Checking which CLI scripts are not enabled to work with vyos-configd..."
 	@for file in `ls src/conf_mode -I__pycache__`
 	do
 		if ! grep -q $$file data/configd-include.json; then

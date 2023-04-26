@@ -19,17 +19,17 @@ system {
     login {
         user ngnos {
             authentication {
-                encrypted-password $6$BP8gpfNdHHHzCcFL$0xG.4B81lZGrz.D44y2oi0cOAhOT/NBndA0pkSsHmgPStKUwF6CMd.tKVLCzzyqG/8vQw9s.G6H3zT05d8Sbw.
+                encrypted-password $6$2Ta6TWHd/U$NmrX0x9kexCimeOcYK1MfhMpITF9ELxHcaBU/znBq.X2ukQOj61fVI2UYP/xBzP4QtiTcdkgs7WOQMHWsRymO/
                 plaintext-password ""
             }
         }
     }
     ntp {
-        server time1.ngnos.com {
+        server time1.vyos.net {
         }
-        server time2.ngnos.com {
+        server time2.vyos.net {
         }
-        server time3.ngnos.com {
+        server time3.vyos.net {
         }
     }
     syslog {
