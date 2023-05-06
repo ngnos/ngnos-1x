@@ -166,7 +166,7 @@ class EthernetIf(Interface):
         cmd = f'ethtool --change {ifname}'
         try:
             if speed == 'auto' or duplex == 'auto':
-                cmd += ' autoneg on'
+                cmd += ' speed {speed} duplex {duplex} autoneg on'
             else:
                 cmd += f' speed {speed} duplex {duplex} autoneg off'
             return self._cmd(cmd)
